@@ -1,0 +1,9 @@
+include buttons/info
+
+mixin Card(name)
+  div(class="card" class=name.toLowerCase())
+    img.profile(src=name.toLowerCase() + ".jpg")
+    +InfoButton
+    h2=name 
+    block
+    button.select Select

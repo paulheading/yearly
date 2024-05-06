@@ -1,0 +1,24 @@
+{
+  "name": "yearly",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.mjs",
+  "scripts": {
+    "serve:yearly": "nodemon",
+    "watch:yearly": "gulp watch",
+    "style:yearly": "gulp build:css",
+    "build:yearly": "rm -rf html && pug views --out html"
+  },
+  "author": "Paul Heading",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "gulp": "^4.0.0",
+    "gulp-sass": "^5.1.0",
+    "node-fetch": "^3.3.2",
+    "nodemon": "^3.1.0",
+    "pug": "^3.0.2",
+    "sass": "^1.75.0"
+  }
+}

@@ -1,0 +1,26 @@
+extends ../layouts/main
+
+include ../components/card
+include ../components/option
+
+block content
+  .wrap_layout
+    .hero
+      h1 Hi 
+        strong #{user.first_name}
+    .intro 
+      p Let's make a playlist!
+      p Yearly finds your favourite songs from the last year and shares them with your friends.
+      p Pick a playlist style to get started
+    .wrap_cards
+      +Card("Cindy")
+        p We're all friends here. Let's find your recent favs and share the love.
+      +Card("BadJo")
+        p Don’t waste my time. Fresh discoveries only. Get out.
+      +Card("Custom")
+        ul.options
+          +Option("Released this year")
+          +Option("Prioritize fewest plays")
+          +Option("Include recommends")
+    button.custom_playlist(clicked="false") Custom job please
+  script(src="/dashboard.js")

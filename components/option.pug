@@ -1,0 +1,6 @@
+mixin Option(title)
+  li(class=title.toLowerCase().split(" ").join("-"))
+    span=title
+    label(class="switch")
+      input(type="checkbox")
+      span(class="slider")

@@ -1,0 +1,240 @@
+$padding-card: 10px;
+
+$size-profile: 100px;
+
+$margin-profile: - ($size-profile * 0.5 + $padding-card);
+
+$margin-card: $size-profile * 0.5;
+
+$width-layout: 768px;
+
+$width-card: 260px;
+
+$width-card-text: 80%;
+
+$max-width-intro: 420px;
+
+$height-switch: 32px;
+
+$width-switch: 56px;
+
+$offset-slider: 4px;
+
+$size-slider: $height-switch - ($offset-slider * 2);
+
+$transition-slider: .4s;
+
+$padding-options: 10px;
+
+@mixin focus-visible {
+  &[data-focus-visible-added] {
+    @content;
+  }
+}
+
+@mixin focus-hover {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin focus {
+  &:active {
+    @content;
+  }
+
+  @include focus-hover {
+    @content;
+  }
+
+  @include focus-visible {
+    @content;
+  }
+}
+
+@mixin setup-box {
+  outline: transparent;
+  position: relative;
+  z-index: 2;
+}
+
+@mixin single-box($bg: black, $size: 0.25rem) {
+  @include setup-box;
+  box-shadow: 0 0 0 $size $bg;
+}
+
+@mixin double-box($bg: white, $col: black, $bg_size: 0.25rem, $col_size: 0.15rem) {
+  @include setup-box;
+  box-shadow: 0 0 0 $bg_size $bg, 0 0 0 ($bg_size + $col_size) $col;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.35;
+  font-size: 18px;
+  margin: 0;
+}
+
+header {
+  height: 100px;
+}
+
+footer {
+  height: 100px;
+}
+
+.wrap_layout {
+  max-width: $width-layout;
+  margin-right: auto;
+  text-align: center;
+  margin-left: auto;
+}
+
+h1 {
+  font-weight: normal;
+}
+
+.intro {
+  max-width: $max-width-intro;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+img.profile {
+  background-color: gainsboro;
+  margin-top: $margin-profile;
+  border: 1px solid black;
+  height: $size-profile;
+  width: $size-profile;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.wrap_cards {
+  min-height: 336px;
+}
+
+.card {
+  margin: $margin-card $padding-card $padding-card;
+  border-radius: $padding-card;
+  border: 1px solid black;
+  vertical-align: middle;
+  padding: $padding-card;
+  display: inline-block;
+  position: relative;
+  width: $width-card;
+}
+
+.card p {
+  width: $width-card-text;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+button.select {
+  border-radius: $padding-card;
+  background-color: black;
+  padding: $padding-card;
+  cursor: pointer;
+  color: white;
+  border: none;
+  width: 100%;
+}
+
+button.custom_playlist {
+  text-decoration: underline;
+  background: none;
+  margin-top: 30px;
+  cursor: pointer;
+  border: none;
+
+  @include focus {
+    @include single-box;
+    background-color: black;
+    color: white;
+  }
+}
+
+.custom.card {
+  display: none;
+  opacity: 0;
+}
+
+.switch {
+  height: $height-switch;
+  display: inline-block;
+  width: $width-switch;
+  position: relative;
+}
+
+.switch input {
+  opacity: 0;
+  height: 0;
+  width: 0;
+}
+
+.slider {
+  -webkit-transition: $transition-slider;
+  transition: $transition-slider;
+  border-radius: $height-switch;
+  background-color: #ccc;
+  position: absolute;
+  cursor: pointer;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+}
+
+.slider:before {
+  background-color: white;
+  -webkit-transition: .4s;
+  bottom: $offset-slider;
+  height: $size-slider;
+  left: $offset-slider;
+  width: $size-slider;
+  border-radius: 50%;
+  position: absolute;
+  transition: .4s;
+  content: "";
+}
+
+input:checked+.slider {
+  background-color: #2196F3;
+}
+
+input:focus+.slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+  -webkit-transform: translateX($size-slider);
+  -ms-transform: translateX($size-slider);
+  transform: translateX($size-slider);
+}
+
+ul.options {
+  margin: 0 0 $padding-options * 2;
+  padding: 0 $padding-options;
+  list-style: none;
+}
+
+ul.options li {
+  margin-bottom: $padding-options;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+button.info {
+  background-color: transparent;
+  border-radius: $padding-card;
+  padding: $padding-card;
+  border: transparent;
+  position: absolute;
+  cursor: pointer;
+  right: 0;
+  top: 0;
+}
