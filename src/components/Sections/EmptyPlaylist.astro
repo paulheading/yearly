@@ -1,0 +1,19 @@
+---
+import { Wrap } from "paully";
+import Section from "~Components/Section";
+import BackButton from "~Components/Buttons/Back";
+
+let sectionProps = {
+  name: "empty-playlist",
+  style: {
+    display: "none",
+  },
+};
+---
+
+<Section {...sectionProps}>
+  <p>sorry mate?! you got no songs :(</p>
+  <Wrap style={{ marginTop: "2rem" }}>
+    <BackButton>Back to start</BackButton>
+  </Wrap>
+</Section>

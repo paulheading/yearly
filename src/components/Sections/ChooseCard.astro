@@ -1,0 +1,70 @@
+---
+import { SolidButton, Wrap } from "paully";
+import Card from "~Components/Card";
+import Section from "~Components/Section";
+import CustomButton from "~Components/Buttons/Custom";
+
+import store from "~data/store";
+
+let sectionProps = {
+  name: "choose-card",
+  style: {
+    display: "none",
+  },
+};
+---
+
+<Section {...sectionProps}>
+  <!-- Personalised Greeting -->
+  <Wrap style={{ maxWidth: "28.75rem" }}>
+    <h1 class="greeting">
+      Hi <strong data-print="firstname">%%user%%</strong>
+    </h1>
+    <p>Let's make a playlist!</p>
+    <p>
+      <strong>Yearly</strong> finds your favourite songs from the last year and shares
+      them with your friends.
+    </p>
+    <p>Pick a playlist <em>style</em> to get started</p>
+  </Wrap>
+  <!-- Select Playlist Style -->
+  <Wrap style={{ marginTop: "2rem" }}>
+    <Wrap>
+      <Section name="playlist">
+        {store.cards.playlists.map((card) => <Card {...card} />)}
+      </Section>
+      <Section name="custom" style={{ display: "none" }}>
+        <Card {...store.cards.custom} />
+      </Section>
+    </Wrap>
+    <Wrap style={{ marginTop: "2rem" }}>
+      <CustomButton>Custom job please</CustomButton>
+    </Wrap>
+    <!-- <Wrap style={{ marginTop: "2rem", maxWidth: "12.5rem" }}>
+          <p>Would you like a summertime playlist?</p>
+          <Toggle />
+        </Wrap> -->
+    <Wrap style={{ marginTop: "2rem" }}>
+      <SolidButton className="build-button">Let's Build!</SolidButton>
+    </Wrap>
+  </Wrap>
+</Section>
+
+<style lang="scss">
+  @use "~mixins" as *;
+
+  .greeting {
+    word-wrap: break-word;
+    font-weight: normal;
+  }
+
+  .build-button {
+    max-width: 240px;
+    width: 100%;
+  }
+
+  .build-button:not(.selected-state) {
+    pointer-events: none;
+    visibility: hidden;
+  }
+</style>

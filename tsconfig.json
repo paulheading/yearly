@@ -11,6 +11,7 @@
       "~mixins": ["./src/styles/_mixins.scss"],
       "~mixins/*": ["./src/styles/mixins/*.scss"],
       "~Components/*": ["./src/components/*.astro"],
+      "~Sections/*": ["./src/components/sections/*.astro"],
       "~Layouts/*": ["./src/layouts/*.astro"]
     }
   },

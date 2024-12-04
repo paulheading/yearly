@@ -1,0 +1,20 @@
+---
+import { Wrap } from "paully";
+import Section from "~Components/Section";
+import BackButton from "~Components/Buttons/Back";
+
+let sectionProps = {
+  name: "share-playlist",
+  style: {
+    display: "none",
+  },
+};
+---
+
+<Section {...sectionProps}>
+  <p>go share the link ya filthy animal!</p>
+  <p><a href="#" data-print="share-link"></a></p>
+  <Wrap style={{ marginTop: "2rem" }}>
+    <BackButton>Back to start</BackButton>
+  </Wrap>
+</Section>

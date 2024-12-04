@@ -1,0 +1,40 @@
+---
+import { SolidButton, SpotifyWindow, Wrap } from "paully";
+import Section from "~Components/Section";
+import BackButton from "~Components/Buttons/Back";
+import dummy from "~data/dummy";
+
+let sectionProps = {
+  name: "save-playlist",
+  style: {
+    display: "none",
+  },
+};
+
+let saveProps = {
+  backgroundColor: "#29a847",
+  className: "save-button",
+  padding: 16,
+};
+---
+
+<Section {...sectionProps}>
+  <div class="wrap-playlist">
+    <SpotifyWindow {...dummy} />
+  </div>
+  <Wrap style={{ marginTop: "3rem" }}>
+    <SolidButton {...saveProps}>Save Playlist</SolidButton>
+  </Wrap>
+  <Wrap style={{ marginTop: "1rem" }}>
+    <BackButton>Back to start</BackButton>
+  </Wrap>
+</Section>
+
+<style lang="scss">
+  @use "~mixins" as *;
+
+  .wrap-playlist {
+    justify-content: center;
+    display: flex;
+  }
+</style>

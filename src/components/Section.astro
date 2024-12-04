@@ -1,0 +1,13 @@
+---
+let { name, className, style } = Astro.props;
+
+let props = {
+  "data-section": name,
+  class: className,
+  style,
+};
+---
+
+<div {...props}>
+  <slot />
+</div>
