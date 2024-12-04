@@ -1,0 +1,125 @@
+---
+import { Toggle } from "paully";
+import { Info as InfoSvg } from "paully/svgs";
+import InfoButton from "~Components/Buttons/Info";
+
+let { type, image, title, copy, multiple, editable } = Astro.props;
+
+let typeIsConfig = type == "config";
+
+let display = multiple && typeIsConfig ? "none" : "initial";
+
+let hasToggles = typeIsConfig && editable;
+
+let containerProps = {
+  "data-type": type,
+  style: {
+    display,
+  },
+};
+---
+
+<div {...containerProps}>
+  <div class="card-header">
+    <img src={image} alt="" class="profile" />
+    {
+      multiple && (
+        <InfoButton className="info-position">
+          <InfoSvg className="info-svg" />
+        </InfoButton>
+      )
+    }
+  </div>
+  {title && <h2 class="title">{title}</h2>}
+  <div class:list={["copy", hasToggles && "toggles"]}>
+    {
+      copy.map(function (sentence) {
+        if (type == "config") {
+          return (
+            <p>
+              <span>{sentence}</span>
+              {editable && <Toggle />}
+            </p>
+          );
+        }
+        return <p>{sentence}</p>;
+      })
+    }
+  </div>
+</div>
+
+<style lang="scss">
+  @use "~mixins" as *;
+
+  .info-position {
+    position: relative;
+    top: -0.625rem;
+  }
+
+  .info-svg {
+    display: block;
+  }
+
+  .card-header {
+    grid-template-columns: $size-card-info $size-card-profile $size-card-info;
+    margin-bottom: $margin-bottom-card-header;
+    justify-content: space-between;
+    margin-top: -$margin-top-card;
+    align-items: flex-end;
+    gap: $margin-card;
+    display: grid;
+  }
+
+  .profile {
+    @include size($size-card-profile);
+    grid-column: 2;
+
+    & {
+      border: 1px solid black;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+  }
+
+  .profile.selected-state {
+    border-color: white;
+  }
+
+  .title {
+    margin-bottom: $margin-bottom-card-header;
+    font-size: $h3-font-size;
+  }
+
+  .copy {
+    @include center-block;
+
+    & {
+      margin-bottom: $margin-bottom-card-header;
+      max-width: $max-width-card-copy;
+      min-height: toRem(84);
+      min-width: toRem(206);
+    }
+
+    p {
+      margin-bottom: $margin-bottom-card-copy;
+    }
+  }
+
+  .copy.toggles {
+    max-width: $max-width-card-copy--config;
+
+    p {
+      margin-bottom: $margin-card;
+      gap: $margin-card;
+      display: grid;
+
+      @include small-up {
+        justify-content: space-between;
+        grid-auto-flow: column;
+        gap: $margin-card * 2;
+        align-items: center;
+        text-align: left;
+      }
+    }
+  }
+</style>

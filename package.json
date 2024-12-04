@@ -1,0 +1,24 @@
+{
+  "name": "yearly3",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.11.10",
+    "@astrojs/mdx": "^4.0.1",
+    "@astrojs/sitemap": "^3.2.1",
+    "astro": "^5.0.2",
+    "buffer": "^6.0.3",
+    "focus-visible": "^5.2.0",
+    "gsap": "npm:@gsap/shockingly@^3.11.4",
+    "paully": "^2.0.8"
+  },
+  "devDependencies": {
+    "sass-embedded": "^1.82.0"
+  }
+}

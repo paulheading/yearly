@@ -1,0 +1,25 @@
+---
+import { SolidButton } from "paully";
+---
+
+<SolidButton className="select-button">Select</SolidButton>
+
+<style lang="scss">
+  @use "~mixins" as *;
+
+  .select-button {
+    fill: currentColor;
+    width: 100%;
+  }
+
+  .select-button.selected-state {
+    background-color: white;
+    border-color: white;
+    font-weight: bold;
+    color: $c-green;
+
+    @include focus {
+      @include double-box(white);
+    }
+  }
+</style>

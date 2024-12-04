@@ -1,0 +1,28 @@
+---
+import "~styles/global.scss";
+import { Head, Container } from "paully";
+---
+
+<script>
+  import "focus-visible/dist/focus-visible.min.js";
+</script>
+
+<script src="~scripts/layouts/main.js"></script>
+
+<html lang="en">
+  <Head {...Astro.props} />
+  <body data-state="visible">
+    <Container top="0rem" bottom="0rem">
+      <header></header>
+      <slot />
+      <footer></footer>
+    </Container>
+  </body>
+</html>
+
+<style>
+  header,
+  footer {
+    height: 100px;
+  }
+</style>

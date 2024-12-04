@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "./",
+    "paths": {
+      "~*": ["./src/*"],
+      "~vars": ["./src/styles/_vars.scss"],
+      "~vars/*": ["./src/styles/vars/*.scss"],
+      "~functions": ["./src/styles/_functions.scss"],
+      "~functions/*": ["./src/styles/functions/*.scss"],
+      "~mixins": ["./src/styles/_mixins.scss"],
+      "~mixins/*": ["./src/styles/mixins/*.scss"],
+      "~Components/*": ["./src/components/*.astro"],
+      "~Layouts/*": ["./src/layouts/*.astro"]
+    }
+  },
+  "extends": "astro/tsconfigs/strict",
+  "include": [".astro/types.d.ts", "**/*"],
+  "exclude": ["dist"]
+}

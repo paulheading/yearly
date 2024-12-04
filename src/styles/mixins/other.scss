@@ -1,0 +1,33 @@
+@use "paully/mixins" as *;
+@use "../functions" as *;
+
+@mixin topbar-icon {
+  justify-content: center;
+  display: inline-flex;
+  width: 5rem;
+}
+
+@mixin position-folder {
+  @include medium-up {
+    transition: right 300ms steps(3), top 300ms steps(3);
+    position: absolute;
+  }
+}
+
+@mixin desktop-grid($right: 0, $top: 0) {
+  right: rightAdjust($right * 45);
+  top: toRem($top * 50);
+}
+
+@mixin control-row {
+  justify-content: center;
+  display: flex;
+  gap: 0.5rem;
+}
+
+@mixin absolute-control-row {
+  @include control-row;
+  position: absolute;
+  right: 0;
+  left: 0;
+}

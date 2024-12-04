@@ -1,0 +1,76 @@
+@use "paully/styles";
+
+@use "global/page-content";
+
+@use "mixins" as *;
+
+.small-up {
+  @include small-down {
+    display: none;
+  }
+}
+
+.small-down {
+  @include small-up {
+    display: none;
+  }
+}
+
+code {
+  @include code-styles;
+}
+
+pre {
+  @include code-styles;
+
+  & {
+    overflow: scroll;
+  }
+}
+
+p:has(img:only-child)+p:has(em:only-child) {
+  margin-top: -$margin-paragraph;
+  font-size: $font-size-caption;
+  background-color: $c-body-bg;
+  padding: $padding-blockquote;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.artwork svg {
+  display: none;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+.page-row {
+  @include simple-links {
+    @include focus {
+      @include gold-box;
+    }
+  }
+
+  blockquote {
+    @include blockquote;
+  }
+
+  p+blockquote,
+  blockquote+p,
+  ul+blockquote,
+  blockquote+ul,
+  ol+blockquote,
+  blockquote+ol {
+    margin-top: $margin-blockquote;
+  }
+}
+
+.overlay a {
+  @include focus {
+    @include white-box;
+  }
+}

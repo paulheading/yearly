@@ -1,0 +1,42 @@
+@use "sass:color";
+
+@use "paully/vars" as *;
+
+$spotify-bg: #0d100a;
+$spotify-header: #222b1b;
+$spotify-text: #a0a19e;
+
+$c-trello-text: #172b4e;
+$c-trello-background: #ebecf0;
+
+$c-606d7-bg: hsl(270, 100%, 80%);
+$c-606d7-banner: color.adjust($c-606d7-bg, $lightness: 10%);
+$c-606d7-svg: color.adjust($c-606d7-bg, $lightness: 20%);
+
+$c-60734-bg: hsl(30, 90%, 50%);
+$c-60734-banner: color.adjust($c-60734-bg, $lightness: 15%);
+$c-60734-svg: color.adjust($c-60734-bg, $lightness: 30%);
+
+$c-6491c-bg: hsl(5, 100%, 70%);
+$c-6491c-banner: color.adjust($c-6491c-bg, $lightness: 10%);
+$c-6491c-svg: color.adjust($c-6491c-bg, $lightness: 20%);
+
+$heroes: (
+  "606d7": (bg: $c-606d7-bg,
+    banner: $c-606d7-banner,
+    svg: $c-606d7-svg,
+  ),
+  "60734": (bg: $c-60734-bg,
+    banner: $c-60734-banner,
+    svg: $c-60734-svg,
+  ),
+  "6491c": (bg: $c-6491c-bg,
+    banner: $c-6491c-banner,
+    svg: $c-6491c-svg,
+  ),
+);
+
+$themes: (
+  "futuro": $c-blue,
+  "barbican-reset": $c-red,
+);

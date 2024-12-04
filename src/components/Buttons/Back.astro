@@ -1,0 +1,20 @@
+---
+import { InvisibleButton } from "paully";
+---
+
+<InvisibleButton className="back-button">
+  <u><slot /></u>
+</InvisibleButton>
+
+<style lang="scss">
+  @use "~mixins" as *;
+
+  .back-button {
+    padding: 0.25rem;
+
+    @include focus {
+      background-color: black;
+      color: white;
+    }
+  }
+</style>

@@ -1,0 +1,17 @@
+{
+  "name": "compile-images",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "del": "^7.1.0",
+    "imagemin": "^8.0.1",
+    "imagemin-webp": "^8.0.0"
+  }
+}

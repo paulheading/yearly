@@ -1,0 +1,37 @@
+---
+import Layout from "~Layouts/Main";
+import { SolidButton, Wrap } from "paully";
+
+import { seo } from "paully/data";
+
+const layoutProps = {
+  title: "Home | Yearly | Songs you discovered this year",
+  keywords: seo.keywords("yearly, spotify, songs, discover"),
+  description: "I'm a " + seo.job.title + ". " + seo.job.description,
+};
+---
+
+<script src="~scripts/pages/index.js"></script>
+
+<Layout {...layoutProps}>
+  <Wrap style={{ textAlign: "center" }}>
+    <div>
+      <h1>Yearly</h1>
+      <h4>Songs you discovered this year</h4>
+      <SolidButton className="login-button">Log in</SolidButton>
+    </div>
+  </Wrap>
+</Layout>
+
+<style lang="scss">
+  @use "~mixins" as *;
+
+  .login-button {
+    max-width: toRem(150);
+    width: 100%;
+  }
+
+  .playlist {
+    display: inline-block;
+  }
+</style>

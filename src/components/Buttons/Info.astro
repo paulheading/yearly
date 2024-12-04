@@ -1,0 +1,29 @@
+---
+import { InvisibleButton } from "paully";
+
+let { className } = Astro.props;
+---
+
+<div class={className}>
+  <InvisibleButton className="info-button">
+    <slot />
+  </InvisibleButton>
+</div>
+
+<style lang="scss">
+  @use "~mixins" as *;
+
+  .info-button {
+    @include focus-color-switch(white, black);
+
+    & {
+      border-radius: 50%;
+      fill: currentColor;
+      display: block;
+    }
+  }
+
+  .info-button.selected-state {
+    @include focus-color-switch($c-green, white);
+  }
+</style>
