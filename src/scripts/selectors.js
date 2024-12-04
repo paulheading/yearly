@@ -24,6 +24,7 @@ $.sections = {
   choose_card: $.querySection("choose-card"),
   save_playlist: $.querySection("save-playlist"),
   share_playlist: $.querySection("share-playlist"),
+  empty_playlist: $.querySection("empty-playlist"),
   custom: $.querySection("custom"),
   playlist: $.querySection("playlist"),
 };
@@ -33,12 +34,11 @@ $.print = {
   share_link: $.queryPrint("share-link"),
 };
 
-$.playlist = {
-  outer: $.querySelector(".outer-window"),
-  name: $.querySelector(".outer-window .name"),
-  owner: $.querySelector(".outer-window .owner"),
-  main: $.querySelector(".outer-window main"),
-  track: $.querySelector(".outer-window main>div"),
-};
+$.playlist = () => $.querySelector(".outer-window");
+$.playlist_name = () => $.playlist().querySelector(".name");
+$.playlist_owner = () => $.playlist().querySelector(".owner");
+$.playlist_main = () => $.playlist().querySelector("main");
+$.playlist_track = () => $.playlist_main().querySelector(".container");
+$.playlist_tracks = () => $.playlist_main().querySelectorAll(".container");
 
 export default $;

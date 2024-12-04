@@ -38,16 +38,16 @@ function buildButtonClick() {
 }
 
 function cloneTrack(index) {
-  let $track = $.playlist.track.cloneNode(true);
+  let $track = $.playlist_track().cloneNode(true);
   let $number = $track.querySelector(".number");
   $number.innerText = index + 1;
-  $.playlist.main.append($track);
+  $.playlist_main().append($track);
 }
 
 function printPlaylistTrack(item, index) {
   if (index > 0) cloneTrack(index);
 
-  let $track = $.querySelectorAll(".outer-window main>div")[index];
+  let $track = $.playlist_tracks()[index];
 
   let $track_name = $track.querySelector(".track-name");
   let $artist_name = $track.querySelector(".artist-name");
@@ -58,7 +58,13 @@ function printPlaylistTrack(item, index) {
 }
 
 function displayResults(tracks) {
-  console.log("tracks? ", tracks);
+  if (tracks.length == 0) {
+    function showElements() {
+      $.sections.empty_playlist.style.display = "initial";
+    }
+
+    return loadingComplete(showElements);
+  }
 
   tracks = tracks.filter((_, index) => index < 10);
   tracks = tracks.sort(byLowestPopularity);
@@ -66,9 +72,9 @@ function displayResults(tracks) {
   store.selected.playlist.name = createPlaylistName();
   store.selected.playlist.tracks = tracks;
 
-  $.playlist.name.innerText = store.selected.playlist.name;
-  $.playlist.owner.innerText = store.user.display_name;
-  $.playlist.owner.href = store.user.external_urls.spotify;
+  $.playlist_name().innerText = store.selected.playlist.name;
+  $.playlist_owner().innerText = store.user.display_name;
+  $.playlist_owner().href = store.user.external_urls.spotify;
 
   store.selected.playlist.tracks.forEach(printPlaylistTrack);
 

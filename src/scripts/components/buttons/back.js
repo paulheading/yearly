@@ -2,8 +2,13 @@ import $ from "~scripts/selectors";
 import { loadingComplete, loadingCurrently } from "~scripts/helpers";
 
 function hideElements() {
-  $.sections.save_playlist.style.display = "none";
-  $.sections.share_playlist.style.display = "none";
+  let sections = [
+    $.sections.save_playlist,
+    $.sections.share_playlist,
+    $.sections.empty_playlist,
+  ];
+
+  sections.forEach((section) => (section.style.display = "none"));
 }
 
 function showElements() {
