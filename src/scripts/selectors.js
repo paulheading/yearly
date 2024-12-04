@@ -37,7 +37,8 @@ $.playlist = {
   outer: $.querySelector(".outer-window"),
   name: $.querySelector(".outer-window .name"),
   owner: $.querySelector(".outer-window .owner"),
-  tracks: $.querySelectorAll(".outer-window main .container"),
+  main: $.querySelector(".outer-window main"),
+  track: $.querySelector(".outer-window main>div"),
 };
 
 export default $;

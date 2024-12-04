@@ -37,8 +37,17 @@ function buildButtonClick() {
   getTracks(displayResults);
 }
 
+function cloneTrack(index) {
+  let $track = $.playlist.track.cloneNode(true);
+  let $number = $track.querySelector(".number");
+  $number.innerText = index + 1;
+  $.playlist.main.append($track);
+}
+
 function printPlaylistTrack(item, index) {
-  let $track = $.playlist.tracks[index];
+  if (index > 0) cloneTrack(index);
+
+  let $track = $.querySelectorAll(".outer-window main>div")[index];
 
   let $track_name = $track.querySelector(".track-name");
   let $artist_name = $track.querySelector(".artist-name");
@@ -49,6 +58,8 @@ function printPlaylistTrack(item, index) {
 }
 
 function displayResults(tracks) {
+  console.log("tracks? ", tracks);
+
   tracks = tracks.filter((_, index) => index < 10);
   tracks = tracks.sort(byLowestPopularity);
 
