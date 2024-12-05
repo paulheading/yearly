@@ -23,15 +23,6 @@ let getYear = () => DateTime.now().toFormat("yyyy");
 
 let getYearFromString = (value) => value.slice(0, 4);
 
-function byAlbumReleaseDate(item, callback) {
-  let { track } = item;
-  let { album } = track;
-
-  callback(item);
-
-  return getYearFromString(album.release_date) == getYear();
-}
-
 let byContentType = ({ type }) => type == "config";
 
 let byLowestPopularity = (a, b) => a.track.popularity - b.track.popularity;
@@ -44,15 +35,36 @@ function createPlaylistName() {
   return `Yearly Roundup [${timestamp}]`;
 }
 
+function addedThisYear({ added_at }) {
+  let year_added = getYearFromString(added_at);
+  let result = year_added == getYear();
+
+  console.log("year added: ", year_added, "result: ", result);
+
+  return result;
+}
+
+function releasedThisYear({ track }) {
+  let { album } = track;
+
+  let year_released = getYearFromString(album.release_date);
+  let result = year_released == getYear();
+
+  console.log("year released: ", year_released, "result: ", result);
+
+  return result;
+}
+
 export {
   switchElements,
   loadingCurrently,
   loadingComplete,
   getYear,
   getYearFromString,
-  byAlbumReleaseDate,
   byContentType,
   byLowestPopularity,
   byPlaylistId,
   createPlaylistName,
+  addedThisYear,
+  releasedThisYear,
 };

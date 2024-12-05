@@ -5,20 +5,20 @@ export default {
     open: true,
   },
   content: {
-    thumbnail: "https://cdn.britannica.com/69/65969-050-8E4B0AB9/Orangutan.jpg",
-    url: "playlist url",
+    thumbnail: "https://yearly.paul.ly/playlist.jpg",
+    url: "#",
     name: "playlist name",
     owner: {
-      url: "owner url",
+      url: "#",
       name: "owner name",
     },
     tracks: [
       {
         name: "track name",
         number: 1,
-        url: "track url",
+        url: "#",
         artist: {
-          url: "artist url",
+          url: "#",
           name: "artist name",
         },
       },
