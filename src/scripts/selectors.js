@@ -25,6 +25,8 @@ $.sections = {
   save_playlist: $.querySection("save-playlist"),
   share_playlist: $.querySection("share-playlist"),
   empty_playlist: $.querySection("empty-playlist"),
+  recommend_tracks: $.querySection("recommend-tracks"),
+  tracks_added: $.querySection("tracks-added"),
   custom: $.querySection("custom"),
   playlist: $.querySection("playlist"),
 };
@@ -32,6 +34,7 @@ $.sections = {
 $.print = {
   firstname: $.queryPrint("firstname"),
   share_link: $.queryPrint("share-link"),
+  tracks_added: $.queryPrint("tracks-added"),
 };
 
 $.playlist = () => $.querySelector(".outer-window");

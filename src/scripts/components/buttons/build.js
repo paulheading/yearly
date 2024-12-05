@@ -1,4 +1,4 @@
-import { getTracks } from "~scripts/services";
+import { getTracks, getRecommends } from "~scripts/services";
 
 import $ from "~scripts/selectors";
 import store from "~data/store";
@@ -8,6 +8,7 @@ import {
   byLowestPopularity,
   byPlaylistId,
   createPlaylistName,
+  displaySection,
   loadingComplete,
   loadingCurrently,
 } from "~scripts/helpers";
@@ -16,7 +17,8 @@ function buildButtonClick() {
   if (!store.selected.id) return;
 
   function hideElements() {
-    $.sections.choose_card.style.display = "none";
+    displaySection("choose_card", "none");
+    displaySection("tracks_added", "block");
   }
 
   loadingCurrently(hideElements);
@@ -57,13 +59,32 @@ function printPlaylistTrack(item, index) {
   $artist_name.href = item.track.artists[0].external_urls.spotify;
 }
 
+function handleEmptyPlaylist() {
+  function showElements() {
+    displaySection("empty_playlist", "block");
+  }
+
+  return loadingComplete(showElements);
+}
+
 function displayResults(tracks) {
-  if (tracks.length == 0) {
+  // tracks = tracks.filter((_, index) => index < 1);
+
+  if (tracks.length == 0) handleEmptyPlaylist();
+  else if (tracks.length < 10) {
+    let recommends = "";
+
+    tracks.forEach(({ track }) => (recommends += track.id + ","));
+
+    // getRecommends(recommends.slice(0, -1));
+
+    // getRecommends("seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA");
+
     function showElements() {
-      $.sections.empty_playlist.style.display = "initial";
+      displaySection("recommend_tracks", "block");
     }
 
-    return loadingComplete(showElements);
+    loadingComplete(showElements);
   }
 
   tracks = tracks.filter((_, index) => index < 10);
@@ -79,7 +100,7 @@ function displayResults(tracks) {
   store.selected.playlist.tracks.forEach(printPlaylistTrack);
 
   function showElements() {
-    $.sections.save_playlist.style.display = "initial";
+    displaySection("save_playlist", "block");
   }
 
   loadingComplete(showElements);

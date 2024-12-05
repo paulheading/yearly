@@ -1,18 +1,23 @@
 import $ from "~scripts/selectors";
-import { loadingComplete, loadingCurrently } from "~scripts/helpers";
+import {
+  displaySection,
+  loadingComplete,
+  loadingCurrently,
+} from "~scripts/helpers";
 
 function hideElements() {
   let sections = [
-    $.sections.save_playlist,
-    $.sections.share_playlist,
-    $.sections.empty_playlist,
+    "save_playlist",
+    "share_playlist",
+    "empty_playlist",
+    "tracks_added",
   ];
 
-  sections.forEach((section) => (section.style.display = "none"));
+  sections.forEach((name) => displaySection(name, "none"));
 }
 
 function showElements() {
-  $.sections.choose_card.style.display = "initial";
+  displaySection("choose_card", "block");
 }
 
 function backButtonClick() {

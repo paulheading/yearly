@@ -2,7 +2,11 @@ import $ from "~scripts/selectors";
 import { getData, postData } from "~scripts/services";
 import store from "~data/store";
 
-import { loadingComplete, loadingCurrently } from "~scripts/helpers";
+import {
+  displaySection,
+  loadingComplete,
+  loadingCurrently,
+} from "~scripts/helpers";
 
 function postPlaylistData() {
   let playlist = {
@@ -25,11 +29,11 @@ function postTrackData(playlist) {
 }
 
 function hideElements() {
-  $.sections.save_playlist.style.display = "none";
+  displaySection("save_playlist", "none");
 }
 
 function showElements() {
-  $.sections.share_playlist.style.display = "initial";
+  displaySection("share_playlist", "block");
 }
 
 function saveButtonClick() {

@@ -1,4 +1,4 @@
-import { loadingComplete } from "~scripts/helpers";
+import { displaySection, loadingComplete } from "~scripts/helpers";
 import { setAccessToken, setUser } from "~scripts/services";
 import customButtonListener from "~scripts/components/buttons/custom";
 import infoButtonListener from "~scripts/components/buttons/info";
@@ -13,7 +13,7 @@ setAccessToken()
   .then(setUser)
   .then(function () {
     function showElements() {
-      $.sections.choose_card.style.display = "initial";
+      displaySection("choose_card", "block");
     }
     loadingComplete(showElements);
   })

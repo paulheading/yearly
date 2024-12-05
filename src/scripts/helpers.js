@@ -14,6 +14,7 @@ function loadingCurrently(callback) {
 
 function loadingComplete(callback) {
   setTimeout(function () {
+    displaySection("tracks_added", "none");
     switchElements($.not_loaded, $.loaded);
     callback();
   }, 1000);
@@ -39,7 +40,7 @@ function addedThisYear({ added_at }) {
   let year_added = getYearFromString(added_at);
   let result = year_added == getYear();
 
-  console.log("year added: ", year_added, "result: ", result);
+  // console.log("year added: ", year_added, "result: ", result);
 
   return result;
 }
@@ -50,10 +51,14 @@ function releasedThisYear({ track }) {
   let year_released = getYearFromString(album.release_date);
   let result = year_released == getYear();
 
-  console.log("year released: ", year_released, "result: ", result);
+  // console.log("year released: ", year_released, "result: ", result);
 
   return result;
 }
+
+let displaySection = (element, value) => {
+  $.sections[element].style.display = value;
+};
 
 export {
   switchElements,
@@ -67,4 +72,5 @@ export {
   createPlaylistName,
   addedThisYear,
   releasedThisYear,
+  displaySection,
 };
