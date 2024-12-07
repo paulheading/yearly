@@ -30,7 +30,7 @@ function removeSelectedState($card) {
 
   targets.forEach((item) => item.classList.remove(className));
   $select_button.innerText = "Select";
-  store.selected.id = "";
+  store.style = "";
 }
 
 function addSelectedState($card) {
@@ -42,7 +42,7 @@ function addSelectedState($card) {
 
   targets.forEach((item) => item.classList.add(className));
   $select_button.innerText = "Selected";
-  store.selected.id = id;
+  store.style = id;
 }
 
 function selectButtonClick(event) {

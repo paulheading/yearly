@@ -12,7 +12,7 @@ function postPlaylistData() {
   let playlist = {
     path: "users/" + store.user.id + "/playlists",
     details: {
-      name: store.selected.playlist.name,
+      name: store.create.playlist.name,
       description: "Yearly generated playlist",
       public: false,
     },
@@ -23,7 +23,7 @@ function postPlaylistData() {
 function postTrackData(playlist) {
   let tracks = {
     path: "playlists/" + playlist.id + "/tracks",
-    uris: store.selected.playlist.tracks.map(({ track }) => track.uri),
+    uris: store.create.playlist.tracks.map(({ track }) => track.uri),
   };
   return postData(tracks.path, { uris: tracks.uris });
 }
@@ -47,7 +47,7 @@ function saveButtonClick() {
         let playlist = {};
 
         while (!foundPlaylist) {
-          if (items[index].name == store.selected.playlist.name) {
+          if (items[index].name == store.create.playlist.name) {
             playlist = items[index];
             foundPlaylist = true;
           } else {

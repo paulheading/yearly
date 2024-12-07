@@ -1,6 +1,14 @@
+import {
+  discovered_this_year,
+  include_recommends,
+  released_this_year,
+  exclude_recommends,
+  fewest_plays,
+} from "~data/playlist_settings";
+
 export default {
-  selected: {
-    id: "",
+  style: "",
+  create: {
     playlist: {
       name: "",
       tracks: [],
@@ -8,9 +16,6 @@ export default {
   },
   user: {
     id: null,
-  },
-  loaded: {
-    callback: false,
   },
   cards: {
     playlists: [
@@ -31,7 +36,7 @@ export default {
             title: "",
             image: "/config.jpg",
             editable: false,
-            copy: [`Discovered this year`, `Recommends included`],
+            copy: [discovered_this_year, include_recommends],
           },
         ],
       },
@@ -50,7 +55,7 @@ export default {
             title: "",
             image: "/config.jpg",
             editable: false,
-            copy: [`Released this year`, `No recommends`],
+            copy: [released_this_year, exclude_recommends],
           },
         ],
       },
@@ -63,11 +68,7 @@ export default {
           title: "Custom",
           image: "/custom.jpg",
           editable: true,
-          copy: [
-            `Released this year`,
-            `Prioritize fewest plays`,
-            `Include recommends`,
-          ],
+          copy: [released_this_year, fewest_plays, include_recommends],
         },
       ],
     },

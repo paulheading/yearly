@@ -28,7 +28,7 @@ let byContentType = ({ type }) => type == "config";
 
 let byLowestPopularity = (a, b) => a.track.popularity - b.track.popularity;
 
-let byPlaylistId = ({ id }) => id == store.selected.id;
+let byPlaylistId = ({ id }) => id == store.style;
 
 function createPlaylistName() {
   let { now, DATETIME_MED_WITH_SECONDS } = DateTime;

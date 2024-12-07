@@ -1,20 +1,28 @@
-import { getTracks, getRecommends } from "~scripts/services";
+import {
+  getPlaylistConfig,
+  getRecommends,
+  getTracks,
+  printPlaylist,
+} from "~scripts/services";
 
 import $ from "~scripts/selectors";
 import store from "~data/store";
+import {
+  discovered_this_year,
+  include_recommends,
+  released_this_year,
+  exclude_recommends,
+  fewest_plays,
+} from "~data/playlist_settings";
 
 import {
-  byContentType,
-  byLowestPopularity,
-  byPlaylistId,
-  createPlaylistName,
   displaySection,
   loadingComplete,
   loadingCurrently,
 } from "~scripts/helpers";
 
 function buildButtonClick() {
-  if (!store.selected.id) return;
+  if (!store.style) return;
 
   function hideElements() {
     displaySection("choose_card", "none");
@@ -23,40 +31,9 @@ function buildButtonClick() {
 
   loadingCurrently(hideElements);
 
-  let playlist =
-    store.selected.id != "custom"
-      ? store.cards.playlists.filter(byPlaylistId)[0]
-      : store.cards.custom;
-
-  let config = playlist.content.filter(byContentType);
-
-  if (!config.length > 0) {
-    return console.error("config array has no length: ", config);
-  }
-
-  config = config[0].copy;
-
   getTracks(displayResults);
-}
 
-function cloneTrack(index) {
-  let $track = $.playlist_track().cloneNode(true);
-  let $number = $track.querySelector(".number");
-  $number.innerText = index + 1;
-  $.playlist_main().append($track);
-}
-
-function printPlaylistTrack(item, index) {
-  if (index > 0) cloneTrack(index);
-
-  let $track = $.playlist_tracks()[index];
-
-  let $track_name = $track.querySelector(".track-name");
-  let $artist_name = $track.querySelector(".artist-name");
-
-  $track_name.innerText = item.track.name;
-  $artist_name.innerText = item.track.artists[0].name;
-  $artist_name.href = item.track.artists[0].external_urls.spotify;
+  console.log("store: ", store);
 }
 
 function handleEmptyPlaylist() {
@@ -67,43 +44,47 @@ function handleEmptyPlaylist() {
   return loadingComplete(showElements);
 }
 
+function getPlaylistRecommends(tracks) {
+  let recommends = tracks.forEach(({ track }) => track.id + ",");
+
+  recommends = recommends.slice(0, -1);
+
+  // getRecommends(recommends);
+
+  // getRecommends("seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA");
+
+  function showElements() {
+    displaySection("recommend_tracks", "block");
+  }
+
+  loadingComplete(showElements);
+}
+
 function displayResults(tracks) {
   // tracks = tracks.filter((_, index) => index < 1);
 
   if (tracks.length == 0) handleEmptyPlaylist();
-  else if (tracks.length < 10) {
-    let recommends = "";
+  else if (tracks.length < 10) getPlaylistRecommends(tracks);
 
-    tracks.forEach(({ track }) => (recommends += track.id + ","));
-
-    // getRecommends(recommends.slice(0, -1));
-
-    // getRecommends("seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA");
-
-    function showElements() {
-      displaySection("recommend_tracks", "block");
+  getPlaylistConfig().forEach(function (setting) {
+    if (setting == discovered_this_year) {
+      console.log("matched: ", discovered_this_year);
     }
+    if (setting == include_recommends) {
+      console.log("matched: ", include_recommends);
+    }
+    if (setting == released_this_year) {
+      console.log("matched: ", released_this_year);
+    }
+    if (setting == exclude_recommends) {
+      console.log("matched: ", exclude_recommends);
+    }
+    if (setting == fewest_plays) {
+      console.log("matched: ", fewest_plays);
+    }
+  });
 
-    loadingComplete(showElements);
-  }
-
-  tracks = tracks.filter((_, index) => index < 10);
-  tracks = tracks.sort(byLowestPopularity);
-
-  store.selected.playlist.name = createPlaylistName();
-  store.selected.playlist.tracks = tracks;
-
-  $.playlist_name().innerText = store.selected.playlist.name;
-  $.playlist_owner().innerText = store.user.display_name;
-  $.playlist_owner().href = store.user.external_urls.spotify;
-
-  store.selected.playlist.tracks.forEach(printPlaylistTrack);
-
-  function showElements() {
-    displaySection("save_playlist", "block");
-  }
-
-  loadingComplete(showElements);
+  printPlaylist(tracks);
 }
 
 export default function () {
