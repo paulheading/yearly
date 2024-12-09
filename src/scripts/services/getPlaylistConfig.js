@@ -13,5 +13,5 @@ export default function () {
     return console.error("config array has no length: ", config);
   }
 
-  return config[0].copy;
+  return config[0].settings;
 }

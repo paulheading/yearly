@@ -5,7 +5,7 @@ export default {
     open: true,
   },
   content: {
-    thumbnail: "https://yearly.paul.ly/config.jpg",
+    thumbnail: "https://yearly.paul.ly/playlist.jpg",
     url: "#",
     name: "playlist name",
     owner: {

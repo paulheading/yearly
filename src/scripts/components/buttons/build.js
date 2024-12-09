@@ -70,19 +70,23 @@ function displayResults(items) {
   if (items.length == 0) handleEmptyPlaylist();
   else if (items.length < 10) getPlaylistRecommends(items);
 
-  getPlaylistConfig().forEach(function (setting) {
-    if (setting == include_recommends) {
+  console.log("config: ", getPlaylistConfig());
+
+  getPlaylistConfig().forEach(function ({ title, value }) {
+    if (!value) return;
+
+    if (title == include_recommends) {
       console.log("matched: ", include_recommends);
     }
-    if (setting == released_this_year) {
+    if (title == released_this_year) {
       console.log("matched: ", released_this_year);
       items = items.filter((item) => releasedThisYear(item));
     }
-    if (setting == least_popular) {
+    if (title == least_popular) {
       console.log("matched: ", least_popular);
       items = items.sort(byLowestPopularity);
     }
-    if (setting == most_popular) {
+    if (title == most_popular) {
       console.log("matched: ", most_popular);
       items = items.sort(byHighestPopularity);
     }
