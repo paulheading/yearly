@@ -1,10 +1,5 @@
 import { getData } from "~scripts/services";
-import {
-  addedThisYear,
-  releasedThisYear,
-  byLowestPopularity,
-  displaySection,
-} from "~scripts/helpers";
+import { addedThisYear, displaySection } from "~scripts/helpers";
 import $ from "~scripts/selectors";
 
 let keepGoing = true;
@@ -21,7 +16,7 @@ export default async function (callback) {
 
     displaySection("tracks_added", "block");
 
-    items.forEach(function (item, index) {
+    items.forEach(function (item) {
       if (!addedThisYear(item)) {
         keepGoing = false;
         return;
@@ -29,15 +24,11 @@ export default async function (callback) {
 
       printTracksAdded(total++);
 
-      // if (!releasedThisYear(item)) return;
-
       results.push(item);
     });
 
     offset += limit;
   }
-
-  results = results.sort(byLowestPopularity);
 
   callback(results);
 }

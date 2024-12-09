@@ -1,0 +1,30 @@
+---
+let { copy } = Astro.props;
+---
+
+<div class="copy">
+  {copy.map((sentence) => <p>{sentence}</p>)}
+</div>
+
+<style lang="scss">
+  @use "~mixins" as *;
+
+  .copy {
+    @include center-block;
+
+    & {
+      margin-bottom: $margin-bottom-card-header;
+      max-width: $max-width-card-copy;
+      min-height: toRem(84);
+      min-width: toRem(206);
+
+      @include small-down {
+        font-size: 1.125rem;
+      }
+    }
+
+    p {
+      margin-bottom: $margin-bottom-card-copy;
+    }
+  }
+</style>

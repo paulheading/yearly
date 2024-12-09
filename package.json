@@ -15,8 +15,9 @@
     "astro": "^5.0.2",
     "buffer": "^6.0.3",
     "focus-visible": "^5.2.0",
-    "gsap": "npm:@gsap/shockingly",
-    "paully": "^2.0.8"
+    "gsap": "npm:@gsap/shockingly@^3.12.5",
+    "luxon": "^3.5.0",
+    "paully": "^2.0.9"
   },
   "devDependencies": {
     "sass-embedded": "^1.82.0"

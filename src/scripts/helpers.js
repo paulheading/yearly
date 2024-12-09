@@ -28,6 +28,8 @@ let byContentType = ({ type }) => type == "config";
 
 let byLowestPopularity = (a, b) => a.track.popularity - b.track.popularity;
 
+let byHighestPopularity = (a, b) => b.track.popularity - a.track.popularity;
+
 let byPlaylistId = ({ id }) => id == store.style;
 
 function createPlaylistName() {
@@ -67,6 +69,7 @@ export {
   getYear,
   getYearFromString,
   byContentType,
+  byHighestPopularity,
   byLowestPopularity,
   byPlaylistId,
   createPlaylistName,

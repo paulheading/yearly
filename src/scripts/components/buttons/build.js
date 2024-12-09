@@ -5,21 +5,25 @@ import {
   printPlaylist,
 } from "~scripts/services";
 
-import $ from "~scripts/selectors";
-import store from "~data/store";
 import {
-  discovered_this_year,
   include_recommends,
+  least_popular,
+  most_popular,
   released_this_year,
-  exclude_recommends,
-  fewest_plays,
-} from "~data/playlist_settings";
+} from "~data/settings";
 
 import {
+  byLowestPopularity,
+  byHighestPopularity,
   displaySection,
   loadingComplete,
   loadingCurrently,
+  releasedThisYear,
 } from "~scripts/helpers";
+
+import $ from "~scripts/selectors";
+
+import store from "~data/store";
 
 function buildButtonClick() {
   if (!store.style) return;
@@ -60,31 +64,33 @@ function getPlaylistRecommends(tracks) {
   loadingComplete(showElements);
 }
 
-function displayResults(tracks) {
-  // tracks = tracks.filter((_, index) => index < 1);
+function displayResults(items) {
+  // items = items.filter((_, index) => index < 1);
 
-  if (tracks.length == 0) handleEmptyPlaylist();
-  else if (tracks.length < 10) getPlaylistRecommends(tracks);
+  if (items.length == 0) handleEmptyPlaylist();
+  else if (items.length < 10) getPlaylistRecommends(items);
 
   getPlaylistConfig().forEach(function (setting) {
-    if (setting == discovered_this_year) {
-      console.log("matched: ", discovered_this_year);
-    }
     if (setting == include_recommends) {
       console.log("matched: ", include_recommends);
     }
     if (setting == released_this_year) {
       console.log("matched: ", released_this_year);
+      items = items.filter((item) => releasedThisYear(item));
     }
-    if (setting == exclude_recommends) {
-      console.log("matched: ", exclude_recommends);
+    if (setting == least_popular) {
+      console.log("matched: ", least_popular);
+      items = items.sort(byLowestPopularity);
     }
-    if (setting == fewest_plays) {
-      console.log("matched: ", fewest_plays);
+    if (setting == most_popular) {
+      console.log("matched: ", most_popular);
+      items = items.sort(byHighestPopularity);
     }
   });
 
-  printPlaylist(tracks);
+  console.log("items: ", items);
+
+  printPlaylist(items);
 }
 
 export default function () {

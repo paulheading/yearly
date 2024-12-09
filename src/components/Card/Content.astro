@@ -1,17 +1,16 @@
 ---
-import { Toggle } from "paully";
 import { Info as InfoSvg } from "paully/svgs";
 import InfoButton from "~Components/Buttons/Info";
+import CardCopy from "~Components/Card/Copy";
+import CardSettings from "~Components/Card/Settings";
 
-let { type, image, title, copy, multiple, editable } = Astro.props;
+let { type, image, title, copy, settings, multiple } = Astro.props;
 
 let typeIsConfig = type == "config";
 
 let display = multiple && typeIsConfig ? "none" : "initial";
 
-let hasToggles = typeIsConfig && editable;
-
-let containerProps = {
+let props = {
   "data-type": type,
   style: {
     display,
@@ -19,9 +18,9 @@ let containerProps = {
 };
 ---
 
-<div {...containerProps}>
+<div {...props}>
   <div class="card-header">
-    <img src={image} alt="" class="profile" />
+    <img src={image} alt="" class:list={["profile", type]} />
     {
       multiple && (
         <InfoButton className="info-position">
@@ -31,21 +30,13 @@ let containerProps = {
     }
   </div>
   {title && <h2 class="title">{title}</h2>}
-  <div class:list={["copy", hasToggles && "toggles"]}>
-    {
-      copy.map(function (sentence) {
-        if (type == "config") {
-          return (
-            <p>
-              <span>{sentence}</span>
-              {editable && <Toggle />}
-            </p>
-          );
-        }
-        return <p>{sentence}</p>;
-      })
-    }
-  </div>
+  {
+    typeIsConfig ? (
+      <CardSettings settings={settings} />
+    ) : (
+      <CardCopy copy={copy} />
+    )
+  }
 </div>
 
 <style lang="scss">
@@ -88,38 +79,5 @@ let containerProps = {
   .title {
     margin-bottom: $margin-bottom-card-header;
     font-size: $h3-font-size;
-  }
-
-  .copy {
-    @include center-block;
-
-    & {
-      margin-bottom: $margin-bottom-card-header;
-      max-width: $max-width-card-copy;
-      min-height: toRem(84);
-      min-width: toRem(206);
-    }
-
-    p {
-      margin-bottom: $margin-bottom-card-copy;
-    }
-  }
-
-  .copy.toggles {
-    max-width: $max-width-card-copy--config;
-
-    p {
-      margin-bottom: $margin-card;
-      gap: $margin-card;
-      display: grid;
-
-      @include small-up {
-        justify-content: space-between;
-        grid-auto-flow: column;
-        gap: $margin-card * 2;
-        align-items: center;
-        text-align: left;
-      }
-    }
   }
 </style>

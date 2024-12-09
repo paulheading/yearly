@@ -1,10 +1,11 @@
 import {
   discovered_this_year,
-  include_recommends,
-  released_this_year,
   exclude_recommends,
-  fewest_plays,
-} from "~data/playlist_settings";
+  include_recommends,
+  least_popular,
+  most_popular,
+  released_this_year,
+} from "~data/settings";
 
 export default {
   style: "",
@@ -26,7 +27,6 @@ export default {
             type: "cover",
             title: "Cindy",
             image: "/cindy.jpg",
-            editable: false,
             copy: [
               `We’re all friends here. Let’s find your recent favs and share the love.`,
             ],
@@ -35,8 +35,10 @@ export default {
             type: "config",
             title: "",
             image: "/config.jpg",
-            editable: false,
-            copy: [discovered_this_year, include_recommends],
+            settings: [
+              { title: discovered_this_year, editable: false, value: true },
+              { title: include_recommends, editable: false, value: true },
+            ],
           },
         ],
       },
@@ -47,15 +49,16 @@ export default {
             type: "cover",
             title: "BadJo",
             image: "/badjo.jpg",
-            editable: false,
             copy: [`Don’t waste my time. Fresh discoveries only. Get out.`],
           },
           {
             type: "config",
             title: "",
             image: "/config.jpg",
-            editable: false,
-            copy: [released_this_year, exclude_recommends],
+            settings: [
+              { title: released_this_year, editable: false, value: true },
+              { title: exclude_recommends, editable: false, value: true },
+            ],
           },
         ],
       },
@@ -67,8 +70,12 @@ export default {
           type: "config",
           title: "Custom",
           image: "/custom.jpg",
-          editable: true,
-          copy: [released_this_year, fewest_plays, include_recommends],
+          settings: [
+            { title: least_popular, editable: false, value: false },
+            { title: most_popular, editable: true, value: true },
+            { title: include_recommends, editable: true, value: false },
+            { title: released_this_year, editable: true, value: false },
+          ],
         },
       ],
     },

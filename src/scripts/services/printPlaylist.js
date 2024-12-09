@@ -11,7 +11,6 @@ import store from "~data/store";
 
 export default function (tracks) {
   tracks = tracks.filter((_, index) => index < 10);
-  tracks = tracks.sort(byLowestPopularity);
 
   store.create.playlist.name = createPlaylistName();
   store.create.playlist.tracks = tracks;

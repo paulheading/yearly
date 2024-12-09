@@ -1,0 +1,66 @@
+---
+import { Toggle } from "paully";
+import { Check } from "paully/svgs";
+
+let { settings } = Astro.props;
+---
+
+<ul class="settings">
+  {
+    settings.map((setting) => {
+      return (
+        <li class:list={["setting", setting.editable && "editable"]}>
+          <span>{setting.title}</span>
+          {!setting.editable && <Check className="check" />}
+          {setting.editable && (
+            <Toggle className="toggle" checked={setting.value} />
+          )}
+        </li>
+      );
+    })
+  }
+</ul>
+
+<style lang="scss">
+  @use "~mixins" as *;
+
+  .settings {
+    margin-bottom: $margin-bottom-card-header;
+    padding-left: 0;
+
+    & {
+      max-width: $max-width-card-copy--config;
+      min-height: toRem(84);
+      min-width: toRem(206);
+
+      @include small-down {
+        font-size: 1.125rem;
+      }
+    }
+  }
+
+  .setting {
+    padding-bottom: $padding-card-setting;
+    padding-top: $padding-card-setting;
+    justify-content: space-between;
+    grid-auto-flow: column;
+    align-items: center;
+    font-weight: normal;
+    gap: $margin-card;
+    list-style: none;
+    display: grid;
+
+    @include small-up {
+      gap: $margin-card * 2;
+    }
+  }
+
+  .setting + .setting {
+    border-top: 2px dashed;
+    margin-top: 0;
+  }
+
+  .check.selected-state {
+    fill: white;
+  }
+</style>
