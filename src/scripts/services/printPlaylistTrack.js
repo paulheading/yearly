@@ -1,21 +1,17 @@
 import $ from "~scripts/selectors";
-
-function cloneTrack(index) {
-  let $track = $.playlist_track().cloneNode(true);
-  let $number = $track.querySelector(".number");
-  $number.innerText = index + 1;
-  $.playlist_main().append($track);
-}
+import store from "~data/store";
 
 export default function (item, index) {
-  if (index > 0) cloneTrack(index);
+  let clone = store.saved.track.cloneNode(true);
 
-  let $track = $.playlist_tracks()[index];
+  let track_number = clone.querySelector(".number");
+  let track_name = clone.querySelector(".track-name");
+  let artist_name = clone.querySelector(".artist-name");
 
-  let $track_name = $track.querySelector(".track-name");
-  let $artist_name = $track.querySelector(".artist-name");
+  track_number.innerText = index + 1;
+  track_name.innerText = item.track.name;
+  artist_name.innerText = item.track.artists[0].name;
+  artist_name.href = item.track.artists[0].external_urls.spotify;
 
-  $track_name.innerText = item.track.name;
-  $artist_name.innerText = item.track.artists[0].name;
-  $artist_name.href = item.track.artists[0].external_urls.spotify;
+  $.playlist_main().append(clone);
 }

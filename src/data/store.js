@@ -13,7 +13,11 @@ export default {
     playlist: {
       name: "",
       tracks: [],
+      excess: [],
     },
+  },
+  saved: {
+    track: null,
   },
   user: {
     id: null,

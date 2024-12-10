@@ -92,8 +92,6 @@ function displayResults(items) {
     }
   });
 
-  console.log("items: ", items);
-
   printPlaylist(items);
 }
 

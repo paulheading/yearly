@@ -32,6 +32,10 @@ let byHighestPopularity = (a, b) => b.track.popularity - a.track.popularity;
 
 let byPlaylistId = ({ id }) => id == store.style;
 
+let outPlaylistExcess = (_, index) => index < 10;
+
+let inPlaylistExcess = (_, index) => index >= 10;
+
 function createPlaylistName() {
   let { now, DATETIME_MED_WITH_SECONDS } = DateTime;
   let timestamp = now().toLocaleString(DATETIME_MED_WITH_SECONDS);
@@ -72,6 +76,8 @@ export {
   byHighestPopularity,
   byLowestPopularity,
   byPlaylistId,
+  inPlaylistExcess,
+  outPlaylistExcess,
   createPlaylistName,
   addedThisYear,
   releasedThisYear,
