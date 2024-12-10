@@ -9,6 +9,7 @@ let $ = {
 $.body = $.querySelector("body");
 $.loaded = $.queryState("loaded");
 $.not_loaded = $.queryState("not-loaded");
+$.toggles = $.querySelectorAll(".toggle");
 
 $.buttons = {
   login: $.querySelector(".login-button"),

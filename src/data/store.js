@@ -77,7 +77,6 @@ export default {
           settings: [
             { title: least_popular, editable: true, value: false },
             { title: most_popular, editable: true, value: false },
-            { title: include_recommends, editable: true, value: false },
             { title: released_this_year, editable: true, value: false },
           ],
         },
