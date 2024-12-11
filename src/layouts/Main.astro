@@ -1,6 +1,7 @@
 ---
 import "~styles/global.scss";
-import { Head, Container } from "paully";
+import { Head, Container, Banner } from "paully";
+import useLiveData from "~scripts/services/useLiveData";
 ---
 
 <script>
@@ -12,6 +13,13 @@ import { Head, Container } from "paully";
 <html lang="en">
   <Head {...Astro.props} />
   <body data-state="visible">
+    {
+      !useLiveData && (
+        <Banner className="offline-banner">
+          <em>OFFLINE MODE</em>
+        </Banner>
+      )
+    }
     <Container top="0rem" bottom="0rem">
       <header></header>
       <slot />
@@ -20,9 +28,15 @@ import { Head, Container } from "paully";
   </body>
 </html>
 
-<style>
+<style lang="scss">
+  @use "~mixins" as *;
+
   header,
   footer {
-    height: 100px;
+    height: toRem(100);
+  }
+
+  .offline-banner {
+    background-color: blue;
   }
 </style>

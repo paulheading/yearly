@@ -3,6 +3,7 @@ import {
   getRecommends,
   getTracks,
   printPlaylist,
+  useLiveData,
 } from "~scripts/services";
 
 import {
@@ -24,6 +25,7 @@ import {
 import $ from "~scripts/selectors";
 
 import store from "~data/store";
+import tracks from "~data/tracks";
 
 function buildButtonClick() {
   if (!store.style) return;
@@ -35,7 +37,7 @@ function buildButtonClick() {
 
   loadingCurrently(hideElements);
 
-  getTracks(displayResults);
+  useLiveData ? getTracks(displayResults) : displayResults(tracks);
 
   console.log("store: ", store);
 }
