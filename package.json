@@ -17,7 +17,7 @@
     "focus-visible": "^5.2.0",
     "gsap": "npm:@gsap/shockingly@^3.12.5",
     "luxon": "^3.5.0",
-    "paully": "^2.1.0"
+    "paully": "^2.1.1"
   },
   "devDependencies": {
     "sass-embedded": "^1.82.0"
