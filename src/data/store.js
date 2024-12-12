@@ -1,6 +1,8 @@
 import {
   discovered_this_year,
+  exclude_explicit,
   exclude_recommends,
+  include_explicit,
   include_recommends,
   least_popular,
   most_popular,
@@ -78,6 +80,8 @@ export default {
             { title: least_popular, editable: true, value: false },
             { title: most_popular, editable: true, value: false },
             { title: released_this_year, editable: true, value: false },
+            { title: include_explicit, editable: true, value: false },
+            { title: exclude_explicit, editable: true, value: false },
           ],
         },
       ],

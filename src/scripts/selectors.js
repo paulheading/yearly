@@ -9,7 +9,19 @@ let $ = {
 $.body = $.querySelector("body");
 $.loaded = $.queryState("loaded");
 $.not_loaded = $.queryState("not-loaded");
-$.toggles = $.querySelectorAll(".toggle");
+$.cards = $.querySelectorAll(".card-container");
+
+$.forEachCard = function (callback) {
+  $.cards.forEach(function (card) {
+    let selectors = {
+      card,
+      toggles: card.querySelectorAll(".toggle"),
+      buttons: card.querySelectorAll("button.dot-button"),
+      settings: card.querySelectorAll("ul.settings"),
+    };
+    callback(selectors);
+  });
+};
 
 $.buttons = {
   login: $.querySelector(".login-button"),

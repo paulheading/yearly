@@ -1,60 +1,124 @@
 ---
-import { Toggle } from "paully";
+import { Toggle, InvisibleButton } from "paully";
 import { Check } from "paully/svgs";
 
 let { settings } = Astro.props;
+
+let groups = [[]];
+let group = 0;
+let current = 0;
+let max = 3;
+
+settings.forEach(function (setting) {
+  groups[group].push(setting);
+  current++;
+
+  if (current % max == 0) {
+    current = 0;
+    groups.push([]);
+    group++;
+  }
+});
 ---
 
 <script src="~scripts/components/card/settings.js"></script>
 
-<ul class="settings">
-  {
-    settings.map((setting) => {
-      return (
-        <li class:list={["setting", setting.editable && "editable"]}>
-          <span>{setting.title}</span>
-          {!setting.editable && <Check className="check" />}
-          {setting.editable && (
-            <Toggle className="toggle" checked={setting.value} />
-          )}
-        </li>
-      );
-    })
-  }
-</ul>
+{
+  groups.map(function (group, index) {
+    let display = index > 0 ? "none" : "block";
+
+    return (
+      <ul class="settings" style={{ display }}>
+        {group.map(function (setting, index) {
+          return (
+            <li
+              class:list={[
+                "setting",
+                index % 2 ? "even" : "odd",
+                setting.editable && "editable",
+              ]}
+            >
+              <span>{setting.title}</span>
+              {!setting.editable && <Check className="check" />}
+              {setting.editable && (
+                <Toggle checked={setting.value} className="toggle" />
+              )}
+            </li>
+          );
+        })}
+      </ul>
+    );
+  })
+}
+
+{
+  groups.length > 1 && (
+    <div class="wrap-pagination">
+      {groups.map(function (_, index) {
+        return (
+          <InvisibleButton
+            data={index == 0 ? "active" : null}
+            className="dot-button"
+          />
+        );
+      })}
+    </div>
+  )
+}
 
 <style lang="scss">
   @use "~mixins" as *;
 
   .settings {
-    margin-bottom: $margin-bottom-card-header;
+    max-width: $max-width-card-copy--config;
+    border-radius: $border-radius-card;
+    background-color: white;
+    min-height: toRem(84);
+    min-width: toRem(206);
+    font-size: 1.125rem;
+    border: 1px solid;
+    overflow: hidden;
     padding-left: 0;
+    color: black;
+    margin: 0;
+  }
 
-    & {
-      max-width: $max-width-card-copy--config;
-      min-height: toRem(84);
-      min-width: toRem(206);
+  .wrap-pagination {
+    margin-top: $margin-bottom-card-header;
+    justify-content: center;
+    display: flex;
+    gap: toRem(8);
+  }
 
-      @include small-down {
-        font-size: 1.125rem;
-      }
-    }
+  .dot-button {
+    @include size(1rem);
+    border-radius: 50%;
+    border: 2px solid;
+  }
+
+  .dot-button[data="active"] {
+    background-color: black;
+    pointer-events: none;
+  }
+
+  .dot-button[data="active"].selected-state {
+    background-color: white;
   }
 
   .setting {
-    padding-bottom: $padding-card-setting;
-    padding-top: $padding-card-setting;
     justify-content: space-between;
+    padding: $padding-card-setting;
     grid-auto-flow: column;
     align-items: center;
     font-weight: normal;
     gap: $margin-card;
     list-style: none;
+    text-align: left;
     display: grid;
+  }
 
-    @include small-up {
-      gap: $margin-card * 2;
-    }
+  .setting.even {
+    background-color: aliceblue;
   }
 
   .setting + .setting {
@@ -63,6 +127,6 @@ let { settings } = Astro.props;
   }
 
   .check.selected-state {
-    fill: white;
+    fill: black;
   }
 </style>

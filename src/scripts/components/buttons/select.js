@@ -9,7 +9,7 @@ function createSelectedTargets($card) {
   let $config_pic = $card.querySelector(".profile.config");
   let $select_button = $card.querySelector(".select-button");
   let $check_svgs = $card.querySelectorAll(".check");
-  let $toggles = $card.querySelectorAll(".toggle");
+  let $dot_buttons = $card.querySelectorAll("button.dot-button");
 
   let id = $card.dataset.id;
 
@@ -18,7 +18,7 @@ function createSelectedTargets($card) {
     ...$profile_pics,
     ...$info_buttons,
     ...$check_svgs,
-    ...$toggles,
+    ...$dot_buttons,
     $select_button,
     $.buttons.build,
   ];
