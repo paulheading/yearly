@@ -32,7 +32,7 @@ $.cardSelectors = function ($card) {
   ];
 
   return {
-    id: $card.getAttribute("id"),
+    id: $card.getAttribute("data-id"),
     isSelected: $card.classList.contains($.selected_state),
     targets,
     selectors,

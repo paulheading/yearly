@@ -17,6 +17,8 @@ function addSelectedState($card) {
   let { id, isSelected, targets, selectors } = $.cardSelectors($card);
   let { $config_pic, $select_button } = selectors;
 
+  console.log("id: ", id);
+
   if (isSelected) return;
 
   targets.forEach((item) => item.classList.add($.selected_state));
