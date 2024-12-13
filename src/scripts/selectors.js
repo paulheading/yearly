@@ -20,6 +20,8 @@ $.cardSelectors = function ($card) {
     $info_buttons: $card.querySelectorAll("button.info-button"),
     $profile_pics: $card.querySelectorAll("img.profile"),
     $select_button: $card.querySelector("button.select-button"),
+    $toggles: $card.querySelectorAll(".toggle"),
+    $settings: $card.querySelectorAll("ul.settings"),
   };
 
   let targets = [

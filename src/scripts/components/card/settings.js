@@ -12,22 +12,51 @@ function addInputClickFunction($input, title) {
 }
 
 function addToggleEventListeners($toggle) {
+  let $setting = $toggle.parentNode;
   let $input = $toggle.querySelector("input");
   let title = $toggle.previousElementSibling.innerText;
 
-  $input.addEventListener("click", () => addInputClickFunction($input, title));
+  $input.addEventListener("click", function () {
+    addInputClickFunction($input, title);
+    let $siblings = getSiblings($setting);
+
+    if (!$siblings.length) return;
+
+    $siblings.forEach(function ($sibling) {
+      let $input = $sibling.querySelector("input");
+      $input.checked = false;
+    });
+  });
 }
 
 function addButtonClickFunction(selectors) {
-  let { buttons, settings, button, index } = selectors;
+  let { $dot_buttons, $settings, button, index } = selectors;
 
-  buttons.forEach((button) => button.removeAttribute("data"));
+  $dot_buttons.forEach((button) => button.removeAttribute("data"));
 
   button.setAttribute("data", "active");
 
-  settings.forEach(function (setting, number) {
+  $settings.forEach(function (setting, number) {
     setting.style.display = number == index ? "block" : "none";
   });
+}
+
+function getSiblings(element) {
+  // for collecting siblings
+  let siblings = [];
+  // if no parent, return no sibling
+  if (!element.parentNode) {
+    return siblings;
+  }
+  // first child of the parent node
+  let sibling = element.parentNode.firstChild;
+
+  // collecting siblings
+  while (sibling) {
+    if (sibling.nodeType === 1 && sibling !== element) siblings.push(sibling);
+    sibling = sibling.nextSibling;
+  }
+  return siblings;
 }
 
 function addButtonEventListeners(selectors) {
@@ -36,14 +65,15 @@ function addButtonEventListeners(selectors) {
   });
 }
 
-$.forEachCard(function (selectors) {
-  let { toggles, buttons, settings } = selectors;
+$.cards.forEach(function ($card) {
+  let { selectors } = $.cardSelectors($card);
+  let { $toggles, $settings, $dot_buttons } = selectors;
 
-  toggles.forEach(addToggleEventListeners);
-  buttons.forEach(function (button, index) {
+  $toggles.forEach(addToggleEventListeners);
+  $dot_buttons.forEach(function (button, index) {
     addButtonEventListeners({
-      buttons,
-      settings,
+      $dot_buttons,
+      $settings,
       button,
       index,
     });

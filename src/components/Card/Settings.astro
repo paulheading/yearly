@@ -7,15 +7,18 @@ let { settings } = Astro.props;
 let groups = [[]];
 let group = 0;
 let current = 0;
-let max = 3;
+let max = 2;
 
-settings.forEach(function (setting) {
+settings.forEach(function (setting, index) {
   groups[group].push(setting);
   current++;
 
-  if (current % max == 0) {
-    current = 0;
+  let full_group = current % max == 0;
+  let more_settings = settings.length > index + 1;
+
+  if (full_group && more_settings) {
     groups.push([]);
+    current = 0;
     group++;
   }
 });
@@ -26,24 +29,32 @@ settings.forEach(function (setting) {
 {
   groups.map(function (group, index) {
     let display = index > 0 ? "none" : "block";
+    let count = 0;
 
     return (
       <ul class="settings" style={{ display }}>
-        {group.map(function (setting, index) {
+        {group.map(function (settings) {
           return (
-            <li
-              class:list={[
-                "setting",
-                index % 2 ? "even" : "odd",
-                setting.editable && "editable",
-              ]}
-            >
-              <span>{setting.title}</span>
-              {!setting.editable && <Check className="check" />}
-              {setting.editable && (
-                <Toggle checked={setting.value} className="toggle" />
-              )}
-            </li>
+            <div class:list={[`setting-group`]}>
+              {settings.map(function (setting, index) {
+                count++;
+                return (
+                  <li
+                    class:list={[
+                      "setting",
+                      count % 2 ? "even" : "odd",
+                      setting.editable && "editable",
+                    ]}
+                  >
+                    <span>{setting.title}</span>
+                    {!setting.editable && <Check className="check" />}
+                    {setting.editable && (
+                      <Toggle checked={setting.value} className="toggle" />
+                    )}
+                  </li>
+                );
+              })}
+            </div>
           );
         })}
       </ul>
@@ -119,6 +130,11 @@ settings.forEach(function (setting) {
 
   .setting.even {
     background-color: aliceblue;
+  }
+
+  .setting-group + .setting-group {
+    border-top: 2px dashed;
+    margin-top: 0;
   }
 
   .setting + .setting {

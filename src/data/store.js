@@ -42,8 +42,8 @@ export default {
             title: "",
             image: "/config.jpg",
             settings: [
-              { title: discovered_this_year, editable: false, value: true },
-              { title: include_recommends, editable: false, value: true },
+              [{ title: discovered_this_year, editable: false, value: true }],
+              [{ title: include_recommends, editable: false, value: true }],
             ],
           },
         ],
@@ -62,8 +62,8 @@ export default {
             title: "",
             image: "/config.jpg",
             settings: [
-              { title: released_this_year, editable: false, value: true },
-              { title: exclude_recommends, editable: false, value: true },
+              [{ title: released_this_year, editable: false, value: true }],
+              [{ title: exclude_recommends, editable: false, value: true }],
             ],
           },
         ],
@@ -77,11 +77,33 @@ export default {
           title: "Custom",
           image: "/custom.jpg",
           settings: [
-            { title: least_popular, editable: true, value: false },
-            { title: most_popular, editable: true, value: false },
-            { title: released_this_year, editable: true, value: false },
-            { title: include_explicit, editable: true, value: false },
-            { title: exclude_explicit, editable: true, value: false },
+            [
+              {
+                title: least_popular,
+                editable: true,
+                value: false,
+              },
+              {
+                title: most_popular,
+                editable: true,
+                value: false,
+              },
+            ],
+            [{ title: released_this_year, editable: true, value: false }],
+            [
+              {
+                title: include_explicit,
+                sibling: exclude_explicit,
+                editable: true,
+                value: false,
+              },
+              {
+                title: exclude_explicit,
+                sibling: include_explicit,
+                editable: true,
+                value: false,
+              },
+            ],
           ],
         },
       ],
