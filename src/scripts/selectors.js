@@ -11,6 +11,34 @@ $.loaded = $.queryState("loaded");
 $.not_loaded = $.queryState("not-loaded");
 $.cards = $.querySelectorAll(".card-container");
 
+$.selected_state = "selected-state";
+
+$.cardSelectors = function ($card) {
+  let selectors = {
+    $config_pic: $card.querySelector("img.profile.config"),
+    $dot_buttons: $card.querySelectorAll("button.dot-button"),
+    $info_buttons: $card.querySelectorAll("button.info-button"),
+    $profile_pics: $card.querySelectorAll("img.profile"),
+    $select_button: $card.querySelector("button.select-button"),
+  };
+
+  let targets = [
+    $card,
+    $.buttons.build,
+    ...selectors.$dot_buttons,
+    ...selectors.$profile_pics,
+    ...selectors.$info_buttons,
+    selectors.$select_button,
+  ];
+
+  return {
+    id: $card.getAttribute("id"),
+    isSelected: $card.classList.contains($.selected_state),
+    targets,
+    selectors,
+  };
+};
+
 $.forEachCard = function (callback) {
   $.cards.forEach(function (card) {
     let selectors = {
