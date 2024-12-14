@@ -12,11 +12,5 @@ export default function () {
   if (!config.length > 0)
     return console.error("config array has no length: ", config);
 
-  let results = [];
-
-  config[0].settings.forEach(function (group) {
-    group.forEach((setting) => results.push(setting));
-  });
-
-  return results;
+  return config[0].settings;
 }
