@@ -13,6 +13,14 @@ $.cards = $.querySelectorAll(".card-container");
 
 $.selected_state = "selected-state";
 
+$.settingSelectors = function ($setting) {
+  let $span = $setting.querySelector("span");
+  let title = $span.innerText;
+  let $input = $setting.querySelector("input");
+
+  return { $span, title, $input };
+};
+
 $.cardSelectors = function ($card) {
   let selectors = {
     $config_pic: $card.querySelector("img.profile.config"),
@@ -20,8 +28,8 @@ $.cardSelectors = function ($card) {
     $info_buttons: $card.querySelectorAll("button.info-button"),
     $profile_pics: $card.querySelectorAll("img.profile"),
     $select_button: $card.querySelector("button.select-button"),
-    $toggles: $card.querySelectorAll(".toggle"),
-    $settings: $card.querySelectorAll("ul.settings"),
+    $settings_lists: $card.querySelectorAll("ul.settings"),
+    $settings_items: $card.querySelectorAll("li.setting"),
   };
 
   let targets = [
@@ -39,18 +47,6 @@ $.cardSelectors = function ($card) {
     targets,
     selectors,
   };
-};
-
-$.forEachCard = function (callback) {
-  $.cards.forEach(function (card) {
-    let selectors = {
-      card,
-      toggles: card.querySelectorAll(".toggle"),
-      buttons: card.querySelectorAll("button.dot-button"),
-      settings: card.querySelectorAll("ul.settings"),
-    };
-    callback(selectors);
-  });
 };
 
 $.buttons = {

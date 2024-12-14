@@ -2,6 +2,11 @@ import $ from "~scripts/selectors";
 import store from "~data/store";
 import { DateTime } from "luxon";
 
+let forEachCustomSetting = (callback) =>
+  store.cards.custom.content[0].settings.forEach((setting) =>
+    callback(setting)
+  );
+
 function switchElements(a, b) {
   a.style.display = "none";
   b.style.display = "initial";
@@ -66,10 +71,28 @@ let displaySection = (element, value) => {
   $.sections[element].style.display = value;
 };
 
+function getSiblings(element) {
+  // for collecting siblings
+  let siblings = [];
+  // if no parent, return no sibling
+  if (!element.parentNode) return siblings;
+  // first child of the parent node
+  let sibling = element.parentNode.firstChild;
+
+  // collecting siblings
+  while (sibling) {
+    if (sibling.nodeType === 1 && sibling !== element) siblings.push(sibling);
+    sibling = sibling.nextSibling;
+  }
+
+  return siblings;
+}
+
 export {
   switchElements,
   loadingCurrently,
   loadingComplete,
+  getSiblings,
   getYear,
   getYearFromString,
   byContentType,
@@ -82,4 +105,5 @@ export {
   addedThisYear,
   releasedThisYear,
   displaySection,
+  forEachCustomSetting,
 };

@@ -8,3 +8,14 @@ export let include_explicit = "Include explicit language";
 export let include_recommends = "Include recommends";
 export let exclude_explicit = "Exclude explicit language";
 export let exclude_recommends = "Exclude recommends";
+
+export let groups = {
+  popularity: {
+    name: "popularity",
+    action: "cancel",
+  },
+  explicit: {
+    name: "explicit",
+    action: "cancel",
+  },
+};

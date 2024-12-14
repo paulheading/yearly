@@ -1,86 +1,81 @@
 import $ from "~scripts/selectors";
-import store from "~data/store";
+import { forEachCustomSetting } from "~scripts/helpers";
 
-function matchTitleSetValue(setting, title, $input) {
-  if (setting.title == title) setting.value = $input.checked;
-}
+function updateDOMSettings(setting, $input) {
+  let $card = $input.closest(".card-container");
+  let { selectors } = $.cardSelectors($card);
+  let { $settings_items } = selectors;
 
-function addInputClickFunction($input, title) {
-  store.cards.custom.content[0].settings.forEach(function (group) {
-    group.forEach((setting) => matchTitleSetValue(setting, title, $input));
+  $settings_items.forEach(function ($setting) {
+    let { title, $input } = $.settingSelectors($setting);
+
+    if (title == setting.title) $input.checked = setting.value;
   });
 }
 
-function addToggleEventListeners($toggle) {
-  let $setting = $toggle.parentNode;
-  let $input = $toggle.querySelector("input");
-  let title = $toggle.previousElementSibling.innerText;
+function matchGroupNameSetValue(active, $input) {
+  forEachCustomSetting(function (setting) {
+    if (!setting.group) return;
+    if (setting.title == active.title) return;
 
-  $input.addEventListener("click", function () {
-    addInputClickFunction($input, title);
+    let { group } = setting;
 
-    let $siblings = getSiblings($setting);
+    if (group.name == active.group.name) {
+      if (group.action == "cancel") setting.value = false;
+      if (group.action == "toggle") setting.value = !active.value;
 
-    if (!$siblings.length) return;
-
-    $siblings.forEach(function ($sibling) {
-      let $input = $sibling.querySelector("input");
-      let title = $sibling.firstChild.innerText;
-
-      $input.checked = false;
-
-      addInputClickFunction($input, title);
-    });
+      updateDOMSettings(setting, $input);
+    }
   });
+}
+
+function matchTitleSetValue(setting, $input) {
+  setting.value = $input.checked;
+
+  if (setting.group) matchGroupNameSetValue(setting, $input);
+}
+
+function updateStoreSettings($input, title) {
+  forEachCustomSetting(function (setting) {
+    if (setting.title == title) matchTitleSetValue(setting, $input);
+  });
+}
+
+function addSettingsEventListeners($setting) {
+  let { title, $input } = $.settingSelectors($setting);
+
+  if (!$input) return;
+
+  $input.addEventListener("click", () => updateStoreSettings($input, title));
 }
 
 function addButtonClickFunction(selectors) {
-  let { $dot_buttons, $settings, button, index } = selectors;
+  let { $dot_buttons, $settings_lists, $button, index } = selectors;
 
-  $dot_buttons.forEach((button) => button.removeAttribute("data"));
+  $dot_buttons.forEach(($button) => $button.removeAttribute("data"));
 
-  button.setAttribute("data", "active");
+  $button.setAttribute("data", "active");
 
-  $settings.forEach(function (setting, number) {
+  $settings_lists.forEach(function (setting, number) {
     setting.style.display = number == index ? "block" : "none";
   });
 }
 
-function getSiblings(element) {
-  // for collecting siblings
-  let siblings = [];
-  // if no parent, return no sibling
-  if (!element.parentNode) {
-    return siblings;
-  }
-  // first child of the parent node
-  let sibling = element.parentNode.firstChild;
-
-  // collecting siblings
-  while (sibling) {
-    if (sibling.nodeType === 1 && sibling !== element) siblings.push(sibling);
-    sibling = sibling.nextSibling;
-  }
-
-  return siblings;
-}
-
 function addButtonEventListeners(selectors) {
-  selectors.button.addEventListener("click", function () {
-    addButtonClickFunction(selectors);
-  });
+  let { $button } = selectors;
+  $button.addEventListener("click", () => addButtonClickFunction(selectors));
 }
 
 $.cards.forEach(function ($card) {
   let { selectors } = $.cardSelectors($card);
-  let { $toggles, $settings, $dot_buttons } = selectors;
+  let { $settings_items, $settings_lists, $dot_buttons } = selectors;
 
-  $toggles.forEach(addToggleEventListeners);
-  $dot_buttons.forEach(function (button, index) {
+  $settings_items.forEach(addSettingsEventListeners);
+  $dot_buttons.forEach(function ($button, index) {
     addButtonEventListeners({
       $dot_buttons,
-      $settings,
-      button,
+      $settings_lists,
+      $button,
       index,
     });
   });
