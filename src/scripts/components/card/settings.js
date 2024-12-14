@@ -6,9 +6,9 @@ function matchTitleSetValue(setting, title, $input) {
 }
 
 function addInputClickFunction($input, title) {
-  store.cards.custom.content[0].settings.forEach((setting) =>
-    matchTitleSetValue(setting, title, $input)
-  );
+  store.cards.custom.content[0].settings.forEach(function (group) {
+    group.forEach((setting) => matchTitleSetValue(setting, title, $input));
+  });
 }
 
 function addToggleEventListeners($toggle) {
@@ -18,13 +18,18 @@ function addToggleEventListeners($toggle) {
 
   $input.addEventListener("click", function () {
     addInputClickFunction($input, title);
+
     let $siblings = getSiblings($setting);
 
     if (!$siblings.length) return;
 
     $siblings.forEach(function ($sibling) {
       let $input = $sibling.querySelector("input");
+      let title = $sibling.firstChild.innerText;
+
       $input.checked = false;
+
+      addInputClickFunction($input, title);
     });
   });
 }
@@ -56,6 +61,7 @@ function getSiblings(element) {
     if (sibling.nodeType === 1 && sibling !== element) siblings.push(sibling);
     sibling = sibling.nextSibling;
   }
+
   return siblings;
 }
 

@@ -9,9 +9,14 @@ export default function () {
 
   let config = playlist.content.filter(byContentType);
 
-  if (!config.length > 0) {
+  if (!config.length > 0)
     return console.error("config array has no length: ", config);
-  }
 
-  return config[0].settings;
+  let results = [];
+
+  config[0].settings.forEach(function (group) {
+    group.forEach((setting) => results.push(setting));
+  });
+
+  return results;
 }
