@@ -7,6 +7,8 @@ import {
 } from "~scripts/services";
 
 import {
+  exclude_explicit,
+  include_explicit,
   include_recommends,
   least_popular,
   most_popular,
@@ -20,6 +22,8 @@ import {
   loadingComplete,
   loadingCurrently,
   releasedThisYear,
+  includeExplicit,
+  excludeExplicit,
 } from "~scripts/helpers";
 
 import $ from "~scripts/selectors";
@@ -72,7 +76,7 @@ function displayResults(items) {
   if (items.length == 0) handleEmptyPlaylist();
   else if (items.length < 10) getPlaylistRecommends(items);
 
-  console.log("config: ", getPlaylistConfig());
+  // console.log("config: ", getPlaylistConfig());
 
   getPlaylistConfig().forEach(function ({ title, value }) {
     if (!value) return;
@@ -91,6 +95,14 @@ function displayResults(items) {
     if (title == most_popular) {
       console.log("matched: ", most_popular);
       items = items.sort(byHighestPopularity);
+    }
+    if (title == include_explicit) {
+      console.log("matched: ", include_explicit);
+      items = items.filter(includeExplicit);
+    }
+    if (title == exclude_explicit) {
+      console.log("matched: ", exclude_explicit);
+      items = items.filter(excludeExplicit);
     }
   });
 

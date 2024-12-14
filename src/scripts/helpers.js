@@ -67,6 +67,10 @@ function releasedThisYear({ track }) {
   return result;
 }
 
+let includeExplicit = ({ track }) => track.explicit;
+
+let excludeExplicit = ({ track }) => !track.explicit;
+
 let displaySection = (element, value) => {
   $.sections[element].style.display = value;
 };
@@ -106,4 +110,6 @@ export {
   releasedThisYear,
   displaySection,
   forEachCustomSetting,
+  includeExplicit,
+  excludeExplicit,
 };
