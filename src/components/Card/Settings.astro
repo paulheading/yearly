@@ -5,12 +5,15 @@ import { Check } from "paully/svgs";
 let { settings } = Astro.props;
 
 let colors = ["blue", "cyan", "purple", "pink", "red", "orange"];
-let color_index = 0;
 let restartColors = () => color_index + 1 == colors.length;
+
 let groups = [[]];
 let group = 0;
 let current = 0;
 let max = 3;
+
+let color_index = 0;
+let setting_index = 0;
 
 settings.forEach(function (setting) {
   groups[group].push(setting);
@@ -34,12 +37,13 @@ settings.forEach(function (setting) {
       <ul class="settings" style={{ display }}>
         {group.map(function (setting, index) {
           restartColors() ? (color_index = 0) : color_index++;
+          setting_index++;
 
           return (
             <li
               class:list={[
                 "setting",
-                index % 2 ? "even" : "odd",
+                setting_index % 2 ? "even" : "odd",
                 setting.editable && "editable",
               ]}
             >
@@ -126,7 +130,7 @@ settings.forEach(function (setting) {
     display: grid;
   }
 
-  .setting.even {
+  .setting.odd {
     background-color: aliceblue;
   }
 
