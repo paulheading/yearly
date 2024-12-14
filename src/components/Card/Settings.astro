@@ -4,6 +4,9 @@ import { Check } from "paully/svgs";
 
 let { settings } = Astro.props;
 
+let colors = ["blue", "cyan", "purple", "pink", "red", "orange"];
+let color_index = 0;
+let restartColors = () => color_index + 1 == colors.length;
 let groups = [[]];
 let group = 0;
 let current = 0;
@@ -30,6 +33,8 @@ settings.forEach(function (setting) {
     return (
       <ul class="settings" style={{ display }}>
         {group.map(function (setting, index) {
+          restartColors() ? (color_index = 0) : color_index++;
+
           return (
             <li
               class:list={[
@@ -41,7 +46,11 @@ settings.forEach(function (setting) {
               <span>{setting.title}</span>
               {!setting.editable && <Check className="check" />}
               {setting.editable && (
-                <Toggle checked={setting.value} className="toggle" />
+                <Toggle
+                  color={colors[color_index]}
+                  checked={setting.value}
+                  className="toggle"
+                />
               )}
             </li>
           );
