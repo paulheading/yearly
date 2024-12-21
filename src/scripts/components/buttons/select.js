@@ -26,9 +26,12 @@ function addSelectedState($card) {
 }
 
 function selectButtonClick(event) {
+  console.log("store: ", store);
+
   let { currentTarget } = event;
 
   let $card = currentTarget.parentElement;
+
   let { isSelected } = $.cardSelectors($card);
 
   $.cards.forEach(($card) => removeSelectedState($card));

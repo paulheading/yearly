@@ -71,6 +71,20 @@ let includeExplicit = ({ track }) => track.explicit;
 
 let excludeExplicit = ({ track }) => !track.explicit;
 
+let milliseconds = 60000;
+
+let minimumLength = ({ track }, minimum) => {
+  let minutes = Math.floor(track.duration_ms / milliseconds);
+  let result = minutes >= minimum;
+  return result;
+};
+
+let maximumLength = ({ track }, maximum) => {
+  let minutes = Math.ceil(track.duration_ms / milliseconds);
+  let result = minutes <= maximum;
+  return result;
+};
+
 let displaySection = (element, value) => {
   $.sections[element].style.display = value;
 };
@@ -112,4 +126,6 @@ export {
   forEachCustomSetting,
   includeExplicit,
   excludeExplicit,
+  minimumLength,
+  maximumLength,
 };

@@ -11,6 +11,9 @@ export let exclude_recommends = "Exclude recommends";
 export let include_explicit = "Explicit music only";
 export let exclude_explicit = "No explicit music";
 
+export let max_length = "Max length";
+export let min_length = "Min length";
+
 export let groups = {
   popularity: {
     name: "popularity",
@@ -19,5 +22,9 @@ export let groups = {
   explicit: {
     name: "explicit",
     action: "cancel",
+  },
+  duration: {
+    name: "duration",
+    action: "ceiling",
   },
 };

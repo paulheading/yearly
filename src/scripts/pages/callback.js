@@ -11,6 +11,8 @@ import store from "~data/store";
 import user from "~data/user";
 import $ from "~scripts/selectors";
 
+import range from "~scripts/components/card/settings/range";
+
 if (useLiveData) {
   setAccessToken()
     .then(setUser)
@@ -52,3 +54,5 @@ if (!useLiveData) {
       saveButtonListener();
     });
 }
+
+range();

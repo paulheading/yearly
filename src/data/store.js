@@ -8,6 +8,8 @@ import {
   most_popular,
   released_this_year,
   groups,
+  min_length,
+  max_length,
 } from "~data/settings";
 
 export default {
@@ -102,6 +104,28 @@ export default {
               group: { ...groups.explicit },
               editable: true,
               value: false,
+            },
+            {
+              title: min_length,
+              group: { ...groups.duration },
+              editable: true,
+              value: 0,
+              range: {
+                pos: "min",
+                min: 0,
+                max: 10,
+              },
+            },
+            {
+              title: max_length,
+              group: { ...groups.duration },
+              editable: true,
+              value: 0,
+              range: {
+                pos: "max",
+                min: 0,
+                max: 30,
+              },
             },
           ],
         },

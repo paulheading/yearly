@@ -15,10 +15,12 @@ $.selected_state = "selected-state";
 
 $.settingSelectors = function ($setting) {
   let $span = $setting.querySelector("span");
-  let title = $span.innerText;
+  let $title = $setting.querySelector(".title");
   let $input = $setting.querySelector("input");
+  let $output = $setting.querySelector(".output");
+  let $mins = $setting.querySelector(".mins");
 
-  return { $span, title, $input };
+  return { $span, $title, $input, $output, $mins };
 };
 
 $.cardSelectors = function ($card) {

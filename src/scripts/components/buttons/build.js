@@ -11,6 +11,8 @@ import {
   include_explicit,
   include_recommends,
   least_popular,
+  max_length,
+  min_length,
   most_popular,
   released_this_year,
 } from "~data/settings";
@@ -24,6 +26,8 @@ import {
   releasedThisYear,
   includeExplicit,
   excludeExplicit,
+  minimumLength,
+  maximumLength,
 } from "~scripts/helpers";
 
 import $ from "~scripts/selectors";
@@ -81,6 +85,8 @@ function displayResults(items) {
   getPlaylistConfig().forEach(function ({ title, value }) {
     if (!value) return;
 
+    console.log("title: ", title);
+
     if (title == include_recommends) {
       console.log("matched: ", include_recommends);
     }
@@ -103,6 +109,14 @@ function displayResults(items) {
     if (title == exclude_explicit) {
       console.log("matched: ", exclude_explicit);
       items = items.filter(excludeExplicit);
+    }
+    if (title == min_length) {
+      console.log("matched: ", min_length);
+      items = items.filter((item) => minimumLength(item, value));
+    }
+    if (title == max_length) {
+      console.log("matched: ", max_length);
+      items = items.filter((item) => maximumLength(item, value));
     }
   });
 

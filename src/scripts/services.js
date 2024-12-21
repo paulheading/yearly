@@ -9,6 +9,7 @@ import printPlaylist from "./services/printPlaylist";
 import printPlaylistTrack from "./services/printPlaylistTrack";
 import getPlaylistConfig from "./services/getPlaylistConfig";
 import useLiveData from "./services/useLiveData";
+import printSliderInputValue from "./services/printSliderInputValue";
 
 export {
   getAuthorization,
@@ -19,6 +20,7 @@ export {
   postData,
   printPlaylist,
   printPlaylistTrack,
+  printSliderInputValue,
   setAccessToken,
   setUser,
   useLiveData,
