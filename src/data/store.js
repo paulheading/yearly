@@ -13,6 +13,7 @@ import {
 } from "~data/settings";
 
 export default {
+  sources: [],
   style: "",
   create: {
     playlist: {

@@ -37,6 +37,9 @@ let byHighestPopularity = (a, b) => b.track.popularity - a.track.popularity;
 
 let byPlaylistId = ({ id }) => id == store.style;
 
+let byPlaylistOwner = ({ owner }) =>
+  owner.display_name == store.user.display_name;
+
 let outPlaylistExcess = (_, index) => index < 10;
 
 let inPlaylistExcess = (_, index) => index >= 10;
@@ -106,6 +109,14 @@ function getSiblings(element) {
   return siblings;
 }
 
+let toStoreSources = ({ id, name, tracks }) => ({ id, name, tracks });
+
+let byName = function (a, b) {
+  if (a.name < b.name) return -1;
+  if (a.name > b.name) return 1;
+  return 0;
+};
+
 export {
   switchElements,
   loadingCurrently,
@@ -117,6 +128,7 @@ export {
   byHighestPopularity,
   byLowestPopularity,
   byPlaylistId,
+  byPlaylistOwner,
   inPlaylistExcess,
   outPlaylistExcess,
   createPlaylistName,
@@ -128,4 +140,6 @@ export {
   excludeExplicit,
   minimumLength,
   maximumLength,
+  toStoreSources,
+  byName,
 };

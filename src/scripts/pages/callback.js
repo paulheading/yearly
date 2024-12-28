@@ -1,5 +1,17 @@
-import { displaySection, loadingComplete } from "~scripts/helpers";
-import { setAccessToken, setUser, useLiveData } from "~scripts/services";
+import {
+  displaySection,
+  loadingComplete,
+  byPlaylistOwner,
+  toStoreSources,
+} from "~scripts/helpers";
+import buildSelectMenus from "~scripts/components/select";
+import {
+  setAccessToken,
+  setUser,
+  getPlaylists,
+  usingLiveData,
+  getData,
+} from "~scripts/services";
 import customButtonListener from "~scripts/components/buttons/custom";
 import infoButtonListener from "~scripts/components/buttons/info";
 import selectButtonListener from "~scripts/components/buttons/select";
@@ -9,50 +21,60 @@ import saveButtonListener from "~scripts/components/buttons/save";
 
 import store from "~data/store";
 import user from "~data/user";
+import playlists from "~data/playlists";
 import $ from "~scripts/selectors";
 
 import range from "~scripts/components/card/settings/range";
+import printSourcePlaylists from "~scripts/services/printSourcePlaylists";
 
-if (useLiveData) {
-  setAccessToken()
-    .then(setUser)
-    .then(function () {
-      function showElements() {
-        displaySection("choose_card", "block");
-      }
-      loadingComplete(showElements);
-    })
-    .then(function () {
-      infoButtonListener();
-      selectButtonListener();
-      customButtonListener();
-      buildButtonListener();
-      backButtonListener();
-      saveButtonListener();
-    });
+function loadChooseCard() {
+  function showElements() {
+    displaySection("choose_card", "block");
+  }
+  loadingComplete(showElements);
 }
 
-if (!useLiveData) {
+function createDOMListeners() {
+  // buildSelectMenus();
+  // infoButtonListener();
+  // selectButtonListener();
+  // customButtonListener();
+  // buildButtonListener();
+  // backButtonListener();
+  // saveButtonListener();
+}
+
+if (usingLiveData) {
+  setAccessToken()
+    .then(setUser)
+    .then(getPlaylists)
+    // .then(printSourcePlaylists)
+    // .then(async function (data) {
+    //   let new_results = await Promise.all(
+    //     data.map(async function (id) {
+    //       let playlist = await getData(`playlists/${id}`);
+    //       return playlist;
+    //     })
+    //   );
+    //   console.log("new results: ", new_results);
+    // })
+    .then(createDOMListeners)
+    .then(loadChooseCard);
+}
+
+if (!usingLiveData) {
   async function setUser() {
     store.user = user;
     $.print.firstname.innerText = store.user.first_name;
   }
 
+  let setSources = () => (store.sources = playlists);
+
   setUser()
-    .then(function () {
-      function showElements() {
-        displaySection("choose_card", "block");
-      }
-      loadingComplete(showElements);
-    })
-    .then(function () {
-      infoButtonListener();
-      selectButtonListener();
-      customButtonListener();
-      buildButtonListener();
-      backButtonListener();
-      saveButtonListener();
-    });
+    .then(setSources)
+    .then(printSourcePlaylists)
+    .then(createDOMListeners)
+    .then(loadChooseCard);
 }
 
 range();

@@ -1,0 +1,165 @@
+---
+let formProps = {
+  class: "select-form",
+};
+
+let labelProps = {
+  class: "select-label",
+  for: "select-button",
+};
+
+let buttonProps = {
+  "aria-controls": "listbox",
+  "aria-haspopup": "listbox",
+  "aria-expanded": false,
+  class: "select-button",
+  role: "combobox",
+  tabIndex: "0",
+  "data-id": 0,
+};
+
+let listProps = {
+  class: "select-list",
+  role: "listbox",
+};
+
+let itemProps = {
+  "class:list": ["select-item", "active"],
+  role: "option",
+  "data-id": 0,
+};
+
+let announcementProps = {
+  "aria-live": "assertive",
+  class: "announcement",
+  role: "alert",
+};
+---
+
+<form {...formProps}>
+  <label {...labelProps}>Source: </label>
+  <div>
+    <button {...buttonProps}>Liked Songs</button>
+    <ul {...listProps}>
+      <li {...itemProps}>Liked Songs</li>
+    </ul>
+    <div {...announcementProps}></div>
+  </div>
+</form>
+
+<style lang="scss" is:global>
+  @use "~mixins" as *;
+
+  $padding-select: 0.75rem;
+
+  $max-width-select: toRem(200);
+
+  $background-color-select: white;
+
+  .select-form {
+    grid-template-columns: auto $max-width-select;
+    justify-content: center;
+    position: relative;
+    margin-top: 2rem;
+    text-align: left;
+    display: grid;
+  }
+
+  .select-label {
+    padding: $padding-select;
+    display: block;
+  }
+
+  .select-button {
+    @include text-overflow;
+
+    & {
+      background-color: $background-color-select;
+      border: 1px solid currentColor;
+      padding: $padding-select;
+      padding-right: toRem(36);
+      font-size: inherit;
+      position: relative;
+      border-radius: 0;
+      text-align: left;
+      width: 100%;
+
+      @include focus {
+        outline: 1px solid blue;
+      }
+    }
+  }
+
+  .select-button::after {
+    border: 6px solid currentColor;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    position: absolute;
+    right: toRem(12);
+    top: toRem(20);
+    content: "";
+    height: 0;
+    width: 0;
+  }
+
+  .select-button[aria-expanded="true"]::after {
+    border-bottom-color: currentColor;
+    border-top-color: transparent;
+    top: toRem(12);
+  }
+
+  .select-list {
+    background-color: $background-color-select;
+    border-bottom: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+    border-left: 1px solid currentColor;
+    max-width: $max-width-select;
+    max-height: toRem(158);
+    position: absolute;
+    overflow-y: auto;
+    text-align: left;
+    list-style: none;
+    padding-left: 0;
+    display: none;
+    z-index: 2;
+  }
+
+  .select-list.active {
+    display: block;
+  }
+
+  .select-item {
+    @include text-overflow;
+
+    & {
+      padding: $padding-select;
+      cursor: pointer;
+    }
+
+    + .select-item {
+      border-top: 1px solid currentColor;
+      margin-top: 0;
+    }
+  }
+
+  .select-item.active {
+    background-color: blue;
+    color: white;
+  }
+
+  .select-item:hover {
+    background-color: gainsboro;
+    color: black;
+  }
+
+  .select-item.current {
+    background-color: gainsboro;
+    color: black;
+  }
+
+  .announcement {
+    opacity: 0;
+    height: 0;
+  }
+</style>

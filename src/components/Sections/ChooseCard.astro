@@ -5,6 +5,7 @@ import Section from "~Components/Section";
 import CustomButton from "~Components/Buttons/Custom";
 
 import store from "~data/store";
+import ChooseSource from "~Components/Select";
 
 let sectionProps = {
   name: "choose-card",
@@ -27,6 +28,9 @@ let sectionProps = {
     </p>
     <p>Pick a playlist <em>style</em> to get started.</p>
   </Wrap>
+  <Wrap>
+    <ChooseSource />
+  </Wrap>
   <!-- Select Playlist Style -->
   <Wrap style={{ marginTop: "2rem" }}>
     <Wrap>
@@ -40,10 +44,6 @@ let sectionProps = {
     <Wrap style={{ marginTop: "2rem" }}>
       <CustomButton>Custom job please</CustomButton>
     </Wrap>
-    <!-- <Wrap style={{ marginTop: "2rem", maxWidth: "12.5rem" }}>
-          <p>Would you like a summertime playlist?</p>
-          <Toggle />
-        </Wrap> -->
     <Wrap style={{ marginTop: "2rem" }}>
       <SolidButton className="build-button">Let's Build!</SolidButton>
     </Wrap>

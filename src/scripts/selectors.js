@@ -10,6 +10,7 @@ $.body = $.querySelector("body");
 $.loaded = $.queryState("loaded");
 $.not_loaded = $.queryState("not-loaded");
 $.cards = $.querySelectorAll(".card-container");
+$.select = $.querySelector("select");
 
 $.selected_state = "selected-state";
 
