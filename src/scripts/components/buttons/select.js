@@ -10,7 +10,7 @@ function removeSelectedState($card) {
   targets.forEach((item) => item.classList.remove($.selected_state));
   $config_pic.src = $config_pic.src.replace("config--active", "config");
   $select_button.innerText = "Select";
-  store.style = "";
+  store.create.playlist.style = "";
 }
 
 function addSelectedState($card) {
@@ -22,7 +22,7 @@ function addSelectedState($card) {
   targets.forEach((item) => item.classList.add($.selected_state));
   $config_pic.src = $config_pic.src.replace("config", "config--active");
   $select_button.innerText = "Selected";
-  store.style = id;
+  store.create.playlist.style = id;
 }
 
 function selectButtonClick(event) {

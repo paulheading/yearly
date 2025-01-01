@@ -13,20 +13,21 @@ import {
 } from "~data/settings";
 
 export default {
-  sources: [],
-  style: "",
+  selected: {
+    playlist: 0,
+    track: null,
+  },
   create: {
     playlist: {
       name: "",
+      style: "",
       tracks: [],
       excess: [],
     },
   },
-  saved: {
-    track: null,
-  },
   user: {
     id: null,
+    playlists: [],
   },
   cards: {
     playlists: [

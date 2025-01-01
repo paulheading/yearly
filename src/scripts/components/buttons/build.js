@@ -36,7 +36,7 @@ import store from "~data/store";
 import tracks from "~data/tracks";
 
 function buildButtonClick() {
-  if (!store.style) return;
+  if (!store.create.playlist.style) return;
 
   function hideElements() {
     displaySection("choose_card", "none");
@@ -46,8 +46,6 @@ function buildButtonClick() {
   loadingCurrently(hideElements);
 
   usingLiveData ? getTracks(displayResults) : displayResults(tracks);
-
-  console.log("store: ", store);
 }
 
 function handleEmptyPlaylist() {
@@ -75,6 +73,8 @@ function getPlaylistRecommends(tracks) {
 }
 
 function displayResults(items) {
+  return;
+
   // items = items.filter((_, index) => index < 1);
 
   if (items.length == 0) handleEmptyPlaylist();

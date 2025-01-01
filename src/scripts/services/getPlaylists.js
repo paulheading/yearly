@@ -49,5 +49,5 @@ export default async function () {
 
   results = results.sort(byName);
 
-  store.sources = results;
+  store.user.playlists = results;
 }

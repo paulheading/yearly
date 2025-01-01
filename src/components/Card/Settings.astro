@@ -67,14 +67,9 @@ settings.forEach(function (setting) {
 {
   groups.length > 1 && (
     <div class="wrap-pagination">
-      {groups.map(function (_, index) {
-        return (
-          <InvisibleButton
-            data={index == 0 ? "active" : null}
-            className="dot-button"
-          />
-        );
-      })}
+      {groups.map((_, index) => (
+        <InvisibleButton className="dot-button" disabled={index == 0} />
+      ))}
     </div>
   )
 }
@@ -86,7 +81,6 @@ settings.forEach(function (setting) {
     max-width: $max-width-card-copy--config;
     border-radius: $border-radius-card;
     background-color: white;
-    // min-height: toRem(84);
     min-width: toRem(206);
     font-size: 1.125rem;
     border: 1px solid;
@@ -107,14 +101,15 @@ settings.forEach(function (setting) {
     @include size(1rem);
     border-radius: 50%;
     border: 2px solid;
+
+    @include focus {
+      background-color: grey;
+      outline: none;
+    }
   }
 
-  .dot-button[data="active"] {
+  .dot-button[disabled] {
     background-color: black;
     pointer-events: none;
-  }
-
-  .dot-button[data="active"].selected-state {
-    background-color: white;
   }
 </style>

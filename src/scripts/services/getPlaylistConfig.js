@@ -3,7 +3,7 @@ import store from "~data/store";
 
 export default function () {
   let playlist =
-    store.style != "custom"
+    store.create.playlist.style != "custom"
       ? store.cards.playlists.filter(byPlaylistId)[0]
       : store.cards.custom;
 

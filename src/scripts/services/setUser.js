@@ -5,10 +5,17 @@ import store from "~data/store";
 export default async function () {
   let user = await getData("me");
 
+  let first_name = user.display_name.split(" ")[0];
+
+  let fields = ["type", "followers", "href", "images", "uri"];
+
+  fields.forEach((field) => delete user[field]);
+
   store.user = {
+    ...store.user,
+    first_name,
     ...user,
-    first_name: user.display_name.split(" ")[0],
   };
 
-  $.print.firstname.innerText = store.user.first_name;
+  $.print.first_name.innerText = store.user.first_name;
 }

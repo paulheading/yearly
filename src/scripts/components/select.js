@@ -1,89 +1,142 @@
-function buildSelectMenus() {
-  var x, i, j, l, ll, selElmnt, a, b, c;
-  /* Look for any elements with the class "custom-select": */
-  x = document.getElementsByClassName("custom-select");
-  l = x.length;
-  for (i = 0; i < l; i++) {
-    selElmnt = x[i].getElementsByTagName("select")[0];
-    ll = selElmnt.length;
-    /* For each element, create a new DIV that will act as the selected item: */
-    a = document.createElement("DIV");
-    a.setAttribute("class", "select-selected");
-    a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
-    x[i].appendChild(a);
-    /* For each element, create a new DIV that will contain the option list: */
-    b = document.createElement("DIV");
-    b.setAttribute("class", "select-items select-hide");
-    for (j = 1; j < ll; j++) {
-      /* For each option in the original select element,
-    create a new DIV that will act as an option item: */
-      c = document.createElement("DIV");
-      c.innerHTML = selElmnt.options[j].innerHTML;
-      c.addEventListener("click", function (e) {
-        /* When an item is clicked, update the original select box,
-        and the selected item: */
-        var y, i, k, s, h, sl, yl;
-        s = this.parentNode.parentNode.getElementsByTagName("select")[0];
-        sl = s.length;
-        h = this.parentNode.previousSibling;
-        for (i = 0; i < sl; i++) {
-          if (s.options[i].innerHTML == this.innerHTML) {
-            s.selectedIndex = i;
-            h.innerHTML = this.innerHTML;
-            y = this.parentNode.getElementsByClassName("same-as-selected");
-            yl = y.length;
-            for (k = 0; k < yl; k++) {
-              y[k].removeAttribute("class");
-            }
-            this.setAttribute("class", "same-as-selected");
-            break;
-          }
-        }
-        h.click();
-      });
-      b.appendChild(c);
+import $ from "~scripts/selectors";
+import store from "~data/store";
+import { keyPress, preventDefault } from "~scripts/helpers";
+
+// https://www.freecodecamp.org/news/how-to-build-an-accessible-custom-dropdown-select-element/
+
+let dropdownIsOpen = false;
+
+let currentOptionIndex = 0;
+
+function focusCurrentOption() {
+  let currentOption = $.select_items()[currentOptionIndex];
+
+  currentOption.classList.add("current");
+  currentOption.focus();
+  currentOption.scrollIntoView({ block: "nearest" });
+
+  $.select_items().forEach(function (item) {
+    if (item == currentOption) return;
+    item.classList.remove("current");
+  });
+}
+
+function moveFocusUp() {
+  currentOptionIndex > 0
+    ? currentOptionIndex--
+    : (currentOptionIndex = $.select_items().length - 1);
+
+  focusCurrentOption();
+}
+
+function moveFocusDown() {
+  currentOptionIndex < $.select_items().length - 1
+    ? currentOptionIndex++
+    : (currentOptionIndex = 0);
+
+  focusCurrentOption();
+}
+
+function toggleDropdown() {
+  $.select_list().classList.toggle("active");
+  dropdownIsOpen = !dropdownIsOpen;
+  $.select_button().setAttribute("aria-expanded", dropdownIsOpen.toString());
+}
+
+function handleKeyPress(event) {
+  let { key } = event;
+
+  if (!dropdownIsOpen) {
+    if (!keyPress.isOpenGroup(key)) return;
+  }
+
+  if (dropdownIsOpen) {
+    if (keyPress.isClose(key) || keyPress.isTab(key)) {
+      toggleDropdown();
+      return;
     }
-    x[i].appendChild(b);
-    a.addEventListener("click", function (e) {
-      /* When the select box is clicked, close any other select boxes,
-    and open/close the current select box: */
-      e.stopPropagation();
-      closeAllSelect(this);
-      this.nextSibling.classList.toggle("select-hide");
-      this.classList.toggle("select-arrow-active");
-    });
+  }
+
+  event.preventDefault();
+
+  if (!dropdownIsOpen) {
+    if (keyPress.isOpenGroup(key)) return toggleDropdown();
+  }
+
+  if (dropdownIsOpen) {
+    if (keyPress.isOpen(key)) return selectCurrentOption();
+    if (keyPress.isDown(key)) return moveFocusDown();
+    if (keyPress.isUp(key)) return moveFocusUp();
   }
 }
 
-function closeAllSelect(elmnt) {
-  /* A function that will close all select boxes in the document,
-  except the current select box: */
-  var x,
-    y,
-    i,
-    xl,
-    yl,
-    arrNo = [];
-  x = document.getElementsByClassName("select-items");
-  y = document.getElementsByClassName("select-selected");
-  xl = x.length;
-  yl = y.length;
-  for (i = 0; i < yl; i++) {
-    if (elmnt == y[i]) {
-      arrNo.push(i);
-    } else {
-      y[i].classList.remove("select-arrow-active");
-    }
-  }
-  for (i = 0; i < xl; i++) {
-    if (arrNo.indexOf(i)) {
-      x[i].classList.add("select-hide");
-    }
-  }
+function toggleActiveState(item, active) {
+  active ? item.classList.add("active") : item.classList.remove("active");
+  item.setAttribute("aria-selected", active.toString());
+  return item;
+}
+
+function selectOptionByElement(element) {
+  store.selected.playlist = element.getAttribute("data-id");
+
+  console.log("selected source: ", store.selected.playlist);
+
+  $.select_button().innerText = element.innerText;
+
+  $.select_items().forEach((item) => toggleActiveState(item, false));
+
+  element = toggleActiveState(element, true);
+
+  toggleDropdown();
+
+  announceOption(element.innerText);
+}
+
+function announceOption(text) {
+  $.select_announce().innerText = text;
+  $.select_announce().setAttribute("aria-live", "assertive");
+
+  setTimeout(function () {
+    $.select_announce().innerText = "";
+    $.select_announce().setAttribute("aria-live", "off");
+  }, 1000);
+}
+
+function selectCurrentOption() {
+  let currentOption = $.select_items()[currentOptionIndex];
+  selectOptionByElement(currentOption);
+}
+
+function handleDocumentInteraction(event) {
+  let { target } = event;
+
+  let clickIsInsideButton = $.select_button().contains(target);
+  let clickIsInsideDropdown = $.select_list().contains(target);
+
+  if (clickIsInsideButton) return toggleDropdown();
+
+  if (!clickIsInsideDropdown && dropdownIsOpen) return toggleDropdown();
+}
+
+function handleItemClicks(item, index) {
+  item.addEventListener("click", function () {
+    currentOptionIndex = index;
+    selectCurrentOption();
+  });
+}
+
+function clearCurrentItem() {
+  $.select_items().forEach((item) => item.classList.remove("current"));
 }
 
 export default function () {
-  buildSelectMenus();
-  /* If the user clicks anywhere outside the select box, then close all select boxes: */
-  document.addEventListener("click", closeAllSelect);
+  $.select_form().addEventListener("submit", preventDefault);
+
+  $.select_button().addEventListener("keydown", handleKeyPress);
+
+  $.select_list().addEventListener("mouseover", clearCurrentItem);
+
+  $.select_items().forEach(handleItemClicks);
+
+  document.addEventListener("click", handleDocumentInteraction);
 }

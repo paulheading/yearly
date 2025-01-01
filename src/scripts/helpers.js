@@ -35,7 +35,7 @@ let byLowestPopularity = (a, b) => a.track.popularity - b.track.popularity;
 
 let byHighestPopularity = (a, b) => b.track.popularity - a.track.popularity;
 
-let byPlaylistId = ({ id }) => id == store.style;
+let byPlaylistId = ({ id }) => id == store.create.playlist.style;
 
 let byPlaylistOwner = ({ owner }) =>
   owner.display_name == store.user.display_name;
@@ -109,15 +109,34 @@ function getSiblings(element) {
   return siblings;
 }
 
-let toStoreSources = ({ id, name, tracks }) => ({ id, name, tracks });
-
 let byName = function (a, b) {
   if (a.name < b.name) return -1;
   if (a.name > b.name) return 1;
   return 0;
 };
 
+let keyPress = {};
+
+keyPress.isMatch = (key, array) => array.includes(key);
+
+keyPress.isOpen = (key) => keyPress.isMatch(key, ["Enter", " "]);
+
+keyPress.isClose = (key) => keyPress.isMatch(key, ["Escape"]);
+
+keyPress.isDown = (key) => keyPress.isMatch(key, ["ArrowDown"]);
+
+keyPress.isUp = (key) => keyPress.isMatch(key, ["ArrowUp"]);
+
+keyPress.isTab = (key) => keyPress.isMatch(key, ["Tab"]);
+
+keyPress.isOpenGroup = function (key) {
+  return keyPress.isOpen(key) || keyPress.isUp(key) || keyPress.isDown(key);
+};
+
+let preventDefault = (event) => event.preventDefault();
+
 export {
+  keyPress,
   switchElements,
   loadingCurrently,
   loadingComplete,
@@ -140,6 +159,6 @@ export {
   excludeExplicit,
   minimumLength,
   maximumLength,
-  toStoreSources,
   byName,
+  preventDefault,
 };

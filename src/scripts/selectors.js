@@ -10,7 +10,7 @@ $.body = $.querySelector("body");
 $.loaded = $.queryState("loaded");
 $.not_loaded = $.queryState("not-loaded");
 $.cards = $.querySelectorAll(".card-container");
-$.select = $.querySelector("select");
+$.sliders = $.querySelectorAll(".slider");
 
 $.selected_state = "selected-state";
 
@@ -74,7 +74,7 @@ $.sections = {
 };
 
 $.print = {
-  firstname: $.queryPrint("firstname"),
+  first_name: $.queryPrint("first_name"),
   share_link: $.queryPrint("share-link"),
   tracks_added: $.queryPrint("tracks-added"),
 };
@@ -85,5 +85,12 @@ $.playlist_owner = () => $.playlist().querySelector(".owner");
 $.playlist_main = () => $.playlist().querySelector("main");
 $.playlist_track = () => $.playlist_main().querySelector(".container");
 $.playlist_tracks = () => $.playlist_main().querySelectorAll(".container");
+
+$.select_form = () => $.querySelector(".select-form");
+$.select_list = () => $.select_form().querySelector(".select-form-list");
+$.select_items = () => $.select_form().querySelectorAll(".select-form-item");
+$.select_button = () => $.select_form().querySelector(".select-form-button");
+$.select_announce = () =>
+  $.select_form().querySelector(".select-form-announce");
 
 export default $;

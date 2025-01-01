@@ -2,7 +2,7 @@ import $ from "~scripts/selectors";
 import store from "~data/store";
 
 export default function (item, index) {
-  let clone = store.saved.track.cloneNode(true);
+  let clone = store.selected.track.cloneNode(true);
 
   let track_number = clone.querySelector(".number");
   let track_name = clone.querySelector(".track-name");

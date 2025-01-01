@@ -20,7 +20,7 @@ export default function (tracks) {
   $.playlist_owner().innerText = store.user.display_name;
   $.playlist_owner().href = store.user.external_urls.spotify;
 
-  if (!store.saved.track) store.saved.track = $.playlist_track();
+  if (!store.selected.track) store.selected.track = $.playlist_track();
 
   $.playlist_tracks().forEach(($track) => $track.remove());
 

@@ -1,6 +1,7 @@
-import { getData } from "~scripts/services";
+import { getPlaylistItems, getUsersSavedTracks } from "~scripts/services";
 import { addedThisYear, displaySection } from "~scripts/helpers";
 import $ from "~scripts/selectors";
+import store from "~data/store";
 
 let keepGoing = true;
 let offset = 0;
@@ -11,8 +12,18 @@ let total = 0;
 let printTracksAdded = (total) => ($.print.tracks_added.innerText = total);
 
 export default async function (callback) {
+  let userSelectedPlaylist = store.selected.playlist != 0;
+
+  if (userSelectedPlaylist) {
+    let { items } = await getPlaylistItems(store.selected.playlist);
+
+    callback(items);
+
+    return;
+  }
+
   while (keepGoing) {
-    let { items } = await getData(`me/tracks?offset=${offset}`);
+    let { items } = await getUsersSavedTracks(offset);
 
     displaySection("tracks_added", "block");
 
@@ -29,8 +40,6 @@ export default async function (callback) {
 
     offset += limit;
   }
-
-  console.log("results: ", results);
 
   callback(results);
 }

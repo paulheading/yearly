@@ -89,9 +89,10 @@ function addSettingsEventListeners($setting) {
 function addButtonClickFunction(selectors) {
   let { $dot_buttons, $settings_lists, $button, index } = selectors;
 
-  $dot_buttons.forEach(($button) => $button.removeAttribute("data"));
-
-  $button.setAttribute("data", "active");
+  $dot_buttons.forEach(function ($item) {
+    let buttonIsActive = $item == $button;
+    $item.disabled = buttonIsActive;
+  });
 
   $settings_lists.forEach(function (setting, number) {
     setting.style.display = number == index ? "block" : "none";

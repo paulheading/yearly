@@ -4,34 +4,32 @@ let formProps = {
 };
 
 let labelProps = {
-  class: "select-label",
-  for: "select-button",
+  class: "select-form-label",
 };
 
 let buttonProps = {
   "aria-controls": "listbox",
   "aria-haspopup": "listbox",
   "aria-expanded": false,
-  class: "select-button",
+  class: "select-form-button",
   role: "combobox",
   tabIndex: "0",
-  "data-id": 0,
 };
 
 let listProps = {
-  class: "select-list",
+  class: "select-form-list",
   role: "listbox",
 };
 
 let itemProps = {
-  "class:list": ["select-item", "active"],
+  "class:list": ["select-form-item", "active"],
   role: "option",
   "data-id": 0,
 };
 
 let announcementProps = {
   "aria-live": "assertive",
-  class: "announcement",
+  class: "select-form-announce",
   role: "alert",
 };
 ---
@@ -56,6 +54,8 @@ let announcementProps = {
 
   $background-color-select: white;
 
+  $border-radius-select: toRem(8);
+
   .select-form {
     grid-template-columns: auto $max-width-select;
     justify-content: center;
@@ -65,32 +65,38 @@ let announcementProps = {
     display: grid;
   }
 
-  .select-label {
+  .select-form-label {
     padding: $padding-select;
     display: block;
   }
 
-  .select-button {
+  .select-form-button {
     @include text-overflow;
 
     & {
       background-color: $background-color-select;
+      border-radius: $border-radius-select;
       border: 1px solid currentColor;
       padding: $padding-select;
       padding-right: toRem(36);
       font-size: inherit;
       position: relative;
-      border-radius: 0;
       text-align: left;
       width: 100%;
 
       @include focus {
-        outline: 1px solid blue;
+        outline: 2px dashed;
+        outline-offset: 4px;
       }
+    }
+
+    &[aria-expanded="true"] {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
     }
   }
 
-  .select-button::after {
+  .select-form-button::after {
     border: 6px solid currentColor;
     border-bottom-color: transparent;
     border-right-color: transparent;
@@ -103,13 +109,15 @@ let announcementProps = {
     width: 0;
   }
 
-  .select-button[aria-expanded="true"]::after {
+  .select-form-button[aria-expanded="true"]::after {
     border-bottom-color: currentColor;
     border-top-color: transparent;
     top: toRem(12);
   }
 
-  .select-list {
+  .select-form-list {
+    border-bottom-right-radius: $border-radius-select;
+    border-bottom-left-radius: $border-radius-select;
     background-color: $background-color-select;
     border-bottom: 1px solid currentColor;
     border-right: 1px solid currentColor;
@@ -125,11 +133,11 @@ let announcementProps = {
     z-index: 2;
   }
 
-  .select-list.active {
+  .select-form-list.active {
     display: block;
   }
 
-  .select-item {
+  .select-form-item {
     @include text-overflow;
 
     & {
@@ -137,28 +145,28 @@ let announcementProps = {
       cursor: pointer;
     }
 
-    + .select-item {
+    + .select-form-item {
       border-top: 1px solid currentColor;
       margin-top: 0;
     }
   }
 
-  .select-item.active {
+  .select-form-item.active {
     background-color: blue;
     color: white;
   }
 
-  .select-item:hover {
+  .select-form-item:hover {
     background-color: gainsboro;
     color: black;
   }
 
-  .select-item.current {
+  .select-form-item.current {
     background-color: gainsboro;
     color: black;
   }
 
-  .announcement {
+  .select-form-announce {
     opacity: 0;
     height: 0;
   }
