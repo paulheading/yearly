@@ -95,7 +95,11 @@ function addButtonClickFunction(selectors) {
   });
 
   $settings_lists.forEach(function (setting, number) {
-    setting.style.display = number == index ? "block" : "none";
+    let isActive = number == index;
+
+    setting.style.display = isActive ? "block" : "none";
+
+    if (isActive) setting.querySelector("button, input").focus();
   });
 }
 

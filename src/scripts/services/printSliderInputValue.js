@@ -1,4 +1,4 @@
-export default function printSliderInputValue(params) {
+export default function (params) {
   let { $input, $output, $mins } = params;
 
   if ($input.value != 0) {

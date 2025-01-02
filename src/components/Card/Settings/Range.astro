@@ -1,19 +1,19 @@
 ---
+import RangeInput from "~Components/Range";
+
 let { setting, setting_index } = Astro.props;
 
 let { range } = setting;
 
+let evenOrOdd = setting_index % 2 ? "even" : "odd";
+
 let containerProps = {
-  "class:list": [
-    "setting",
-    setting_index % 2 ? "even" : "odd",
-    setting.editable && "editable",
-  ],
+  "class:list": ["setting", evenOrOdd, setting.editable && "editable"],
 };
 
 let rangeProps = {
   value: setting.value,
-  class: "slider",
+  className: evenOrOdd,
   min: range.min,
   max: range.max,
 };
@@ -35,9 +35,7 @@ let minProps = {
     </span>
   </div>
 
-  <div class="wrap-slider">
-    <input type="range" {...rangeProps} />
-  </div>
+  <RangeInput {...rangeProps} />
 </li>
 
 <style lang="scss">
@@ -62,6 +60,18 @@ let minProps = {
 
   .setting.odd {
     background-color: aliceblue;
+
+    .slider {
+      &::-webkit-slider-thumb {
+        background-color: aliceblue;
+      }
+
+      @include focus {
+        &::-webkit-slider-thumb {
+          background-color: grey;
+        }
+      }
+    }
   }
 
   .setting:not(:first-of-type) {
@@ -80,40 +90,5 @@ let minProps = {
 
   .check.selected-state {
     fill: black;
-  }
-
-  .wrap-slider {
-    padding-bottom: 4px;
-    padding-top: 4px;
-  }
-
-  .slider {
-    background: black;
-    // border-radius: 4px;
-    cursor: pointer;
-    display: block;
-    height: 4px;
-    margin: 0;
-
-    @include focus {
-      @include dashed-box($offset: 6px);
-    }
-
-    // -webkit-appearance: none;
-    // appearance: none;
-    // width: 100%;
-    // display: block;
-    // outline: none;
-  }
-
-  .slider::-webkit-slider-thumb,
-  .slider::-moz-range-thumb {
-    // display: none;
-    // -webkit-appearance: none;
-    // appearance: none;
-    // @include size(50px);
-    // width: 50px;
-    // height: 50px;
-    // background: #04aa6d;
   }
 </style>

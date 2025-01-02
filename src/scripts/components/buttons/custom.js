@@ -1,35 +1,33 @@
 import $ from "~scripts/selectors";
 import { hideShowElements } from "~scripts/helpers";
 
-function switchDisplay({ hide, show, text, focus }) {
-  let $switch = $.buttons.custom.querySelector("u");
-
-  console.log("switch display");
+function switchDisplay({ currentTarget, text, hide, show }) {
+  let $switch = currentTarget.querySelector("u");
 
   hideShowElements(hide, show);
   $switch.innerText = text;
-  show.querySelector(focus).focus();
+  show.querySelector("input, button").focus();
 }
 
-function customButtonClick() {
-  let playlistActive = $.sections.playlist.style.display != "none";
+function customButtonClick(event) {
+  let { currentTarget } = event;
   let { playlist, custom } = $.sections;
 
+  let playlistActive = playlist.style.display != "none";
+
   let toCustom = {
+    text: "Set menu please",
     hide: playlist,
     show: custom,
-    text: "Set menu please",
-    focus: "input",
   };
 
   let toPlaylist = {
+    text: "Custom job please",
     hide: custom,
     show: playlist,
-    text: "Custom job please",
-    focus: "button",
   };
 
-  switchDisplay(playlistActive ? toCustom : toPlaylist);
+  switchDisplay({ currentTarget, ...(playlistActive ? toCustom : toPlaylist) });
 }
 
 export default function () {

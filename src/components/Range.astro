@@ -1,0 +1,63 @@
+---
+let { value, min, max, className } = Astro.props;
+
+let props = {
+  "class:list": ["slider", className],
+  value,
+  min,
+  max,
+};
+---
+
+<div class="wrap-slider">
+  <input type="range" {...props} />
+</div>
+
+<style lang="scss">
+  @use "~mixins" as *;
+
+  $size-slider-thumb: 1rem;
+
+  @mixin thumb {
+    @include size($size-slider-thumb);
+
+    & {
+      border-radius: $size-slider-thumb;
+      background-color: white;
+      border: 2px solid black;
+      -webkit-appearance: none;
+      position: relative;
+      appearance: none;
+      z-index: 2;
+    }
+  }
+
+  .wrap-slider {
+    padding-bottom: 8px;
+    padding-top: 8px;
+  }
+
+  .slider {
+    background-color: black;
+    cursor: pointer;
+    display: block;
+    height: 2px;
+    margin: 0;
+
+    @include focus {
+      outline: none;
+
+      &::-webkit-slider-thumb {
+        background-color: grey;
+      }
+    }
+  }
+
+  .slider::-moz-range-thumb {
+    @include thumb;
+  }
+
+  .slider::-webkit-slider-thumb {
+    @include thumb;
+  }
+</style>
