@@ -7,20 +7,20 @@ let forEachCustomSetting = (callback) =>
     callback(setting)
   );
 
-function switchElements(a, b) {
+function hideShowElements(a, b) {
   a.style.display = "none";
   b.style.display = "initial";
 }
 
 function loadingCurrently(callback) {
   callback();
-  switchElements($.loaded, $.not_loaded);
+  hideShowElements($.loaded, $.not_loaded);
 }
 
 function loadingComplete(callback) {
   setTimeout(function () {
     displaySection("tracks_added", "none");
-    switchElements($.not_loaded, $.loaded);
+    hideShowElements($.not_loaded, $.loaded);
     callback();
   }, 1000);
 }
@@ -137,7 +137,7 @@ let preventDefault = (event) => event.preventDefault();
 
 export {
   keyPress,
-  switchElements,
+  hideShowElements,
   loadingCurrently,
   loadingComplete,
   getSiblings,
