@@ -79,8 +79,6 @@ function toggleActiveState(item, active) {
 function selectOptionByElement(element) {
   store.selected.playlist = element.getAttribute("data-id");
 
-  console.log("selected source: ", store.selected.playlist);
-
   $.select_button().innerText = element.innerText;
 
   $.select_items().forEach((item) => toggleActiveState(item, false));

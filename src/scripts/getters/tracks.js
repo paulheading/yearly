@@ -1,5 +1,6 @@
-import { getPlaylistItems, getUsersSavedTracks } from "~scripts/services";
-import { addedThisYear, displaySection } from "~scripts/helpers";
+import get from "~scripts/getters";
+import { displaySection } from "~scripts/helpers";
+import { addedThisYear } from "~scripts/filters";
 import $ from "~scripts/selectors";
 import store from "~data/store";
 
@@ -15,7 +16,7 @@ export default async function (callback) {
   let userSelectedPlaylist = store.selected.playlist != 0;
 
   if (userSelectedPlaylist) {
-    let { items } = await getPlaylistItems(store.selected.playlist);
+    let { items } = await get.playlistItems(store.selected.playlist);
 
     callback(items);
 
@@ -23,7 +24,7 @@ export default async function (callback) {
   }
 
   while (keepGoing) {
-    let { items } = await getUsersSavedTracks(offset);
+    let { items } = await get.usersSavedTracks(offset);
 
     displaySection("tracks_added", "block");
 

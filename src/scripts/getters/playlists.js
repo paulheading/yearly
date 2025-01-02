@@ -1,9 +1,13 @@
-import { getData } from "~scripts/services";
-import { byPlaylistOwner, byName } from "~scripts/helpers";
+import get from "~scripts/getters";
 import store from "~data/store";
 
+import { byName } from "~scripts/sorters";
+import { byPlaylistOwner } from "~scripts/filters";
+
 async function getPlaylists(offset, limit) {
-  let playlists = await getData(`me/playlists?offset=${offset}&limit=${limit}`);
+  let playlists = await get.data(
+    `me/playlists?offset=${offset}&limit=${limit}`
+  );
 
   return playlists;
 }

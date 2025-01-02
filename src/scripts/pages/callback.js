@@ -1,13 +1,18 @@
-import { displaySection, loadingComplete } from "~scripts/helpers";
+import store from "~data/store";
+import user from "~data/user";
+import get from "~scripts/getters";
+import print from "~scripts/printers";
+
+import selectFormListener from "~scripts/components/select";
+import rangeInputListener from "~scripts/components/range";
 
 import {
+  displaySection,
+  loadingComplete,
   setAccessToken,
   setUser,
-  getPlaylists,
   usingLiveData,
-  printSourcePlaylists,
-  printFirstName,
-} from "~scripts/services";
+} from "~scripts/helpers";
 
 import {
   customButtonListener,
@@ -18,12 +23,6 @@ import {
   selectButtonListener,
 } from "~scripts/components/buttons";
 
-import selectFormListener from "~scripts/components/select";
-import rangeInputListener from "~scripts/components/range";
-
-import store from "~data/store";
-import user from "~data/user";
-
 function loadChooseCard() {
   function showElements() {
     displaySection("choose_card", "block");
@@ -32,8 +31,8 @@ function loadChooseCard() {
 }
 
 function createInteractiveDOM() {
-  printFirstName();
-  printSourcePlaylists();
+  print.firstName();
+  print.sourcePlaylists();
   rangeInputListener();
   selectFormListener();
   infoButtonListener();
@@ -47,7 +46,7 @@ function createInteractiveDOM() {
 if (usingLiveData) {
   setAccessToken()
     .then(setUser)
-    .then(getPlaylists)
+    .then(get.playlists)
     .then(createInteractiveDOM)
     .then(loadChooseCard);
 }

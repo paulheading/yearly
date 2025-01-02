@@ -1,4 +1,4 @@
-import { byContentType, byPlaylistId } from "~scripts/helpers";
+import { byContentType, byPlaylistId } from "~scripts/filters";
 import store from "~data/store";
 
 export default function () {

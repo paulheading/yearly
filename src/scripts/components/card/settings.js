@@ -1,6 +1,6 @@
 import $ from "~scripts/selectors";
 import { forEachCustomSetting } from "~scripts/helpers";
-import { printSliderInputValue } from "~scripts/services";
+import print from "~scripts/printers";
 
 function updateDOMSettings(setting, $input) {
   let $card = $input.closest(".card-container");
@@ -14,7 +14,7 @@ function updateDOMSettings(setting, $input) {
       if (typeof setting.value == "boolean") $input.checked = setting.value;
       if (typeof setting.value == "number") {
         $input.value = setting.value;
-        printSliderInputValue({ $input, $output, $mins });
+        print.sliderInputValue({ $input, $output, $mins });
       }
     }
   });

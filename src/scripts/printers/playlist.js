@@ -1,12 +1,12 @@
-import { printPlaylistTrack } from "~scripts/services";
 import {
   createPlaylistName,
-  outPlaylistExcess,
-  inPlaylistExcess,
   displaySection,
   loadingComplete,
 } from "~scripts/helpers";
 
+import { outPlaylistExcess, inPlaylistExcess } from "~scripts/filters";
+
+import print from "~scripts/printers";
 import $ from "~scripts/selectors";
 import store from "~data/store";
 
@@ -24,7 +24,7 @@ export default function (tracks) {
 
   $.playlist_tracks().forEach(($track) => $track.remove());
 
-  store.create.playlist.tracks.forEach(printPlaylistTrack);
+  store.create.playlist.tracks.forEach(print.playlistTrack);
 
   function showElements() {
     displaySection("save_playlist", "block");

@@ -1,1 +1,0 @@
-import $ from "~scripts/selectors";

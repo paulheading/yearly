@@ -1,39 +1,36 @@
-import {
-  getPlaylistConfig,
-  getRecommends,
-  getTracks,
-  printPlaylist,
-  usingLiveData,
-} from "~scripts/services";
+import $ from "~scripts/selectors";
+import get from "~scripts/getters";
+import print from "~scripts/printers";
+import store from "~data/store";
+import tracks from "~data/tracks";
 
 import {
-  exclude_explicit,
-  include_explicit,
-  include_recommends,
-  least_popular,
+  in_explicit,
+  in_popular,
+  in_recommends,
   max_length,
   min_length,
-  most_popular,
+  out_explicit,
+  out_popular,
   released_this_year,
 } from "~data/settings";
 
 import {
-  byLowestPopularity,
-  byHighestPopularity,
+  inExplicit,
+  outExplicit,
+  minimumLength,
+  maximumLength,
+  releasedThisYear,
+} from "~scripts/filters";
+
+import { byLowestPopularity, byHighestPopularity } from "~scripts/sorters";
+
+import {
+  usingLiveData,
   displaySection,
   loadingComplete,
   loadingCurrently,
-  releasedThisYear,
-  includeExplicit,
-  excludeExplicit,
-  minimumLength,
-  maximumLength,
 } from "~scripts/helpers";
-
-import $ from "~scripts/selectors";
-
-import store from "~data/store";
-import tracks from "~data/tracks";
 
 function buildButtonClick() {
   if (!store.create.playlist.style) return;
@@ -45,7 +42,7 @@ function buildButtonClick() {
 
   loadingCurrently(hideElements);
 
-  usingLiveData ? getTracks(displayResults) : displayResults(tracks);
+  usingLiveData ? get.tracks(displayResults) : displayResults(tracks);
 }
 
 function handleEmptyPlaylist() {
@@ -61,9 +58,9 @@ function getPlaylistRecommends(tracks) {
 
   recommends = recommends.slice(0, -1);
 
-  // getRecommends(recommends);
+  // get.recommends(recommends);
 
-  // getRecommends("seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA");
+  // get.recommends("seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA");
 
   function showElements() {
     displaySection("recommend_tracks", "block");
@@ -80,35 +77,35 @@ function displayResults(items) {
   if (items.length == 0) handleEmptyPlaylist();
   else if (items.length < 10) getPlaylistRecommends(items);
 
-  // console.log("config: ", getPlaylistConfig());
+  // console.log("config: ", get.playlistConfig());
 
-  getPlaylistConfig().forEach(function ({ title, value }) {
+  get.playlistConfig().forEach(function ({ title, value }) {
     if (!value) return;
 
     console.log("title: ", title);
 
-    if (title == include_recommends) {
-      console.log("matched: ", include_recommends);
+    if (title == in_recommends) {
+      console.log("matched: ", in_recommends);
     }
     if (title == released_this_year) {
       console.log("matched: ", released_this_year);
       items = items.filter((item) => releasedThisYear(item));
     }
-    if (title == least_popular) {
-      console.log("matched: ", least_popular);
+    if (title == out_popular) {
+      console.log("matched: ", out_popular);
       items = items.sort(byLowestPopularity);
     }
-    if (title == most_popular) {
-      console.log("matched: ", most_popular);
+    if (title == in_popular) {
+      console.log("matched: ", in_popular);
       items = items.sort(byHighestPopularity);
     }
-    if (title == include_explicit) {
-      console.log("matched: ", include_explicit);
-      items = items.filter(includeExplicit);
+    if (title == in_explicit) {
+      console.log("matched: ", in_explicit);
+      items = items.filter(inExplicit);
     }
-    if (title == exclude_explicit) {
-      console.log("matched: ", exclude_explicit);
-      items = items.filter(excludeExplicit);
+    if (title == out_explicit) {
+      console.log("matched: ", out_explicit);
+      items = items.filter(outExplicit);
     }
     if (title == min_length) {
       console.log("matched: ", min_length);
@@ -120,7 +117,7 @@ function displayResults(items) {
     }
   });
 
-  printPlaylist(items);
+  print.playlist(items);
 }
 
 export default function () {

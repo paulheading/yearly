@@ -1,11 +1,12 @@
 import $ from "~scripts/selectors";
-import { getData, postData } from "~scripts/services";
+import get from "~scripts/getters";
 import store from "~data/store";
 
 import {
   displaySection,
   loadingComplete,
   loadingCurrently,
+  postData,
 } from "~scripts/helpers";
 
 function postPlaylistData() {
@@ -41,7 +42,7 @@ function saveButtonClick() {
   postPlaylistData()
     .then(postTrackData)
     .then(function () {
-      getData(`users/${store.user.id}/playlists`).then(function ({ items }) {
+      get.data(`users/${store.user.id}/playlists`).then(function ({ items }) {
         let foundPlaylist = false;
         let index = 0;
         let playlist = {};

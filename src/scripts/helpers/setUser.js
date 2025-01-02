@@ -1,9 +1,9 @@
 import $ from "~scripts/selectors";
-import { getData } from "~scripts/services";
+import get from "~scripts/getters";
 import store from "~data/store";
 
 export default async function () {
-  let user = await getData("me");
+  let user = await get.data("me");
 
   let first_name = user.display_name.split(" ")[0];
 
