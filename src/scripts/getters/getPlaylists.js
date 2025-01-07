@@ -1,6 +1,6 @@
 import store from "~data/store";
 
-import { byName } from "~scripts/sort";
+import { byName } from "~scripts/sorters";
 import { byPlaylistOwner } from "~scripts/filters";
 import { getData } from "~scripts/getters";
 

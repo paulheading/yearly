@@ -1,17 +1,7 @@
 import $ from "~scripts/selectors";
 import store from "~data/store";
 import tracks from "~data/tracks";
-
-import {
-  in_explicit,
-  in_popular,
-  in_recommends,
-  max_length,
-  min_length,
-  out_explicit,
-  out_popular,
-  released_this_year,
-} from "~data/settings";
+import settings from "~data/settings";
 
 import {
   inExplicit,
@@ -21,7 +11,7 @@ import {
   matchYear,
 } from "~scripts/filters";
 
-import { byLowestPopularity, byHighestPopularity } from "~scripts/sort";
+import { byLowestPopularity, byHighestPopularity } from "~scripts/sorters";
 
 import {
   usingLiveData,
@@ -87,12 +77,12 @@ function displayResults(items) {
 
     console.log("title: ", title);
 
-    if (title == in_recommends) {
-      console.log("matched: ", in_recommends);
+    if (title == settings.in_recommends) {
+      console.log("matched: ", settings.in_recommends);
     }
 
-    if (title == released_this_year) {
-      console.log("matched: ", released_this_year);
+    if (title == settings.released_this_year) {
+      console.log("matched: ", settings.released_this_year);
 
       items = items.filter(function ({ track }) {
         let { album } = track;
@@ -100,38 +90,38 @@ function displayResults(items) {
       });
     }
 
-    if (title == out_popular) {
-      console.log("matched: ", out_popular);
+    if (title == settings.out_popular) {
+      console.log("matched: ", settings.out_popular);
 
       items = items.sort(byLowestPopularity);
     }
 
-    if (title == in_popular) {
-      console.log("matched: ", in_popular);
+    if (title == settings.in_popular) {
+      console.log("matched: ", settings.in_popular);
 
       items = items.sort(byHighestPopularity);
     }
 
-    if (title == in_explicit) {
-      console.log("matched: ", in_explicit);
+    if (title == settings.in_explicit) {
+      console.log("matched: ", settings.in_explicit);
 
       items = items.filter(inExplicit);
     }
 
-    if (title == out_explicit) {
-      console.log("matched: ", out_explicit);
+    if (title == settings.out_explicit) {
+      console.log("matched: ", settings.out_explicit);
 
       items = items.filter(outExplicit);
     }
 
-    if (title == min_length) {
-      console.log("matched: ", min_length);
+    if (title == settings.min_length) {
+      console.log("matched: ", settings.min_length);
 
       items = items.filter((item) => minimumLength(item, value));
     }
 
-    if (title == max_length) {
-      console.log("matched: ", max_length);
+    if (title == settings.max_length) {
+      console.log("matched: ", settings.max_length);
 
       items = items.filter((item) => maximumLength(item, value));
     }

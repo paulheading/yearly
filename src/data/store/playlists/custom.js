@@ -1,13 +1,4 @@
-import {
-  out_explicit,
-  in_explicit,
-  out_popular,
-  in_popular,
-  released_this_year,
-  groups,
-  min_length,
-  max_length,
-} from "~data/settings";
+import settings from "~data/settings";
 
 export default {
   id: "custom",
@@ -18,33 +9,33 @@ export default {
       image: "/custom.jpg",
       settings: [
         {
-          title: out_popular,
-          group: { ...groups.popularity },
+          title: settings.out_popular,
+          group: { ...settings.groups.popularity },
           editable: true,
           value: false,
         },
         {
-          title: in_popular,
-          group: { ...groups.popularity },
+          title: settings.in_popular,
+          group: { ...settings.groups.popularity },
           editable: true,
           value: false,
         },
-        { title: released_this_year, editable: true, value: false },
+        { title: settings.released_this_year, editable: true, value: false },
         {
-          title: in_explicit,
-          group: { ...groups.explicit },
-          editable: true,
-          value: false,
-        },
-        {
-          title: out_explicit,
-          group: { ...groups.explicit },
+          title: settings.in_explicit,
+          group: { ...settings.groups.explicit },
           editable: true,
           value: false,
         },
         {
-          title: min_length,
-          group: { ...groups.duration },
+          title: settings.out_explicit,
+          group: { ...settings.groups.explicit },
+          editable: true,
+          value: false,
+        },
+        {
+          title: settings.min_length,
+          group: { ...settings.groups.duration },
           editable: true,
           value: 0,
           range: {
@@ -54,8 +45,8 @@ export default {
           },
         },
         {
-          title: max_length,
-          group: { ...groups.duration },
+          title: settings.max_length,
+          group: { ...settings.groups.duration },
           editable: true,
           value: 0,
           range: {

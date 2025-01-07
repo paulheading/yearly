@@ -1,20 +1,20 @@
-export let discovered_this_year = "Discovered this year";
+let discovered_this_year = "Discovered this year";
 
-export let out_popular = "Least popular music";
-export let in_popular = "Most popular music";
+let out_popular = "Least popular music";
+let in_popular = "Most popular music";
 
-export let released_this_year = "Released this year";
+let released_this_year = "Released this year";
 
-export let in_recommends = "Include recommends";
-export let out_recommends = "Exclude recommends";
+let in_recommends = "Include recommends";
+let out_recommends = "Exclude recommends";
 
-export let in_explicit = "Explicit music only";
-export let out_explicit = "No explicit music";
+let in_explicit = "Explicit music only";
+let out_explicit = "No explicit music";
 
-export let max_length = "Max length";
-export let min_length = "Min length";
+let max_length = "Max length";
+let min_length = "Min length";
 
-export let groups = {
+let groups = {
   popularity: {
     name: "popularity",
     action: "cancel",
@@ -27,4 +27,18 @@ export let groups = {
     name: "duration",
     action: "ceiling",
   },
+};
+
+export default {
+  discovered_this_year,
+  out_popular,
+  in_popular,
+  released_this_year,
+  in_recommends,
+  out_recommends,
+  in_explicit,
+  out_explicit,
+  max_length,
+  min_length,
+  groups,
 };

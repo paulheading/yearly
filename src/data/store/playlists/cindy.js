@@ -1,4 +1,4 @@
-import { discovered_this_year, in_recommends } from "~data/settings";
+import settings from "~data/settings";
 
 export default {
   id: "cindy",
@@ -16,8 +16,8 @@ export default {
       title: "",
       image: "/config.jpg",
       settings: [
-        { title: discovered_this_year, editable: false, value: true },
-        { title: in_recommends, editable: false, value: true },
+        { title: settings.discovered_this_year, editable: false, value: true },
+        { title: settings.in_recommends, editable: false, value: true },
       ],
     },
   ],

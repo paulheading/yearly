@@ -7,11 +7,12 @@ import postData from "~scripts/helpers/postData";
 import setAccessToken from "~scripts/helpers/setAccessToken";
 import setUser from "~scripts/helpers/setUser";
 import usingLiveData from "~scripts/helpers/usingLiveData";
+import { inCustomId } from "~scripts/filters";
 
-let forEachCustomSetting = (callback) =>
-  store.cards.custom.content[0].settings.forEach((setting) =>
-    callback(setting)
-  );
+function forEachCustomSetting(callback) {
+  let card = store.cards.filter(inCustomId)[0];
+  return card.content[0].settings.forEach((setting) => callback(setting));
+}
 
 function hideShowElements(a, b) {
   a.style.display = "none";

@@ -1,4 +1,4 @@
-import { out_recommends, released_this_year } from "~data/settings";
+import settings from "~data/settings";
 
 export default {
   id: "badjo",
@@ -14,8 +14,8 @@ export default {
       title: "",
       image: "/config.jpg",
       settings: [
-        { title: released_this_year, editable: false, value: true },
-        { title: out_recommends, editable: false, value: true },
+        { title: settings.released_this_year, editable: false, value: true },
+        { title: settings.out_recommends, editable: false, value: true },
       ],
     },
   ],
