@@ -1,6 +1,6 @@
 import $ from "~scripts/selectors";
 import store from "~data/store";
-import print from "~scripts/print";
+import { printPlaylistTrack } from "~scripts/printers";
 
 import {
   createPlaylistName,
@@ -24,7 +24,7 @@ export default function (tracks) {
 
   $.playlist_tracks().forEach(($track) => $track.remove());
 
-  store.create.playlist.tracks.forEach(print.playlistTrack);
+  store.create.playlist.tracks.forEach(printPlaylistTrack);
 
   function createRandomNumber(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);

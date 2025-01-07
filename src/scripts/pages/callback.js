@@ -1,6 +1,5 @@
 import store from "~data/store";
 import user from "~data/user";
-import print from "~scripts/print";
 
 import selectFormListener from "~scripts/components/select";
 import rangeInputListener from "~scripts/components/range";
@@ -22,6 +21,7 @@ import {
   selectButtonListener,
 } from "~scripts/components/buttons";
 import { getPlaylists } from "~scripts/getters";
+import { printFirstName, printSourcePlaylists } from "~scripts/printers";
 
 function loadChooseCard() {
   function showElements() {
@@ -31,8 +31,8 @@ function loadChooseCard() {
 }
 
 function createInteractiveDOM() {
-  print.firstName();
-  print.sourcePlaylists();
+  printFirstName();
+  printSourcePlaylists();
   rangeInputListener();
   selectFormListener();
   infoButtonListener();

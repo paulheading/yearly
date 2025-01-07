@@ -1,5 +1,4 @@
 import $ from "~scripts/selectors";
-import print from "~scripts/print";
 import store from "~data/store";
 import tracks from "~data/tracks";
 
@@ -30,7 +29,10 @@ import {
   loadingComplete,
   loadingCurrently,
 } from "~scripts/helpers";
+
 import { getPlaylistConfig, getRecommends, getTracks } from "~scripts/getters";
+
+import { printPlaylist } from "~scripts/printers";
 
 function buildButtonClick() {
   if (!store.create.playlist.style) return;
@@ -135,7 +137,7 @@ function displayResults(items) {
     }
   });
 
-  print.playlist(items);
+  printPlaylist(items);
 }
 
 export default function () {
