@@ -1,5 +1,6 @@
 ---
 import Section from "~Components/Section";
+import store from "~data/store";
 
 let sectionProps = {
   name: "tracks-added",
@@ -11,5 +12,9 @@ let sectionProps = {
 ---
 
 <Section {...sectionProps}>
-  <p><strong data-print="tracks-added">0</strong> tracks added this year</p>
+  <p>
+    <strong data-print="tracks-added">0</strong> tracks added since {
+      store.selected.year
+    }
+  </p>
 </Section>

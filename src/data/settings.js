@@ -6,7 +6,7 @@ export let in_popular = "Most popular music";
 export let released_this_year = "Released this year";
 
 export let in_recommends = "Include recommends";
-export let exclude_recommends = "Exclude recommends";
+export let out_recommends = "Exclude recommends";
 
 export let in_explicit = "Explicit music only";
 export let out_explicit = "No explicit music";

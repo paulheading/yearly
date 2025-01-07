@@ -1,7 +1,6 @@
 import store from "~data/store";
 import user from "~data/user";
-import get from "~scripts/getters";
-import print from "~scripts/printers";
+import print from "~scripts/print";
 
 import selectFormListener from "~scripts/components/select";
 import rangeInputListener from "~scripts/components/range";
@@ -22,6 +21,7 @@ import {
   saveButtonListener,
   selectButtonListener,
 } from "~scripts/components/buttons";
+import { getPlaylists } from "~scripts/getters";
 
 function loadChooseCard() {
   function showElements() {
@@ -46,7 +46,7 @@ function createInteractiveDOM() {
 if (usingLiveData) {
   setAccessToken()
     .then(setUser)
-    .then(get.playlists)
+    .then(getPlaylists)
     .then(createInteractiveDOM)
     .then(loadChooseCard);
 }

@@ -31,10 +31,6 @@ function loadingComplete(callback) {
   }, 1000);
 }
 
-let getYear = () => DateTime.now().toFormat("yyyy");
-
-let getYearFromString = (value) => value.slice(0, 4);
-
 function createPlaylistName() {
   let { now, DATETIME_MED_WITH_SECONDS } = DateTime;
   let timestamp = now().toLocaleString(DATETIME_MED_WITH_SECONDS);
@@ -51,8 +47,6 @@ export {
   createPlaylistName,
   displaySection,
   forEachCustomSetting,
-  getYear,
-  getYearFromString,
   hideShowElements,
   keyPress,
   loadingComplete,

@@ -82,6 +82,7 @@ $.print = {
 $.playlist = () => $.querySelector(".outer-window");
 $.playlist_name = () => $.playlist().querySelector(".name");
 $.playlist_owner = () => $.playlist().querySelector(".owner");
+$.playlist_image = () => $.playlist().querySelector("img");
 $.playlist_main = () => $.playlist().querySelector("main");
 $.playlist_track = () => $.playlist_main().querySelector(".container");
 $.playlist_tracks = () => $.playlist_main().querySelectorAll(".container");

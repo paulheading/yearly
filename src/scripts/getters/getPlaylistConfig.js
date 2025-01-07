@@ -2,10 +2,7 @@ import { byContentType, byPlaylistId } from "~scripts/filters";
 import store from "~data/store";
 
 export default function () {
-  let playlist =
-    store.create.playlist.style != "custom"
-      ? store.cards.playlists.filter(byPlaylistId)[0]
-      : store.cards.custom;
+  let playlist = store.cards.filter(byPlaylistId)[0];
 
   let config = playlist.content.filter(byContentType);
 

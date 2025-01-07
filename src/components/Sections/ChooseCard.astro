@@ -7,11 +7,18 @@ import CustomButton from "~Components/Buttons/Custom";
 import store from "~data/store";
 import ChooseSource from "~Components/Select";
 
+import { inCustomId, outCustomId } from "~scripts/filters/customId";
+
 let sectionProps = {
   name: "choose-card",
   style: {
     display: "none",
   },
+};
+
+let cards = {
+  people: store.cards.filter(outCustomId),
+  custom: store.cards.filter(inCustomId)[0],
 };
 ---
 
@@ -35,10 +42,10 @@ let sectionProps = {
   <Wrap style={{ marginTop: "2rem" }}>
     <Wrap>
       <Section name="playlist">
-        {store.cards.playlists.map((card) => <Card {...card} />)}
+        {cards.people.map((card) => <Card {...card} />)}
       </Section>
       <Section name="custom" style={{ display: "none" }}>
-        <Card {...store.cards.custom} />
+        <Card {...cards.custom} />
       </Section>
     </Wrap>
     <Wrap style={{ marginTop: "2rem" }}>

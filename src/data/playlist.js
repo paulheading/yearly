@@ -5,7 +5,7 @@ export default {
     open: true,
   },
   content: {
-    thumbnail: "/playlist.jpg",
+    thumbnail: "/playlist1.jpg",
     url: "#",
     name: "playlist name",
     owner: {

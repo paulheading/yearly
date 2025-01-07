@@ -1,3 +1,7 @@
+import $ from "~scripts/selectors";
+import store from "~data/store";
+import print from "~scripts/print";
+
 import {
   createPlaylistName,
   displaySection,
@@ -5,10 +9,6 @@ import {
 } from "~scripts/helpers";
 
 import { outPlaylistExcess, inPlaylistExcess } from "~scripts/filters";
-
-import print from "~scripts/printers";
-import $ from "~scripts/selectors";
-import store from "~data/store";
 
 export default function (tracks) {
   store.create.playlist.tracks = tracks.filter(outPlaylistExcess);
@@ -25,6 +25,14 @@ export default function (tracks) {
   $.playlist_tracks().forEach(($track) => $track.remove());
 
   store.create.playlist.tracks.forEach(print.playlistTrack);
+
+  function createRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+
+  let src = "/playlist" + createRandomNumber(1, 22) + ".jpg";
+
+  $.playlist_image().src = src;
 
   function showElements() {
     displaySection("save_playlist", "block");

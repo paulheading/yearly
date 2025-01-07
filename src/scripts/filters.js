@@ -1,5 +1,7 @@
 import store from "~data/store";
-import { getYear, getYearFromString } from "~scripts/helpers";
+
+import { inCustomId, outCustomId } from "~scripts/filters/customId";
+import { getYear, getYearFromString } from "~scripts/getters";
 
 let byContentType = ({ type }) => type == "config";
 
@@ -8,56 +10,54 @@ let byPlaylistId = ({ id }) => id == store.create.playlist.style;
 let byPlaylistOwner = ({ owner }) =>
   owner.display_name == store.user.display_name;
 
-let outPlaylistExcess = (_, index) => index < 10;
-
-let inPlaylistExcess = (_, index) => index >= 10;
-
 let inExplicit = ({ track }) => track.explicit;
 
 let outExplicit = ({ track }) => !track.explicit;
+
+let inPlaylistExcess = (_, index) => index >= 10;
+
+let outPlaylistExcess = (_, index) => index < 10;
 
 let milliseconds = 60000;
 
 function minimumLength({ track }, minimum) {
   let minutes = Math.floor(track.duration_ms / milliseconds);
-  let result = minutes >= minimum;
-  return result;
+
+  return minutes >= minimum;
 }
 
 function maximumLength({ track }, maximum) {
   let minutes = Math.ceil(track.duration_ms / milliseconds);
-  let result = minutes <= maximum;
-  return result;
+
+  return minutes <= maximum;
 }
 
-function releasedThisYear({ track }) {
-  let { album } = track;
+function noOlderThanYear(value, custom_year) {
+  let string_year = getYearFromString(value);
+  let target_year = custom_year ? custom_year : getYear();
 
-  let year_released = getYearFromString(album.release_date);
-
-  let result = year_released == getYear();
-
-  return result;
+  return string_year >= target_year;
 }
 
-function addedThisYear({ added_at }) {
-  let year_added = getYearFromString(added_at);
+function matchYear(value, custom_year) {
+  let string_year = getYearFromString(value);
+  let target_year = custom_year ? custom_year : getYear();
 
-  let result = year_added == getYear();
-
-  return result;
+  return string_year == target_year;
 }
 
 export {
-  addedThisYear,
   byContentType,
   byPlaylistId,
   byPlaylistOwner,
+  inCustomId,
+  outCustomId,
   inPlaylistExcess,
   outPlaylistExcess,
   inExplicit,
   outExplicit,
   minimumLength,
   maximumLength,
-  releasedThisYear,
+  noOlderThanYear,
+  matchYear,
 };

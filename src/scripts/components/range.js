@@ -1,5 +1,5 @@
 import $ from "~scripts/selectors";
-import print from "~scripts/printers";
+import print from "~scripts/print";
 
 export default function () {
   $.sliders.forEach(function ($slider) {
