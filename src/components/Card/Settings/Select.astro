@@ -1,6 +1,5 @@
 ---
-import { Toggle } from "paully";
-import { Check } from "paully/svgs";
+import SelectList from "~Components/SelectList";
 
 let { setting, setting_index, color } = Astro.props;
 
@@ -11,34 +10,21 @@ let containerProps = {
     setting.editable && "editable",
   ],
 };
-
-let toggleProps = {
-  checked: setting.value,
-  className: "toggle",
-  color,
-};
 ---
 
 <li {...containerProps}>
-  <span class="title">{setting.title}</span>
-  {!setting.editable && <Check className="check" />}
-  {setting.editable && <Toggle {...toggleProps} />}
+  <SelectList />
 </li>
 
 <style lang="scss">
   @use "~mixins" as *;
 
   .setting {
-    justify-content: space-between;
     padding: $padding-card-setting;
-    grid-auto-flow: column;
-    align-items: center;
     font-weight: normal;
-    gap: $margin-card;
     list-style: none;
     text-align: left;
     margin-top: 0;
-    display: grid;
   }
 
   .setting.odd {

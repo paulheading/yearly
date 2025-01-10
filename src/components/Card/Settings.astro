@@ -2,6 +2,7 @@
 import { InvisibleButton } from "paully";
 import SettingsToggle from "~Components/Card/Settings/Toggle";
 import SettingsRange from "~Components/Card/Settings/Range";
+import SettingsSelect from "~Components/Card/Settings/Select";
 
 let { settings } = Astro.props;
 
@@ -41,11 +42,12 @@ settings.forEach(function (setting) {
 
           setting_index++;
 
-          let { value } = setting;
+          let { type } = setting;
 
           let is = {
-            boolean: typeof value == "boolean",
-            number: typeof value == "number",
+            toggle: type == "toggle",
+            range: type == "range",
+            select: type == "select",
           };
 
           let color = colors[color_index];
@@ -56,8 +58,9 @@ settings.forEach(function (setting) {
             color,
           };
 
-          if (is.boolean) return <SettingsToggle {...props} />;
-          if (is.number) return <SettingsRange {...props} />;
+          if (is.toggle) return <SettingsToggle {...props} />;
+          if (is.range) return <SettingsRange {...props} />;
+          if (is.select) return <SettingsSelect {...props} />;
         })}
       </ul>
     );
@@ -84,7 +87,6 @@ settings.forEach(function (setting) {
     min-width: toRem(206);
     font-size: 1.125rem;
     border: 1px solid;
-    overflow: hidden;
     padding-left: 0;
     color: black;
     margin: 0;

@@ -4,69 +4,87 @@ import { keyPress, preventDefault } from "~scripts/helpers";
 
 // https://www.freecodecamp.org/news/how-to-build-an-accessible-custom-dropdown-select-element/
 
-let dropdownIsOpen = false;
+let dropdownIsOpen = [];
 
-let currentOptionIndex = 0;
+let currentOptionIndex = [];
 
-function focusCurrentOption() {
-  let currentOption = $.select_items()[currentOptionIndex];
+$.select_forms().forEach(function () {
+  dropdownIsOpen.push(false);
+  currentOptionIndex.push(0);
+});
+
+function focusCurrentOption(parent) {
+  let { $form, index } = parent;
+  let { $items } = $.formSelectors($form);
+
+  let currentOption = $items[currentOptionIndex[index]];
 
   currentOption.classList.add("current");
   currentOption.focus();
   currentOption.scrollIntoView({ block: "nearest" });
 
-  $.select_items().forEach(function (item) {
+  $items.forEach(function (item) {
     if (item == currentOption) return;
     item.classList.remove("current");
   });
 }
 
-function moveFocusUp() {
-  currentOptionIndex > 0
-    ? currentOptionIndex--
-    : (currentOptionIndex = $.select_items().length - 1);
+function moveFocusUp(parent) {
+  let { $form, index } = parent;
+  let { $items } = $.formSelectors($form);
 
-  focusCurrentOption();
+  currentOptionIndex[index] > 0
+    ? currentOptionIndex[index]--
+    : (currentOptionIndex[index] = $items.length - 1);
+
+  focusCurrentOption(parent);
 }
 
-function moveFocusDown() {
-  currentOptionIndex < $.select_items().length - 1
-    ? currentOptionIndex++
-    : (currentOptionIndex = 0);
+function moveFocusDown(parent) {
+  let { $form, index } = parent;
+  let { $items } = $.formSelectors($form);
 
-  focusCurrentOption();
+  currentOptionIndex[index] < $items.length - 1
+    ? currentOptionIndex[index]++
+    : (currentOptionIndex[index] = 0);
+
+  focusCurrentOption(parent);
 }
 
-function toggleDropdown() {
-  $.select_list().classList.toggle("active");
-  dropdownIsOpen = !dropdownIsOpen;
-  $.select_button().setAttribute("aria-expanded", dropdownIsOpen.toString());
+function toggleDropdown(parent) {
+  let { $form, index } = parent;
+  let { $button, $list } = $.formSelectors($form);
+
+  $list.classList.toggle("active");
+  dropdownIsOpen[index] = !dropdownIsOpen[index];
+  $button.setAttribute("aria-expanded", dropdownIsOpen[index].toString());
 }
 
-function handleKeyPress(event) {
+function handleKeyPress(event, parent) {
   let { key } = event;
+  let activeDropdownIsOpen = dropdownIsOpen[parent.index];
 
-  if (!dropdownIsOpen) {
+  if (!activeDropdownIsOpen) {
     if (!keyPress.isOpenGroup(key)) return;
   }
 
-  if (dropdownIsOpen) {
+  if (activeDropdownIsOpen) {
     if (keyPress.isClose(key) || keyPress.isTab(key)) {
-      toggleDropdown();
+      toggleDropdown(parent);
       return;
     }
   }
 
   event.preventDefault();
 
-  if (!dropdownIsOpen) {
-    if (keyPress.isOpenGroup(key)) return toggleDropdown();
+  if (!activeDropdownIsOpen) {
+    if (keyPress.isOpenGroup(key)) return toggleDropdown(parent);
   }
 
-  if (dropdownIsOpen) {
-    if (keyPress.isOpen(key)) return selectCurrentOption();
-    if (keyPress.isDown(key)) return moveFocusDown();
-    if (keyPress.isUp(key)) return moveFocusUp();
+  if (activeDropdownIsOpen) {
+    if (keyPress.isOpen(key)) return selectCurrentOption(parent);
+    if (keyPress.isDown(key)) return moveFocusDown(parent);
+    if (keyPress.isUp(key)) return moveFocusUp(parent);
   }
 }
 
@@ -76,65 +94,93 @@ function toggleActiveState(item, active) {
   return item;
 }
 
-function selectOptionByElement(element) {
+function selectOptionByElement(element, parent) {
   store.selected.playlist = element.getAttribute("data-id");
 
-  $.select_button().innerText = element.innerText;
+  let { $form } = parent;
 
-  $.select_items().forEach((item) => toggleActiveState(item, false));
+  let { $button, $items } = $.formSelectors($form);
+
+  $button.innerText = element.innerText;
+
+  $items.forEach((item) => toggleActiveState(item, false));
 
   element = toggleActiveState(element, true);
 
-  toggleDropdown();
+  toggleDropdown(parent);
 
-  announceOption(element.innerText);
+  announceOption(element.innerText, parent);
 }
 
-function announceOption(text) {
-  $.select_announce().innerText = text;
-  $.select_announce().setAttribute("aria-live", "assertive");
+function announceOption(text, parent) {
+  let { $form } = parent;
+
+  let { $announce } = $.formSelectors($form);
+
+  $announce.innerText = text;
+  $announce.setAttribute("aria-live", "assertive");
 
   setTimeout(function () {
-    $.select_announce().innerText = "";
-    $.select_announce().setAttribute("aria-live", "off");
+    $announce.innerText = "";
+    $announce.setAttribute("aria-live", "off");
   }, 1000);
 }
 
-function selectCurrentOption() {
-  let currentOption = $.select_items()[currentOptionIndex];
-  selectOptionByElement(currentOption);
+function selectCurrentOption(parent) {
+  let { $form, index } = parent;
+  let { $items } = $.formSelectors($form);
+  let currentOption = $items[currentOptionIndex[index]];
+
+  selectOptionByElement(currentOption, parent);
 }
 
 function handleDocumentInteraction(event) {
   let { target } = event;
 
-  let clickIsInsideButton = $.select_button().contains(target);
-  let clickIsInsideDropdown = $.select_list().contains(target);
+  $.select_forms().forEach(function ($form, index) {
+    let parent = { $form, index };
 
-  if (clickIsInsideButton) return toggleDropdown();
+    let { $button, $list } = $.formSelectors($form);
 
-  if (!clickIsInsideDropdown && dropdownIsOpen) return toggleDropdown();
-}
+    let clickIsInsideButton = $button.contains(target);
+    let clickIsInsideDropdown = $list.contains(target);
 
-function handleItemClicks(item, index) {
-  item.addEventListener("click", function () {
-    currentOptionIndex = index;
-    selectCurrentOption();
+    if (clickIsInsideButton) return toggleDropdown(parent);
+
+    if (!clickIsInsideDropdown && dropdownIsOpen[index])
+      return toggleDropdown(parent);
   });
 }
 
-function clearCurrentItem() {
-  $.select_items().forEach((item) => item.classList.remove("current"));
+function handleItemClicks(item, index, parent) {
+  item.addEventListener("click", function () {
+    currentOptionIndex[parent.index] = index;
+    selectCurrentOption(parent);
+  });
+}
+
+function clearCurrentItem($form) {
+  let { $items } = $.formSelectors($form);
+
+  $items.forEach((item) => item.classList.remove("current"));
+}
+
+function setupFormListeners($form, index) {
+  let parent = { $form, index };
+
+  $form.addEventListener("submit", preventDefault);
+
+  let { $button, $list, $items } = $.formSelectors($form);
+
+  $button.addEventListener("keydown", (event) => handleKeyPress(event, parent));
+
+  $list.addEventListener("mouseover", () => clearCurrentItem($form));
+
+  $items.forEach((item, index) => handleItemClicks(item, index, parent));
 }
 
 export default function () {
-  $.select_form().addEventListener("submit", preventDefault);
-
-  $.select_button().addEventListener("keydown", handleKeyPress);
-
-  $.select_list().addEventListener("mouseover", clearCurrentItem);
-
-  $.select_items().forEach(handleItemClicks);
+  $.select_forms().forEach(setupFormListeners);
 
   document.addEventListener("click", handleDocumentInteraction);
 }

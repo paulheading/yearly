@@ -1,0 +1,19 @@
+---
+import SelectList from "~Components/SelectList";
+
+let props = {
+  label: "Source",
+  title: "Liked Songs",
+  options: ["first", "second", "third"],
+};
+---
+
+<SelectList {...props} className="choose-source" />
+
+<style lang="scss">
+  @use "~mixins" as *;
+
+  .choose-source {
+    margin-top: 2rem;
+  }
+</style>

@@ -87,11 +87,15 @@ $.playlist_main = () => $.playlist().querySelector("main");
 $.playlist_track = () => $.playlist_main().querySelector(".container");
 $.playlist_tracks = () => $.playlist_main().querySelectorAll(".container");
 
-$.select_form = () => $.querySelector(".select-form");
-$.select_list = () => $.select_form().querySelector(".select-form-list");
-$.select_items = () => $.select_form().querySelectorAll(".select-form-item");
-$.select_button = () => $.select_form().querySelector(".select-form-button");
-$.select_announce = () =>
-  $.select_form().querySelector(".select-form-announce");
+$.select_forms = () => $.querySelectorAll(".select-form");
+
+$.formSelectors = function ($form) {
+  let $list = $form.querySelector(".select-form-list");
+  let $items = $form.querySelectorAll(".select-form-item");
+  let $button = $form.querySelector(".select-form-button");
+  let $announce = $form.querySelector(".select-form-announce");
+
+  return { $list, $items, $button, $announce };
+};
 
 export default $;

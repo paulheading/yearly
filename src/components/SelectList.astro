@@ -1,6 +1,8 @@
 ---
+let { label, title, options, className } = Astro.props;
+
 let formProps = {
-  class: "select-form",
+  "class:list": ["select-form", label ? "with-label" : "no-label", className],
 };
 
 let labelProps = {
@@ -22,7 +24,6 @@ let listProps = {
 };
 
 let itemProps = {
-  "class:list": ["select-form-item", "active"],
   role: "option",
   "data-id": 0,
 };
@@ -35,11 +36,21 @@ let announcementProps = {
 ---
 
 <form {...formProps}>
-  <label {...labelProps}>Source: </label>
+  {label && <label {...labelProps}>{label}: </label>}
   <div>
-    <button {...buttonProps}>Liked Songs</button>
+    <button {...buttonProps}>{title}</button>
     <ul {...listProps}>
-      <li {...itemProps}>Liked Songs</li>
+      <li {...itemProps} class="select-form-item active">{title}</li>
+      {
+        options &&
+          options.map(function (option) {
+            return (
+              <li {...itemProps} class="select-form-item">
+                {option}
+              </li>
+            );
+          })
+      }
     </ul>
     <div {...announcementProps}></div>
   </div>
@@ -57,11 +68,13 @@ let announcementProps = {
   $border-radius-select: toRem(8);
 
   .select-form {
+    position: relative;
+    text-align: left;
+  }
+
+  .select-form.with-label {
     grid-template-columns: auto $max-width-select;
     justify-content: center;
-    position: relative;
-    margin-top: 2rem;
-    text-align: left;
     display: grid;
   }
 
@@ -79,6 +92,7 @@ let announcementProps = {
       border: 1px solid currentColor;
       padding: $padding-select;
       padding-right: toRem(36);
+      min-height: toRem(48.5);
       font-size: inherit;
       position: relative;
       text-align: left;
@@ -130,6 +144,7 @@ let announcementProps = {
     list-style: none;
     padding-left: 0;
     display: none;
+    width: 100%;
     z-index: 2;
   }
 
@@ -142,6 +157,7 @@ let announcementProps = {
 
     & {
       padding: $padding-select;
+      min-height: toRem(52);
       cursor: pointer;
     }
 

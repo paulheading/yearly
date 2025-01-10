@@ -30,7 +30,7 @@ export default function (tracks) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
 
-  let src = "/playlist" + createRandomNumber(1, 22) + ".jpg";
+  let src = "/playlist" + createRandomNumber(1, 18) + ".jpg";
 
   $.playlist_image().src = src;
 

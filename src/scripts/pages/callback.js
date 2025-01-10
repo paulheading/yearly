@@ -32,7 +32,7 @@ function loadChooseCard() {
 
 function createInteractiveDOM() {
   printFirstName();
-  printSourcePlaylists();
+  // printSourcePlaylists();
   rangeInputListener();
   selectFormListener();
   infoButtonListener();
