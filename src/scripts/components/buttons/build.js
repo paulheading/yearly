@@ -70,7 +70,7 @@ function getPlaylistRecommends(tracks) {
 function displayResults(items) {
   if (items.length == 0) return handleEmptyPlaylist();
 
-  if (items.length < 10) getPlaylistRecommends(items);
+  // if (items.length < 10) getPlaylistRecommends(items);
 
   getPlaylistConfig().forEach(function ({ title, value }) {
     if (!value) return;

@@ -101,6 +101,10 @@ function selectOptionByElement(element, parent) {
 
   let { $button, $items } = $.formSelectors($form);
 
+  let data = element.getAttribute("data-id");
+
+  $button.setAttribute("data-id", data);
+
   $button.innerText = element.innerText;
 
   $items.forEach((item) => toggleActiveState(item, false));
