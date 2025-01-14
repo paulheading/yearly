@@ -5,16 +5,23 @@ import { printSliderInputValue } from "~scripts/printers";
 function updateDOMSettings(setting, $input) {
   let $card = $input.closest(".card-container");
   let { selectors } = $.cardSelectors($card);
-  let { $settings_items } = selectors;
+  let { $settings_items } = selectors;  
 
   $settings_items.forEach(function ($setting) {
     let { $title, $input, $output, $mins } = $.settingSelectors($setting);
 
+    if (!$title) return
+
     if ($title.innerText == setting.title) {
-      if (typeof setting.value == "boolean") $input.checked = setting.value;
-      if (typeof setting.value == "number") {
+      if (setting.type == "toggle") {
+        $input.checked = setting.value;
+        return;
+      }
+
+      if (setting.type == "range") {
         $input.value = setting.value;
         printSliderInputValue({ $input, $output, $mins });
+        return;
       }
     }
   });

@@ -67,10 +67,14 @@ export default {
           type: "range",
         },
         {
-          title: "Added in year",
           editable: true,
-          value: null,
-          options: ["2025", "2024", "2023", "2022", "2021"],
+          options: [
+            { title: "Added in 2025", data: 2025 },
+            { title: "Added in 2024", data: 2024 },
+            { title: "Added in 2023", data: 2023 },
+            { title: "Added in 2022", data: 2022 },
+            { title: "Added in 2021", data: 2021 },
+          ],
           type: "select",
         },
       ],

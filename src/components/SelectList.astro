@@ -1,5 +1,5 @@
 ---
-let { label, title, options, className } = Astro.props;
+let { label, options, className } = Astro.props;
 
 let formProps = {
   "class:list": ["select-form", label ? "with-label" : "no-label", className],
@@ -23,11 +23,6 @@ let listProps = {
   role: "listbox",
 };
 
-let itemProps = {
-  role: "option",
-  "data-id": 0,
-};
-
 let announcementProps = {
   "aria-live": "assertive",
   class: "select-form-announce",
@@ -38,17 +33,17 @@ let announcementProps = {
 <form {...formProps}>
   {label && <label {...labelProps}>{label}: </label>}
   <div>
-    <button {...buttonProps}>{title}</button>
+    <button {...buttonProps}>{options[0].title}</button>
     <ul {...listProps}>
-      <li {...itemProps} class="select-form-item active">{title}</li>
       {
         options &&
-          options.map(function (option) {
-            return (
-              <li {...itemProps} class="select-form-item">
-                {option}
-              </li>
-            );
+          options.map(function ({ title, data }, index) {
+            let props = {
+              "class:list": ["select-form-item", index == 0 ? "active" : ""],
+              "data-id": data,
+              role: "option",
+            };
+            return <li {...props}>{title}</li>;
           })
       }
     </ul>

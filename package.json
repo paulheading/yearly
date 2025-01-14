@@ -10,9 +10,9 @@
   },
   "dependencies": {
     "@apollo/client": "^3.11.10",
-    "@astrojs/mdx": "^4.0.3",
+    "@astrojs/mdx": "^4.0.5",
     "@astrojs/sitemap": "^3.2.1",
-    "astro": "^5.1.1",
+    "astro": "^5.1.6",
     "buffer": "^6.0.3",
     "focus-visible": "^5.2.0",
     "gsap": "npm:@gsap/shockingly@^3.12.5",

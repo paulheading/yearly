@@ -19,7 +19,7 @@ $.settingSelectors = function ($setting) {
   let $title = $setting.querySelector(".title");
   let $input = $setting.querySelector("input");
   let $output = $setting.querySelector(".output");
-  let $mins = $setting.querySelector(".mins");
+  let $mins = $setting.querySelector(".mins");  
 
   return { $span, $title, $input, $output, $mins };
 };

@@ -1,7 +1,7 @@
 ---
 import SelectList from "~Components/SelectList";
 
-let { setting, setting_index, color } = Astro.props;
+let { setting, setting_index } = Astro.props;
 
 let containerProps = {
   "class:list": [
@@ -13,7 +13,7 @@ let containerProps = {
 ---
 
 <li {...containerProps}>
-  <SelectList />
+  <SelectList {...setting} />
 </li>
 
 <style lang="scss">

@@ -2,6 +2,10 @@ import store from "~data/store";
 import $ from "~scripts/selectors";
 
 function printSourceOption(source) {
+  let $form = $.querySelector("form.choose-source");
+
+  let { $list } = $.formSelectors($form);
+
   let option = document.createElement("li");
 
   option.classList.add("select-form-item");
@@ -12,7 +16,7 @@ function printSourceOption(source) {
 
   option.role = "option";
 
-  $.select_list().appendChild(option);
+  $list.appendChild(option);
 }
 
 export default function () {
