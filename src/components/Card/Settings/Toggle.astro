@@ -7,6 +7,7 @@ let { setting, setting_index, color } = Astro.props;
 let containerProps = {
   "class:list": [
     "setting",
+    setting.type,
     setting_index % 2 ? "even" : "odd",
     setting.editable && "editable",
   ],

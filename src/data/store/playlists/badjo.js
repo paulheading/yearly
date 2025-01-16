@@ -11,11 +11,20 @@ export default {
     },
     {
       type: "config",
-      title: "",
       image: "/config.jpg",
       settings: [
-        { title: settings.released_this_year, editable: false, value: true },
-        { title: settings.out_recommends, editable: false, value: true },
+        {
+          title: settings.released_this_year,
+          editable: false,
+          value: true,
+          type: "toggle",
+        },
+        {
+          title: settings.out_recommends,
+          editable: false,
+          value: true,
+          type: "toggle",
+        },
       ],
     },
   ],

@@ -1,8 +1,7 @@
 import { displaySection } from "~scripts/helpers";
-import { matchYear, noOlderThanYear } from "~scripts/filters";
-import $ from "~scripts/selectors";
 import store from "~data/store";
 import { getPlaylistItems, getUsersSavedTracks } from "~scripts/getters";
+import { setSource, setTracksAdded, setYearAdded } from "~scripts/setters";
 
 let keepGoing = true;
 let offset = 0;
@@ -10,41 +9,41 @@ let limit = 20;
 let results = [];
 let total = 0;
 
-let printTracksAdded = (total) => ($.print.tracks_added.innerText = total);
+export default async function (callback) {
+  setSource();
 
-export default async function (callback, custom_year) {
-  let userSelectedPlaylist = store.selected.playlist != 0;
+  let createCustomPlaylist = store.create.playlist.style == "custom";
+
+  let userSelectedPlaylist = store.selected.source != 0;
+
+  if (createCustomPlaylist) setYearAdded();
+
+  console.log("store: ", store);
+
+  displaySection("tracks_added", "block");
 
   if (userSelectedPlaylist) {
-    let { items } = await getPlaylistItems(store.selected.playlist);
+    let { items } = await getPlaylistItems(store.selected.source);
+    let params = { items, total, results };
 
-    callback(items);
-
-    return;
+    setTracksAdded(params);
   }
 
-  while (keepGoing) {
-    let { items } = await getUsersSavedTracks(offset);
+  if (!userSelectedPlaylist) {
+    while (keepGoing) {
+      let { items } = await getUsersSavedTracks(offset);
 
-    displaySection("tracks_added", "block");
-
-    items.forEach(function (item) {
-      let { added_at } = item;
-
-      if (!noOlderThanYear(added_at, custom_year)) {
+      function callback() {
         keepGoing = false;
-        return;
       }
 
-      printTracksAdded(total++);
+      let params = { items, callback, total, results };
 
-      results.push(item);
-    });
+      setTracksAdded(params);
 
-    offset += limit;
+      offset += limit;
+    }
   }
-
-  results = results.filter(({ added_at }) => matchYear(added_at, custom_year));
 
   callback(results);
 }

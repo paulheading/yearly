@@ -1,12 +1,11 @@
 import $ from "~scripts/selectors";
-import store from "~data/store";
 import { keyPress, preventDefault } from "~scripts/helpers";
 
 // https://www.freecodecamp.org/news/how-to-build-an-accessible-custom-dropdown-select-element/
 
 let dropdownIsOpen = [];
 
-let currentOptionIndex = [];
+export let currentOptionIndex = [];
 
 $.select_forms().forEach(function () {
   dropdownIsOpen.push(false);
@@ -95,8 +94,6 @@ function toggleActiveState(item, active) {
 }
 
 function selectOptionByElement(element, parent) {
-  store.selected.playlist = element.getAttribute("data-id");
-
   let { $form } = parent;
 
   let { $button, $items } = $.formSelectors($form);
@@ -130,7 +127,7 @@ function announceOption(text, parent) {
   }, 1000);
 }
 
-function selectCurrentOption(parent) {
+export function selectCurrentOption(parent) {
   let { $form, index } = parent;
   let { $items } = $.formSelectors($form);
   let currentOption = $items[currentOptionIndex[index]];

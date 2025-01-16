@@ -8,7 +8,12 @@ let { range } = setting;
 let evenOrOdd = setting_index % 2 ? "even" : "odd";
 
 let containerProps = {
-  "class:list": ["setting", evenOrOdd, setting.editable && "editable"],
+  "class:list": [
+    "setting",
+    setting.type,
+    evenOrOdd,
+    setting.editable && "editable",
+  ],
 };
 
 let rangeProps = {

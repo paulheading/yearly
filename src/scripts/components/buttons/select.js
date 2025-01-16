@@ -1,6 +1,8 @@
 import $ from "~scripts/selectors";
 import store from "~data/store";
 
+import { resetCustomConfig } from "~scripts/setters";
+
 function removeSelectedState($card) {
   let { isSelected, targets, selectors } = $.cardSelectors($card);
   let { $config_pic, $select_button } = selectors;
@@ -26,17 +28,19 @@ function addSelectedState($card) {
 }
 
 function selectButtonClick(event) {
-  console.log("store: ", store);
-
   let { currentTarget } = event;
 
   let $card = currentTarget.parentElement;
 
   let { isSelected } = $.cardSelectors($card);
 
-  $.cards.forEach(($card) => removeSelectedState($card));
+  $.cards.all.forEach(($card) => removeSelectedState($card));
 
   !isSelected ? addSelectedState($card) : removeSelectedState($card);
+
+  let styleIsNotCustom = store.create.playlist.style != "custom";
+
+  if (styleIsNotCustom) resetCustomConfig();
 }
 
 export default function () {

@@ -13,11 +13,20 @@ export default {
     },
     {
       type: "config",
-      title: "",
       image: "/config.jpg",
       settings: [
-        { title: settings.discovered_this_year, editable: false, value: true },
-        { title: settings.in_recommends, editable: false, value: true },
+        {
+          title: settings.discovered_this_year,
+          editable: false,
+          value: true,
+          type: "toggle",
+        },
+        {
+          title: settings.in_recommends,
+          editable: false,
+          value: true,
+          type: "toggle",
+        },
       ],
     },
   ],

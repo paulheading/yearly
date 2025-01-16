@@ -3,9 +3,12 @@ import SelectList from "~Components/SelectList";
 
 let { setting, setting_index } = Astro.props;
 
+setting = { ...setting };
+
 let containerProps = {
   "class:list": [
     "setting",
+    setting.type,
     setting_index % 2 ? "even" : "odd",
     setting.editable && "editable",
   ],

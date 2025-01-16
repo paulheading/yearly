@@ -3,10 +3,13 @@ import badjo from "~data/store/playlists/badjo";
 import custom from "~data/store/playlists/custom";
 
 export default {
-  selected: {
-    playlist: 0,
+  template: {
     track: null,
-    year: "2023",
+  },
+  selected: {
+    source: 0,
+    track: null,
+    year: "2025",
   },
   create: {
     playlist: {

@@ -1,5 +1,10 @@
 import settings from "~data/settings";
 
+function classify(value) {
+  let className = value.toLowerCase();
+  return className.split(" ").join("-");
+}
+
 export default {
   id: "custom",
   content: [
@@ -76,6 +81,7 @@ export default {
             { title: "Added in 2021", data: 2021 },
           ],
           type: "select",
+          className: classify(settings.choose_year)
         },
       ],
     },

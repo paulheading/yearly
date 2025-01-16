@@ -8,11 +8,14 @@ import {
   loadingComplete,
 } from "~scripts/helpers";
 
-import { outPlaylistExcess, inPlaylistExcess } from "~scripts/filters";
+// import { outPlaylistExcess, inPlaylistExcess } from "~scripts/filters";
 
 export default function (tracks) {
-  store.create.playlist.tracks = tracks.filter(outPlaylistExcess);
-  store.create.playlist.excess = tracks.filter(inPlaylistExcess);
+  store.create.playlist.tracks = tracks;
+
+  // store.create.playlist.tracks = tracks.filter(outPlaylistExcess);
+
+  // store.create.playlist.excess = tracks.filter(inPlaylistExcess);
 
   store.create.playlist.name = createPlaylistName();
 

@@ -11,6 +11,7 @@ function hideElements() {
     "share_playlist",
     "empty_playlist",
     "tracks_added",
+    "recommend_tracks",
   ];
 
   sections.forEach((name) => displaySection(name, "none"));

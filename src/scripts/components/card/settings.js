@@ -5,12 +5,12 @@ import { printSliderInputValue } from "~scripts/printers";
 function updateDOMSettings(setting, $input) {
   let $card = $input.closest(".card-container");
   let { selectors } = $.cardSelectors($card);
-  let { $settings_items } = selectors;  
+  let { $settings } = selectors;
 
-  $settings_items.forEach(function ($setting) {
+  $settings.$items.$all.forEach(function ($setting) {
     let { $title, $input, $output, $mins } = $.settingSelectors($setting);
 
-    if (!$title) return
+    if (!$title) return;
 
     if ($title.innerText == setting.title) {
       if (setting.type == "toggle") {
@@ -94,14 +94,14 @@ function addSettingsEventListeners($setting) {
 }
 
 function addButtonClickFunction(selectors) {
-  let { $dot_buttons, $settings_lists, $button, index } = selectors;
+  let { $dot_buttons, $lists, $button, index } = selectors;
 
   $dot_buttons.forEach(function ($item) {
     let buttonIsActive = $item == $button;
     $item.disabled = buttonIsActive;
   });
 
-  $settings_lists.forEach(function (setting, number) {
+  $lists.forEach(function (setting, number) {
     let isActive = number == index;
 
     setting.style.display = isActive ? "block" : "none";
@@ -115,16 +115,16 @@ function addButtonEventListeners(selectors) {
   $button.addEventListener("click", () => addButtonClickFunction(selectors));
 }
 
-$.cards.forEach(function ($card) {
+$.cards.all.forEach(function ($card) {
   let { selectors } = $.cardSelectors($card);
-  let { $settings_items, $settings_lists, $dot_buttons } = selectors;
+  let { $settings, $dot_buttons } = selectors;
 
-  $settings_items.forEach(addSettingsEventListeners);
+  $settings.$items.$all.forEach(addSettingsEventListeners);
 
   $dot_buttons.forEach(function ($button, index) {
     addButtonEventListeners({
+      $lists: $settings.$lists,
       $dot_buttons,
-      $settings_lists,
       $button,
       index,
     });

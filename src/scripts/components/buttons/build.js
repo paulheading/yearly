@@ -24,8 +24,14 @@ import { getPlaylistConfig, getRecommends, getTracks } from "~scripts/getters";
 
 import { printPlaylist } from "~scripts/printers";
 
+import { resetCustomConfig } from "~scripts/setters";
+
 function buildButtonClick() {
   if (!store.create.playlist.style) return;
+
+  let styleIsNotCustom = store.create.playlist.style != "custom";
+
+  if (styleIsNotCustom) resetCustomConfig();
 
   function hideElements() {
     displaySection("choose_card", "none");
@@ -34,9 +40,7 @@ function buildButtonClick() {
 
   loadingCurrently(hideElements);
 
-  usingLiveData
-    ? getTracks(displayResults, store.selected.year)
-    : displayResults(tracks);
+  usingLiveData ? getTracks(displayResults) : displayResults(tracks);
 }
 
 function handleEmptyPlaylist() {
@@ -68,64 +72,57 @@ function getPlaylistRecommends(tracks) {
 }
 
 function displayResults(items) {
-  if (items.length == 0) return handleEmptyPlaylist();
+  if (items.length) {
+    getPlaylistConfig().forEach(function ({ title, value }) {
+      if (!value) return;
 
-  // if (items.length < 10) getPlaylistRecommends(items);
+      console.log("title: ", title);
 
-  getPlaylistConfig().forEach(function ({ title, value }) {
-    if (!value) return;
+      if (title == settings.in_recommends) {
+      }
 
-    console.log("title: ", title);
+      if (title == settings.released_this_year) {
+        items = items.filter(function ({ track }) {
+          let { album } = track;
+          return matchYear(album.release_date, store.selected.year);
+        });
+      }
 
-    if (title == settings.in_recommends) {
-      console.log("matched: ", settings.in_recommends);
-    }
+      if (title == settings.out_popular) {
+        items = items.sort(byLowestPopularity);
+      }
 
-    if (title == settings.released_this_year) {
-      console.log("matched: ", settings.released_this_year);
+      if (title == settings.in_popular) {
+        items = items.sort(byHighestPopularity);
+      }
 
-      items = items.filter(function ({ track }) {
-        let { album } = track;
-        return matchYear(album.release_date, store.selected.year);
-      });
-    }
+      if (title == settings.in_explicit) {
+        items = items.filter(inExplicit);
+      }
 
-    if (title == settings.out_popular) {
-      console.log("matched: ", settings.out_popular);
+      if (title == settings.out_explicit) {
+        items = items.filter(outExplicit);
+      }
 
-      items = items.sort(byLowestPopularity);
-    }
+      if (title == settings.min_length) {
+        items = items.filter((item) => minimumLength(item, value));
+      }
 
-    if (title == settings.in_popular) {
-      console.log("matched: ", settings.in_popular);
+      if (title == settings.max_length) {
+        items = items.filter((item) => maximumLength(item, value));
+      }
 
-      items = items.sort(byHighestPopularity);
-    }
+      if (title == settings.released_this_year) {
+        items = items.filter(({ added_at }) =>
+          matchYear(added_at, store.selected.year)
+        );
+      }
+    });
+  }
 
-    if (title == settings.in_explicit) {
-      console.log("matched: ", settings.in_explicit);
+  if (!items.length) return handleEmptyPlaylist();
 
-      items = items.filter(inExplicit);
-    }
-
-    if (title == settings.out_explicit) {
-      console.log("matched: ", settings.out_explicit);
-
-      items = items.filter(outExplicit);
-    }
-
-    if (title == settings.min_length) {
-      console.log("matched: ", settings.min_length);
-
-      items = items.filter((item) => minimumLength(item, value));
-    }
-
-    if (title == settings.max_length) {
-      console.log("matched: ", settings.max_length);
-
-      items = items.filter((item) => maximumLength(item, value));
-    }
-  });
+  if (items.length < 10) getPlaylistRecommends(items);
 
   printPlaylist(items);
 }
