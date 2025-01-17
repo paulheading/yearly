@@ -1,10 +1,26 @@
 ---
+import Layout from "~Layouts/Main";
 import { Content } from "~Markdown/readme.md";
 import Markdown from "~components/Markdown.astro";
+import { seo } from "paully/data";
+
+const layoutProps = {
+  title: "Home | Yearly | Songs you discovered this year",
+  keywords: seo.keywords("yearly, spotify, songs, discover"),
+  description: "I'm a " + seo.job.title + ". " + seo.job.description,
+};
 
 let props = {
   Content,
 };
 ---
 
-<Markdown {...props} />
+<Layout {...layoutProps}>
+  <Markdown {...props} className="test" />
+</Layout>
+
+<style lang="scss">
+  .test {
+    // background-color: green;
+  }
+</style>
