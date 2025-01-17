@@ -2,6 +2,7 @@ import $ from "~scripts/selectors";
 import store from "~data/store";
 
 import { resetCustomConfig } from "~scripts/setters";
+import { playlistStyleIsCustom } from "~scripts/helpers";
 
 function removeSelectedState($card) {
   let { isSelected, targets, selectors } = $.cardSelectors($card);
@@ -38,9 +39,7 @@ function selectButtonClick(event) {
 
   !isSelected ? addSelectedState($card) : removeSelectedState($card);
 
-  let styleIsNotCustom = store.create.playlist.style != "custom";
-
-  if (styleIsNotCustom) resetCustomConfig();
+  if (!playlistStyleIsCustom) resetCustomConfig();
 }
 
 export default function () {

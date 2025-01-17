@@ -38,14 +38,25 @@ function createPlaylistName() {
   return `Yearly Roundup [${timestamp}]`;
 }
 
+function createRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 let displaySection = (element, value) => {
   $.sections[element].style.display = value;
 };
 
 let preventDefault = (event) => event.preventDefault();
 
+let playlistStyleIsCustom = store.create.playlist.style == "custom";
+
+let sourceIsLikedSongs = store.selected.source == 0;
+
 export {
+  playlistStyleIsCustom,
+  sourceIsLikedSongs,
   createPlaylistName,
+  createRandomNumber,
   displaySection,
   forEachCustomSetting,
   hideShowElements,

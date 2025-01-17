@@ -18,20 +18,19 @@ import {
   displaySection,
   loadingComplete,
   loadingCurrently,
+  playlistStyleIsCustom,
 } from "~scripts/helpers";
 
 import { getPlaylistConfig, getRecommends, getTracks } from "~scripts/getters";
 
 import { printPlaylist } from "~scripts/printers";
 
-import { resetCustomConfig } from "~scripts/setters";
+import { setSource, resetCustomConfig, setYearAdded } from "~scripts/setters";
 
 function buildButtonClick() {
   if (!store.create.playlist.style) return;
 
-  let styleIsNotCustom = store.create.playlist.style != "custom";
-
-  if (styleIsNotCustom) resetCustomConfig();
+  if (!playlistStyleIsCustom) resetCustomConfig();
 
   function hideElements() {
     displaySection("choose_card", "none");
@@ -39,6 +38,10 @@ function buildButtonClick() {
   }
 
   loadingCurrently(hideElements);
+
+  setSource();
+
+  if (playlistStyleIsCustom) setYearAdded();
 
   usingLiveData ? getTracks(displayResults) : displayResults(tracks);
 }

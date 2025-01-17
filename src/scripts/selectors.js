@@ -74,24 +74,25 @@ $.cardSelectors = function ($card) {
 };
 
 $.buttons = {
-  login: $.querySelector(".login-button"),
-  info: $.querySelectorAll(".info-button"),
-  custom: $.querySelector(".custom-button"),
-  select: $.querySelectorAll(".select-button"),
-  build: $.querySelector(".build-button"),
   back: $.querySelectorAll(".back-button"),
+  build: $.querySelector(".build-button"),
+  custom: $.querySelector(".custom-button"),
+  info: $.querySelectorAll(".info-button"),
+  login: $.querySelector(".login-button"),
+  refresh: $.querySelector(".refresh-artwork"),
   save: $.querySelector(".save-button"),
+  select: $.querySelectorAll(".select-button"),
 };
 
 $.sections = {
   choose_card: $.querySection("choose-card"),
+  custom: $.querySection("custom"),
+  empty_playlist: $.querySection("empty-playlist"),
+  playlist: $.querySection("playlist"),
+  recommend_tracks: $.querySection("recommend-tracks"),
   save_playlist: $.querySection("save-playlist"),
   share_playlist: $.querySection("share-playlist"),
-  empty_playlist: $.querySection("empty-playlist"),
-  recommend_tracks: $.querySection("recommend-tracks"),
   tracks_added: $.querySection("tracks-added"),
-  custom: $.querySection("custom"),
-  playlist: $.querySection("playlist"),
 };
 
 $.print = {

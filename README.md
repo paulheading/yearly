@@ -1,10 +1,20 @@
-# Yearly ideas
+### Features
 
-- number of songs added this year (whilst loading) 🟢
-- offer alternative source list 🟢
-- i'm not gonna include this 21 min drone track 🟢
-- and can I have explicit language or not 🟢
-- filter by artist gender 🟡
-- i need a filter that shows me how many artists I had in my top 10 in past years 🟡
-- sort by plays 🔴
-- does that include how frequently i played those songs, too? 🔴
+- Whilst building your playlist: Yearly displays the number of songs you've added (since your chosen year) 🟢
+- Build your playlist from any existing playlist in your Spotify library. Liked songs is selected by default 🟢
+- Set a maximum or minimum track length for your results 🟢
+- Include or exclude tracks based on their use of explicit language 🟢
+- Refresh your playlist artwork by clicking on the image 🟢
+
+### Coming soon
+
+- Filter by artist gender. Blocker: need to cross reference results with the [Music Brainz](https://musicbrainz.org/) library 🟡
+- Rank how many times I've included an artist in previous playlists. Blocker: build previous playlist selection 🟡
+
+### Not possible
+
+- Sort by plays / Include how frequently I played a song. Blocker: Spotify does not make this information available 🔴
+
+### Scenarios
+
+- Give me a list of songs added in 2024
