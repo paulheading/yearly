@@ -1,9 +1,10 @@
 {
-  "name": "yearly3",
+  "name": "yearly",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "copy": "node copyfiles.js",
+    "dev": "npm run copy && astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"

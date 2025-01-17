@@ -1,0 +1,19 @@
+---
+let { Content } = Astro.props;
+---
+
+<div class="markdown">
+  <Content />
+</div>
+
+<style lang="scss" is:global>
+  @use "~global" as *;
+
+  .markdown {
+    background-color: gainsboro;
+  }
+
+  .markdown h3 {
+    color: blue;
+  }
+</style>

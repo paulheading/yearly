@@ -7,9 +7,11 @@
       "~vars/*": ["./src/styles/vars/*.scss"],
       "~functions": ["./src/styles/_functions.scss"],
       "~functions/*": ["./src/styles/functions/*.scss"],
+      "~global": ["./src/styles/global.scss"],
       "~mixins": ["./src/styles/_mixins.scss"],
       "~mixins/*": ["./src/styles/mixins/*.scss"],
       "~Components/*": ["./src/components/*.astro"],
+      "~Markdown/*": ["./src/markdown/*.md"],
       "~Sections/*": ["./src/components/Sections/*.astro"],
       "~Layouts/*": ["./src/layouts/*.astro"]
     }
