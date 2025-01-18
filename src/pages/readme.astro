@@ -1,5 +1,6 @@
 ---
 import Layout from "~Layouts/Main";
+import { Wrap } from "paully";
 import { Content } from "~Markdown/readme.md";
 import Markdown from "~components/Markdown.astro";
 import { seo } from "paully/data";
@@ -16,7 +17,9 @@ let props = {
 ---
 
 <Layout {...layoutProps}>
-  <Markdown {...props} className="test" />
+  <Wrap>
+    <Markdown {...props} className="test" />
+  </Wrap>
 </Layout>
 
 <style lang="scss">
