@@ -1,6 +1,6 @@
 import $ from "~scripts/selectors";
-import store from "~data/store";
+import { getStore } from "~scripts/getters";
 
 export default function () {
-  $.print.first_name.innerText = store.user.first_name;
+  $.print.first_name.innerText = getStore().user.first_name;
 }

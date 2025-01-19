@@ -1,8 +1,8 @@
 import { byContentType, byPlaylistId } from "~scripts/filters";
-import store from "~data/store";
+import { getStore } from "~scripts/getters";
 
 export default function () {
-  let playlist = store.cards.filter(byPlaylistId)[0];
+  let playlist = getStore().cards.filter(byPlaylistId)[0];
 
   let config = playlist.content.filter(byContentType);
 

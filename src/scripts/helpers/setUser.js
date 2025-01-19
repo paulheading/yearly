@@ -1,6 +1,6 @@
-import $ from "~scripts/selectors";
 import store from "~data/store";
-import { getCurrentUser } from "~scripts/getters";
+import { getCurrentUser, getStore } from "~scripts/getters";
+import { printFirstName } from "~scripts/printers";
 
 export default async function () {
   let user = await getCurrentUser();
@@ -12,10 +12,10 @@ export default async function () {
   fields.forEach((field) => delete user[field]);
 
   store.user = {
-    ...store.user,
+    ...getStore().user,
     first_name,
     ...user,
   };
 
-  $.print.first_name.innerText = store.user.first_name;
+  printFirstName();
 }

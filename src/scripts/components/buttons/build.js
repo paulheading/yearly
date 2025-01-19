@@ -1,5 +1,4 @@
 import $ from "~scripts/selectors";
-import store from "~data/store";
 import tracks from "~data/tracks";
 import settings from "~data/settings";
 
@@ -26,6 +25,7 @@ import {
   getPlaylistRecommends,
   getTracks,
   getDate,
+  getStore,
 } from "~scripts/getters";
 
 import { printPlaylist, printYearAdded } from "~scripts/printers";
@@ -33,7 +33,7 @@ import { printPlaylist, printYearAdded } from "~scripts/printers";
 import { setSource, resetCustomConfig, setYearAdded } from "~scripts/setters";
 
 function buildButtonClick() {
-  if (!store.create.playlist.style) {
+  if (!getStore().create.playlist.style) {
     return console.error("this playlist needs a style");
   }
 
@@ -77,7 +77,7 @@ function displayResults(items) {
       if (title == settings.released_this_year) {
         items = items.filter(function ({ track }) {
           let { album } = track;
-          return matchYear(album.release_date, store.selected.year);
+          return matchYear(album.release_date, getStore().selected.year);
         });
       }
 
@@ -107,7 +107,7 @@ function displayResults(items) {
 
       if (title == settings.released_this_year) {
         items = items.filter(({ added_at }) =>
-          matchYear(added_at, store.selected.year)
+          matchYear(added_at, getStore().selected.year)
         );
       }
     });

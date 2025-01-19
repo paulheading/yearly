@@ -1,16 +1,16 @@
 import $ from "~scripts/selectors";
-import store from "~data/store";
-import { DateTime } from "luxon";
 
 import keyPress from "~scripts/helpers/keyPress";
 import postData from "~scripts/helpers/postData";
 import setAccessToken from "~scripts/helpers/setAccessToken";
 import setUser from "~scripts/helpers/setUser";
 import usingLiveData from "~scripts/helpers/usingLiveData";
+
 import { inCustomId } from "~scripts/filters";
+import { getDate, getStore } from "~scripts/getters";
 
 function forEachCustomSetting(callback) {
-  let card = store.cards.filter(inCustomId)[0];
+  let card = getStore().cards.filter(inCustomId)[0];
   return card.content[0].settings.forEach((setting) => callback(setting));
 }
 
@@ -32,11 +32,7 @@ function loadingComplete(callback) {
   }, 1000);
 }
 
-function createPlaylistName() {
-  let { now, DATETIME_MED_WITH_SECONDS } = DateTime;
-  let timestamp = now().toLocaleString(DATETIME_MED_WITH_SECONDS);
-  return `Yearly Roundup [${timestamp}]`;
-}
+let createPlaylistName = () => `Yearly Roundup [${getDate().timestamp}]`;
 
 function createRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -52,9 +48,9 @@ let displaySection = (element, value) => {
 
 let preventDefault = (event) => event.preventDefault();
 
-let playlistStyleIsCustom = () => store.create.playlist.style == "custom";
+let playlistStyleIsCustom = () => getStore().create.playlist.style == "custom";
 
-let sourceIsLikedSongs = () => store.selected.source == 0;
+let sourceIsLikedSongs = () => getStore().selected.source == 0;
 
 export {
   playlistStyleIsCustom,

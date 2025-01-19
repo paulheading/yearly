@@ -1,6 +1,10 @@
 import store from "~data/store";
 import { displaySection, sourceIsLikedSongs } from "~scripts/helpers";
-import { getPlaylistItems, getUsersSavedTracks } from "~scripts/getters";
+import {
+  getPlaylistItems,
+  getStore,
+  getUsersSavedTracks,
+} from "~scripts/getters";
 import { setTracksAdded } from "~scripts/setters";
 
 export let tracks = {
@@ -16,7 +20,7 @@ export default async function (callback) {
   displaySection("tracks_added", "block");
 
   if (!sourceIsLikedSongs()) {
-    let { items } = await getPlaylistItems(store.selected.source);
+    let { items } = await getPlaylistItems(getStore().selected.source);
 
     let params = { items, results: tracks.results };
 

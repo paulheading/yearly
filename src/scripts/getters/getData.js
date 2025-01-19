@@ -1,12 +1,12 @@
-import store from "~data/store";
+import { getStore } from "~scripts/getters";
 
 export default async function (endpoint) {
-  if (!store.access_token) window.location.replace("/");
+  if (!getStore().access_token) window.location.replace("/");
 
   let response = await fetch("https://api.spotify.com/v1/" + endpoint, {
     method: "get",
     headers: {
-      Authorization: "Bearer " + store.access_token,
+      Authorization: "Bearer " + getStore().access_token,
     },
   });
 

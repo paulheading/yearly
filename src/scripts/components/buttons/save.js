@@ -1,19 +1,17 @@
 import $ from "~scripts/selectors";
-import store from "~data/store";
-
 import {
   displaySection,
   loadingComplete,
   loadingCurrently,
   postData,
 } from "~scripts/helpers";
-import { getData } from "~scripts/getters";
+import { getData, getStore } from "~scripts/getters";
 
 function postPlaylistData() {
   let playlist = {
-    path: "users/" + store.user.id + "/playlists",
+    path: "users/" + getStore().user.id + "/playlists",
     details: {
-      name: store.create.playlist.name,
+      name: getStore().create.playlist.name,
       description: "Yearly generated playlist",
       public: false,
     },
@@ -24,7 +22,7 @@ function postPlaylistData() {
 function postTrackData(playlist) {
   let tracks = {
     path: "playlists/" + playlist.id + "/tracks",
-    uris: store.create.playlist.tracks.map(({ track }) => track.uri),
+    uris: getStore().create.playlist.tracks.map(({ track }) => track.uri),
   };
   return postData(tracks.path, { uris: tracks.uris });
 }
@@ -42,13 +40,15 @@ function saveButtonClick() {
   postPlaylistData()
     .then(postTrackData)
     .then(function () {
-      getData(`users/${store.user.id}/playlists`).then(function ({ items }) {
+      getData(`users/${getStore().user.id}/playlists`).then(function ({
+        items,
+      }) {
         let foundPlaylist = false;
         let index = 0;
         let playlist = {};
 
         while (!foundPlaylist) {
-          if (items[index].name == store.create.playlist.name) {
+          if (items[index].name == getStore().create.playlist.name) {
             playlist = items[index];
             foundPlaylist = true;
           } else {

@@ -1,11 +1,17 @@
 import { DateTime } from "luxon";
 
-let year = () => DateTime.now().toFormat("yyyy");
+let { now, TIME_24_WITH_SECONDS, DATETIME_MED_WITH_SECONDS } = DateTime;
 
-let yearFromString = (value) => value.slice(0, 4);
+let year = now().toFormat("yyyy");
+
+let yearFromString = function (value) {
+  if (typeof value != "string") return "";
+
+  return value.slice(0, 4);
+};
 
 function seconds() {
-  let result = DateTime.now().toLocaleString(DateTime.TIME_24_WITH_SECONDS);
+  let result = now().toLocaleString(TIME_24_WITH_SECONDS);
 
   /// create array of hours, numbers, seconds
   result = result.split(":");
@@ -19,10 +25,13 @@ function seconds() {
   return result;
 }
 
+let timestamp = now().toLocaleString(DATETIME_MED_WITH_SECONDS);
+
 export default function (value) {
   return {
-    year: year(),
+    year,
     yearFromString: yearFromString(value),
     seconds: seconds(),
+    timestamp,
   };
 }

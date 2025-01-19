@@ -1,13 +1,12 @@
-import store from "~data/store";
 import { inCustomId, outCustomId } from "~scripts/filters/customId";
-import { getDate } from "~scripts/getters";
+import { getDate, getStore } from "~scripts/getters";
 
 let byContentType = ({ type }) => type == "config";
 
-let byPlaylistId = ({ id }) => id == store.create.playlist.style;
+let byPlaylistId = ({ id }) => id == getStore().create.playlist.style;
 
 let byPlaylistOwner = ({ owner }) =>
-  owner.display_name == store.user.display_name;
+  owner.display_name == getStore().user.display_name;
 
 let inExplicit = ({ track }) => track.explicit;
 

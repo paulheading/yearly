@@ -22,9 +22,9 @@ export default function (tracks) {
 
   store.create.playlist.name = createPlaylistName();
 
-  $.playlist_name().innerText = store.create.playlist.name;
-  $.playlist_owner().innerText = store.user.display_name;
-  $.playlist_owner().href = store.user.external_urls.spotify;
+  $.playlist_name().innerText = getStore().create.playlist.name;
+  $.playlist_owner().innerText = getStore().user.display_name;
+  $.playlist_owner().href = getStore().user.external_urls.spotify;
 
   if (!store.selected.track) store.selected.track = $.playlist_track();
 

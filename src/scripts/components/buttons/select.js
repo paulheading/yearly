@@ -1,8 +1,7 @@
 import $ from "~scripts/selectors";
-import store from "~data/store";
-
 import { resetCustomConfig } from "~scripts/setters";
 import { playlistStyleIsCustom } from "~scripts/helpers";
+import { getStore } from "~scripts/getters";
 
 function removeSelectedState($card) {
   let { isSelected, targets, selectors } = $.cardSelectors($card);
@@ -13,7 +12,7 @@ function removeSelectedState($card) {
   targets.forEach((item) => item.classList.remove($.selected_state));
   $config_pic.src = $config_pic.src.replace("config--active", "config");
   $select_button.innerText = "Select";
-  store.create.playlist.style = "";
+  getStore().create.playlist.style = "";
 }
 
 function addSelectedState($card) {
@@ -25,7 +24,7 @@ function addSelectedState($card) {
   targets.forEach((item) => item.classList.add($.selected_state));
   $config_pic.src = $config_pic.src.replace("config", "config--active");
   $select_button.innerText = "Selected";
-  store.create.playlist.style = id;
+  getStore().create.playlist.style = id;
 }
 
 function selectButtonClick(event) {
