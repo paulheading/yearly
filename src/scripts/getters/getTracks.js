@@ -1,47 +1,41 @@
-import { displaySection, sourceIsLikedSongs } from "~scripts/helpers";
 import store from "~data/store";
+import { displaySection, sourceIsLikedSongs } from "~scripts/helpers";
 import { getPlaylistItems, getUsersSavedTracks } from "~scripts/getters";
 import { setTracksAdded } from "~scripts/setters";
-import { matchYear } from "~scripts/filters";
 
-let keepGoing = true;
-let offset = 0;
-let limit = 20;
-let results = [];
-let total = 0;
+export let tracks = {
+  keepGoing: true,
+  results: [],
+  offset: 0,
+  limit: 20,
+};
 
 export default async function (callback) {
   console.log("store: ", store);
 
   displaySection("tracks_added", "block");
 
-  if (!sourceIsLikedSongs) {
+  if (!sourceIsLikedSongs()) {
     let { items } = await getPlaylistItems(store.selected.source);
-    let params = { items, total, results };
+
+    let params = { items, results: tracks.results };
 
     setTracksAdded(params);
   }
 
-  if (sourceIsLikedSongs) {
-    while (keepGoing) {
-      let { items } = await getUsersSavedTracks(offset);
+  if (sourceIsLikedSongs()) {
+    while (tracks.keepGoing) {
+      let { items } = await getUsersSavedTracks(tracks.offset);
 
-      function callback() {
-        keepGoing = false;
-      }
+      let callback = () => (tracks.keepGoing = false);
 
-      let params = { items, callback, total, results };
+      let params = { items, callback, results: tracks.results };
 
       setTracksAdded(params);
 
-      offset += limit;
+      tracks.offset += tracks.limit;
     }
   }
 
-  results = results.filter(function (item) {
-    let { added_at } = item;
-    return matchYear(added_at, store.selected.year);
-  });
-
-  callback(results);
+  callback(tracks.results);
 }

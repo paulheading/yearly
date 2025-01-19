@@ -1,7 +1,6 @@
 import store from "~data/store";
-
 import { inCustomId, outCustomId } from "~scripts/filters/customId";
-import { getYear, getYearFromString } from "~scripts/getters";
+import { getDate } from "~scripts/getters";
 
 let byContentType = ({ type }) => type == "config";
 
@@ -32,18 +31,29 @@ function maximumLength({ track }, maximum) {
   return minutes <= maximum;
 }
 
-function noOlderThanYear(value, custom_year) {
-  let string_year = getYearFromString(value);
-  let target_year = custom_year ? custom_year : getYear();
+function processYearValue(value, custom_year) {
+  let string = getDate(value).yearFromString;
+  let target = custom_year ? custom_year : getDate().year;
 
-  return string_year >= target_year;
+  return { string, target };
+}
+
+function noOlderThanYear(value, custom_year) {
+  let { string, target } = processYearValue(value, custom_year);
+
+  return string >= target;
+}
+
+function noNewerThanYear(value, custom_year) {
+  let { string, target } = processYearValue(value, custom_year);
+
+  return string <= target;
 }
 
 function matchYear(value, custom_year) {
-  let string_year = getYearFromString(value);
-  let target_year = custom_year ? custom_year : getYear();
+  let { string, target } = processYearValue(value, custom_year);
 
-  return string_year == target_year;
+  return string == target;
 }
 
 export {
@@ -58,6 +68,7 @@ export {
   outExplicit,
   minimumLength,
   maximumLength,
+  noNewerThanYear,
   noOlderThanYear,
   matchYear,
 };

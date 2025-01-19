@@ -5,6 +5,8 @@ import {
   loadingCurrently,
 } from "~scripts/helpers";
 
+import { resetTracksAdded } from "~scripts/setters";
+
 function hideElements() {
   let sections = [
     "save_playlist",
@@ -22,6 +24,7 @@ function showElements() {
 }
 
 function backButtonClick() {
+  resetTracksAdded();
   loadingCurrently(hideElements);
   loadingComplete(showElements);
 }

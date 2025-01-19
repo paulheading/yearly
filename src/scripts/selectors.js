@@ -99,6 +99,7 @@ $.print = {
   first_name: $.queryPrint("first_name"),
   share_link: $.queryPrint("share-link"),
   tracks_added: $.queryPrint("tracks-added"),
+  year_added: $.queryPrint("year-added"),
 };
 
 $.playlist = () => $.querySelector(".outer-window");

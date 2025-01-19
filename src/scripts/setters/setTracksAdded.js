@@ -1,10 +1,8 @@
-import $ from "~scripts/selectors";
 import store from "~data/store";
-import { noOlderThanYear } from "~scripts/filters";
+import { noNewerThanYear, noOlderThanYear } from "~scripts/filters";
+import { printTracksAdded } from "~scripts/printers";
 
-let printTracksAdded = (total) => ($.print.tracks_added.innerText = total);
-
-export default function ({ items, callback, total, results }) {
+export default function ({ items, callback, results }) {
   items.forEach(function (item) {
     let { added_at } = item;
 
@@ -13,8 +11,8 @@ export default function ({ items, callback, total, results }) {
       return;
     }
 
-    printTracksAdded(total++);
+    printTracksAdded();
 
-    results.push(item);
+    if (noNewerThanYear(added_at, store.selected.year)) results.push(item);
   });
 }

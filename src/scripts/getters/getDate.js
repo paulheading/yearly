@@ -1,10 +1,10 @@
 import { DateTime } from "luxon";
 
-let getYear = () => DateTime.now().toFormat("yyyy");
+let year = () => DateTime.now().toFormat("yyyy");
 
-let getYearFromString = (value) => value.slice(0, 4);
+let yearFromString = (value) => value.slice(0, 4);
 
-function getSeconds() {
+function seconds() {
   let result = DateTime.now().toLocaleString(DateTime.TIME_24_WITH_SECONDS);
 
   /// create array of hours, numbers, seconds
@@ -19,4 +19,10 @@ function getSeconds() {
   return result;
 }
 
-export { getYear, getYearFromString, getSeconds };
+export default function (value) {
+  return {
+    year: year(),
+    yearFromString: yearFromString(value),
+    seconds: seconds(),
+  };
+}

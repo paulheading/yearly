@@ -1,20 +1,25 @@
 ---
 import Section from "~Components/Section";
-import store from "~data/store";
+
+let name = "tracks-added";
 
 let sectionProps = {
-  name: "tracks-added",
+  name,
   style: {
     display: "none",
-    marginTop: "3rem",
   },
 };
 ---
 
-<Section {...sectionProps}>
+<Section {...sectionProps} className={name}>
   <p>
-    <strong data-print="tracks-added">0</strong> tracks added since {
-      store.selected.year
-    }
+    <strong data-print={name}>0</strong> tracks added since
+    <span data-print="year-added">2025</span>
   </p>
 </Section>
+
+<style lang="scss">
+  .tracks-added {
+    margin-top: 3rem;
+  }
+</style>

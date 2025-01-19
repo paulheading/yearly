@@ -43,14 +43,18 @@ function createRandomNumber(min, max) {
 }
 
 let displaySection = (element, value) => {
+  let styleIsAlreadyActive = $.sections[element].style.display == value;
+
+  if (styleIsAlreadyActive) return;
+
   $.sections[element].style.display = value;
 };
 
 let preventDefault = (event) => event.preventDefault();
 
-let playlistStyleIsCustom = store.create.playlist.style == "custom";
+let playlistStyleIsCustom = () => store.create.playlist.style == "custom";
 
-let sourceIsLikedSongs = store.selected.source == 0;
+let sourceIsLikedSongs = () => store.selected.source == 0;
 
 export {
   playlistStyleIsCustom,

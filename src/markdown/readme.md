@@ -10,6 +10,7 @@
 
 - Filter by artist gender. Blocker: need to cross reference results with the [Music Brainz](https://musicbrainz.org/) library 🟡
 - Rank how many times I've included an artist in previous playlists. Blocker: build previous playlist selection 🟡
+- Search by query strings. Perfect for sharing example urls. Blocker: need to understand Astro query string syntax and provide url 🟡
 
 ### Not possible
 
@@ -17,4 +18,4 @@
 
 ### Scenarios
 
-- Give me a list of songs added in 2024 🟡
+- Give me a list of songs added in 2023 🟡

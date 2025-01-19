@@ -21,16 +21,23 @@ import {
   playlistStyleIsCustom,
 } from "~scripts/helpers";
 
-import { getPlaylistConfig, getRecommends, getTracks } from "~scripts/getters";
+import {
+  getPlaylistConfig,
+  getPlaylistRecommends,
+  getTracks,
+  getDate,
+} from "~scripts/getters";
 
-import { printPlaylist } from "~scripts/printers";
+import { printPlaylist, printYearAdded } from "~scripts/printers";
 
 import { setSource, resetCustomConfig, setYearAdded } from "~scripts/setters";
 
 function buildButtonClick() {
-  if (!store.create.playlist.style) return;
+  if (!store.create.playlist.style) {
+    return console.error("this playlist needs a style");
+  }
 
-  if (!playlistStyleIsCustom) resetCustomConfig();
+  if (!playlistStyleIsCustom()) resetCustomConfig();
 
   function hideElements() {
     displaySection("choose_card", "none");
@@ -41,7 +48,9 @@ function buildButtonClick() {
 
   setSource();
 
-  if (playlistStyleIsCustom) setYearAdded();
+  playlistStyleIsCustom() ? setYearAdded() : setYearAdded(getDate().year);
+
+  printYearAdded();
 
   usingLiveData ? getTracks(displayResults) : displayResults(tracks);
 }
@@ -54,35 +63,16 @@ function handleEmptyPlaylist() {
   return loadingComplete(showElements);
 }
 
-function getPlaylistRecommends(tracks) {
-  console.log("find recommends for: ", tracks);
-
-  // let recommends = tracks.forEach(({ track }) => track.id + ",");
-
-  // recommends = recommends.slice(0, -1);
-
-  // getRecommends(recommends);
-
-  // getRecommends(
-  //   "seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA"
-  // );
-
-  function showElements() {
-    displaySection("recommend_tracks", "block");
-  }
-
-  loadingComplete(showElements);
-}
-
 function displayResults(items) {
+  console.log("results: ", items);
+
   if (items.length) {
     getPlaylistConfig().forEach(function ({ title, value }) {
       if (!value) return;
 
       console.log("title: ", title);
 
-      if (title == settings.in_recommends) {
-      }
+      // if (title == settings.in_recommends) {}
 
       if (title == settings.released_this_year) {
         items = items.filter(function ({ track }) {
@@ -123,9 +113,9 @@ function displayResults(items) {
     });
   }
 
-  if (!items.length) return handleEmptyPlaylist();
-
   if (items.length < 10) getPlaylistRecommends(items);
+
+  if (!items.length) return handleEmptyPlaylist();
 
   printPlaylist(items);
 }

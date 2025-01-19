@@ -39,7 +39,7 @@ function selectButtonClick(event) {
 
   !isSelected ? addSelectedState($card) : removeSelectedState($card);
 
-  if (!playlistStyleIsCustom) resetCustomConfig();
+  if (!playlistStyleIsCustom()) resetCustomConfig();
 }
 
 export default function () {

@@ -6,7 +6,7 @@ let readme = {
   name: "README.md",
   rename: "readme.md",
   src: "README.md",
-  task: "copyREADME",
+  task: "copy:readme",
 };
 
 function copyfiles(done, file) {
