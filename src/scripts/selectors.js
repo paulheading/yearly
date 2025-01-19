@@ -112,7 +112,8 @@ $.playlist_tracks = () => $.playlist_main().querySelectorAll(".container");
 
 $.select_forms = () => $.querySelectorAll(".select-form");
 $.select_source = () => $.querySelector(".select-form.choose-source");
-$.select_year = () => $.querySelector(".select-form.choose-year");
+$.select_year_added = () => $.querySelector(".select-form.year-added");
+$.select_year_released = () => $.querySelector(".select-form.year-released");
 
 $.formSelectors = function ($form) {
   let $list = $form.querySelector(".select-form-list");

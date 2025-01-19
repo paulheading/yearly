@@ -14,7 +14,8 @@ let out_explicit = "No explicit music";
 let max_length = "Max length";
 let min_length = "Min length";
 
-let choose_year = "Choose year";
+let year_added = "Year added";
+let year_released = "Year released";
 
 let groups = {
   popularity: {
@@ -29,10 +30,13 @@ let groups = {
     name: "duration",
     action: "ceiling",
   },
+  age: {
+    name: "age",
+    action: "ceiling",
+  },
 };
 
 export default {
-  choose_year,
   discovered_this_year,
   out_popular,
   in_popular,
@@ -44,4 +48,6 @@ export default {
   max_length,
   min_length,
   groups,
+  year_added,
+  year_released,
 };

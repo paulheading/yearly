@@ -67,6 +67,8 @@ function displayResults(items) {
   console.log("results: ", items);
 
   if (items.length) {
+    console.log("config: ", getPlaylistConfig());
+
     getPlaylistConfig().forEach(function ({ title, value }) {
       if (!value) return;
 
@@ -74,12 +76,18 @@ function displayResults(items) {
 
       // if (title == settings.in_recommends) {}
 
-      if (title == settings.released_this_year) {
-        items = items.filter(function ({ track }) {
-          let { album } = track;
-          return matchYear(album.release_date, getStore().selected.year);
-        });
-      }
+      // if (title == settings.released_this_year) {
+      //   items = items.filter(function ({ track }) {
+      //     let { album } = track;
+      //     return matchYear(album.release_date, getStore().selected.year);
+      //   });
+      // }
+
+      // if (title == settings.released_this_year) {
+      //   items = items.filter(({ added_at }) =>
+      //     matchYear(added_at, getStore().selected.year)
+      //   );
+      // }
 
       if (title == settings.out_popular) {
         items = items.sort(byLowestPopularity);
@@ -105,10 +113,8 @@ function displayResults(items) {
         items = items.filter((item) => maximumLength(item, value));
       }
 
-      if (title == settings.released_this_year) {
-        items = items.filter(({ added_at }) =>
-          matchYear(added_at, getStore().selected.year)
-        );
+      if (title == settings.year_released) {
+        console.log("year released: ", value);
       }
     });
   }

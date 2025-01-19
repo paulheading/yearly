@@ -11,6 +11,8 @@ import {
 
 import { setPlaylistImage } from "~scripts/setters";
 
+import { getStore } from "~scripts/getters";
+
 // import { outPlaylistExcess, inPlaylistExcess } from "~scripts/filters";
 
 export default function (tracks) {
