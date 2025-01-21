@@ -6,13 +6,14 @@ export default function ({ items, callback, results }) {
   items.forEach(function (item) {
     let { added_at } = item;
 
-    if (!noOlderThanYear(added_at, store.selected.year)) {
+    if (!noOlderThanYear(added_at, store.selected.year.added)) {
       if (callback) callback(item);
       return;
     }
 
     printTracksAdded();
 
-    if (noNewerThanYear(added_at, store.selected.year)) results.push(item);
+    if (noNewerThanYear(added_at, store.selected.year.added))
+      results.push(item);
   });
 }

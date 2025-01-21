@@ -9,7 +9,10 @@ export default {
   selected: {
     source: 0,
     track: null,
-    year: "2025",
+    year: {
+      added: 2025,
+      released: 2025,
+    },
   },
   create: {
     playlist: {

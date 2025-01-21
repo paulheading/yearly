@@ -30,7 +30,12 @@ import {
 
 import { printPlaylist, printYearAdded } from "~scripts/printers";
 
-import { setSource, resetCustomConfig, setYearAdded } from "~scripts/setters";
+import {
+  setSource,
+  resetCustomConfig,
+  setYearAdded,
+  setYearReleased,
+} from "~scripts/setters";
 
 function buildButtonClick() {
   if (!getStore().create.playlist.style) {
@@ -48,7 +53,15 @@ function buildButtonClick() {
 
   setSource();
 
-  playlistStyleIsCustom() ? setYearAdded() : setYearAdded(getDate().year);
+  if (playlistStyleIsCustom()) {
+    setYearAdded();
+    setYearReleased();
+  } else {
+    let { year } = getDate();
+
+    setYearAdded(year);
+    setYearReleased(year);
+  }
 
   printYearAdded();
 
@@ -70,51 +83,39 @@ function displayResults(items) {
     console.log("config: ", getPlaylistConfig());
 
     getPlaylistConfig().forEach(function ({ title, value }) {
-      if (!value) return;
-
-      console.log("title: ", title);
-
       // if (title == settings.in_recommends) {}
 
-      // if (title == settings.released_this_year) {
-      //   items = items.filter(function ({ track }) {
-      //     let { album } = track;
-      //     return matchYear(album.release_date, getStore().selected.year);
-      //   });
+      // if (title == settings.out_popular) {
+      //   items = items.sort(byLowestPopularity);
       // }
 
-      // if (title == settings.released_this_year) {
-      //   items = items.filter(({ added_at }) =>
-      //     matchYear(added_at, getStore().selected.year)
-      //   );
+      // if (title == settings.in_popular) {
+      //   items = items.sort(byHighestPopularity);
       // }
 
-      if (title == settings.out_popular) {
-        items = items.sort(byLowestPopularity);
-      }
+      // if (title == settings.in_explicit) {
+      //   items = items.filter(inExplicit);
+      // }
 
-      if (title == settings.in_popular) {
-        items = items.sort(byHighestPopularity);
-      }
+      // if (title == settings.out_explicit) {
+      //   items = items.filter(outExplicit);
+      // }
 
-      if (title == settings.in_explicit) {
-        items = items.filter(inExplicit);
-      }
+      // if (title == settings.min_length) {
+      //   items = items.filter((item) => minimumLength(item, value));
+      // }
 
-      if (title == settings.out_explicit) {
-        items = items.filter(outExplicit);
-      }
-
-      if (title == settings.min_length) {
-        items = items.filter((item) => minimumLength(item, value));
-      }
-
-      if (title == settings.max_length) {
-        items = items.filter((item) => maximumLength(item, value));
-      }
+      // if (title == settings.max_length) {
+      //   items = items.filter((item) => maximumLength(item, value));
+      // }
 
       if (title == settings.year_released) {
-        console.log("year released: ", value);
+        items = items.filter(({ track }) => {
+          let { album } = track;
+          let release_year = album.release_date.slice(0, 4);
+
+          return release_year == value;
+        });
       }
     });
   }

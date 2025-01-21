@@ -69,6 +69,8 @@ export default {
           title: settings.year_added,
           group: { ...settings.groups.age },
           editable: true,
+          value: 0,
+          type: "select",
           options: [
             { title: "Added in 2025", data: 2025 },
             { title: "Added in 2024", data: 2024 },
@@ -76,13 +78,14 @@ export default {
             { title: "Added in 2022", data: 2022 },
             { title: "Added in 2021", data: 2021 },
           ],
-          type: "select",
           className: classify(settings.year_added),
         },
         {
           title: settings.year_released,
           group: { ...settings.groups.age },
           editable: true,
+          value: 0,
+          type: "select",
           options: [
             { title: "Released in 2025", data: 2025 },
             { title: "Released in 2024", data: 2024 },
@@ -90,7 +93,6 @@ export default {
             { title: "Released in 2022", data: 2022 },
             { title: "Released in 2021", data: 2021 },
           ],
-          type: "select",
           className: classify(settings.year_released),
         },
       ],

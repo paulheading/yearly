@@ -1,9 +1,14 @@
 ---
 import SelectList from "~Components/SelectList";
 
+let title = "Liked songs";
+let value = 0;
+
 let props = {
   label: "Source",
-  options: [{ title: "Liked Songs", data: 0 }],
+  title,
+  value,
+  options: [{ title, data: value }],
 };
 ---
 

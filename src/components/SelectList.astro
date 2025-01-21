@@ -1,5 +1,5 @@
 ---
-let { label, options, className } = Astro.props;
+let { title, label, options, className } = Astro.props;
 
 let formProps = {
   "class:list": ["select-form", label ? "with-label" : "no-label", className],
@@ -16,7 +16,7 @@ let buttonProps = {
   "aria-expanded": false,
   class: "select-form-button",
   role: "combobox",
-  tabIndex: "0"
+  tabIndex: "0",
 };
 
 let listProps = {
@@ -34,7 +34,7 @@ let announcementProps = {
 <form {...formProps}>
   {label && <label {...labelProps}>{label}: </label>}
   <div>
-    <button {...buttonProps}>{options[0].title}</button>
+    <button {...buttonProps}>{title}</button>
     <ul {...listProps}>
       {
         options &&

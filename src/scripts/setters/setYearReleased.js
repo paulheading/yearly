@@ -6,14 +6,14 @@ export default function (value) {
   let setValue = function () {
     if (value) return Number(value);
 
-    let { data } = $.formSelectors($.select_year_added());
+    let { data } = $.formSelectors($.select_year_released());
 
     return Number(data);
   };
 
   let params = {
     card: "custom",
-    setting: settings.year_added,
+    setting: settings.year_released,
     value: setValue(),
   };
 

@@ -18,6 +18,10 @@ let props = {
 };
 ---
 
+<script define:vars={{ Astro }}>
+  console.log("Astro: ", Astro);
+</script>
+
 <div {...props}>
   <div class="card-header">
     <img src={image} alt="" class:list={["profile", type]} />

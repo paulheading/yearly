@@ -9,21 +9,26 @@ let { settings } = Astro.props;
 let colors = ["blue", "cyan", "purple", "pink", "red", "orange"];
 let restartColors = () => color_index + 1 == colors.length;
 
-let groups = [[]];
+let groups = [];
 let group = 0;
 let current = 0;
-let max = 3;
+let max = 2;
 
 let color_index = 0;
 let setting_index = 0;
 
 settings.forEach(function (setting) {
+  let first = current == 0;
+  let last = current + 1 == max;
+
+  if (first) groups.push([]);
+
   groups[group].push(setting);
+
   current++;
 
-  if (current % max == 0) {
+  if (last) {
     current = 0;
-    groups.push([]);
     group++;
   }
 });
