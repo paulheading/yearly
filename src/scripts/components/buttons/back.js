@@ -1,9 +1,5 @@
 import $ from "~scripts/selectors";
-import {
-  displaySection,
-  loadingComplete,
-  loadingCurrently,
-} from "~scripts/helpers";
+import { displaySection, loading } from "~scripts/helpers";
 
 import { resetTracksAdded } from "~scripts/setters";
 
@@ -25,8 +21,8 @@ function showElements() {
 
 function backButtonClick() {
   resetTracksAdded();
-  loadingCurrently(hideElements);
-  loadingComplete(showElements);
+  loading.currently(hideElements);
+  loading.complete(showElements);
 }
 
 export default function () {

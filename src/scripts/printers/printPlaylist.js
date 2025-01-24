@@ -3,11 +3,7 @@ import store from "~data/store";
 
 import { printPlaylistTrack } from "~scripts/printers";
 
-import {
-  createPlaylistName,
-  displaySection,
-  loadingComplete,
-} from "~scripts/helpers";
+import { create, displaySection, loading } from "~scripts/helpers";
 
 import { setPlaylistImage } from "~scripts/setters";
 
@@ -22,7 +18,7 @@ export default function (tracks) {
 
   // store.create.playlist.excess = tracks.filter(inPlaylistExcess);
 
-  store.create.playlist.name = createPlaylistName();
+  store.create.playlist.name = create.playlistName();
 
   $.playlist_name().innerText = getStore().create.playlist.name;
   $.playlist_owner().innerText = getStore().user.display_name;
@@ -40,5 +36,5 @@ export default function (tracks) {
     displaySection("save_playlist", "block");
   }
 
-  loadingComplete(showElements);
+  loading.complete(showElements);
 }

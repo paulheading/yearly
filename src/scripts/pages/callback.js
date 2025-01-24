@@ -6,7 +6,7 @@ import rangeInputListener from "~scripts/components/range";
 
 import {
   displaySection,
-  loadingComplete,
+  loading,
   setAccessToken,
   setUser,
   usingLiveData,
@@ -20,21 +20,23 @@ import {
   saveButtonListener,
   selectButtonListener,
 } from "~scripts/components/buttons";
+
 import { getPlaylists } from "~scripts/getters";
 import { printFirstName, printSourcePlaylists } from "~scripts/printers";
+import { setStore } from "~scripts/setters";
 
 function loadChooseCard() {
   function showElements() {
     displaySection("choose_card", "block");
   }
-  loadingComplete(showElements);
+  loading.complete(showElements);
 }
 
 function createInteractiveDOM() {
   printFirstName();
   printSourcePlaylists();
-  rangeInputListener();
-  selectFormListener();
+  rangeInputListener(setStore.rangeInput);
+  selectFormListener(setStore.selectList);
   infoButtonListener();
   selectButtonListener();
   customButtonListener();

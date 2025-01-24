@@ -1,10 +1,5 @@
 import $ from "~scripts/selectors";
-import {
-  displaySection,
-  loadingComplete,
-  loadingCurrently,
-  postData,
-} from "~scripts/helpers";
+import { displaySection, loading, postData } from "~scripts/helpers";
 import { getData, getStore } from "~scripts/getters";
 
 function postPlaylistData() {
@@ -36,7 +31,7 @@ function showElements() {
 }
 
 function saveButtonClick() {
-  loadingCurrently(hideElements);
+  loading.currently(hideElements);
   postPlaylistData()
     .then(postTrackData)
     .then(function () {
@@ -61,7 +56,7 @@ function saveButtonClick() {
       });
     })
     .then(function () {
-      loadingComplete(showElements);
+      loading.complete(showElements);
     });
 }
 

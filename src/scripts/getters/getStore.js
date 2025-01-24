@@ -11,12 +11,14 @@ function contentByType(card, value) {
 export default function () {
   return {
     ...store,
-    _card: {
-      badjo: byId("badjo"),
-      cindy: byId("cindy"),
-      custom: byId("custom"),
-      byId,
-      contentByType,
+    query: {
+      card: {
+        badjo: byId("badjo"),
+        cindy: byId("cindy"),
+        custom: byId("custom"),
+        byId,
+        contentByType,
+      },
     },
   };
 }

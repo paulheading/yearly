@@ -1,6 +1,6 @@
 import $ from "~scripts/selectors";
-import getStore from "~scripts/getters/getStore";
+import getYearAdded from "~scripts/getters/getYearAdded";
 
-export default function (value) {
-  $.print.year_added.innerText = value ? value : getStore().selected.year.added;
+export default function () {
+  $.print.year_added.innerText = getYearAdded();
 }

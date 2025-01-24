@@ -8,7 +8,7 @@ export default function (value) {
 
     let { data } = $.formSelectors($.select_year_released());
 
-    return Number(data);
+    return Number(data.id);
   };
 
   let params = {

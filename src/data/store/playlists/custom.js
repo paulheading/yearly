@@ -1,11 +1,8 @@
 import settings from "~data/settings";
+import inConfigType from "~scripts/filters/inConfigType";
+import setTitleToData from "~scripts/setters/setTitleToData";
 
-function classify(value) {
-  let className = value.toLowerCase();
-  return className.split(" ").join("-");
-}
-
-export default {
+let custom = {
   id: "custom",
   content: [
     {
@@ -78,7 +75,6 @@ export default {
             { title: "Added in 2022", data: 2022 },
             { title: "Added in 2021", data: 2021 },
           ],
-          className: classify(settings.year_added),
         },
         {
           title: settings.year_released,
@@ -93,9 +89,12 @@ export default {
             { title: "Released in 2022", data: 2022 },
             { title: "Released in 2021", data: 2021 },
           ],
-          className: classify(settings.year_released),
         },
       ],
     },
   ],
 };
+
+custom.content.filter(inConfigType)[0].settings.map(setTitleToData);
+
+export default custom;

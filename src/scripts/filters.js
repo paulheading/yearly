@@ -1,7 +1,6 @@
 import { inCustomId, outCustomId } from "~scripts/filters/customId";
 import { getDate, getStore } from "~scripts/getters";
-
-let byContentType = ({ type }) => type == "config";
+import inConfigType from "~scripts/filters/inConfigType";
 
 let byPlaylistId = ({ id }) => id == getStore().create.playlist.style;
 
@@ -56,7 +55,7 @@ function matchYear(value, custom_year) {
 }
 
 export {
-  byContentType,
+  inConfigType,
   byPlaylistId,
   byPlaylistOwner,
   inCustomId,

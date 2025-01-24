@@ -1,16 +1,16 @@
 import $ from "~scripts/selectors";
-import { createRandomNumber } from "~scripts/helpers";
+import { create } from "~scripts/helpers";
 
 export default function () {
   let source = $.playlist_image().src;
 
   let prev = source.split("playlist");
 
-  let next = createRandomNumber(1, 18);
+  let next = create.randomNumber(1, 18);
 
   prev = prev[1].replace(".jpg", "");
 
-  while (prev == next) next = createRandomNumber(1, 18);
+  while (prev == next) next = create.randomNumber(1, 18);
 
   let path = "/playlist" + next + ".jpg";
 

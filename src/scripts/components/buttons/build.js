@@ -12,13 +12,7 @@ import {
 
 import { byLowestPopularity, byHighestPopularity } from "~scripts/sorters";
 
-import {
-  usingLiveData,
-  displaySection,
-  loadingComplete,
-  loadingCurrently,
-  playlistStyleIsCustom,
-} from "~scripts/helpers";
+import { usingLiveData, displaySection, loading, is } from "~scripts/helpers";
 
 import {
   getPlaylistConfig,
@@ -30,38 +24,24 @@ import {
 
 import { printPlaylist, printYearAdded } from "~scripts/printers";
 
-import {
-  setSource,
-  resetCustomConfig,
-  setYearAdded,
-  setYearReleased,
-} from "~scripts/setters";
+import { resetCustomConfig } from "~scripts/setters";
+
+import getYearAdded from "~scripts/getters/getYearAdded";
+import getYearReleased from "~scripts/getters/getYearReleased";
 
 function buildButtonClick() {
   if (!getStore().create.playlist.style) {
     return console.error("this playlist needs a style");
   }
 
-  if (!playlistStyleIsCustom()) resetCustomConfig();
+  if (!is.playlistStyleCustom()) resetCustomConfig();
 
   function hideElements() {
     displaySection("choose_card", "none");
     displaySection("tracks_added", "block");
   }
 
-  loadingCurrently(hideElements);
-
-  setSource();
-
-  if (playlistStyleIsCustom()) {
-    setYearAdded();
-    setYearReleased();
-  } else {
-    let { year } = getDate();
-
-    setYearAdded(year);
-    setYearReleased(year);
-  }
+  loading.currently(hideElements);
 
   printYearAdded();
 
@@ -73,14 +53,17 @@ function handleEmptyPlaylist() {
     displaySection("empty_playlist", "block");
   }
 
-  return loadingComplete(showElements);
+  return loading.complete(showElements);
 }
 
 function displayResults(items) {
   console.log("results: ", items);
 
+  console.log("year added: ", getYearAdded());
+  console.log("year released: ", getYearReleased());
+
   if (items.length) {
-    console.log("config: ", getPlaylistConfig());
+    // console.log("config: ", getPlaylistConfig());
 
     getPlaylistConfig().forEach(function ({ title, value }) {
       // if (title == settings.in_recommends) {}

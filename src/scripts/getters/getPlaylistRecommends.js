@@ -1,6 +1,6 @@
 // import { getRecommends } from "~scripts/getters";
 
-import { displaySection, loadingComplete } from "~scripts/helpers";
+import { displaySection, loading } from "~scripts/helpers";
 
 export default function (tracks) {
   console.log("find recommends for: ", tracks);
@@ -19,5 +19,5 @@ export default function (tracks) {
     displaySection("recommend_tracks", "block");
   }
 
-  loadingComplete(showElements);
+  loading.complete(showElements);
 }

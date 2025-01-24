@@ -1,13 +1,12 @@
 ---
 import { SolidButton, Wrap } from "paully";
+
+import getStore from "~scripts/getters/getStore";
+
 import Card from "~Components/Card";
 import Section from "~Components/Section";
 import CustomButton from "~Components/Buttons/Custom";
-
-import store from "~data/store";
 import ChooseSource from "~Components/Sections/ChooseSource";
-
-import { inCustomId, outCustomId } from "~scripts/filters/customId";
 
 let sectionProps = {
   name: "choose-card",
@@ -16,10 +15,8 @@ let sectionProps = {
   },
 };
 
-let cards = {
-  people: store.cards.filter(outCustomId),
-  custom: store.cards.filter(inCustomId)[0],
-};
+let { query } = getStore();
+let personals = [query.card.cindy, query.card.badjo];
 ---
 
 <Section {...sectionProps}>
@@ -42,10 +39,10 @@ let cards = {
   <Wrap style={{ marginTop: "2rem" }}>
     <Wrap>
       <Section name="playlist">
-        {cards.people.map((card) => <Card {...card} />)}
+        {personals.map((person) => <Card {...person} />)}
       </Section>
       <Section name="custom" style={{ display: "none" }}>
-        <Card {...cards.custom} />
+        <Card {...query.card.custom} />
       </Section>
     </Wrap>
     <Wrap style={{ marginTop: "2rem" }}>

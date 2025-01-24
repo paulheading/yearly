@@ -94,13 +94,15 @@ function toggleActiveState(item, active) {
 }
 
 function selectOptionByElement(element, parent) {
-  let { $form } = parent;
+  let { $form, callback } = parent;
 
-  let { $button, $items } = $.formSelectors($form);
+  let card = $form.closest(".card-container")?.getAttribute("data-id");
 
-  let data = element.getAttribute("data-id");
+  let { $button, $items, data } = $.formSelectors($form);
 
-  $button.setAttribute("data-id", data);
+  let element_data = element.getAttribute("data-id");
+
+  $button.setAttribute("data-id", element_data);
 
   $button.innerText = element.innerText;
 
@@ -111,6 +113,8 @@ function selectOptionByElement(element, parent) {
   toggleDropdown(parent);
 
   announceOption(element.innerText, parent);
+
+  callback({ card, data: element_data, select: data.select });
 }
 
 function announceOption(text, parent) {
@@ -119,6 +123,7 @@ function announceOption(text, parent) {
   let { $announce } = $.formSelectors($form);
 
   $announce.innerText = text;
+
   $announce.setAttribute("aria-live", "assertive");
 
   setTimeout(function () {
@@ -129,7 +134,9 @@ function announceOption(text, parent) {
 
 export function selectCurrentOption(parent) {
   let { $form, index } = parent;
+
   let { $items } = $.formSelectors($form);
+
   let currentOption = $items[currentOptionIndex[index]];
 
   selectOptionByElement(currentOption, parent);
@@ -144,6 +151,7 @@ function handleDocumentInteraction(event) {
     let { $button, $list } = $.formSelectors($form);
 
     let clickIsInsideButton = $button.contains(target);
+
     let clickIsInsideDropdown = $list.contains(target);
 
     if (clickIsInsideButton) return toggleDropdown(parent);
@@ -166,8 +174,8 @@ function clearCurrentItem($form) {
   $items.forEach((item) => item.classList.remove("current"));
 }
 
-function setupFormListeners($form, index) {
-  let parent = { $form, index };
+function setupFormListeners({ $form, index, callback }) {
+  let parent = { $form, index, callback };
 
   $form.addEventListener("submit", preventDefault);
 
@@ -180,8 +188,11 @@ function setupFormListeners($form, index) {
   $items.forEach((item, index) => handleItemClicks(item, index, parent));
 }
 
-export default function () {
-  $.select_forms().forEach(setupFormListeners);
+export default function (callback) {
+  $.select_forms().forEach(function ($form, index) {
+    let params = { $form, index, callback };
+    return setupFormListeners(params);
+  });
 
   document.addEventListener("click", handleDocumentInteraction);
 }

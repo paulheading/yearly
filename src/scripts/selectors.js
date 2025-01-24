@@ -4,6 +4,7 @@ let $ = {
   querySection: (value) => $.querySelector(`[data-section=${value}]`),
   queryState: (value) => $.querySelector(`[data-state=${value}]`),
   queryPrint: (value) => $.querySelector(`[data-print=${value}]`),
+  querySelect: (value) => $.querySelector(`[data-select=${value}]`),
 };
 
 $.body = $.querySelector("body");
@@ -111,15 +112,19 @@ $.playlist_track = () => $.playlist_main().querySelector(".container");
 $.playlist_tracks = () => $.playlist_main().querySelectorAll(".container");
 
 $.select_forms = () => $.querySelectorAll(".select-form");
-$.select_source = () => $.querySelector(".select-form.choose-source");
-$.select_year_added = () => $.querySelector(".select-form.year-added");
-$.select_year_released = () => $.querySelector(".select-form.year-released");
+
+$.select_source = () => $.querySelect("choose_source");
+$.select_year_added = () => $.querySelect("year_added");
+$.select_year_released = () => $.querySelect("year_released");
 
 $.formSelectors = function ($form) {
   let $list = $form.querySelector(".select-form-list");
   let $items = $form.querySelectorAll(".select-form-item");
   let $button = $form.querySelector(".select-form-button");
-  let data = $button.getAttribute("data-id");
+  let data = {
+    id: $button.getAttribute("data-id"),
+    select: $form.getAttribute("data-select"),
+  };
   let $announce = $form.querySelector(".select-form-announce");
 
   return { $list, $items, $button, data, $announce };

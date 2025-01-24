@@ -2,7 +2,7 @@ import store from "~data/store";
 import $ from "~scripts/selectors";
 
 function printSourceOption(source) {
-  let $form = $.querySelector("form.choose-source");
+  let $form = $.select_source();
 
   let { $list } = $.formSelectors($form);
 
