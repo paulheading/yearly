@@ -9,14 +9,16 @@ import { setPlaylistImage } from "~scripts/setters";
 
 import { getStore } from "~scripts/getters";
 
-// import { outPlaylistExcess, inPlaylistExcess } from "~scripts/filters";
+import include from "~scripts/filters/include";
+
+import exclude from "~scripts/filters/exclude";
 
 export default function (tracks) {
   store.create.playlist.tracks = tracks;
 
-  // store.create.playlist.tracks = tracks.filter(outPlaylistExcess);
+  // store.create.playlist.tracks = tracks.filter(exclude.playlistExcess);
 
-  // store.create.playlist.excess = tracks.filter(inPlaylistExcess);
+  // store.create.playlist.excess = tracks.filter(include.playlistExcess);
 
   store.create.playlist.name = create.playlistName();
 

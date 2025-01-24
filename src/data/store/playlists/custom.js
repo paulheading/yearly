@@ -1,5 +1,5 @@
 import settings from "~data/settings";
-import inConfigType from "~scripts/filters/inConfigType";
+import include from "~scripts/filters/include";
 import setTitleToData from "~scripts/setters/setTitleToData";
 
 let custom = {
@@ -95,6 +95,6 @@ let custom = {
   ],
 };
 
-custom.content.filter(inConfigType)[0].settings.map(setTitleToData);
+custom.content.filter(include.typeConfig)[0].settings.map(setTitleToData);
 
 export default custom;

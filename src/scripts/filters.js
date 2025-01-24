@@ -1,72 +1,25 @@
-import { inCustomId, outCustomId } from "~scripts/filters/customId";
-import { getDate, getStore } from "~scripts/getters";
-import inConfigType from "~scripts/filters/inConfigType";
+import getStore from "~scripts/getters/getStore";
+import pureInclude from "~scripts/filters/include";
+import pureExclude from "~scripts/filters/exclude";
+import pureLength from "~scripts/filters/length";
+import pureYear from "~scripts/filters/year";
 
-let byPlaylistId = ({ id }) => id == getStore().create.playlist.style;
+let include = pureInclude;
 
-let byPlaylistOwner = ({ owner }) =>
+let exclude = pureExclude;
+
+let length = pureLength;
+
+let year = pureYear;
+
+include.playlistId = ({ id }) => id == getStore().create.playlist.style;
+
+include.playlistOwner = ({ owner }) =>
   owner.display_name == getStore().user.display_name;
 
-let inExplicit = ({ track }) => track.explicit;
+exclude.playlistId = ({ id }) => id != getStore().create.playlist.style;
 
-let outExplicit = ({ track }) => !track.explicit;
+exclude.playlistOwner = ({ owner }) =>
+  owner.display_name != getStore().user.display_name;
 
-let inPlaylistExcess = (_, index) => index >= 10;
-
-let outPlaylistExcess = (_, index) => index < 10;
-
-let milliseconds = 60000;
-
-function minimumLength({ track }, minimum) {
-  let minutes = Math.floor(track.duration_ms / milliseconds);
-
-  return minutes >= minimum;
-}
-
-function maximumLength({ track }, maximum) {
-  let minutes = Math.ceil(track.duration_ms / milliseconds);
-
-  return minutes <= maximum;
-}
-
-function processYearValue(value, custom_year) {
-  let string = getDate(value).yearFromString;
-  let target = custom_year ? custom_year : getDate().year;
-
-  return { string, target };
-}
-
-function noOlderThanYear(value, custom_year) {
-  let { string, target } = processYearValue(value, custom_year);
-
-  return string >= target;
-}
-
-function noNewerThanYear(value, custom_year) {
-  let { string, target } = processYearValue(value, custom_year);
-
-  return string <= target;
-}
-
-function matchYear(value, custom_year) {
-  let { string, target } = processYearValue(value, custom_year);
-
-  return string == target;
-}
-
-export {
-  inConfigType,
-  byPlaylistId,
-  byPlaylistOwner,
-  inCustomId,
-  outCustomId,
-  inPlaylistExcess,
-  outPlaylistExcess,
-  inExplicit,
-  outExplicit,
-  minimumLength,
-  maximumLength,
-  noNewerThanYear,
-  noOlderThanYear,
-  matchYear,
-};
+export { exclude, include, length, year };

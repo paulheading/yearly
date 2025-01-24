@@ -1,10 +1,10 @@
-import { inConfigType, byPlaylistId } from "~scripts/filters";
-import { getStore } from "~scripts/getters";
+import getStore from "~scripts/getters/getStore";
+import { include } from "~scripts/filters";
 
 export default function () {
-  let playlist = getStore().cards.filter(byPlaylistId)[0];
+  let playlist = getStore().cards.filter(include.playlistId)[0];
 
-  let config = playlist.content.filter(inConfigType);
+  let config = playlist.content.filter(include.typeConfig);
 
   if (!config.length > 0)
     return console.error("config array has no length: ", config);

@@ -1,7 +1,7 @@
 import store from "~data/store";
 
 import { byName } from "~scripts/sorters";
-import { byPlaylistOwner } from "~scripts/filters";
+import { include } from "~scripts/filters";
 import { getData } from "~scripts/getters";
 
 async function getPlaylists(offset, limit) {
@@ -23,7 +23,7 @@ export default async function () {
   while (morePlaylists) {
     let { total, items } = await getPlaylists(offset, limit);
 
-    items = items.filter(byPlaylistOwner);
+    items = items.filter(include.playlistOwner);
 
     items.forEach(function (item) {
       let pushToResults = true;

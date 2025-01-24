@@ -114,7 +114,7 @@ function selectOptionByElement(element, parent) {
 
   announceOption(element.innerText, parent);
 
-  callback({ card, data: element_data, select: data.select });
+  if (callback) callback({ card, data: element_data, select: data.select });
 }
 
 function announceOption(text, parent) {

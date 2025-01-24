@@ -2,13 +2,9 @@ import $ from "~scripts/selectors";
 import tracks from "~data/tracks";
 import settings from "~data/settings";
 
-import {
-  inExplicit,
-  outExplicit,
-  minimumLength,
-  maximumLength,
-  matchYear,
-} from "~scripts/filters";
+import include from "~scripts/filters/include";
+import exclude from "~scripts/filters/exclude";
+import length from "~scripts/filters/length";
 
 import { byLowestPopularity, byHighestPopularity } from "~scripts/sorters";
 
@@ -77,19 +73,19 @@ function displayResults(items) {
       // }
 
       // if (title == settings.in_explicit) {
-      //   items = items.filter(inExplicit);
+      //   items = items.filter(include.trackExplicit);
       // }
 
       // if (title == settings.out_explicit) {
-      //   items = items.filter(outExplicit);
+      //   items = items.filter(exclude.trackExplicit);
       // }
 
       // if (title == settings.min_length) {
-      //   items = items.filter((item) => minimumLength(item, value));
+      //   items = items.filter((item) => length.trackMinimum(item, value));
       // }
 
       // if (title == settings.max_length) {
-      //   items = items.filter((item) => maximumLength(item, value));
+      //   items = items.filter((item) => length.trackMaximum(item, value));
       // }
 
       if (title == settings.year_released) {
