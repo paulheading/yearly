@@ -3,10 +3,12 @@ import { setStore } from "~scripts/setters";
 import settings from "~data/settings";
 
 export default function (value) {
+  return;
+
   let setValue = function () {
     if (value) return Number(value);
 
-    let { data } = $.formSelectors($.select_year_released());
+    let { data } = $.selectList.selectors($.select_year_released());
 
     return Number(data.id);
   };

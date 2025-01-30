@@ -3,6 +3,7 @@ import user from "~data/user";
 
 import selectFormListener from "~scripts/components/select";
 import rangeInputListener from "~scripts/components/range";
+import toggleInputListener from "~scripts/components/toggle";
 
 import {
   displaySection,
@@ -35,8 +36,11 @@ function loadChooseCard() {
 function createInteractiveDOM() {
   printFirstName();
   printSourcePlaylists();
+
+  toggleInputListener(setStore.toggleInput);
   rangeInputListener(setStore.rangeInput);
   selectFormListener(setStore.selectList);
+
   infoButtonListener();
   selectButtonListener();
   customButtonListener();

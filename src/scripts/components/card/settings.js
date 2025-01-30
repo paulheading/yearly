@@ -1,14 +1,14 @@
 import $ from "~scripts/selectors";
 import { forEachCustomSetting } from "~scripts/helpers";
-import { printSliderInputValue } from "~scripts/printers";
+import { printRangeInputValue } from "~scripts/printers";
 
 function updateDOMSettings(setting, $input) {
   let $card = $input.closest(".card-container");
-  let { selectors } = $.cardSelectors($card);
+  let { selectors } = $.card.selectors($card);
   let { $settings } = selectors;
 
   $settings.$items.$all.forEach(function ($setting) {
-    let { $title, $input, $output, $mins } = $.settingSelectors($setting);
+    let { $title, $input, $output, $mins } = $.setting.selectors($setting);
 
     if (!$title) return;
 
@@ -20,7 +20,7 @@ function updateDOMSettings(setting, $input) {
 
       if (setting.type == "range") {
         $input.value = setting.value;
-        printSliderInputValue({ $input, $output, $mins });
+        printRangeInputValue({ $input, $output, $mins });
         return;
       }
     }
@@ -86,7 +86,7 @@ function updateStoreSettings($input, $title) {
 }
 
 function addSettingsEventListeners($setting) {
-  let { $title, $input } = $.settingSelectors($setting);
+  let { $title, $input } = $.setting.selectors($setting);
 
   if (!$input) return;
 
@@ -115,8 +115,8 @@ function addButtonEventListeners(selectors) {
   $button.addEventListener("click", () => addButtonClickFunction(selectors));
 }
 
-$.cards.all.forEach(function ($card) {
-  let { selectors } = $.cardSelectors($card);
+$.query.cardAll().forEach(function ($card) {
+  let { selectors } = $.card.selectors($card);
   let { $settings, $dot_buttons } = selectors;
 
   $settings.$items.$all.forEach(addSettingsEventListeners);

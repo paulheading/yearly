@@ -28,7 +28,7 @@ function infoButtonClick(event) {
 }
 
 export default function () {
-  $.buttons.info.forEach((button) =>
+  $.button.infos.forEach((button) =>
     button.addEventListener("click", infoButtonClick)
   );
 }

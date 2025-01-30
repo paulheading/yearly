@@ -1,6 +1,7 @@
 import $ from "~scripts/selectors";
 
 export default function () {
-  let { data } = $.formSelectors($.select_year_released());
+  return;
+  let { data } = $.selectList.selectors($.select_year_released());
   return data.id;
 }

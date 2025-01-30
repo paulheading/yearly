@@ -11,28 +11,28 @@ let custom = {
       image: "/custom.jpg",
       settings: [
         {
-          title: settings.out_popular,
+          title: settings.least_popular_music,
           group: { ...settings.groups.popularity },
           editable: true,
           value: false,
           type: "toggle",
         },
         {
-          title: settings.in_popular,
+          title: settings.most_popular_music,
           group: { ...settings.groups.popularity },
           editable: true,
           value: false,
           type: "toggle",
         },
         {
-          title: settings.in_explicit,
+          title: settings.explicit_music_only,
           group: { ...settings.groups.explicit },
           editable: true,
           value: false,
           type: "toggle",
         },
         {
-          title: settings.out_explicit,
+          title: settings.no_explicit_music,
           group: { ...settings.groups.explicit },
           editable: true,
           value: false,

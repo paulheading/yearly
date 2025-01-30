@@ -1,6 +1,11 @@
 import $ from "~scripts/selectors";
 
 export default function () {
-  let { data } = $.formSelectors($.select_source());
+  let $form = $.selectList.choose_source;
+
+  console.log("form: ", $form);
+
+  let { data } = $.selectList.selectors($form);
+
   return data.id;
 }

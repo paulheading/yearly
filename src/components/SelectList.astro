@@ -1,9 +1,8 @@
 ---
-let { title, label, value, options, className, data } = Astro.props;
+let { title, label, value, options, className } = Astro.props;
 
 let formProps = {
   "class:list": ["select-form", label ? "with-label" : "no-label", className],
-  "data-select": data,
 };
 
 let labelProps = {
@@ -11,11 +10,11 @@ let labelProps = {
 };
 
 let buttonProps = {
-  "data-id": value,
+  class: "select-form-button",
   "aria-controls": "listbox",
   "aria-haspopup": "listbox",
   "aria-expanded": false,
-  class: "select-form-button",
+  "data-id": value,
   role: "combobox",
   tabIndex: "0",
 };

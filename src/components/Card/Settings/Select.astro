@@ -5,13 +5,12 @@ let { setting, setting_index } = Astro.props;
 
 setting = { ...setting };
 
+let evenOrOdd = setting_index % 2 ? "even" : "odd";
+
 let containerProps = {
-  "class:list": [
-    "setting",
-    setting.type,
-    setting_index % 2 ? "even" : "odd",
-    setting.editable && "editable",
-  ],
+  "class:list": ["setting", evenOrOdd, setting.editable && "editable"],
+  "data-type": setting.type,
+  "data-name": setting.data,
 };
 ---
 

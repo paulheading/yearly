@@ -8,28 +8,55 @@ function cardSetting({ card, setting, value }) {
     .settings.filter(({ title }) => title == setting)[0].value = value;
 }
 
-function selectList({ card, data, select }) {
+function selectList({ card, value, name }) {
   if (!card) return;
 
-  console.log("setting card-based select list");
+  let setting = settings[name];
 
   let params = {
     card,
-    setting: settings[select],
-    value: Number(data),
+    setting,
+    value,
   };
+
+  console.log("select params: ", params);
 
   cardSetting(params);
 }
 
-function rangeInput(params) {
-  console.log("setting card-based range input", params);
+function rangeInput({ card, value, name }) {
+  if (!card) return;
 
-  console.log("these are the store params: ", params.$output.innerText);
+  let setting = settings[name];
+
+  let params = {
+    card,
+    setting,
+    value,
+  };
+
+  console.log("range params: ", params);
+
+  cardSetting(params);
+}
+
+function toggleInput({ card, value, name }) {
+  let setting = settings[name];
+
+  let params = {
+    card,
+    setting,
+    value,
+  };
+
+  console.log("toggle params: ", params);
+
+  cardSetting(params);
 }
 
 export default {
   cardSetting,
   selectList,
   rangeInput,
+  toggleInput,
 };

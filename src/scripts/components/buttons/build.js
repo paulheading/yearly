@@ -64,19 +64,19 @@ function displayResults(items) {
     getPlaylistConfig().forEach(function ({ title, value }) {
       // if (title == settings.in_recommends) {}
 
-      // if (title == settings.out_popular) {
+      // if (title == settings.least_popular_music) {
       //   items = items.sort(byLowestPopularity);
       // }
 
-      // if (title == settings.in_popular) {
+      // if (title == settings.most_popular_music) {
       //   items = items.sort(byHighestPopularity);
       // }
 
-      // if (title == settings.in_explicit) {
+      // if (title == settings.explicit_music_only) {
       //   items = items.filter(include.trackExplicit);
       // }
 
-      // if (title == settings.out_explicit) {
+      // if (title == settings.no_explicit_music) {
       //   items = items.filter(exclude.trackExplicit);
       // }
 
@@ -107,5 +107,5 @@ function displayResults(items) {
 }
 
 export default function () {
-  $.buttons.build.addEventListener("click", buildButtonClick);
+  $.button.build.addEventListener("click", buildButtonClick);
 }

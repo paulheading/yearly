@@ -2,8 +2,10 @@ import $ from "~scripts/selectors";
 import { is } from "~scripts/helpers";
 
 export default function () {
+  return;
+
   if (is.playlistStyleCustom) {
-    let { data } = $.formSelectors($.select_year_added());
+    let { data } = $.selectList.selectors($.select_year_added());
     return data.id;
   }
 

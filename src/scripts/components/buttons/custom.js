@@ -11,7 +11,7 @@ function switchDisplay({ currentTarget, text, hide, show }) {
 
 function customButtonClick(event) {
   let { currentTarget } = event;
-  let { playlist, custom } = $.sections;
+  let { playlist, custom } = $.section;
 
   let playlistActive = playlist.style.display != "none";
 
@@ -31,5 +31,5 @@ function customButtonClick(event) {
 }
 
 export default function () {
-  $.buttons.custom.addEventListener("click", customButtonClick);
+  $.button.custom.addEventListener("click", customButtonClick);
 }

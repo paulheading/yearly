@@ -2,6 +2,9 @@ import $ from "~scripts/selectors";
 import store from "~data/store";
 
 export default function () {
-  let { data } = $.formSelectors($.select_source());
+  let $form = $.selectList.choose_source;
+
+  let { data } = $.selectList.selectors($form);
+
   store.selected.source = data.id;
 }

@@ -2,9 +2,9 @@ import store from "~data/store";
 import $ from "~scripts/selectors";
 
 function printSourceOption(source) {
-  let $form = $.select_source();
+  let $form = $.selectList.choose_source;
 
-  let { $list } = $.formSelectors($form);
+  let { $list } = $.selectList.selectors($form);
 
   let option = document.createElement("li");
 

@@ -1,33 +1,33 @@
 import $ from "~scripts/selectors";
-import { printSliderInputValue } from "~scripts/printers";
+import { printRangeInputValue } from "~scripts/printers";
 import {
   currentOptionIndex,
   selectCurrentOption,
 } from "~scripts/components/select";
 
 export default function () {
-  let { selectors } = $.cardSelectors($.cards.custom);
+  let { selectors } = $.card.selectors($.card.custom);
   let { $settings } = selectors;
   let { $items } = $settings;
 
   $items.$toggles.forEach(function ($toggle) {
-    let { $input } = $.settingSelectors($toggle);
+    let { $input } = $.setting.selectors($toggle);
 
     $input.checked = false;
   });
 
   $items.$ranges.forEach(function ($range) {
-    let { $input, $output, $mins } = $.settingSelectors($range);
+    let { $input, $output, $mins } = $.setting.selectors($range);
 
     $input.value = 0;
 
-    printSliderInputValue({ $input, $output, $mins });
+    printRangeInputValue({ $input, $output, $mins });
   });
 
   $items.$selects.forEach(function ($select) {
     let $form = $select.querySelector("form");
 
-    $.select_forms().forEach(($item, index) => {
+    $.query.selectListAll().forEach(($item, index) => {
       if ($item == $form) {
         let parent = { $form, index };
 

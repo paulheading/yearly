@@ -1,9 +1,9 @@
 import $ from "~scripts/selectors";
 
 export default function (element, value) {
-  let styleIsAlreadyActive = $.sections[element].style.display == value;
+  let styleIsAlreadyActive = $.section[element].style.display == value;
 
   if (styleIsAlreadyActive) return;
 
-  $.sections[element].style.display = value;
+  $.section[element].style.display = value;
 }

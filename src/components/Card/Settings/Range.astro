@@ -8,12 +8,9 @@ let { range } = setting;
 let evenOrOdd = setting_index % 2 ? "even" : "odd";
 
 let containerProps = {
-  "class:list": [
-    "setting",
-    setting.type,
-    evenOrOdd,
-    setting.editable && "editable",
-  ],
+  "class:list": ["setting", evenOrOdd, setting.editable && "editable"],
+  "data-type": setting.type,
+  "data-name": setting.data,
 };
 
 let rangeProps = {
@@ -29,13 +26,18 @@ let minProps = {
     display: "none",
   },
 };
+
+let outputProps = {
+  className: "output",
+  "data-range": setting.data,
+};
 ---
 
 <li {...containerProps}>
   <div class="wrap-title">
     <span class="title">{setting.title}</span>
     <span>
-      <span class="output">none</span>
+      <span {...outputProps}>none</span>
       <span {...minProps}>mins</span>
     </span>
   </div>

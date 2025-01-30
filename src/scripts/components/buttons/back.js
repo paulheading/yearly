@@ -26,7 +26,7 @@ function backButtonClick() {
 }
 
 export default function () {
-  $.buttons.back.forEach((button) =>
+  $.button.backs.forEach((button) =>
     button.addEventListener("click", backButtonClick)
   );
 }

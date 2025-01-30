@@ -61,5 +61,5 @@ function saveButtonClick() {
 }
 
 export default function () {
-  $.buttons.save.addEventListener("click", saveButtonClick);
+  $.button.save.addEventListener("click", saveButtonClick);
 }

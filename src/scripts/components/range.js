@@ -1,16 +1,24 @@
 import $ from "~scripts/selectors";
-import { printSliderInputValue } from "~scripts/printers";
+import { printRangeInputValue } from "~scripts/printers";
 
-function handleSliderInput(params, callback) {
-  printSliderInputValue(params);
-  callback(params);
+function handleRangeInput(params, callback) {
+  printRangeInputValue(params);
+
+  let { $output } = params;
+
+  let card = $output.closest(".card-container")?.getAttribute("data-id");
+
+  let value = $output.innerText;
+
+  let title = $output.getAttribute("data-range");
+
+  if (callback) callback({ card, value, name });
 }
 
 export default function (callback) {
-  $.sliders.forEach(function ($slider) {
-    let $setting = $slider.closest(".setting");
-    let params = $.settingSelectors($setting);
+  $.setting.ranges.forEach(function ($range) {
+    let params = $.setting.selectors($range);
 
-    $slider.oninput = () => handleSliderInput(params, callback);
+    $range.oninput = () => handleRangeInput(params, callback);
   });
 }

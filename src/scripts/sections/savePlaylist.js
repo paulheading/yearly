@@ -3,4 +3,4 @@ import { setPlaylistImage } from "~scripts/setters";
 
 let refreshButtonClick = () => setPlaylistImage();
 
-$.buttons.refresh.addEventListener("click", refreshButtonClick);
+$.button.refresh.addEventListener("click", refreshButtonClick);
