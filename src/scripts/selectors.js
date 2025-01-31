@@ -1,20 +1,25 @@
 let $ = {
   query: {
-    button: (value) => $.query.selector(`button${value}`),
-    buttonAll: (value) => $.query.selectorAll(`button${value}`),
-    card: (value) => $.query.selector(`.card-container${value}`),
-    cardAll: (value) => $.query.selectorAll(`.card-container${value}`),
-    cardId: (value) => $.query.cardAll(`[data-id=${value}]`),
-    section: (value) => $.query.selector(`[data-section=${value}]`),
-    state: (value) => $.query.selector(`[data-state=${value}]`),
-    print: (value) => $.query.selector(`[data-print=${value}]`),
-    settingAll: (value) => $.query.selectorAll(`.editable.setting${value}`),
-    settingType: (value) => $.query.settingAll(`[data-type=${value}]`),
-    settingName: (value) => $.query.settingAll(`[data-name=${value}]`),
-    selector: (value) => document.querySelector(value),
-    selectorAll: (value) => document.querySelectorAll(value),
-    selectList: (value) => $.query.selector(`.select-form${value}`),
-    selectListAll: (value) => $.query.selectorAll(`.select-form${value}`),
+    button: (value = "") => $.query.selector(`button${value}`),
+    buttonAll: (value = "") => $.query.selectorAll(`button${value}`),
+    card: (value = "") => $.query.selector(`.card-container${value}`),
+    cardAll: (value = "") => $.query.selectorAll(`.card-container${value}`),
+    cardId: (value = "") => $.query.card(`[data-id=${value}]`),
+    state: (value = "") => $.query.selector(`[data-state=${value}]`),
+    print: (value = "") => $.query.selector(`[data-print=${value}]`),
+    section: (value = "") => $.query.selector(`[data-section=${value}]`),
+    selector: (value = "") => document.querySelector(value),
+    selectorAll: (value = "") => document.querySelectorAll(value),
+    selectList: (value = "") => $.query.selector(`.select-form${value}`),
+    selectListAll: (value = "") => $.query.selectorAll(`.select-form${value}`),
+    selectListSnake: function (value = "") {
+      return $.query.selectList(`[data-snake=${value}]`);
+    },
+    settingAll: function (value = "") {
+      return $.query.selectorAll(`.editable.setting${value}`);
+    },
+    settingType: (value = "") => $.query.settingAll(`[data-type=${value}]`),
+    settingName: (value = "") => $.query.settingAll(`[data-snake=${value}]`),
   },
 };
 
@@ -116,18 +121,19 @@ $.print = {
 };
 
 $.selectList = {
-  choose_source: $.query.selectList(".choose_source"),
-  year_added: $.query.selectList(".year_added"),
-  year_released: $.query.selectList(".year_released"),
+  choose_source: $.query.selectListSnake("choose_source"),
+  year_added: $.query.selectListSnake("year_added"),
+  year_released: $.query.selectListSnake("year_released"),
 };
 
 $.selectList.selectors = function ($form) {
+  let $parent = $form.parentElement;
   let $list = $form.querySelector(".select-form-list");
   let $items = $form.querySelectorAll(".select-form-item");
   let $button = $form.querySelector(".select-form-button");
   let data = {
     id: $button.getAttribute("data-id"),
-    select: $form.getAttribute("data-select"),
+    name: $parent.getAttribute("data-snake"),
   };
   let $announce = $form.querySelector(".select-form-announce");
 

@@ -2,19 +2,10 @@
 import { Toggle } from "paully";
 import { Check } from "paully/svgs";
 
-let { setting, setting_index, color } = Astro.props;
-
-let evenOrOdd = setting_index % 2 ? "even" : "odd";
-
-let containerProps = {
-  "class:list": ["setting", evenOrOdd, setting.editable && "editable"],
-  "data-type": setting.type,
-  "data-name": setting.data,
-};
+let { setting, containerProps, color } = Astro.props;
 
 let toggleProps = {
   checked: setting.value,
-  className: "toggle",
   color,
 };
 ---

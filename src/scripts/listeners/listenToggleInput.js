@@ -7,7 +7,7 @@ export default function (callback) {
     $input.addEventListener("change", function (event) {
       let card = $toggle.closest(".card-container")?.getAttribute("data-id");
 
-      let name = $toggle.getAttribute("data-name");
+      let name = $toggle.getAttribute("data-snake");
 
       let value = event.currentTarget.checked;
 

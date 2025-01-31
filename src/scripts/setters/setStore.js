@@ -19,8 +19,6 @@ function selectList({ card, value, name }) {
     value,
   };
 
-  console.log("select params: ", params);
-
   cardSetting(params);
 }
 
@@ -35,8 +33,6 @@ function rangeInput({ card, value, name }) {
     value,
   };
 
-  console.log("range params: ", params);
-
   cardSetting(params);
 }
 
@@ -48,8 +44,6 @@ function toggleInput({ card, value, name }) {
     setting,
     value,
   };
-
-  console.log("toggle params: ", params);
 
   cardSetting(params);
 }

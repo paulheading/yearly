@@ -32,6 +32,28 @@ settings.forEach(function (setting) {
     group++;
   }
 });
+
+function settingProps({ setting, color }) {
+  let evenOrOdd = setting.index % 2 ? "even" : "odd";
+
+  setting.evenOrOdd = evenOrOdd;
+
+  let containerProps = {
+    "class:list": [
+      "setting",
+      setting.evenOrOdd,
+      setting.editable && "editable",
+    ],
+    "data-type": setting.type,
+    "data-snake": setting.snake,
+  };
+
+  return {
+    containerProps,
+    setting,
+    color,
+  };
+}
 ---
 
 <script src="~scripts/components/card/settings.js"></script>
@@ -45,23 +67,17 @@ settings.forEach(function (setting) {
         {group.map(function (setting) {
           restartColors() ? (color_index = 0) : color_index++;
 
-          setting_index++;
-
-          let { type } = setting;
+          setting.index = setting_index++;
 
           let is = {
-            toggle: type == "toggle",
-            range: type == "range",
-            select: type == "select",
+            toggle: setting.type == "toggle",
+            range: setting.type == "range",
+            select: setting.type == "select",
           };
 
           let color = colors[color_index];
 
-          let props = {
-            setting,
-            setting_index,
-            color,
-          };
+          let props = settingProps({ setting, color });
 
           if (is.toggle) return <SettingsToggle {...props} />;
           if (is.range) return <SettingsRange {...props} />;

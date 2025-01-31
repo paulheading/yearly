@@ -1,28 +1,30 @@
 ---
-let { value, min, max, className } = Astro.props;
+let { className, setting } = Astro.props;
 
-let props = {
-  "class:list": ["slider", className],
-  value,
-  min,
-  max,
+let rangeProps = {
+  "class:list": ["range-input", className],
+  value: setting.value,
+  min: setting.range.min,
+  max: setting.range.max,
+  "data-type": setting.type,
+  "data-snake": setting.snake,
 };
 ---
 
-<div class="wrap-slider">
-  <input type="range" {...props} />
+<div class="container">
+  <input type="range" {...rangeProps} />
 </div>
 
 <style lang="scss">
   @use "~mixins" as *;
 
-  $size-slider-thumb: 1rem;
+  $size-range-thumb: 1rem;
 
   @mixin thumb {
-    @include size($size-slider-thumb);
+    @include size($size-range-thumb);
 
     & {
-      border-radius: $size-slider-thumb;
+      border-radius: $size-range-thumb;
       background-color: white;
       border: 2px solid black;
       -webkit-appearance: none;
@@ -32,16 +34,16 @@ let props = {
     }
   }
 
-  .wrap-slider {
-    padding-bottom: 8px;
-    padding-top: 8px;
+  .container {
+    padding-bottom: toRem(8);
+    padding-top: toRem(8);
   }
 
-  .slider {
+  .range-input {
     background-color: black;
+    height: toRem(2);
     cursor: pointer;
     display: block;
-    height: 2px;
     margin: 0;
 
     @include focus {
@@ -53,11 +55,11 @@ let props = {
     }
   }
 
-  .slider::-moz-range-thumb {
+  .range-input::-moz-range-thumb {
     @include thumb;
   }
 
-  .slider::-webkit-slider-thumb {
+  .range-input::-webkit-slider-thumb {
     @include thumb;
   }
 </style>

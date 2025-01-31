@@ -1,7 +1,6 @@
-import getYearAdded from "~scripts/getters/getYearAdded";
+import { getYearAdded } from "~scripts/getters";
 import { printTracksAdded } from "~scripts/printers";
-
-import year from "~scripts/filters/year";
+import { year } from "~scripts/filters";
 
 export default function ({ items, callback, results }) {
   items.forEach(function (item) {
@@ -14,6 +13,8 @@ export default function ({ items, callback, results }) {
 
     printTracksAdded();
 
-    if (year.noNewerThan(added_at, getYearAdded())) results.push(item);
+    if (!year.noNewerThan(added_at, getYearAdded())) return;
+
+    results.push(item);
   });
 }

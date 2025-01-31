@@ -100,21 +100,21 @@ function selectOptionByElement(element, parent) {
 
   let { $button, $items, data } = $.selectList.selectors($form);
 
+  let { name } = data;
+
   let value = element.getAttribute("data-id");
 
   $button.setAttribute("data-id", value);
 
   $button.innerText = element.innerText;
 
-  $items.forEach((item) => toggleActiveState(item, false));
-
-  element = toggleActiveState(element, true);
+  $items.forEach((item) => toggleActiveState(item, item == element));
 
   toggleDropdown(parent);
 
   announceOption(element.innerText, parent);
 
-  if (callback) callback({ card, value, name: data.select });
+  if (callback) callback({ card, value, name });
 }
 
 function announceOption(text, parent) {

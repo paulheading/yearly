@@ -1,9 +1,10 @@
-import store from "~data/store";
 import { displaySection, is } from "~scripts/helpers";
-import { getPlaylistItems, getUsersSavedTracks } from "~scripts/getters";
+import {
+  getPlaylistItems,
+  getUsersSavedTracks,
+  getSource,
+} from "~scripts/getters";
 import { setTracksAdded } from "~scripts/setters";
-
-import getSource from "./getSource";
 
 export let tracks = {
   keepGoing: true,
@@ -13,8 +14,6 @@ export let tracks = {
 };
 
 export default async function (callback) {
-  console.log("store: ", store);
-
   displaySection("tracks_added", "block");
 
   if (!is.sourceLikedSongs()) {

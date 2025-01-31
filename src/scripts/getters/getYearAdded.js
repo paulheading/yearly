@@ -1,15 +1,17 @@
 import $ from "~scripts/selectors";
+import { getDate } from "~scripts/getters";
 import { is } from "~scripts/helpers";
 
 export default function () {
-  return;
+  let { year } = getDate();
 
   if (is.playlistStyleCustom) {
-    let { data } = $.selectList.selectors($.select_year_added());
-    return data.id;
-  }
+    let { data } = $.selectList.selectors($.selectList.year_added);
 
-  let { year } = getDate();
+    let hasValue = data.id != 0;
+
+    return hasValue ? data.id : year;
+  }
 
   return year;
 }

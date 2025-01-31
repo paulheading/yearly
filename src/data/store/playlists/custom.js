@@ -1,6 +1,6 @@
 import settings from "~data/settings";
 import include from "~scripts/filters/include";
-import setTitleToData from "~scripts/setters/setTitleToData";
+import setTitleToLabel from "~scripts/setters/setTitleToSnakeCase";
 
 let custom = {
   id: "custom",
@@ -95,6 +95,6 @@ let custom = {
   ],
 };
 
-custom.content.filter(include.typeConfig)[0].settings.map(setTitleToData);
+custom.content.filter(include.typeConfig)[0].settings.map(setTitleToLabel);
 
 export default custom;

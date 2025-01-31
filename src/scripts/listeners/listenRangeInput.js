@@ -4,13 +4,15 @@ import { printRangeInputValue } from "~scripts/printers";
 function handleRangeInput(params, callback) {
   printRangeInputValue(params);
 
-  let { $output } = params;
+  let { $input, $output } = params;
 
   let card = $output.closest(".card-container")?.getAttribute("data-id");
 
-  let value = $output.innerText;
+  let value = Number($output.innerText);
 
-  let title = $output.getAttribute("data-range");
+  if (isNaN(value)) value = 0;
+
+  let name = $input.getAttribute("data-snake");
 
   if (callback) callback({ card, value, name });
 }

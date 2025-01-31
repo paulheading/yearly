@@ -1,17 +1,7 @@
 ---
 import SelectList from "~Components/SelectList";
 
-let { setting, setting_index } = Astro.props;
-
-setting = { ...setting };
-
-let evenOrOdd = setting_index % 2 ? "even" : "odd";
-
-let containerProps = {
-  "class:list": ["setting", evenOrOdd, setting.editable && "editable"],
-  "data-type": setting.type,
-  "data-name": setting.data,
-};
+let { setting, containerProps } = Astro.props;
 ---
 
 <li {...containerProps}>

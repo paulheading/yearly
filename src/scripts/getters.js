@@ -11,6 +11,8 @@ import getSource from "~scripts/getters/getSource";
 import getStore from "~scripts/getters/getStore";
 import getTracks from "~scripts/getters/getTracks";
 import getUsersSavedTracks from "~scripts/getters/getUsersSavedTracks";
+import getYearAdded from "~scripts/getters/getYearAdded";
+import getYearReleased from "~scripts/getters/getYearReleased";
 
 export {
   getAuthorization,
@@ -26,4 +28,6 @@ export {
   getStore,
   getTracks,
   getUsersSavedTracks,
+  getYearAdded,
+  getYearReleased,
 };

@@ -4,7 +4,7 @@ import setAccessToken from "~scripts/setters/setAccessToken";
 import setPlaylistImage from "~scripts/setters/setPlaylistImage";
 import setStore from "~scripts/setters/setStore";
 import setTracksAdded from "~scripts/setters/setTracksAdded";
-import setTitleToData from "~scripts/setters/setTitleToData";
+import setTitleToLabel from "~scripts/setters/setTitleToSnakeCase";
 import setUser from "~scripts/setters/setUser";
 
 export {
@@ -14,6 +14,6 @@ export {
   setPlaylistImage,
   setStore,
   setTracksAdded,
-  setTitleToData,
+  setTitleToLabel,
   setUser,
 };

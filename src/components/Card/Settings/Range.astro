@@ -1,23 +1,11 @@
 ---
 import RangeInput from "~Components/Range";
 
-let { setting, setting_index } = Astro.props;
-
-let { range } = setting;
-
-let evenOrOdd = setting_index % 2 ? "even" : "odd";
-
-let containerProps = {
-  "class:list": ["setting", evenOrOdd, setting.editable && "editable"],
-  "data-type": setting.type,
-  "data-name": setting.data,
-};
+let { setting, containerProps } = Astro.props;
 
 let rangeProps = {
-  value: setting.value,
-  className: evenOrOdd,
-  min: range.min,
-  max: range.max,
+  className: setting.evenOrOdd,
+  setting,
 };
 
 let minProps = {
@@ -29,7 +17,6 @@ let minProps = {
 
 let outputProps = {
   className: "output",
-  "data-range": setting.data,
 };
 ---
 

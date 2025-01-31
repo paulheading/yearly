@@ -1,8 +1,10 @@
 ---
-let { title, label, value, options, className } = Astro.props;
+let { title, snake, type, label, value, options, className } = Astro.props;
 
 let formProps = {
   "class:list": ["select-form", label ? "with-label" : "no-label", className],
+  "data-type": type,
+  "data-snake": snake,
 };
 
 let labelProps = {
