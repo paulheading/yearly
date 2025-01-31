@@ -5,12 +5,15 @@ function switchDisplay({ currentTarget, text, hide, show }) {
   let $switch = currentTarget.querySelector("u");
 
   hideShowElements(hide, show);
+
   $switch.innerText = text;
+
   show.querySelector("input, button").focus();
 }
 
 function customButtonClick(event) {
   let { currentTarget } = event;
+
   let { playlist, custom } = $.section;
 
   let playlistActive = playlist.style.display != "none";
@@ -27,7 +30,9 @@ function customButtonClick(event) {
     show: playlist,
   };
 
-  switchDisplay({ currentTarget, ...(playlistActive ? toCustom : toPlaylist) });
+  let contents = playlistActive ? toCustom : toPlaylist;
+
+  switchDisplay({ currentTarget, ...contents });
 }
 
 export default function () {

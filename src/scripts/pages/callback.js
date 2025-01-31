@@ -1,30 +1,23 @@
 import store from "~data/store";
 import user from "~data/user";
 
-import selectFormListener from "~scripts/components/select";
-import rangeInputListener from "~scripts/components/range";
-import toggleInputListener from "~scripts/components/toggle";
+import { displaySection, loading, usingLiveData } from "~scripts/helpers";
 
 import {
-  displaySection,
-  loading,
-  setAccessToken,
-  setUser,
-  usingLiveData,
-} from "~scripts/helpers";
-
-import {
-  customButtonListener,
-  infoButtonListener,
-  buildButtonListener,
-  backButtonListener,
-  saveButtonListener,
-  selectButtonListener,
-} from "~scripts/components/buttons";
+  listenSelectList,
+  listenRangeInput,
+  listenToggleInput,
+  listenCustomButton,
+  listenInfoButton,
+  listenBuildButton,
+  listenBackButton,
+  listenSaveButton,
+  listenSelectButton,
+} from "~scripts/listeners";
 
 import { getPlaylists } from "~scripts/getters";
 import { printFirstName, printSourcePlaylists } from "~scripts/printers";
-import { setStore } from "~scripts/setters";
+import { setAccessToken, setStore, setUser } from "~scripts/setters";
 
 function loadChooseCard() {
   function showElements() {
@@ -37,16 +30,16 @@ function createInteractiveDOM() {
   printFirstName();
   printSourcePlaylists();
 
-  toggleInputListener(setStore.toggleInput);
-  rangeInputListener(setStore.rangeInput);
-  selectFormListener(setStore.selectList);
+  listenToggleInput(setStore.toggleInput);
+  listenRangeInput(setStore.rangeInput);
+  listenSelectList(setStore.selectList);
 
-  infoButtonListener();
-  selectButtonListener();
-  customButtonListener();
-  buildButtonListener();
-  backButtonListener();
-  saveButtonListener();
+  listenInfoButton();
+  listenSelectButton();
+  listenCustomButton();
+  listenBuildButton();
+  listenBackButton();
+  listenSaveButton();
 }
 
 if (usingLiveData) {
