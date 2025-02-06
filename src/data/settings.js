@@ -30,11 +30,13 @@ let groups = {
     name: "duration",
     action: "ceiling",
   },
-  age: {
+  age: (value = null) => ({
     name: "age",
-    action: "ceiling",
-  },
+    action: value
+  })
 };
+
+
 
 export default {
   discovered_this_year,

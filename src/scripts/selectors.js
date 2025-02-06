@@ -133,12 +133,15 @@ $.selectList.selectors = function ($form) {
   let $button = $form.querySelector(".select-form-button");
   let data = {
     id: $button.getAttribute("data-id"),
-    name: $parent.getAttribute("data-snake"),
+    snake: $parent.getAttribute("data-snake"),
+    group: $parent.getAttribute("data-group"),
   };
   let $announce = $form.querySelector(".select-form-announce");
 
   return { $list, $items, $button, data, $announce };
 };
+
+// @TODO: improve this with a child selector function
 
 $.playlist = () => $.query.selector(".outer-window");
 $.playlist_name = () => $.playlist().querySelector(".name");

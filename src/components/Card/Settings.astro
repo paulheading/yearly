@@ -44,8 +44,9 @@ function settingProps({ setting, color }) {
       setting.evenOrOdd,
       setting.editable && "editable",
     ],
-    "data-type": setting.type,
+    "data-group": setting.group?.name,
     "data-snake": setting.snake,
+    "data-type": setting.type,
   };
 
   return {

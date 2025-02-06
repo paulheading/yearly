@@ -1,5 +1,7 @@
 import store from "~data/store";
 import settings from "~data/settings";
+import getConfigByGroup from "~scripts/getters/getConfigByGroup";
+import setAction from "~scripts/setters/setAction";
 
 function cardSetting({ card, setting, value }) {
   store.cards
@@ -8,10 +10,8 @@ function cardSetting({ card, setting, value }) {
     .settings.filter(({ title }) => title == setting)[0].value = value;
 }
 
-function selectList({ card, value, name }) {
-  if (!card) return;
-
-  let setting = settings[name];
+function selectList({ card, value, snake }) {
+  let setting = settings[snake];
 
   let params = {
     card,
@@ -20,6 +20,30 @@ function selectList({ card, value, name }) {
   };
 
   cardSetting(params);
+
+  let { self, others } = getConfigByGroup({ card, snake });
+
+  if (self.value) {
+    if (self.group.action) {
+      others.forEach((item) => {
+        let { action } = self.group;
+
+        if (action == "max") {
+          let params = { card, item, self };
+          setAction.max(params);
+        }
+      });
+    }
+  }
+
+  others.forEach(function (item) {
+    let { action } = item.group;
+
+    if (action == "max") {
+      let params = { card, item, self, older: false };
+      setAction.max(params);
+    }
+  });
 }
 
 function rangeInput({ card, value, name }) {

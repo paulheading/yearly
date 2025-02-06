@@ -1,5 +1,6 @@
 import $ from "~scripts/selectors";
 import { keyPress, preventDefault } from "~scripts/helpers";
+import { getPlaylistConfig } from "~scripts/getters";
 
 // https://www.freecodecamp.org/news/how-to-build-an-accessible-custom-dropdown-select-element/
 
@@ -100,7 +101,7 @@ function selectOptionByElement(element, parent) {
 
   let { $button, $items, data } = $.selectList.selectors($form);
 
-  let { name } = data;
+  let { snake, group } = data;
 
   let value = element.getAttribute("data-id");
 
@@ -114,7 +115,7 @@ function selectOptionByElement(element, parent) {
 
   announceOption(element.innerText, parent);
 
-  if (callback) callback({ card, value, name });
+  if (callback) callback({ card, value, snake, group });
 }
 
 function announceOption(text, parent) {
