@@ -6,6 +6,11 @@
 - Include or exclude tracks based on their use of explicit language 🟢
 - Refresh your playlist artwork by clicking on the image 🟢
 
+### Scenarios
+
+- Create a playlist from songs added in 2023
+- Create a playlist from songs added AND released in 2023
+
 ### Coming soon
 
 - Filter by artist gender. Blocker: need to cross reference results with the [Music Brainz](https://musicbrainz.org/) library 🟡
