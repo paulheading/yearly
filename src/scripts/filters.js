@@ -1,4 +1,4 @@
-import getStore from "~scripts/getters/getStore";
+import getStore from "~scripts/store/getStore";
 import pureInclude from "~scripts/filters/include";
 import pureExclude from "~scripts/filters/exclude";
 import pureLength from "~scripts/filters/length";

@@ -1,7 +1,7 @@
 import $ from "~scripts/selectors";
 import { resetCustomConfig } from "~scripts/setters";
 import { is } from "~scripts/helpers";
-import { getStore } from "~scripts/getters";
+import setStore from "~scripts/store/setStore";
 
 function removeSelectedState($card) {
   let { isSelected, targets, selectors } = $.card.selectors($card);
@@ -12,7 +12,11 @@ function removeSelectedState($card) {
   targets.forEach((item) => item.classList.remove($.state.selected));
   $config_pic.src = $config_pic.src.replace("config--active", "config");
   $select_button.innerText = "Select";
-  getStore().create.playlist.style = "";
+
+  setStore(function (store) {
+    store.create.playlist.style = id;
+    return store;
+  });
 }
 
 function addSelectedState($card) {
@@ -24,7 +28,11 @@ function addSelectedState($card) {
   targets.forEach((item) => item.classList.add($.state.selected));
   $config_pic.src = $config_pic.src.replace("config", "config--active");
   $select_button.innerText = "Selected";
-  getStore().create.playlist.style = id;
+
+  setStore(function (store) {
+    store.create.playlist.style = id;
+    return store;
+  });
 }
 
 function selectButtonClick(event) {

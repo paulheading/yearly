@@ -1,0 +1,36 @@
+---
+import { Loaded, Loader, NotLoaded, Wrap } from "paully";
+import Layout from "~Layouts/Main";
+import ChooseCardSection from "~Sections/ChooseCard";
+import SavePlaylistSection from "~Sections/SavePlaylist";
+import SharePlaylistSection from "~Sections/SharePlaylist";
+import EmptyPlaylistSection from "~Sections/EmptyPlaylist";
+import RecommendTracks from "~Sections/RecommendTracks";
+import TracksAdded from "~Sections/TracksAdded";
+
+import { seo } from "paully/data";
+
+let layoutProps = {
+  title: "Save | Yearly | Songs you discovered this year",
+  keywords: seo.keywords("yearly, spotify, songs, discover"),
+  description: "I'm a " + seo.job.title + ". " + seo.job.description,
+};
+---
+
+<script src="~scripts/pages/save.js"></script>
+
+<Layout {...layoutProps}>
+  <Wrap style={{ textAlign: "center" }}>
+    <NotLoaded>
+      <Loader style={{ margin: "auto" }} />
+      <TracksAdded />
+    </NotLoaded>
+    <Loaded>
+      <!-- <ChooseCardSection />
+      <SavePlaylistSection />
+      <SharePlaylistSection />
+      <EmptyPlaylistSection />
+      <RecommendTracks /> -->
+    </Loaded>
+  </Wrap>
+</Layout>

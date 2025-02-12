@@ -1,6 +1,6 @@
 import $ from "~scripts/selectors";
 import settings from "~data/settings";
-import setStore from "~scripts/setters/setStore";
+import setStore from "~scripts/store/setStore";
 
 export default function ({ card, item }) {
   let { value, snake } = item;

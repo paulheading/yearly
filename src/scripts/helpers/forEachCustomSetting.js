@@ -1,5 +1,5 @@
 import include from "~scripts/filters/include";
-import getStore from "~scripts/getters/getStore";
+import getStore from "~scripts/store/getStore";
 
 export default function (callback) {
   let card = getStore().cards.filter(include.idCustom)[0];

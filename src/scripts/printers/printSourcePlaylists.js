@@ -1,5 +1,5 @@
-import store from "~data/store";
 import $ from "~scripts/selectors";
+import getStore from "~scripts/store/getStore";
 
 function printSourceOption(source) {
   let $form = $.selectList.choose_source;
@@ -20,5 +20,5 @@ function printSourceOption(source) {
 }
 
 export default function () {
-  store.user.playlists.forEach(printSourceOption);
+  getStore().user.playlists.forEach(printSourceOption);
 }

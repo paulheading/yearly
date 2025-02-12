@@ -18,6 +18,8 @@ import { printPlaylist, printYearAdded } from "~scripts/printers";
 
 import { resetCustomConfig } from "~scripts/setters";
 
+import setStore from "~scripts/store/setStore";
+
 function buildButtonClick() {
   if (!is.playlistStyleCustom()) resetCustomConfig();
 
@@ -28,7 +30,7 @@ function buildButtonClick() {
 
   loading.currently(hideElements);
 
-  printYearAdded();
+  // printYearAdded();
 
   usingLiveData ? getTracks(displayResults) : displayResults(tracks);
 }
@@ -42,58 +44,66 @@ function handleEmptyPlaylist() {
 }
 
 function displayResults(items) {
-  console.log("results: ", items);
-
-  if (items.length) {
-    getPlaylistConfig().forEach(function ({ title, value }) {
-      console.log(title, "value: ", value);
-
-      if (!value) return;
-
-      // if (title == settings.in_recommends) {
-      // }
-
-      if (title == settings.least_popular_music) {
-        items = items.sort(byLowestPopularity);
-      }
-
-      if (title == settings.most_popular_music) {
-        items = items.sort(byHighestPopularity);
-      }
-
-      if (title == settings.explicit_music_only) {
-        items = items.filter(include.trackExplicit);
-      }
-
-      if (title == settings.no_explicit_music) {
-        items = items.filter(exclude.trackExplicit);
-      }
-
-      if (title == settings.min_length) {
-        items = items.filter((item) => length.trackMinimum(item, value));
-      }
-
-      if (title == settings.max_length) {
-        items = items.filter((item) => length.trackMaximum(item, value));
-      }
-
-      if (title == settings.year_released) {
-        items = items.filter(({ track }) => {
-          let { album } = track;
-          let release_year = album.release_date.slice(0, 4);
-
-          return release_year == value;
-        });
-      }
-    });
-  }
-
-  if (items.length < 10) getPlaylistRecommends(items);
-
-  if (!items.length) return handleEmptyPlaylist();
-
-  printPlaylist(items);
+  setStore(function (store) {
+    store.temp.tracks = items;
+    return store;
+  });
+  window.location.replace("/save");
 }
+
+// function displayResults(items) {
+//   console.log("results: ", items);
+
+//   if (items.length) {
+//     getPlaylistConfig().forEach(function ({ title, value }) {
+//       console.log(title, "value: ", value);
+
+//       if (!value) return;
+
+//       // if (title == settings.in_recommends) {
+//       // }
+
+//       if (title == settings.least_popular_music) {
+//         items = items.sort(byLowestPopularity);
+//       }
+
+//       if (title == settings.most_popular_music) {
+//         items = items.sort(byHighestPopularity);
+//       }
+
+//       if (title == settings.explicit_music_only) {
+//         items = items.filter(include.trackExplicit);
+//       }
+
+//       if (title == settings.no_explicit_music) {
+//         items = items.filter(exclude.trackExplicit);
+//       }
+
+//       if (title == settings.min_length) {
+//         items = items.filter((item) => length.trackMinimum(item, value));
+//       }
+
+//       if (title == settings.max_length) {
+//         items = items.filter((item) => length.trackMaximum(item, value));
+//       }
+
+//       if (title == settings.year_released) {
+//         items = items.filter(({ track }) => {
+//           let { album } = track;
+//           let release_year = album.release_date.slice(0, 4);
+
+//           return release_year == value;
+//         });
+//       }
+//     });
+//   }
+
+//   // if (items.length < 10) getPlaylistRecommends(items);
+
+//   // if (!items.length) return handleEmptyPlaylist();
+
+//   // printPlaylist(items);
+// }
 
 export default function () {
   $.button.build.addEventListener("click", buildButtonClick);

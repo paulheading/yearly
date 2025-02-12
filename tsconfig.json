@@ -13,7 +13,8 @@
       "~Components/*": ["./src/components/*.astro"],
       "~Markdown/*": ["./src/markdown/*.md"],
       "~Sections/*": ["./src/components/Sections/*.astro"],
-      "~Layouts/*": ["./src/layouts/*.astro"]
+      "~Layouts/*": ["./src/layouts/*.astro"],
+      "~cypress/*": ["./cypress/*"]
     }
   },
   "extends": "astro/tsconfigs/strict",

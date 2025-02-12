@@ -7,13 +7,14 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test":"npx cypress open"
+    "test": "npx cypress run --browser chrome",
+    "test:open": "npx cypress open"
   },
   "dependencies": {
     "@apollo/client": "^3.11.10",
-    "@astrojs/mdx": "^4.0.5",
+    "@astrojs/mdx": "^4.0.8",
     "@astrojs/sitemap": "^3.2.1",
-    "astro": "^5.1.6",
+    "astro": "^5.2.5",
     "buffer": "^6.0.3",
     "focus-visible": "^5.2.0",
     "gsap": "npm:@gsap/shockingly@^3.12.5",

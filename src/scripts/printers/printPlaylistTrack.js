@@ -1,8 +1,8 @@
 import $ from "~scripts/selectors";
-import store from "~data/store";
+import getStore from "~scripts/store/getStore";
 
 export default function (item, index) {
-  let clone = store.selected.track.cloneNode(true);
+  let clone = getStore().selected.track.cloneNode(true);
 
   let track_number = clone.querySelector(".number");
   let track_name = clone.querySelector(".track-name");

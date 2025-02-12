@@ -1,5 +1,7 @@
-import store from "~data/store";
-import { getCurrentUser, getStore } from "~scripts/getters";
+import getStore from "~scripts/store/getStore";
+import setStore from "~scripts/store/setStore";
+
+import { getCurrentUser } from "~scripts/getters";
 import { printFirstName } from "~scripts/printers";
 
 export default async function () {
@@ -11,11 +13,15 @@ export default async function () {
 
   fields.forEach((field) => delete user[field]);
 
-  store.user = {
-    ...getStore().user,
-    first_name,
-    ...user,
-  };
+  setStore(function (store) {
+    store.user = {
+      ...getStore().user,
+      first_name,
+      ...user,
+    };
+
+    return store;
+  });
 
   printFirstName();
 }

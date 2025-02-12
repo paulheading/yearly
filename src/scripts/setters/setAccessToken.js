@@ -1,5 +1,5 @@
 import { Buffer } from "buffer";
-import store from "~data/store";
+import setStore from "~scripts/store/setStore";
 
 export default async function () {
   let url_params = new URLSearchParams(window.location.search);
@@ -28,5 +28,8 @@ export default async function () {
 
   let data = await response.json();
 
-  store.access_token = data.access_token;
+  setStore(function (store) {
+    store.access_token = data.access_token;
+    return store;
+  });
 }

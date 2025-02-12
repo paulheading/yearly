@@ -1,3 +1,12 @@
+let $cy = {
+  button: {
+    back: ".back-button",
+    build: ".build-button",
+    login: ".login-button",
+    select: ".select-button",
+  },
+};
+
 let $ = {
   query: {
     button: (value = "") => $.query.selector(`button${value}`),
@@ -92,14 +101,14 @@ $.setting.selectors = function ($setting) {
 };
 
 $.button = {
-  backs: $.query.buttonAll(".back-button"),
-  build: $.query.button(".build-button"),
+  backs: $.query.buttonAll($cy.button.back),
+  build: $.query.button($cy.button.build),
   custom: $.query.button(".custom-button"),
   infos: $.query.buttonAll(".info-button"),
-  login: $.query.button(".login-button"),
+  login: $.query.button($cy.button.login),
   refresh: $.query.button(".refresh-artwork"),
   save: $.query.button(".save-button"),
-  selects: $.query.buttonAll(".select-button"),
+  selects: $.query.buttonAll($cy.button.select),
 };
 
 $.section = {
@@ -152,3 +161,4 @@ $.playlist_track = () => $.playlist_main().querySelector(".container");
 $.playlist_tracks = () => $.playlist_main().querySelectorAll(".container");
 
 export default $;
+export { $cy };

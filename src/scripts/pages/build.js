@@ -1,7 +1,8 @@
-import store from "~data/store";
 import user from "~data/user";
 
 import { displaySection, loading, usingLiveData } from "~scripts/helpers";
+
+import setStore from "~scripts/store/setStore";
 
 import {
   listenSelectList,
@@ -17,7 +18,15 @@ import {
 
 import { getPlaylists } from "~scripts/getters";
 import { printFirstName, printSourcePlaylists } from "~scripts/printers";
-import { setAccessToken, setStore, setUser } from "~scripts/setters";
+import { setAccessToken, setUser } from "~scripts/setters";
+
+import setToggleInput from "~scripts/setters/setToggleInput";
+import setRangeInput from "~scripts/setters/setRangeInput";
+import setSelectList from "~scripts/setters/setSelectList";
+
+import checkStoreExists from "~scripts/store/checkStoreExists";
+
+checkStoreExists();
 
 function loadChooseCard() {
   function showElements() {
@@ -30,9 +39,9 @@ function createInteractiveDOM() {
   printFirstName();
   printSourcePlaylists();
 
-  listenToggleInput(setStore.toggleInput);
-  listenRangeInput(setStore.rangeInput);
-  listenSelectList(setStore.selectList);
+  listenToggleInput(setToggleInput);
+  listenRangeInput(setRangeInput);
+  listenSelectList(setSelectList);
 
   listenInfoButton();
   listenSelectButton();
@@ -52,7 +61,10 @@ if (usingLiveData) {
 
 if (!usingLiveData) {
   async function setUser() {
-    store.user = user;
+    setStore(function (store) {
+      store.user = user;
+      return store;
+    });
   }
 
   setUser().then(createInteractiveDOM).then(loadChooseCard);

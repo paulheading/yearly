@@ -1,10 +1,13 @@
 import $ from "~scripts/selectors";
-import store from "~data/store";
+import setStore from "~scripts/store/setStore";
 
 export default function () {
   let $form = $.selectList.choose_source;
 
   let { data } = $.selectList.selectors($form);
 
-  store.selected.source = data.id;
+  setStore(function (store) {
+    store.selected.source = data.id;
+    return store;
+  });
 }

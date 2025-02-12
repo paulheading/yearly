@@ -1,8 +1,8 @@
-import store from "~data/store";
-
 import { byName } from "~scripts/sorters";
 import { include } from "~scripts/filters";
 import { getData } from "~scripts/getters";
+
+import setStore from "~scripts/store/setStore";
 
 async function getPlaylists(offset, limit) {
   let playlists = await getData(`me/playlists?offset=${offset}&limit=${limit}`);
@@ -51,5 +51,9 @@ export default async function () {
 
   results = results.sort(byName);
 
-  store.user.playlists = results;
+  setStore(function (store) {
+    store.user.playlists = results;
+
+    return store;
+  });
 }

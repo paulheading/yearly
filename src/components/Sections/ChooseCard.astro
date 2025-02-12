@@ -1,7 +1,7 @@
 ---
 import { SolidButton, Wrap } from "paully";
 
-import getStore from "~scripts/getters/getStore";
+import store from "~data/store";
 
 import Card from "~Components/Card";
 import Section from "~Components/Section";
@@ -15,8 +15,9 @@ let sectionProps = {
   },
 };
 
-let { query } = getStore();
-let personals = [query.card.cindy, query.card.badjo];
+let { query } = store;
+
+let personals = [query.card.byId("cindy"), query.card.byId("badjo")];
 ---
 
 <Section {...sectionProps}>
@@ -42,7 +43,7 @@ let personals = [query.card.cindy, query.card.badjo];
         {personals.map((person) => <Card {...person} />)}
       </Section>
       <Section name="custom" style={{ display: "none" }}>
-        <Card {...query.card.custom} />
+        <Card {...query.card.byId("custom")} />
       </Section>
     </Wrap>
     <Wrap style={{ marginTop: "2rem" }}>

@@ -9,7 +9,6 @@ import getPlaylistRecommends from "~scripts/getters/getPlaylistRecommends";
 import getPlaylists from "~scripts/getters/getPlaylists";
 import getRecommends from "~scripts/getters/getRecommends";
 import getSource from "~scripts/getters/getSource";
-import getStore from "~scripts/getters/getStore";
 import getTracks from "~scripts/getters/getTracks";
 import getUsersSavedTracks from "~scripts/getters/getUsersSavedTracks";
 import getYearAdded from "~scripts/getters/getYearAdded";
@@ -27,7 +26,6 @@ export {
   getPlaylists,
   getRecommends,
   getSource,
-  getStore,
   getTracks,
   getUsersSavedTracks,
   getYearAdded,

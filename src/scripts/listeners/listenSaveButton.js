@@ -1,6 +1,8 @@
 import $ from "~scripts/selectors";
 import { displaySection, loading, postData } from "~scripts/helpers";
-import { getData, getStore } from "~scripts/getters";
+import { getData } from "~scripts/getters";
+
+import getStore from "~scripts/store/getStore";
 
 function postPlaylistData() {
   let playlist = {

@@ -2,9 +2,10 @@ import cindy from "~data/store/playlists/cindy";
 import badjo from "~data/store/playlists/badjo";
 import custom from "~data/store/playlists/custom";
 
-export default {
-  template: {
+let store = {
+  temp: {
     track: null,
+    tracks: [],
   },
   selected: {
     source: 0,
@@ -27,4 +28,16 @@ export default {
     playlists: [],
   },
   cards: [cindy, badjo, custom],
+  query: {
+    card: {
+      byId: function (value) {
+        return store.cards.filter(({ id }) => id == value)[0];
+      },
+      contentByType: function (card, value) {
+        return card.content.filter(({ type }) => type == value)[0];
+      },
+    },
+  },
 };
+
+export default store;
