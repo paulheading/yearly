@@ -1,5 +1,5 @@
 import $ from "~scripts/selectors";
-import { displaySection, hideShowElements } from "~scripts/helpers";
+import { hideShowElements } from "~scripts/helpers";
 
 function currently(callback) {
   callback();
@@ -8,7 +8,6 @@ function currently(callback) {
 
 function complete(callback) {
   setTimeout(function () {
-    displaySection("tracks_added", "none");
     hideShowElements($.not_loaded, $.loaded);
     callback();
   }, 1000);

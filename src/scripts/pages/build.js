@@ -12,7 +12,6 @@ import {
   listenInfoButton,
   listenBuildButton,
   listenBackButton,
-  listenSaveButton,
   listenSelectButton,
 } from "~scripts/listeners";
 
@@ -29,10 +28,9 @@ import checkStoreExists from "~scripts/store/checkStoreExists";
 checkStoreExists();
 
 function loadChooseCard() {
-  function showElements() {
+  loading.complete(function () {
     displaySection("choose_card", "block");
-  }
-  loading.complete(showElements);
+  });
 }
 
 function createInteractiveDOM() {
@@ -48,7 +46,6 @@ function createInteractiveDOM() {
   listenCustomButton();
   listenBuildButton();
   listenBackButton();
-  listenSaveButton();
 }
 
 if (usingLiveData) {

@@ -1,7 +1,6 @@
 ---
 import { Loaded, Loader, NotLoaded, Wrap } from "paully";
 import Layout from "~Layouts/Main";
-import ChooseCardSection from "~Sections/ChooseCard";
 import SavePlaylistSection from "~Sections/SavePlaylist";
 import SharePlaylistSection from "~Sections/SharePlaylist";
 import EmptyPlaylistSection from "~Sections/EmptyPlaylist";
@@ -26,11 +25,10 @@ let layoutProps = {
       <TracksAdded />
     </NotLoaded>
     <Loaded>
-      <!-- <ChooseCardSection />
       <SavePlaylistSection />
       <SharePlaylistSection />
       <EmptyPlaylistSection />
-      <RecommendTracks /> -->
+      <RecommendTracks />
     </Loaded>
   </Wrap>
 </Layout>

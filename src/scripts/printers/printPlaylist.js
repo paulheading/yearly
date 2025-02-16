@@ -1,12 +1,10 @@
 import $ from "~scripts/selectors";
 
-import getStore from "~scripts/store/getStore";
-
 import { printPlaylistTrack } from "~scripts/printers";
 
-import { create, displaySection, loading } from "~scripts/helpers";
+import { create } from "~scripts/helpers";
 
-import { setPlaylistImage } from "~scripts/setters";
+import { printPlaylistImage } from "~scripts/printers";
 
 import setStore from "~scripts/store/setStore";
 
@@ -16,32 +14,27 @@ import setStore from "~scripts/store/setStore";
 
 export default function (tracks) {
   setStore(function (store) {
+    let { user } = store;
+
+    let name = create.playlistName();
+
+    store.create.playlist.name = name;
     store.create.playlist.tracks = tracks;
-
     // store.create.playlist.tracks = tracks.filter(exclude.playlistExcess);
-
     // store.create.playlist.excess = tracks.filter(include.playlistExcess);
 
-    store.create.playlist.name = create.playlistName();
-
-    $.playlist_name().innerText = getStore().create.playlist.name;
-    $.playlist_owner().innerText = getStore().user.display_name;
-    $.playlist_owner().href = getStore().user.external_urls.spotify;
-
-    if (!store.selected.track) store.selected.track = $.playlist_track();
-
-    $.playlist_tracks().forEach(($track) => $track.remove());
-
-    store.create.playlist.tracks.forEach(printPlaylistTrack);
-
-    setPlaylistImage();
+    $.playlist_name().innerText = name;
+    $.playlist_owner().innerText = user.display_name;
+    $.playlist_owner().href = user.external_urls.spotify;
 
     return store;
   });
 
-  function showElements() {
-    displaySection("save_playlist", "block");
-  }
+  printPlaylistImage();
 
-  loading.complete(showElements);
+  let template = $.playlist_track();
+
+  $.playlist_tracks().forEach(($track) => $track.remove());
+
+  tracks.forEach((track, index) => printPlaylistTrack(track, index, template));
 }

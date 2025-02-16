@@ -46,6 +46,11 @@ function selectButtonClick(event) {
 
   !isSelected ? addSelectedState($card) : removeSelectedState($card);
 
+  setStore(function (store) {
+    store.create.playlist.style = $card.getAttribute("data-id");
+    return store;
+  });
+
   if (!is.playlistStyleCustom()) resetCustomConfig();
 }
 

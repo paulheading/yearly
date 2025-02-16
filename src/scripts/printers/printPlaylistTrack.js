@@ -1,17 +1,19 @@
 import $ from "~scripts/selectors";
-import getStore from "~scripts/store/getStore";
 
-export default function (item, index) {
-  let clone = getStore().selected.track.cloneNode(true);
+export default function (item, index, template) {
+  template = template.cloneNode(true);
 
-  let track_number = clone.querySelector(".number");
-  let track_name = clone.querySelector(".track-name");
-  let artist_name = clone.querySelector(".artist-name");
+  let { track } = item;
+  let { artists } = track;
 
-  track_number.innerText = index + 1;
-  track_name.innerText = item.track.name;
-  artist_name.innerText = item.track.artists[0].name;
-  artist_name.href = item.track.artists[0].external_urls.spotify;
+  let $number = template.querySelector(".number");
+  let $name = template.querySelector(".track-name");
+  let $artist_name = template.querySelector(".artist-name");
 
-  $.playlist_main().append(clone);
+  $number.innerText = index + 1;
+  $name.innerText = track.name;
+  $artist_name.innerText = artists[0].name;
+  $artist_name.href = artists[0].external_urls.spotify;
+
+  $.playlist_main().append(template);
 }

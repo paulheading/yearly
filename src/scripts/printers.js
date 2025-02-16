@@ -1,5 +1,6 @@
 import printFirstName from "~scripts/printers/printFirstName";
 import printPlaylist from "~scripts/printers/printPlaylist";
+import printPlaylistImage from "~scripts/printers/printPlaylistImage";
 import printPlaylistTrack from "~scripts/printers/printPlaylistTrack";
 import printRangeInputValue from "~scripts/printers/printRangeInputValue";
 import printSourcePlaylists from "~scripts/printers/printSourcePlaylists";
@@ -9,6 +10,7 @@ import printYearAdded from "~scripts/printers/printYearAdded";
 export {
   printFirstName,
   printPlaylist,
+  printPlaylistImage,
   printPlaylistTrack,
   printRangeInputValue,
   printSourcePlaylists,

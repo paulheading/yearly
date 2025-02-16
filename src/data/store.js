@@ -3,10 +3,6 @@ import badjo from "~data/store/playlists/badjo";
 import custom from "~data/store/playlists/custom";
 
 let store = {
-  temp: {
-    track: null,
-    tracks: [],
-  },
   selected: {
     source: 0,
     track: null,

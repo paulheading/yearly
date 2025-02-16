@@ -1,28 +1,25 @@
 import $ from "~scripts/selectors";
 import { displaySection, loading } from "~scripts/helpers";
-
 import { resetTracksAdded } from "~scripts/setters";
 
-function hideElements() {
-  let sections = [
-    "save_playlist",
-    "share_playlist",
-    "empty_playlist",
-    "tracks_added",
-    "recommend_tracks",
-  ];
-
-  sections.forEach((name) => displaySection(name, "none"));
-}
-
-function showElements() {
-  displaySection("choose_card", "block");
-}
+let sections = [
+  "save_playlist",
+  "share_playlist",
+  "empty_playlist",
+  "tracks_added",
+  "recommend_tracks",
+];
 
 function backButtonClick() {
   resetTracksAdded();
-  loading.currently(hideElements);
-  loading.complete(showElements);
+
+  loading.currently(function () {
+    sections.forEach((name) => displaySection(name, "none"));
+  });
+
+  loading.complete(function () {
+    displaySection("choose_card", "block");
+  });
 }
 
 export default function () {

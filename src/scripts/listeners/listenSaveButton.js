@@ -24,16 +24,10 @@ function postTrackData(playlist) {
   return postData(tracks.path, { uris: tracks.uris });
 }
 
-function hideElements() {
-  displaySection("save_playlist", "none");
-}
-
-function showElements() {
-  displaySection("share_playlist", "block");
-}
-
 function saveButtonClick() {
-  loading.currently(hideElements);
+  loading.currently(function () {
+    displaySection("save_playlist", "none");
+  });
   postPlaylistData()
     .then(postTrackData)
     .then(function () {
@@ -58,7 +52,9 @@ function saveButtonClick() {
       });
     })
     .then(function () {
-      loading.complete(showElements);
+      loading.complete(function () {
+        displaySection("share_playlist", "block");
+      });
     });
 }
 

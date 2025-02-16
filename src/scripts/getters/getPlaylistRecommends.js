@@ -15,9 +15,7 @@ export default function (tracks) {
   //   "seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA"
   // );
 
-  function showElements() {
+  loading.complete(function () {
     displaySection("recommend_tracks", "block");
-  }
-
-  loading.complete(showElements);
+  });
 }

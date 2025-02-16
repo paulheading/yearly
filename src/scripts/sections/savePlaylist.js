@@ -1,6 +1,6 @@
 import $ from "~scripts/selectors";
-import { setPlaylistImage } from "~scripts/setters";
+import { printPlaylistImage } from "~scripts/printers";
 
-let refreshButtonClick = () => setPlaylistImage();
+let refreshButtonClick = () => printPlaylistImage();
 
 $.button.refresh.addEventListener("click", refreshButtonClick);
