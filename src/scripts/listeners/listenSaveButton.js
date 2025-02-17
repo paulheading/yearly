@@ -3,11 +3,9 @@ import loadInProgress from "~scripts/loaders/loadInProgress";
 import loadComplete from "~scripts/loaders/loadComplete";
 
 import { displaySection } from "~scripts/helpers";
-import { getData } from "~scripts/getters";
-
-import getStore from "~scripts/store/getStore";
 import postPlaylistData from "~scripts/posters/postPlaylistData";
 import postTrackData from "~scripts/posters/postTrackData";
+import getSavedPlaylistDetails from "~scripts/getters/getSavedPlaylistDetails";
 
 let hideSections = ["save_playlist", "tracks_added"];
 
@@ -20,26 +18,13 @@ function saveButtonClick() {
 
   postPlaylistData()
     .then(postTrackData)
-    .then(function () {
-      getData(`users/${getStore().user.id}/playlists`).then(function ({
-        items,
-      }) {
-        let foundPlaylist = false;
-        let index = 0;
-        let playlist = {};
+    .then(getSavedPlaylistDetails)
+    .then(function ({ external_urls }) {
+      let { spotify } = external_urls;
+      let { share_link } = $.print;
 
-        while (!foundPlaylist) {
-          if (items[index].name == getStore().create.playlist.name) {
-            playlist = items[index];
-            foundPlaylist = true;
-          } else {
-            index++;
-          }
-        }
-
-        $.print.share_link.innerText = playlist.external_urls.spotify;
-        $.print.share_link.href = playlist.external_urls.spotify;
-      });
+      share_link.innerText = spotify.replace("https://", "");
+      share_link.href = spotify;
     })
     .then(function () {
       loadComplete(function () {
