@@ -1,6 +1,8 @@
 // import { getRecommends } from "~scripts/getters";
 
-import { displaySection, loading } from "~scripts/helpers";
+import loadComplete from "~scripts/loaders/loadComplete";
+
+import { displaySection } from "~scripts/helpers";
 
 export default function (tracks) {
   console.log("find recommends for: ", tracks);
@@ -15,7 +17,7 @@ export default function (tracks) {
   //   "seed_artists=4NHQUGzhtTLFvgF5SZesLK&seed_genres=classical%2Ccountry&seed_tracks=0c6xIDDpzE81m2q797ordA"
   // );
 
-  loading.complete(function () {
+  loadComplete(function () {
     displaySection("recommend_tracks", "block");
   });
 }

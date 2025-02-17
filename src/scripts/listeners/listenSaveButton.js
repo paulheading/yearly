@@ -1,33 +1,19 @@
 import $ from "~scripts/selectors";
-import { displaySection, loading, postData } from "~scripts/helpers";
+import loadInProgress from "~scripts/loaders/loadInProgress";
+import loadComplete from "~scripts/loaders/loadComplete";
+
+import { displaySection } from "~scripts/helpers";
 import { getData } from "~scripts/getters";
 
 import getStore from "~scripts/store/getStore";
-
-function postPlaylistData() {
-  let playlist = {
-    path: "users/" + getStore().user.id + "/playlists",
-    details: {
-      name: getStore().create.playlist.name,
-      description: "Yearly generated playlist",
-      public: false,
-    },
-  };
-  return postData(playlist.path, { ...playlist.details });
-}
-
-function postTrackData(playlist) {
-  let tracks = {
-    path: "playlists/" + playlist.id + "/tracks",
-    uris: getStore().create.playlist.tracks.map(({ track }) => track.uri),
-  };
-  return postData(tracks.path, { uris: tracks.uris });
-}
+import postPlaylistData from "~scripts/posters/postPlaylistData";
+import postTrackData from "~scripts/posters/postTrackData";
 
 function saveButtonClick() {
-  loading.currently(function () {
+  loadInProgress(function () {
     displaySection("save_playlist", "none");
   });
+
   postPlaylistData()
     .then(postTrackData)
     .then(function () {
@@ -52,7 +38,7 @@ function saveButtonClick() {
       });
     })
     .then(function () {
-      loading.complete(function () {
+      loadComplete(function () {
         displaySection("share_playlist", "block");
       });
     });

@@ -1,5 +1,7 @@
 import $ from "~scripts/selectors";
-import { displaySection, loading } from "~scripts/helpers";
+import loadInProgress from "~scripts/loaders/loadInProgress";
+
+import { displaySection } from "~scripts/helpers";
 import { resetTracksAdded } from "~scripts/setters";
 
 let sections = [
@@ -13,13 +15,11 @@ let sections = [
 function backButtonClick() {
   resetTracksAdded();
 
-  loading.currently(function () {
+  loadInProgress(function () {
     sections.forEach((name) => displaySection(name, "none"));
   });
 
-  loading.complete(function () {
-    displaySection("choose_card", "block");
-  });
+  window.location.replace("/build");
 }
 
 export default function () {

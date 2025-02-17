@@ -1,87 +1,28 @@
-import checkStoreExists from "~scripts/store/checkStoreExists";
-import settings from "~data/settings";
 import tracks from "~data/tracks";
+import loadPage from "~scripts/loaders/loadPage";
+import loadInProgress from "~scripts/loaders/loadInProgress";
+import getTracks from "~scripts/getters/getTracks";
+import filterResults from "~scripts/filters/filterResults";
 
-import { usingLiveData, displaySection, loading } from "~scripts/helpers";
-import {
-  printPlaylist,
-  printYearAdded,
-  printLocalTracks,
-} from "~scripts/printers";
+import { usingLiveData, displaySection } from "~scripts/helpers";
+import { listenBackButton, listenSaveButton } from "~scripts/listeners";
+import { printYearAdded, printLocalTracks } from "~scripts/printers";
 
-import {
-  getPlaylistConfig,
-  getPlaylistRecommends,
-  getTracks,
-} from "~scripts/getters";
-
-checkStoreExists();
-
-loading.currently(function () {
-  displaySection("tracks_added", "block");
-});
-
-printYearAdded();
-
-function simulateLoading(callback) {
-  printLocalTracks(tracks.length);
-  callback(tracks);
-}
-
-usingLiveData ? getTracks(displayResults) : simulateLoading(displayResults);
-
-function displayResults(items) {
-  if (items.length) {
-    getPlaylistConfig().forEach(function ({ title, value }) {
-      console.log(title, "value: ", value);
-
-      if (!value) return;
-
-      // if (title == settings.in_recommends) {
-      // }
-
-      if (title == settings.least_popular_music) {
-        items = items.sort(byLowestPopularity);
-      }
-
-      if (title == settings.most_popular_music) {
-        items = items.sort(byHighestPopularity);
-      }
-
-      if (title == settings.explicit_music_only) {
-        items = items.filter(include.trackExplicit);
-      }
-
-      if (title == settings.no_explicit_music) {
-        items = items.filter(exclude.trackExplicit);
-      }
-
-      if (title == settings.min_length) {
-        items = items.filter((item) => length.trackMinimum(item, value));
-      }
-
-      if (title == settings.max_length) {
-        items = items.filter((item) => length.trackMaximum(item, value));
-      }
-
-      if (title == settings.year_released) {
-        items = items.filter(({ track }) => {
-          let { album } = track;
-          let release_year = album.release_date.slice(0, 4);
-
-          return release_year == value;
-        });
-      }
-    });
-  }
-
-  if (items.length < 10) getPlaylistRecommends(items);
-
-  if (!items.length) return handleEmptyPlaylist();
-
-  printPlaylist(items);
-
-  loading.complete(function () {
-    displaySection("save_playlist", "block");
+loadPage(function () {
+  loadInProgress(function () {
+    displaySection("tracks_added", "block");
   });
-}
+})
+  .then(function () {
+    printYearAdded();
+    listenSaveButton();
+    listenBackButton();
+  })
+  .then(function () {
+    if (usingLiveData) {
+      getTracks(displayResults);
+    } else {
+      printLocalTracks(tracks.length);
+      filterResults(tracks);
+    }
+  });
