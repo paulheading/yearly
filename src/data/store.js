@@ -3,6 +3,7 @@ import badjo from "~data/store/playlists/badjo";
 import custom from "~data/store/playlists/custom";
 
 let store = {
+  access_token: "",
   selected: {
     source: 0,
     track: null,

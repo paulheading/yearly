@@ -1,6 +1,6 @@
-import checkStoreExists from "~scripts/store/checkStoreExists";
+import checkStoreState from "~scripts/store/checkStoreState";
 
 export default async function (callback) {
-  checkStoreExists();
+  checkStoreState();
   callback();
 }

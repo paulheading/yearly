@@ -2,10 +2,11 @@ import $ from "~scripts/selectors";
 import loadInProgress from "~scripts/loaders/loadInProgress";
 import loadComplete from "~scripts/loaders/loadComplete";
 
-import { displaySection } from "~scripts/helpers";
+import displaySection from "~scripts/helpers/displaySection";
 import postPlaylistData from "~scripts/posters/postPlaylistData";
 import postTrackData from "~scripts/posters/postTrackData";
 import getSavedPlaylistDetails from "~scripts/getters/getSavedPlaylistDetails";
+import checkStoreState from "~scripts/store/checkStoreState";
 
 let hideSections = ["save_playlist", "tracks_added"];
 
@@ -30,7 +31,8 @@ function saveButtonClick() {
       loadComplete(function () {
         displaySection("share_playlist", "block");
       });
-    });
+    })
+    .then(checkStoreState);
 }
 
 export default function () {

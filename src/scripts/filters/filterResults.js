@@ -1,19 +1,11 @@
 import settings from "~data/settings";
-
 import getPlaylistConfig from "~scripts/getters/getPlaylistConfig";
-import getPlaylistRecommends from "~scripts/getters/getPlaylistRecommends";
-import printPlaylist from "~scripts/printers/printPlaylist";
-import loadComplete from "~scripts/loaders/loadComplete";
-import displaySection from "~scripts/helpers/displaySection";
 
 import { length, include, exclude } from "~scripts/filters";
 import { byLowestPopularity, byHighestPopularity } from "~scripts/sorters";
 
-export default function (items) {
-  if (!items.length) {
-    alert("got no songs");
-    return;
-  }
+export default async function (items) {
+  if (!items.length) return items;
 
   getPlaylistConfig().forEach(function ({ title, value }) {
     console.log(title, "value: ", value);
@@ -57,11 +49,5 @@ export default function (items) {
     }
   });
 
-  if (items.length < 10) getPlaylistRecommends(items);
-
-  printPlaylist(items);
-
-  loadComplete(function () {
-    displaySection("save_playlist", "block");
-  });
+  return items;
 }

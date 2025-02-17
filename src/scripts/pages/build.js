@@ -1,4 +1,4 @@
-import loadPage from "~scripts/loaders/loadPage";
+import checkStoreState from "~scripts/store/checkStoreState";
 import loadComplete from "~scripts/loaders/loadComplete";
 import setStore from "~scripts/store/setStore";
 import user from "~data/user";
@@ -25,29 +25,37 @@ import {
   setUser,
 } from "~scripts/setters";
 
-loadPage(function () {
-  if (usingLiveData) {
-    setAccessToken().then(setUser).then(getPlaylists);
-  } else {
-    setStore(function (store) {
-      store.user = user;
-      return store;
-    });
-  }
-})
-  .then(function () {
-    printFirstName();
-    printSourcePlaylists();
-    listenToggleInput(setToggleInput);
-    listenRangeInput(setRangeInput);
-    listenSelectList(setSelectList);
-    listenInfoButton();
-    listenSelectButton();
-    listenCustomButton();
-    listenBuildButton();
-  })
-  .then(function () {
-    loadComplete(function () {
-      displaySection("choose_card", "block");
-    });
+function createInteractiveDOM() {
+  printFirstName();
+  printSourcePlaylists();
+  listenToggleInput(setToggleInput);
+  listenRangeInput(setRangeInput);
+  listenSelectList(setSelectList);
+  listenInfoButton();
+  listenSelectButton();
+  listenCustomButton();
+  listenBuildButton();
+}
+
+function displayPage() {
+  loadComplete(function () {
+    displaySection("choose_card", "block");
   });
+}
+
+if (usingLiveData) {
+  setAccessToken()
+    .then(setUser)
+    .then(getPlaylists)
+    .then(checkStoreState)
+    .then(createInteractiveDOM)
+    .then(displayPage);
+} else {
+  setStore(function (store) {
+    store.user = user;
+    return store;
+  })
+    .then(checkStoreState)
+    .then(createInteractiveDOM)
+    .then(displayPage);
+}

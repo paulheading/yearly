@@ -13,7 +13,7 @@ export let tracks = {
   limit: 20,
 };
 
-export default async function (callback) {
+export default async function () {
   displaySection("tracks_added", "block");
 
   if (!is.sourceLikedSongs()) {
@@ -36,5 +36,5 @@ export default async function (callback) {
     }
   }
 
-  callback(tracks.results);
+  return tracks.results;
 }

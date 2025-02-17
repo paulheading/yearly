@@ -1,7 +1,7 @@
 import getStore from "~scripts/store/getStore";
 import createStore from "~scripts/store/createStore";
 
-export default function (callback) {
+export default async function (callback) {
   let store = getStore();
 
   let update = callback(store);

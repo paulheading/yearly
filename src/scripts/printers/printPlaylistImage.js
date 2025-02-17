@@ -1,5 +1,6 @@
 import $ from "~scripts/selectors";
 import create from "~scripts/helpers/create";
+import setStore from "~scripts/store/setStore";
 
 export default function () {
   let source = $.playlist_image().src;
@@ -15,4 +16,9 @@ export default function () {
   let path = "/playlist" + next + ".jpg";
 
   $.playlist_image().src = path;
+
+  setStore(function (store) {
+    store.create.playlist.image = path;
+    return store;
+  });
 }

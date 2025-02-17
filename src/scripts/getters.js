@@ -1,4 +1,4 @@
-import getAuthorization from "~scripts/getters/getAuthorization";
+import getAuth from "~scripts/getters/getAuth";
 import getConfigByGroup from "~scripts/getters/getConfigByGroup";
 import getCurrentUser from "~scripts/getters/getCurrentUser";
 import getData from "~scripts/getters/getData";
@@ -15,7 +15,7 @@ import getYearAdded from "~scripts/getters/getYearAdded";
 import getYearReleased from "~scripts/getters/getYearReleased";
 
 export {
-  getAuthorization,
+  getAuth,
   getConfigByGroup,
   getCurrentUser,
   getData,
