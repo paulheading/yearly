@@ -20,7 +20,7 @@ loadPage(function () {
   })
   .then(function () {
     if (usingLiveData) {
-      getTracks(displayResults);
+      getTracks(filterResults);
     } else {
       printLocalTracks(tracks.length);
       filterResults(tracks);

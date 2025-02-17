@@ -1,9 +1,3 @@
-import $ from "~scripts/selectors";
+import getStore from "~scripts/store/getStore";
 
-export default function () {
-  let $form = $.selectList.choose_source;
-
-  let { data } = $.selectList.selectors($form);
-
-  return data.id;
-}
+export default () => getStore().selected.source;

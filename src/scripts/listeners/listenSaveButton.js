@@ -9,9 +9,13 @@ import getStore from "~scripts/store/getStore";
 import postPlaylistData from "~scripts/posters/postPlaylistData";
 import postTrackData from "~scripts/posters/postTrackData";
 
+let hideSections = ["save_playlist", "tracks_added"];
+
 function saveButtonClick() {
   loadInProgress(function () {
-    displaySection("save_playlist", "none");
+    hideSections.forEach(function (item) {
+      displaySection(item, "none");
+    });
   });
 
   postPlaylistData()
