@@ -11,7 +11,7 @@
       "~mixins": ["./src/styles/_mixins.scss"],
       "~mixins/*": ["./src/styles/mixins/*.scss"],
       "~Components/*": ["./src/components/*.astro"],
-      "~Markdown/*": ["./src/markdown/*.md"],
+      "~markdown/*": ["./src/markdown/*.md"],
       "~Sections/*": ["./src/components/Sections/*.astro"],
       "~Layouts/*": ["./src/layouts/*.astro"],
       "~cypress/*": ["./cypress/*"]

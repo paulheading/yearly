@@ -1,4 +1,3 @@
-import create from "~scripts/helpers/create";
 import displaySection from "~scripts/helpers/displaySection";
 import forEachCustomSetting from "~scripts/helpers/forEachCustomSetting";
 import hideShowElements from "~scripts/helpers/hideShowElements";
@@ -9,7 +8,6 @@ import snakify from "~scripts/helpers/snakify";
 import usingLiveData from "~scripts/helpers/usingLiveData";
 
 export {
-  create,
   displaySection,
   forEachCustomSetting,
   hideShowElements,

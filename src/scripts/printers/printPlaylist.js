@@ -1,10 +1,8 @@
 import $ from "~scripts/selectors";
 
-import { printPlaylistTrack } from "~scripts/printers";
+import { printPlaylistTrack, printPlaylistImage } from "~scripts/printers";
 
-import { create } from "~scripts/helpers";
-
-import { printPlaylistImage } from "~scripts/printers";
+import create from "~scripts/helpers/create";
 
 import setStore from "~scripts/store/setStore";
 
