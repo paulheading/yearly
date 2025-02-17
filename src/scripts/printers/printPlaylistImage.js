@@ -1,5 +1,5 @@
 import $ from "~scripts/selectors";
-import { create } from "~scripts/helpers";
+import create from "~scripts/helpers/create";
 
 export default function () {
   let source = $.playlist_image().src;
