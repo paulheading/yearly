@@ -1,14 +1,17 @@
-import { getDate } from "~scripts/getters";
+import { getDate, getPlaylistConfig } from "~scripts/getters";
 import { is } from "~scripts/helpers";
+import settings from "~data/settings";
 
 export default function () {
   let { year } = getDate();
 
-  if (is.playlistStyleCustom()) {
-    // let { data } = $.selectList.selectors($.selectList.year_added);
-    // let hasValue = data.id != 0;
-    // return hasValue ? data.id : year;
-  }
+  if (!is.playlistStyleCustom()) return year;
 
-  return year;
+  let { year_added } = settings;
+
+  let config = getPlaylistConfig().filter(({ title }) => title == year_added);
+
+  let { value } = config[0];
+
+  return value ? value : year;
 }

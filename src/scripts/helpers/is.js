@@ -1,11 +1,11 @@
-import getStore from "~scripts/store/getStore";
-import getSource from "~scripts/getters/getSource";
-
-let playlistStyleCustom = () => getStore().create.playlist.style == "custom";
-
-let sourceLikedSongs = () => getSource() == 0;
+import dataLive from "~scripts/helpers/is/dataLive";
+import playlistStyleCustom from "~scripts/helpers/is/playlistStyleCustom";
+import siteLocal from "~scripts/helpers/is/siteLocal";
+import sourceLikedSongs from "~scripts/helpers/is/sourceLikedSongs";
 
 export default {
+  dataLive,
   playlistStyleCustom,
+  siteLocal,
   sourceLikedSongs,
 };

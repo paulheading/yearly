@@ -19,6 +19,7 @@
     "focus-visible": "^5.2.0",
     "gsap": "npm:@gsap/shockingly@^3.12.5",
     "gulp-rename": "^2.0.0",
+    "image-to-base64": "^2.2.0",
     "luxon": "^3.5.0",
     "paully": "^2.1.5"
   },

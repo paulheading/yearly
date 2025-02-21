@@ -14,9 +14,11 @@ export default function (tracks) {
   setStore(function (store) {
     let { user } = store;
 
-    let name = create.playlistName();
+    let name = create.playlist.name;
+    let description = create.playlist.description;
 
     store.create.playlist.name = name;
+    store.create.playlist.description = description;
     store.create.playlist.tracks = tracks;
     // store.create.playlist.tracks = tracks.filter(exclude.playlistExcess);
     // store.create.playlist.excess = tracks.filter(include.playlistExcess);

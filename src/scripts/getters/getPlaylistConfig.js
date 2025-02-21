@@ -1,10 +1,8 @@
-import getStore from "~scripts/store/getStore";
 import { include } from "~scripts/filters";
+import filterCardsByPlaylistId from "~scripts/filters/filterCardsByPlaylistId";
 
 export default function (value) {
-  let playlist = value
-    ? getStore().query.card[value]
-    : getStore().cards.filter(include.playlistId)[0];
+  let playlist = filterCardsByPlaylistId(value);
 
   let config = playlist.content.filter(include.typeConfig);
 

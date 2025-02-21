@@ -1,7 +1,7 @@
 ---
 import "~styles/global.scss";
 import { Head, Container, Banner } from "paully";
-import usingLiveData from "~scripts/helpers/usingLiveData";
+import dataIsLive from "~scripts/helpers/is/dataLive";
 ---
 
 <script>
@@ -12,7 +12,7 @@ import usingLiveData from "~scripts/helpers/usingLiveData";
   <Head {...Astro.props} />
   <body data-state="visible">
     {
-      !usingLiveData && (
+      !dataIsLive && (
         <Banner className="offline-banner">
           <em>OFFLINE MODE</em>
         </Banner>

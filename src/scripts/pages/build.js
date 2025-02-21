@@ -4,7 +4,7 @@ import setStore from "~scripts/store/setStore";
 import user from "~data/user";
 
 import { printFirstName, printSourcePlaylists } from "~scripts/printers";
-import { displaySection, usingLiveData } from "~scripts/helpers";
+import { displaySection, is } from "~scripts/helpers";
 import { getPlaylists } from "~scripts/getters";
 
 import {
@@ -43,7 +43,7 @@ function displayPage() {
   });
 }
 
-if (usingLiveData) {
+if (is.dataLive) {
   setAccessToken()
     .then(setUser)
     .then(getPlaylists)

@@ -7,6 +7,7 @@ import postPlaylistData from "~scripts/posters/postPlaylistData";
 import postTrackData from "~scripts/posters/postTrackData";
 import getSavedPlaylistDetails from "~scripts/getters/getSavedPlaylistDetails";
 import checkStoreState from "~scripts/store/checkStoreState";
+import putPlaylistCover from "~scripts/putters/putPlaylistCover";
 
 let hideSections = ["save_playlist", "tracks_added"];
 
@@ -20,7 +21,10 @@ function saveButtonClick() {
   postPlaylistData()
     .then(postTrackData)
     .then(getSavedPlaylistDetails)
-    .then(function ({ external_urls }) {
+    .then(function (playlist) {
+      putPlaylistCover(playlist);
+
+      let { external_urls } = playlist;
       let { spotify } = external_urls;
       let { share_link } = $.print;
 

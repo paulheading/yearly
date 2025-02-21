@@ -3,7 +3,7 @@ export default function () {
   let redirect_uri = import.meta.env.PUBLIC_REDIRECT_URI;
   let response_type = "code";
   let scope =
-    "user-library-read, playlist-modify-public, playlist-modify-private, playlist-read-private, playlist-read-collaborative";
+    "user-library-read, playlist-modify-public, playlist-modify-private, playlist-read-private, playlist-read-collaborative, ugc-image-upload";
 
   let params = {
     response_type,

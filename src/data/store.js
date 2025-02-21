@@ -15,6 +15,7 @@ let store = {
   create: {
     playlist: {
       name: "",
+      description: "",
       image: "",
       style: "",
       tracks: [],

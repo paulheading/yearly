@@ -5,7 +5,6 @@ import is from "~scripts/helpers/is";
 import keyPress from "~scripts/helpers/keyPress";
 import preventDefault from "~scripts/helpers/preventDefault";
 import snakify from "~scripts/helpers/snakify";
-import usingLiveData from "~scripts/helpers/usingLiveData";
 
 export {
   displaySection,
@@ -15,5 +14,4 @@ export {
   keyPress,
   preventDefault,
   snakify,
-  usingLiveData,
 };

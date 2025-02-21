@@ -12,8 +12,6 @@ let length = pureLength;
 
 let year = pureYear;
 
-include.playlistId = ({ id }) => id == getStore().create.playlist.style;
-
 include.playlistOwner = ({ owner }) =>
   owner.display_name == getStore().user.display_name;
 

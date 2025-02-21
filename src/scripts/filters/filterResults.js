@@ -3,9 +3,13 @@ import getPlaylistConfig from "~scripts/getters/getPlaylistConfig";
 
 import { length, include, exclude } from "~scripts/filters";
 import { byLowestPopularity, byHighestPopularity } from "~scripts/sorters";
+import { getDate } from "~scripts/getters";
+import filterTracksByReleaseDate from "./filterTracksByReleaseDate";
 
 export default async function (items) {
   if (!items.length) return items;
+
+  console.log(getPlaylistConfig());
 
   getPlaylistConfig().forEach(function ({ title, value }) {
     console.log(title, "value: ", value);
@@ -39,13 +43,13 @@ export default async function (items) {
       items = items.filter((item) => length.trackMaximum(item, value));
     }
 
-    if (title == settings.year_released) {
-      items = items.filter(({ track }) => {
-        let { album } = track;
-        let release_year = album.release_date.slice(0, 4);
+    if (title == settings.released_this_year) {
+      let { year } = getDate();
+      items = filterTracksByReleaseDate({ items, value: year });
+    }
 
-        return release_year == value;
-      });
+    if (title == settings.year_released) {
+      items = filterTracksByReleaseDate({ items, value });
     }
   });
 

@@ -3,6 +3,7 @@ import {
   getPlaylistItems,
   getUsersSavedTracks,
   getSource,
+  getYearAdded,
 } from "~scripts/getters";
 import { setTracksAdded } from "~scripts/setters";
 
@@ -16,6 +17,10 @@ export let tracks = {
 export default async function () {
   displaySection("tracks_added", "block");
 
+  let year_added = getYearAdded();
+
+  console.log("year_added: ", year_added);
+
   if (!is.sourceLikedSongs()) {
     let { items } = await getPlaylistItems(getSource());
 
@@ -28,7 +33,7 @@ export default async function () {
 
       let callback = () => (tracks.keepGoing = false);
 
-      let params = { items, callback, results: tracks.results };
+      let params = { items, callback, results: tracks.results, year_added };
 
       setTracksAdded(params);
 

@@ -6,16 +6,15 @@ export default async function ({ endpoint, body }) {
   if (!access_token) window.location.replace("/");
 
   let options = {
-    method: "post",
+    method: "put",
     headers: {
       Authorization: "Bearer " + access_token,
+      "Content-Type": "image/jpeg",
     },
-    body: JSON.stringify({ ...body }),
+    body,
   };
 
   let response = await fetch("https://api.spotify.com/v1/" + endpoint, options);
 
-  let data = await response.json();
-
-  return data;
+  return response;
 }

@@ -4,7 +4,7 @@ import loadInProgress from "~scripts/loaders/loadInProgress";
 import getTracks from "~scripts/getters/getTracks";
 import filterResults from "~scripts/filters/filterResults";
 
-import { usingLiveData, displaySection } from "~scripts/helpers";
+import { is, displaySection } from "~scripts/helpers";
 import { listenBackButton, listenSaveButton } from "~scripts/listeners";
 import { printYearAdded, printLocalTracks } from "~scripts/printers";
 
@@ -25,17 +25,23 @@ loadPage()
     listenBackButton();
   })
   .then(function () {
-    if (usingLiveData) {
+    if (is.dataLive) {
       getTracks()
         .then(filterResults)
         .then(function (items) {
-          if (items.length < 10) getPlaylistRecommends(items);
+          if (!items.length) {
+            return loadComplete(function () {
+              displaySection("empty_playlist", "block");
+            });
+          } else {
+            if (items.length < 10) getPlaylistRecommends(items);
 
-          printPlaylist(items);
+            printPlaylist(items);
 
-          loadComplete(function () {
-            displaySection("save_playlist", "block");
-          });
+            loadComplete(function () {
+              displaySection("save_playlist", "block");
+            });
+          }
         })
         .then(checkStoreState);
     } else {
