@@ -1,9 +1,12 @@
 import { printTracksAdded } from "~scripts/printers";
-import { tracks } from "~scripts/getters/getTracks";
+import setStore from "~scripts/store/setStore";
+import reset from "~data/store";
 
 export default function () {
   printTracksAdded(0);
-  tracks.keepGoing = true;
-  tracks.offset = 0;
-  tracks.results = [];
+
+  setStore(function (store) {
+    store.get_tracks = { ...reset.get_tracks };
+    return store;
+  });
 }

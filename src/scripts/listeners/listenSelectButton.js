@@ -14,7 +14,7 @@ function removeSelectedState($card) {
   $select_button.innerText = "Select";
 
   setStore(function (store) {
-    store.create.playlist.style = id;
+    store.playlist.style = id;
     return store;
   });
 }
@@ -30,7 +30,7 @@ function addSelectedState($card) {
   $select_button.innerText = "Selected";
 
   setStore(function (store) {
-    store.create.playlist.style = id;
+    store.playlist.style = id;
     return store;
   });
 }
@@ -47,7 +47,7 @@ function selectButtonClick(event) {
   !isSelected ? addSelectedState($card) : removeSelectedState($card);
 
   setStore(function (store) {
-    store.create.playlist.style = $card.getAttribute("data-id");
+    store.playlist.style = $card.getAttribute("data-id");
     return store;
   });
 

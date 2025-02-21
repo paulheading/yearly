@@ -7,7 +7,7 @@ export default function () {
   let { data } = $.selectList.selectors($form);
 
   setStore(function (store) {
-    store.selected.source = data.id;
+    store.playlist.source = data.id;
     return store;
   });
 }

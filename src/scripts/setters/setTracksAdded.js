@@ -1,7 +1,8 @@
 import { printTracksAdded } from "~scripts/printers";
 import { year } from "~scripts/filters";
+import setStore from "~scripts/store/setStore";
 
-export default function ({ items, callback, results, year_added }) {
+export default function ({ items, callback, year_added }) {
   items.forEach(function (item) {
     let { added_at } = item;
 
@@ -14,6 +15,10 @@ export default function ({ items, callback, results, year_added }) {
 
     if (!year.noNewerThan(added_at, year_added)) return;
 
-    results.push(item);
+    setStore(function (store) {
+      store.get_tracks.results = [...store.get_tracks.results, item];
+
+      return store;
+    });
   });
 }

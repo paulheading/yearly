@@ -1,3 +1,3 @@
 import getStore from "~scripts/store/getStore";
 
-export default () => getStore().create.playlist.style == "custom";
+export default () => getStore().playlist.style == "custom";

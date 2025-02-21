@@ -18,7 +18,7 @@ export default function () {
   $.playlist_image().src = path;
 
   setStore(function (store) {
-    store.create.playlist.image = path;
+    store.playlist.image = path;
     return store;
   });
 }

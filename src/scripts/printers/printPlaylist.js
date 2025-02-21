@@ -2,8 +2,6 @@ import $ from "~scripts/selectors";
 
 import { printPlaylistTrack, printPlaylistImage } from "~scripts/printers";
 
-import create from "~scripts/helpers/create";
-
 import setStore from "~scripts/store/setStore";
 
 // import include from "~scripts/filters/include";
@@ -12,16 +10,16 @@ import setStore from "~scripts/store/setStore";
 
 export default function (tracks) {
   setStore(function (store) {
-    let { user } = store;
+    let { user, playlist } = store;
 
-    let name = create.playlist.name;
-    let description = create.playlist.description;
+    let name = playlist.name;
+    let description = playlist.description;
 
-    store.create.playlist.name = name;
-    store.create.playlist.description = description;
-    store.create.playlist.tracks = tracks;
-    // store.create.playlist.tracks = tracks.filter(exclude.playlistExcess);
-    // store.create.playlist.excess = tracks.filter(include.playlistExcess);
+    store.playlist.name = name;
+    store.playlist.description = description;
+    store.playlist.tracks = tracks;
+    // store.playlist.tracks = tracks.filter(exclude.playlistExcess);
+    // store.playlist.excess = tracks.filter(include.playlistExcess);
 
     $.playlist_name().innerText = name;
     $.playlist_owner().innerText = user.display_name;

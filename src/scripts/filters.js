@@ -15,7 +15,7 @@ let year = pureYear;
 include.playlistOwner = ({ owner }) =>
   owner.display_name == getStore().user.display_name;
 
-exclude.playlistId = ({ id }) => id != getStore().create.playlist.style;
+exclude.playlistId = ({ id }) => id != getStore().playlist.style;
 
 exclude.playlistOwner = ({ owner }) =>
   owner.display_name != getStore().user.display_name;

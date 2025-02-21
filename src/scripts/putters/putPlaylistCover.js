@@ -6,7 +6,7 @@ import { is } from "~scripts/helpers";
 export default async function (playlist) {
   let { id } = playlist;
 
-  let { image } = getStore().create.playlist;
+  let { image } = getStore().playlist;
 
   let endpoint = "playlists/" + id + "/images";
 

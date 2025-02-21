@@ -6,40 +6,40 @@ import {
   getYearAdded,
 } from "~scripts/getters";
 import { setTracksAdded } from "~scripts/setters";
-
-export let tracks = {
-  keepGoing: true,
-  results: [],
-  offset: 0,
-  limit: 20,
-};
+import setStore from "~scripts/store/setStore";
+import getStore from "~scripts/store/getStore";
 
 export default async function () {
   displaySection("tracks_added", "block");
 
   let year_added = getYearAdded();
 
-  console.log("year_added: ", year_added);
-
   if (!is.sourceLikedSongs()) {
     let { items } = await getPlaylistItems(getSource());
 
-    let params = { items, results: tracks.results };
-
-    setTracksAdded(params);
+    setTracksAdded({ items, year_added });
   } else {
-    while (tracks.keepGoing) {
-      let { items } = await getUsersSavedTracks(tracks.offset);
+    while (getStore().get_tracks.keep_going) {
+      let { offset } = getStore().get_tracks;
+      let { items } = await getUsersSavedTracks(offset);
 
-      let callback = () => (tracks.keepGoing = false);
+      function callback() {
+        setStore(function (store) {
+          store.get_tracks.keep_going = false;
+          return store;
+        });
+      }
 
-      let params = { items, callback, results: tracks.results, year_added };
+      let params = { items, callback, year_added };
 
       setTracksAdded(params);
 
-      tracks.offset += tracks.limit;
+      setStore(function (store) {
+        store.get_tracks.offset += store.get_tracks.limit;
+        return store;
+      });
     }
   }
 
-  return tracks.results;
+  return getStore().get_tracks.results;
 }

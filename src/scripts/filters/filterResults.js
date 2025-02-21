@@ -9,8 +9,6 @@ import filterTracksByReleaseDate from "./filterTracksByReleaseDate";
 export default async function (items) {
   if (!items.length) return items;
 
-  console.log(getPlaylistConfig());
-
   getPlaylistConfig().forEach(function ({ title, value }) {
     console.log(title, "value: ", value);
 

@@ -1,8 +1,7 @@
 import getStore from "~scripts/store/getStore";
 
 export default function (value) {
-  let { cards, create } = getStore();
-  let { playlist } = create;
+  let { cards, playlist } = getStore();
 
   function match() {
     if (value) return value;

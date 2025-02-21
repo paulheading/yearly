@@ -2,11 +2,11 @@ import getStore from "~scripts/store/getStore";
 import postData from "~scripts/posters/postData";
 
 export default function () {
-  let { user, create } = getStore();
+  let { user, playlist } = getStore();
 
   let endpoint = "users/" + user.id + "/playlists";
 
-  let { name, description } = create.playlist;
+  let { name, description } = playlist;
 
   let body = {
     name,

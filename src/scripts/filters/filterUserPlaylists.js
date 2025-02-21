@@ -7,7 +7,7 @@ export default function ({ items }) {
 
   while (!foundPlaylist) {
     let item = items[index];
-    let store = getStore().create.playlist;
+    let store = getStore().playlist;
     let itemMatchesStore = item.name == store.name;
 
     if (itemMatchesStore) {
