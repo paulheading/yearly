@@ -4,57 +4,12 @@ import SettingsToggle from "~components/Card/Settings/Toggle";
 import SettingsRange from "~components/Card/Settings/Range";
 import SettingsSelect from "~components/Card/Settings/Select";
 
+import createSettingsGroups from "~scripts/helpers/create/createSettingsGroups";
+import setGroupSettingProps from "~scripts/helpers/create/setGroupSettingProps";
+
 let { settings } = Astro.props;
 
-let colors = ["blue", "cyan", "purple", "pink", "red", "orange"];
-let restartColors = () => color_index + 1 == colors.length;
-
-let groups = [];
-let group = 0;
-let current = 0;
-let max = 2;
-
-let color_index = 0;
-let setting_index = 0;
-
-settings.forEach(function (setting) {
-  let first = current == 0;
-  let last = current + 1 == max;
-
-  if (first) groups.push([]);
-
-  groups[group].push(setting);
-
-  current++;
-
-  if (last) {
-    current = 0;
-    group++;
-  }
-});
-
-function settingProps({ setting, color }) {
-  let evenOrOdd = setting.index % 2 ? "even" : "odd";
-
-  setting.evenOrOdd = evenOrOdd;
-
-  let containerProps = {
-    "class:list": [
-      "setting",
-      setting.evenOrOdd,
-      setting.editable && "editable",
-    ],
-    "data-group": setting.group?.name,
-    "data-snake": setting.snake,
-    "data-type": setting.type,
-  };
-
-  return {
-    containerProps,
-    setting,
-    color,
-  };
-}
+let groups = createSettingsGroups(settings);
 ---
 
 <script src="~scripts/components/card/settings.js"></script>
@@ -65,20 +20,8 @@ function settingProps({ setting, color }) {
 
     return (
       <ul class="settings" style={{ display }}>
-        {group.map(function (setting) {
-          restartColors() ? (color_index = 0) : color_index++;
-
-          setting.index = setting_index++;
-
-          let is = {
-            toggle: setting.type == "toggle",
-            range: setting.type == "range",
-            select: setting.type == "select",
-          };
-
-          let color = colors[color_index];
-
-          let props = settingProps({ setting, color });
+        {group.map(function (setting, index) {
+          let { is, props } = setGroupSettingProps(setting, index);
 
           if (is.toggle) return <SettingsToggle {...props} />;
           if (is.range) return <SettingsRange {...props} />;

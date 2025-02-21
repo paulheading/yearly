@@ -6,6 +6,8 @@ import setAction from "~scripts/setters/setAction";
 export default function ({ card, value, snake }) {
   let setting = settings[snake];
 
+  console.log(card, value, snake);
+
   let params = {
     card,
     setting,

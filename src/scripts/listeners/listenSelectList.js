@@ -115,6 +115,8 @@ function selectOptionByElement(element, parent) {
 
   announceOption(element.innerText, parent);
 
+  console.log(card ? card : "no card", value, snake, group);
+
   if (callback) callback({ card, value, snake, group });
 }
 
