@@ -1,0 +1,24 @@
+---
+import { Wrap } from "paully";
+---
+
+<Wrap style={{ maxWidth: "28.75rem" }}>
+  <h1 class="greeting">
+    Hi <strong data-print="first_name">%%user%%</strong>
+  </h1>
+  <p>Let's make a playlist!</p>
+  <p>
+    <strong>Yearly</strong> finds your favourite songs from the last year and shares
+    them with your friends.
+  </p>
+  <p>Pick a playlist <em>style</em> to get started.</p>
+</Wrap>
+
+<style lang="scss">
+  @use "~mixins" as *;
+
+  .greeting {
+    word-wrap: break-word;
+    font-weight: normal;
+  }
+</style>

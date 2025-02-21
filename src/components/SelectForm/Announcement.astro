@@ -1,0 +1,16 @@
+---
+let announcementProps = {
+  class: "select-form-announce",
+  "aria-live": "assertive",
+  role: "alert",
+};
+---
+
+<div {...announcementProps}></div>
+
+<style lang="scss" is:global>
+  .select-form-announce {
+    opacity: 0;
+    height: 0;
+  }
+</style>

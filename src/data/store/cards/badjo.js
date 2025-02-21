@@ -1,7 +1,9 @@
 import settings from "~data/settings";
 
+let id = "badjo";
+
 export default {
-  id: "badjo",
+  id,
   content: [
     {
       type: "cover",
@@ -18,12 +20,14 @@ export default {
           editable: false,
           value: true,
           type: "toggle",
+          card: id,
         },
         {
           title: settings.out_recommends,
           editable: false,
           value: true,
           type: "toggle",
+          card: id,
         },
       ],
     },

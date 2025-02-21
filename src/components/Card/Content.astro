@@ -4,7 +4,7 @@ import InfoButton from "~components/Buttons/Info";
 import CardCopy from "~components/Card/Copy";
 import CardSettings from "~components/Card/Settings";
 
-let { type, image, title, copy, settings, multiple } = Astro.props;
+let { type, image, title, copy, settings, multiple, id } = Astro.props;
 
 let typeIsConfig = type == "config";
 
@@ -32,7 +32,7 @@ let props = {
   {title && <h2 class="title">{title}</h2>}
   {
     typeIsConfig ? (
-      <CardSettings settings={settings} />
+      <CardSettings settings={settings} id={id} />
     ) : (
       <CardCopy copy={copy} />
     )

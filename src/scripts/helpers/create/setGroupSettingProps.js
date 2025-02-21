@@ -5,20 +5,15 @@ function loopColors(value) {
   return value + 1 == color.array.length;
 }
 
-function settingProps(setting, index) {
+function settingProps({ setting, index }) {
   loopColors(store.color.index) ? (store.color.index = 0) : store.color.index++;
-
-  setting.evenOrOdd = index % 2 ? "even" : "odd";
 
   let containerProps = {
     "class:list": [
       "setting",
-      setting.evenOrOdd,
+      index % 2 ? "even" : "odd",
       setting.editable && "editable",
     ],
-    "data-group": setting.group?.name,
-    "data-snake": setting.snake,
-    "data-type": setting.type,
   };
 
   let { color } = store;
@@ -30,14 +25,16 @@ function settingProps(setting, index) {
   };
 }
 
-export default function (setting, index) {
+export default function ({ setting, index }) {
+  let { type } = setting;
+
   let is = {
-    toggle: setting.type == "toggle",
-    range: setting.type == "range",
-    select: setting.type == "select",
+    toggle: type == "toggle",
+    range: type == "range",
+    select: type == "select",
   };
 
-  let props = settingProps(setting, index);
+  let props = settingProps({ setting, index });
 
   return {
     is,

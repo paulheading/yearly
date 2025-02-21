@@ -6,13 +6,15 @@ import setAction from "~scripts/setters/setAction";
 export default function ({ card, value, snake }) {
   let setting = settings[snake];
 
-  console.log(card, value, snake);
-
   let params = {
     card,
     setting,
     value,
   };
+
+  if (card == "none") {
+    return console.error("select list " + snake + " does not belong to a card");
+  }
 
   setCardSetting(params);
 

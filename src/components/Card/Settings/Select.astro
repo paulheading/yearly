@@ -1,11 +1,11 @@
 ---
-import SelectList from "~components/SelectList";
+import SelectForm from "~components/SelectForm";
 
 let { setting, containerProps } = Astro.props;
 ---
 
 <li {...containerProps}>
-  <SelectList {...setting} />
+  <SelectForm {...setting} />
 </li>
 
 <style lang="scss">

@@ -1,0 +1,37 @@
+---
+import SelectFormLabel from "~components/SelectForm/Label";
+
+let { snake, type, label, className, group, card } = Astro.props;
+
+let props = {
+  "class:list": ["select-form", label ? "with-label" : "no-label", className],
+  "data-group": group ? group.name : "none",
+  "data-snake": snake,
+  "data-type": type,
+  "data-card": card,
+};
+---
+
+<form {...props}>
+  {label && <SelectFormLabel>{label}</SelectFormLabel>}
+  <div>
+    <slot />
+  </div>
+</form>
+
+<style lang="scss" is:global>
+  @use "~mixins" as *;
+
+  $max-width-select: toRem(200);
+
+  .select-form {
+    position: relative;
+    text-align: left;
+  }
+
+  .select-form.with-label {
+    grid-template-columns: auto $max-width-select;
+    justify-content: center;
+    display: grid;
+  }
+</style>

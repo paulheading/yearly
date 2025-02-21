@@ -1,0 +1,47 @@
+---
+let { data, index } = Astro.props;
+
+let props = {
+  "class:list": ["select-form-item", index == 0 ? "active" : ""],
+  "data-id": data,
+  role: "option",
+};
+---
+
+<li {...props}><slot /></li>
+
+<style lang="scss" is:global>
+  @use "~mixins" as *;
+
+  $padding-select: 0.75rem;
+
+  .select-form-item {
+    @include text-overflow;
+
+    & {
+      padding: $padding-select;
+      min-height: toRem(52);
+      cursor: pointer;
+    }
+
+    + .select-form-item {
+      border-top: 1px solid currentColor;
+      margin-top: 0;
+    }
+  }
+
+  .select-form-item.active {
+    background-color: blue;
+    color: white;
+  }
+
+  .select-form-item:hover {
+    background-color: gainsboro;
+    color: black;
+  }
+
+  .select-form-item.current {
+    background-color: gainsboro;
+    color: black;
+  }
+</style>

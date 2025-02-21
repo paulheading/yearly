@@ -1,6 +1,8 @@
 import getPlaylistConfig from "~scripts/getters/getPlaylistConfig";
 
 export default function ({ card, snake }) {
+  console.log(card, snake);
+
   let config = getPlaylistConfig(card);
 
   let self = config.filter((item) => item.snake == snake)[0];

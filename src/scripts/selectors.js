@@ -136,18 +136,19 @@ $.selectList = {
 };
 
 $.selectList.selectors = function ($form) {
-  let $parent = $form.parentElement;
   let $list = $form.querySelector(".select-form-list");
   let $items = $form.querySelectorAll(".select-form-item");
   let $button = $form.querySelector(".select-form-button");
-  let data = {
-    id: $button.getAttribute("data-id"),
-    snake: $parent.getAttribute("data-snake"),
-    group: $parent.getAttribute("data-group"),
-  };
   let $announce = $form.querySelector(".select-form-announce");
 
-  return { $list, $items, $button, data, $announce };
+  let data = {
+    id: $button.getAttribute("data-id"),
+    snake: $form.getAttribute("data-snake"),
+    group: $form.getAttribute("data-group"),
+    card: $form.getAttribute("data-card"),
+  };
+
+  return { $list, $items, $button, $announce, data };
 };
 
 // @TODO: improve this with a child selector function

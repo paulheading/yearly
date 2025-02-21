@@ -1,7 +1,9 @@
 import settings from "~data/settings";
 
+let id = "cindy";
+
 export default {
-  id: "cindy",
+  id,
   content: [
     {
       type: "cover",
@@ -20,12 +22,14 @@ export default {
           editable: false,
           value: true,
           type: "toggle",
+          card: id,
         },
         {
           title: settings.in_recommends,
           editable: false,
           value: true,
           type: "toggle",
+          card: id,
         },
       ],
     },

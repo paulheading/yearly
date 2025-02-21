@@ -21,7 +21,7 @@ let groups = createSettingsGroups(settings);
     return (
       <ul class="settings" style={{ display }}>
         {group.map(function (setting, index) {
-          let { is, props } = setGroupSettingProps(setting, index);
+          let { is, props } = setGroupSettingProps({ setting, index });
 
           if (is.toggle) return <SettingsToggle {...props} />;
           if (is.range) return <SettingsRange {...props} />;

@@ -13,7 +13,16 @@ let props = {
 ---
 
 <div {...props}>
-  {content.map((content) => <CardContent {...content} multiple={multiple} />)}
+  {
+    content.map(function (content) {
+      let props = {
+        ...content,
+        multiple,
+        id,
+      };
+      return <CardContent {...props} />;
+    })
+  }
   <SelectButton />
 </div>
 

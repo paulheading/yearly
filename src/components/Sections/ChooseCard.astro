@@ -5,6 +5,7 @@ import Card from "~components/Card";
 import Section from "~components/Section";
 import CustomButton from "~components/Buttons/Custom";
 import ChooseSource from "~components/Sections/ChooseSource";
+import PersonalGreeting from "~components/Sections/PersonalGreeting";
 
 import filterStoreCardsById from "~scripts/filters/filterStoreCardsById";
 
@@ -19,18 +20,7 @@ let personals = [filterStoreCardsById("cindy"), filterStoreCardsById("badjo")];
 ---
 
 <Section {...sectionProps}>
-  <!-- Personalised Greeting -->
-  <Wrap style={{ maxWidth: "28.75rem" }}>
-    <h1 class="greeting">
-      Hi <strong data-print="first_name">%%user%%</strong>
-    </h1>
-    <p>Let's make a playlist!</p>
-    <p>
-      <strong>Yearly</strong> finds your favourite songs from the last year and shares
-      them with your friends.
-    </p>
-    <p>Pick a playlist <em>style</em> to get started.</p>
-  </Wrap>
+  <PersonalGreeting />
   <Wrap>
     <ChooseSource />
   </Wrap>
@@ -55,11 +45,6 @@ let personals = [filterStoreCardsById("cindy"), filterStoreCardsById("badjo")];
 
 <style lang="scss">
   @use "~mixins" as *;
-
-  .greeting {
-    word-wrap: break-word;
-    font-weight: normal;
-  }
 
   .build-button {
     max-width: 240px;

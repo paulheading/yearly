@@ -97,11 +97,9 @@ function toggleActiveState(item, active) {
 function selectOptionByElement(element, parent) {
   let { $form, callback } = parent;
 
-  let card = $form.closest(".card-container")?.getAttribute("data-id");
-
   let { $button, $items, data } = $.selectList.selectors($form);
 
-  let { snake, group } = data;
+  let { snake, group, card } = data;
 
   let value = element.getAttribute("data-id");
 
@@ -114,8 +112,6 @@ function selectOptionByElement(element, parent) {
   toggleDropdown(parent);
 
   announceOption(element.innerText, parent);
-
-  console.log(card ? card : "no card", value, snake, group);
 
   if (callback) callback({ card, value, snake, group });
 }

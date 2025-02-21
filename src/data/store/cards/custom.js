@@ -1,9 +1,11 @@
 import settings from "~data/settings";
 import include from "~scripts/filters/include";
-import setTitleToLabel from "~scripts/setters/setTitleToSnakeCase";
+import setTitleToSnakeCase from "~scripts/setters/setTitleToSnakeCase";
+
+let id = "custom";
 
 let custom = {
-  id: "custom",
+  id,
   content: [
     {
       type: "config",
@@ -16,6 +18,7 @@ let custom = {
           editable: true,
           value: false,
           type: "toggle",
+          card: id,
         },
         {
           title: settings.most_popular_music,
@@ -23,6 +26,7 @@ let custom = {
           editable: true,
           value: false,
           type: "toggle",
+          card: id,
         },
         {
           title: settings.explicit_music_only,
@@ -30,6 +34,7 @@ let custom = {
           editable: true,
           value: false,
           type: "toggle",
+          card: id,
         },
         {
           title: settings.no_explicit_music,
@@ -37,6 +42,7 @@ let custom = {
           editable: true,
           value: false,
           type: "toggle",
+          card: id,
         },
         {
           title: settings.min_length,
@@ -49,6 +55,7 @@ let custom = {
             max: 10,
           },
           type: "range",
+          card: id,
         },
         {
           title: settings.max_length,
@@ -61,6 +68,7 @@ let custom = {
             max: 30,
           },
           type: "range",
+          card: id,
         },
         {
           title: settings.year_added,
@@ -75,6 +83,7 @@ let custom = {
             { title: "Added in 2022", data: 2022 },
             { title: "Added in 2021", data: 2021 },
           ],
+          card: id,
         },
         {
           title: settings.year_released,
@@ -89,12 +98,13 @@ let custom = {
             { title: "Released in 2022", data: 2022 },
             { title: "Released in 2021", data: 2021 },
           ],
+          card: id,
         },
       ],
     },
   ],
 };
 
-custom.content.filter(include.typeConfig)[0].settings.map(setTitleToLabel);
+custom.content.filter(include.typeConfig)[0].settings.map(setTitleToSnakeCase);
 
 export default custom;
