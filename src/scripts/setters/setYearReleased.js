@@ -8,7 +8,7 @@ export default function (value) {
   let setValue = function () {
     if (value) return Number(value);
 
-    let { data } = $.selectList.selectors($.select_year_released());
+    let { data } = $.selectForm.selectors($.select_year_released());
 
     return Number(data.id);
   };

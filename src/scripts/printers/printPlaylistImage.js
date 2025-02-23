@@ -3,7 +3,7 @@ import create from "~scripts/helpers/create";
 import setStore from "~scripts/store/setStore";
 
 export default function () {
-  let source = $.playlist_image().src;
+  let source = $.playlist().$image.src;
 
   let prev = source.split("playlist");
 
@@ -15,7 +15,7 @@ export default function () {
 
   let path = "/playlist" + next + ".jpg";
 
-  $.playlist_image().src = path;
+  $.playlist().$image.src = path;
 
   setStore(function (store) {
     store.playlist.image = path;

@@ -2,20 +2,10 @@ import settings from "~data/settings";
 import setCardSetting from "~scripts/setters/setCardSetting";
 import getConfigByGroup from "~scripts/getters/getConfigByGroup";
 import setAction from "~scripts/setters/setAction";
+import { $cy } from "~scripts/selectors";
+import setStore from "~scripts/store/setStore";
 
-export default function ({ card, value, snake }) {
-  let setting = settings[snake];
-
-  let params = {
-    card,
-    setting,
-    value,
-  };
-
-  if (card == "none") {
-    return console.error("select list " + snake + " does not belong to a card");
-  }
-
+function handleSetCardSetting(params) {
   setCardSetting(params);
 
   let { self, others } = getConfigByGroup({ card, snake });
@@ -41,4 +31,24 @@ export default function ({ card, value, snake }) {
       setAction.max(params);
     }
   });
+}
+
+export default function ({ card, value, snake }) {
+  let setting = settings[snake];
+
+  let params = {
+    card,
+    setting,
+    value,
+  };
+
+  if (card) handleSetCardSetting(params);
+  else {
+    let { choose_source } = $cy.selectForm;
+
+    setStore(function (store) {
+      if (snake == choose_source) store.playlist.source = value;
+      return store;
+    });
+  }
 }

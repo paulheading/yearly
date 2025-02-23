@@ -5,9 +5,9 @@ import setStore from "~scripts/store/setStore";
 export default function ({ card, item }) {
   let { value, snake } = item;
 
-  let $list = $.selectList[snake];
+  let $list = $.selectForm[snake];
 
-  let { $button, $items } = $.selectList.selectors($list);
+  let { $button, $items } = $.selectForm.selectors($list);
 
   value = 0;
 

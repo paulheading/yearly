@@ -2,9 +2,9 @@ import $ from "~scripts/selectors";
 import setStore from "~scripts/store/setStore";
 
 export default function () {
-  let $form = $.selectList.choose_source;
+  let $form = $.selectForm.choose_source;
 
-  let { data } = $.selectList.selectors($form);
+  let { data } = $.selectForm.selectors($form);
 
   setStore(function (store) {
     store.playlist.source = data.id;

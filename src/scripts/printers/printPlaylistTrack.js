@@ -15,5 +15,5 @@ export default function (item, index, template) {
   $artist_name.innerText = artists[0].name;
   $artist_name.href = artists[0].external_urls.spotify;
 
-  $.playlist_main().append(template);
+  $.playlist().$main.append(template);
 }

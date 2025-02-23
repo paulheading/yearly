@@ -27,7 +27,7 @@ export default function () {
   $items.$selects.forEach(function ($select) {
     let $form = $select.querySelector("form");
 
-    $.query.selectListAll().forEach(($item, index) => {
+    $.query.selectFormAll().forEach(($item, index) => {
       if ($item == $form) {
         let parent = { $form, index };
 

@@ -8,14 +8,14 @@ let dropdownIsOpen = [];
 
 export let currentOptionIndex = [];
 
-$.query.selectListAll().forEach(function () {
+$.query.selectFormAll().forEach(function () {
   dropdownIsOpen.push(false);
   currentOptionIndex.push(0);
 });
 
 function focusCurrentOption(parent) {
   let { $form, index } = parent;
-  let { $items } = $.selectList.selectors($form);
+  let { $items } = $.selectForm.selectors($form);
 
   let currentOption = $items[currentOptionIndex[index]];
 
@@ -31,7 +31,7 @@ function focusCurrentOption(parent) {
 
 function moveFocusUp(parent) {
   let { $form, index } = parent;
-  let { $items } = $.selectList.selectors($form);
+  let { $items } = $.selectForm.selectors($form);
 
   currentOptionIndex[index] > 0
     ? currentOptionIndex[index]--
@@ -42,7 +42,7 @@ function moveFocusUp(parent) {
 
 function moveFocusDown(parent) {
   let { $form, index } = parent;
-  let { $items } = $.selectList.selectors($form);
+  let { $items } = $.selectForm.selectors($form);
 
   currentOptionIndex[index] < $items.length - 1
     ? currentOptionIndex[index]++
@@ -53,7 +53,7 @@ function moveFocusDown(parent) {
 
 function toggleDropdown(parent) {
   let { $form, index } = parent;
-  let { $button, $list } = $.selectList.selectors($form);
+  let { $button, $list } = $.selectForm.selectors($form);
 
   $list.classList.toggle("active");
   dropdownIsOpen[index] = !dropdownIsOpen[index];
@@ -97,7 +97,7 @@ function toggleActiveState(item, active) {
 function selectOptionByElement(element, parent) {
   let { $form, callback } = parent;
 
-  let { $button, $items, data } = $.selectList.selectors($form);
+  let { $button, $items, data } = $.selectForm.selectors($form);
 
   let { snake, group, card } = data;
 
@@ -119,7 +119,7 @@ function selectOptionByElement(element, parent) {
 function announceOption(text, parent) {
   let { $form } = parent;
 
-  let { $announce } = $.selectList.selectors($form);
+  let { $announce } = $.selectForm.selectors($form);
 
   $announce.innerText = text;
 
@@ -134,7 +134,7 @@ function announceOption(text, parent) {
 export function selectCurrentOption(parent) {
   let { $form, index } = parent;
 
-  let { $items } = $.selectList.selectors($form);
+  let { $items } = $.selectForm.selectors($form);
 
   let currentOption = $items[currentOptionIndex[index]];
 
@@ -144,10 +144,10 @@ export function selectCurrentOption(parent) {
 function handleDocumentInteraction(event) {
   let { target } = event;
 
-  $.query.selectListAll().forEach(function ($form, index) {
+  $.query.selectFormAll().forEach(function ($form, index) {
     let parent = { $form, index };
 
-    let { $button, $list } = $.selectList.selectors($form);
+    let { $button, $list } = $.selectForm.selectors($form);
 
     let clickIsInsideButton = $button.contains(target);
 
@@ -168,7 +168,7 @@ function handleItemClicks(item, index, parent) {
 }
 
 function clearCurrentItem($form) {
-  let { $items } = $.selectList.selectors($form);
+  let { $items } = $.selectForm.selectors($form);
 
   $items.forEach((item) => item.classList.remove("current"));
 }
@@ -178,7 +178,7 @@ function setupFormListeners({ $form, index, callback }) {
 
   $form.addEventListener("submit", preventDefault);
 
-  let { $button, $list, $items } = $.selectList.selectors($form);
+  let { $button, $list, $items } = $.selectForm.selectors($form);
 
   $button.addEventListener("keydown", (event) => handleKeyPress(event, parent));
 
@@ -188,7 +188,7 @@ function setupFormListeners({ $form, index, callback }) {
 }
 
 export default function (callback) {
-  $.query.selectListAll().forEach(function ($form, index) {
+  $.query.selectFormAll().forEach(function ($form, index) {
     let params = { $form, index, callback };
     return setupFormListeners(params);
   });

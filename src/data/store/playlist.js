@@ -1,5 +1,5 @@
 export default {
-  source: 0,
+  source: "0",
   name: "",
   description: "",
   image: "",

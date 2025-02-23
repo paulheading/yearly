@@ -5,6 +5,11 @@ let $cy = {
     login: ".login-button",
     select: ".select-button",
   },
+  selectForm: {
+    choose_source: "choose_source",
+    year_added: "year_added",
+    year_released: "year_released",
+  },
 };
 
 let $ = {
@@ -19,10 +24,10 @@ let $ = {
     section: (value = "") => $.query.selector(`[data-section=${value}]`),
     selector: (value = "") => document.querySelector(value),
     selectorAll: (value = "") => document.querySelectorAll(value),
-    selectList: (value = "") => $.query.selector(`.select-form${value}`),
-    selectListAll: (value = "") => $.query.selectorAll(`.select-form${value}`),
-    selectListSnake: function (value = "") {
-      return $.query.selectList(`[data-snake=${value}]`);
+    selectForm: (value = "") => $.query.selector(`.select-form${value}`),
+    selectFormAll: (value = "") => $.query.selectorAll(`.select-form${value}`),
+    selectFormSnake: function (value = "") {
+      return $.query.selectForm(`[data-snake=${value}]`);
     },
     settingAll: function (value = "") {
       return $.query.selectorAll(`.editable.setting${value}`);
@@ -129,13 +134,13 @@ $.print = {
   year_added: $.query.print("year-added"),
 };
 
-$.selectList = {
-  choose_source: $.query.selectListSnake("choose_source"),
-  year_added: $.query.selectListSnake("year_added"),
-  year_released: $.query.selectListSnake("year_released"),
+$.selectForm = {
+  choose_source: $.query.selectFormSnake($cy.selectForm.choose_source),
+  year_added: $.query.selectFormSnake($cy.selectForm.year_added),
+  year_released: $.query.selectFormSnake($cy.selectForm.year_released),
 };
 
-$.selectList.selectors = function ($form) {
+$.selectForm.selectors = function ($form) {
   let $list = $form.querySelector(".select-form-list");
   let $items = $form.querySelectorAll(".select-form-item");
   let $button = $form.querySelector(".select-form-button");
@@ -151,15 +156,17 @@ $.selectList.selectors = function ($form) {
   return { $list, $items, $button, $announce, data };
 };
 
-// @TODO: improve this with a child selector function
+$.playlist = function () {
+  let $window = $.query.selector(".outer-window");
+  let $name = $window.querySelector(".name");
+  let $owner = $window.querySelector(".owner");
+  let $image = $window.querySelector("img");
+  let $main = $window.querySelector("main");
+  let $track = $main.querySelector(".container");
+  let $tracks = $main.querySelectorAll(".container");
 
-$.playlist = () => $.query.selector(".outer-window");
-$.playlist_name = () => $.playlist().querySelector(".name");
-$.playlist_owner = () => $.playlist().querySelector(".owner");
-$.playlist_image = () => $.playlist().querySelector("img");
-$.playlist_main = () => $.playlist().querySelector("main");
-$.playlist_track = () => $.playlist_main().querySelector(".container");
-$.playlist_tracks = () => $.playlist_main().querySelectorAll(".container");
+  return { $window, $name, $owner, $image, $main, $track, $tracks };
+};
 
 export default $;
 export { $cy };
