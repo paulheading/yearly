@@ -158,14 +158,26 @@ $.selectForm.selectors = function ($form) {
 
 $.playlist = function () {
   let $window = $.query.selector(".outer-window");
-  let $name = $window.querySelector(".name");
-  let $owner = $window.querySelector(".owner");
+  let $name = $window.querySelector(".wrap-name").children[0];
+  let $owner = $window.querySelector(".wrap-owner").children[0];
   let $image = $window.querySelector("img");
   let $main = $window.querySelector("main");
   let $track = $main.querySelector(".container");
   let $tracks = $main.querySelectorAll(".container");
 
   return { $window, $name, $owner, $image, $main, $track, $tracks };
+};
+
+$.playlist_track = function ($track) {
+  let $number = $track.querySelector(".number");
+  let $name = $track.querySelector(".wrap-track-name").children[0];
+  let $artist_name = $track.querySelector(".artist-name");
+
+  return {
+    $number,
+    $name,
+    $artist_name,
+  };
 };
 
 export default $;

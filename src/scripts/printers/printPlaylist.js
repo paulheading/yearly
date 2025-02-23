@@ -18,7 +18,7 @@ export default function (tracks) {
     // store.playlist.excess = tracks.filter(include.playlistExcess);
 
     $.playlist().$name.innerText = create.playlist.name;
-    $.playlist().$owner.innerText = store.user.display_name;
+    $.playlist().$owner.innerText = store.user.id;
     $.playlist().$owner.href = store.user.external_urls.spotify;
 
     return store;

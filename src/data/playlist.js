@@ -1,12 +1,9 @@
 export default {
   settings: {
-    name: "2024",
-    label: "label?",
     open: true,
   },
   content: {
     thumbnail: "/playlist1.jpg",
-    url: "#",
     name: "playlist name",
     owner: {
       url: "#",

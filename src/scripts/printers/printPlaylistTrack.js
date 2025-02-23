@@ -6,14 +6,17 @@ export default function (item, index, template) {
   let { track } = item;
   let { artists } = track;
 
-  let $number = template.querySelector(".number");
-  let $name = template.querySelector(".track-name");
-  let $artist_name = template.querySelector(".artist-name");
+  let $number = $.playlist_track(template).$number;
+  let $name = $.playlist_track(template).$name;
+  let $artist_name = $.playlist_track(template).$artist_name;
 
   $number.innerText = index + 1;
+
+  $name.href = track.external_urls.spotify;
   $name.innerText = track.name;
-  $artist_name.innerText = artists[0].name;
+
   $artist_name.href = artists[0].external_urls.spotify;
+  $artist_name.innerText = artists[0].name;
 
   $.playlist().$main.append(template);
 }
