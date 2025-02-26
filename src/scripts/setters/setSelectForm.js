@@ -5,41 +5,37 @@ import setAction from "~scripts/setters/setAction";
 import { $cy } from "~scripts/selectors";
 import setStore from "~scripts/store/setStore";
 
+function handleGroupActions({ other, action, params }) {
+  if (action == "oldest") setAction.oldest({ ...params, other });
+  if (action == "newest") setAction.newest({ ...params, other });
+}
+
 function handleSetCardSetting(params) {
+  let { value } = params;
+
+  let { self, others } = getConfigByGroup(params);
+
+  let { group } = self;
+
   setCardSetting(params);
 
-  let { self, others } = getConfigByGroup({ card, snake });
+  if (!value) return;
 
-  if (self.value) {
-    if (self.group.action) {
-      others.forEach((item) => {
-        let { action } = self.group;
+  if (!group.action) return;
 
-        if (action == "max") {
-          let params = { card, item, self };
-          setAction.max(params);
-        }
-      });
-    }
-  }
-
-  others.forEach(function (item) {
-    let { action } = item.group;
-
-    if (action == "max") {
-      let params = { card, item, self, older: false };
-      setAction.max(params);
-    }
-  });
+  others.forEach((other) =>
+    handleGroupActions({ other, action: group.action, params })
+  );
 }
 
 export default function ({ card, value, snake }) {
   let setting = settings[snake];
 
   let params = {
-    card,
     setting,
     value,
+    snake,
+    card,
   };
 
   if (card) handleSetCardSetting(params);

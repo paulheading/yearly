@@ -8,16 +8,18 @@ import create from "~scripts/helpers/create";
 // import include from "~scripts/filters/include";
 // import exclude from "~scripts/filters/exclude";
 
+let { playlist } = create;
+
 export default function (tracks) {
   setStore(function (store) {
-    store.playlist.name = create.playlist.name;
-    store.playlist.description = create.playlist.description;
+    store.playlist.name = playlist.name;
+    store.playlist.description = playlist.description;
     store.playlist.tracks = tracks;
 
     // store.playlist.tracks = tracks.filter(exclude.playlistExcess);
     // store.playlist.excess = tracks.filter(include.playlistExcess);
 
-    $.playlist().$name.innerText = create.playlist.name;
+    $.playlist().$name.innerText = playlist.name;
     $.playlist().$owner.innerText = store.user.id;
     $.playlist().$owner.href = store.user.external_urls.spotify;
 

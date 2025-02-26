@@ -5,7 +5,5 @@ export default async function (tracks) {
 
   let recommends = await getData(`recommendations?${tracks}`);
 
-  console.log("recommends: ", recommends);
-
   return recommends;
 }

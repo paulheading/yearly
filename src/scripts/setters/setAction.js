@@ -1,15 +1,27 @@
-import resetSelectListSetting from "~scripts/setters/resetSelectListSetting";
+import resetSelectFormSetting from "~scripts/setters/resetSelectFormSetting";
 
-function max({ card, item, self, older = true }) {
-  if (item.value == self.value) return;
+function oldest(params) {
+  let { value, other, card } = params;
 
-  let needsReset = older ? item.value < self.value : item.value > self.value;
+  if (other.value == value) return;
+
+  let needsReset = value > other.value;
 
   if (!needsReset) return;
 
-  let params = { card, item };
-
-  resetSelectListSetting(params);
+  resetSelectFormSetting({ card, form: other });
 }
 
-export default { max };
+function newest(params) {
+  let { value, other, card } = params;
+
+  if (other.value == value) return;
+
+  let needsReset = value < other.value;
+
+  if (!needsReset) return;
+
+  resetSelectFormSetting({ card, form: other });
+}
+
+export default { oldest, newest };

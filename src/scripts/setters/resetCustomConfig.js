@@ -3,7 +3,7 @@ import { printRangeInputValue } from "~scripts/printers";
 import {
   currentOptionIndex,
   selectCurrentOption,
-} from "~scripts/listeners/listenSelectList";
+} from "~scripts/listeners/listenSelectForm";
 
 export default function () {
   let { selectors } = $.card.selectors($.card.custom);

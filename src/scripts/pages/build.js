@@ -8,7 +8,7 @@ import { displaySection, is } from "~scripts/helpers";
 import { getPlaylists } from "~scripts/getters";
 
 import {
-  listenSelectList,
+  listenSelectForm,
   listenRangeInput,
   listenToggleInput,
   listenCustomButton,
@@ -20,7 +20,7 @@ import {
 import {
   setToggleInput,
   setRangeInput,
-  setSelectList,
+  setSelectForm,
   setAccessToken,
   setUser,
 } from "~scripts/setters";
@@ -30,7 +30,7 @@ function createInteractiveDOM() {
   printSourcePlaylists();
   listenToggleInput(setToggleInput);
   listenRangeInput(setRangeInput);
-  listenSelectList(setSelectList);
+  listenSelectForm(setSelectForm);
   listenInfoButton();
   listenSelectButton();
   listenCustomButton();

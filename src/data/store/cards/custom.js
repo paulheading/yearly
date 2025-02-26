@@ -72,7 +72,7 @@ let custom = {
         },
         {
           title: settings.year_added,
-          group: { ...settings.groups.age() },
+          group: { ...settings.groups.age("newest") },
           editable: true,
           value: 0,
           type: "select",
@@ -87,7 +87,7 @@ let custom = {
         },
         {
           title: settings.year_released,
-          group: { ...settings.groups.age("max") },
+          group: { ...settings.groups.age("oldest") },
           editable: true,
           value: 0,
           type: "select",

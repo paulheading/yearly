@@ -1,6 +1,5 @@
 import $ from "~scripts/selectors";
 import { keyPress, preventDefault } from "~scripts/helpers";
-import { getPlaylistConfig } from "~scripts/getters";
 
 // https://www.freecodecamp.org/news/how-to-build-an-accessible-custom-dropdown-select-element/
 

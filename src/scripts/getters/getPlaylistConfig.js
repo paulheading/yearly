@@ -6,5 +6,7 @@ export default function (value) {
 
   let config = playlist.content.filter(include.typeConfig);
 
-  return config[0].settings;
+  let { settings } = config[0];
+
+  return settings;
 }

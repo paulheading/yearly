@@ -1,10 +1,10 @@
 import resetCustomConfig from "~scripts/setters/resetCustomConfig";
-import resetSelectListSetting from "~scripts/setters/resetSelectListSetting";
+import resetSelectFormSetting from "~scripts/setters/resetSelectFormSetting";
 import resetTracksAdded from "~scripts/setters/resetTracksAdded";
 import setAccessToken from "~scripts/setters/setAccessToken";
 import setAction from "~scripts/setters/setAction";
 import setRangeInput from "~scripts/setters/setRangeInput";
-import setSelectList from "~scripts/setters/setSelectList";
+import setSelectForm from "~scripts/setters/setSelectForm";
 import setToggleInput from "~scripts/setters/setToggleInput";
 import setTracksAdded from "~scripts/setters/setTracksAdded";
 import setTitleToLabel from "~scripts/setters/setTitleToSnakeCase";
@@ -12,12 +12,12 @@ import setUser from "~scripts/setters/setUser";
 
 export {
   resetCustomConfig,
-  resetSelectListSetting,
+  resetSelectFormSetting,
   resetTracksAdded,
   setAccessToken,
   setAction,
   setRangeInput,
-  setSelectList,
+  setSelectForm,
   setToggleInput,
   setTracksAdded,
   setTitleToLabel,

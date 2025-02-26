@@ -1,27 +1,18 @@
 import $ from "~scripts/selectors";
 import settings from "~data/settings";
-import setStore from "~scripts/store/setStore";
 
-export default function ({ card, item }) {
-  let { value, snake } = item;
-
+export default function resetSelectFormDOM(snake) {
   let $list = $.selectForm[snake];
 
   let { $button, $items } = $.selectForm.selectors($list);
 
-  value = 0;
+  $button.setAttribute("data-id", 0);
 
-  $button.setAttribute("data-id", value);
-
-  let setting = settings[snake];
-
-  $button.innerText = setting;
+  $button.innerText = settings[snake];
 
   $items.forEach(function ($item, index) {
     return index == 0
       ? $item.classList.add("active")
       : $item.classList.remove("active");
   });
-
-  setStore.cardSetting({ card, setting, value });
 }
