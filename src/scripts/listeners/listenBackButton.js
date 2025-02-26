@@ -19,7 +19,7 @@ function backButtonClick() {
     sections.forEach((name) => displaySection(name, "none"));
   });
 
-  window.location.replace("/build");
+  window.location.assign("/build");
 }
 
 export default function () {

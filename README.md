@@ -9,6 +9,7 @@
 ### Scenarios
 
 - Create a playlist from songs added in 2023
+- Create a playlist from songs stored in a custom playlist
 - Create a playlist from songs added AND released in 2023
 
 ### Coming soon
@@ -20,7 +21,3 @@
 ### Not possible
 
 - Sort by plays / Include how frequently I played a song. Blocker: Spotify does not make this information available 🔴
-
-### Scenarios
-
-- Give me a list of songs added in 2023 🟡

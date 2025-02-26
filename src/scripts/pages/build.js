@@ -7,6 +7,8 @@ import { printFirstName, printSourcePlaylists } from "~scripts/printers";
 import { displaySection, is } from "~scripts/helpers";
 import { getPlaylists } from "~scripts/getters";
 
+import getStore from "~scripts/getters/getStore";
+
 import {
   listenSelectForm,
   listenRangeInput,
@@ -37,25 +39,30 @@ function createInteractiveDOM() {
   listenBuildButton();
 }
 
+async function getPlaylistData() {
+  console.warn("creating new token");
+  return setAccessToken().then(setUser).then(getPlaylists);
+}
+
 function displayPage() {
+  getStoreState();
+  createInteractiveDOM();
+
   loadComplete(function () {
     displaySection("choose_card", "block");
   });
 }
 
 if (is.dataLive) {
-  setAccessToken()
-    .then(setUser)
-    .then(getPlaylists)
-    .then(getStoreState)
-    .then(createInteractiveDOM)
-    .then(displayPage);
+  if (!getStore().access_token) {
+    getPlaylistData().then(displayPage);
+  } else {
+    console.warn("using existing token");
+    displayPage();
+  }
 } else {
   setStore(function (store) {
     store.user = user;
     return store;
-  })
-    .then(getStoreState)
-    .then(createInteractiveDOM)
-    .then(displayPage);
+  }).then(displayPage);
 }

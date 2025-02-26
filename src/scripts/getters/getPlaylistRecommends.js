@@ -5,8 +5,6 @@ import loadComplete from "~scripts/loaders/loadComplete";
 import { displaySection } from "~scripts/helpers";
 
 export default function (tracks) {
-  console.log("find recommends for: ", tracks);
-
   // let recommends = tracks.forEach(({ track }) => track.id + ",");
 
   // recommends = recommends.slice(0, -1);

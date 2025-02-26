@@ -6,5 +6,5 @@ import getStore from "~scripts/getters/getStore";
 
 $.button.login.addEventListener("click", function () {
   if (!getStore()) createStore();
-  is.dataLive ? getAuth() : window.location.replace("/build");
+  is.dataLive ? getAuth() : window.location.assign("/build");
 });

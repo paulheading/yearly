@@ -14,7 +14,7 @@ export default function () {
 
   let auth_query_parameters = new URLSearchParams({ ...params });
 
-  window.location.replace(
+  window.location.assign(
     "https://accounts.spotify.com/authorize?" + auth_query_parameters.toString()
   );
 }

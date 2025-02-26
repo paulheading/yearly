@@ -5,7 +5,7 @@ import { resetCustomConfig } from "~scripts/setters";
 
 function buildButtonClick() {
   if (!is.playlistStyleCustom()) resetCustomConfig();
-  window.location.replace("/save");
+  window.location.assign("/save");
 }
 
 export default function () {
