@@ -1,4 +1,4 @@
-import getStore from "~scripts/store/getStore";
+import getStore from "~scripts/getters/getStore";
 import postData from "~scripts/posters/postData";
 
 export default function (playlist) {

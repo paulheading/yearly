@@ -1,4 +1,4 @@
-import getStore from "~scripts/store/getStore";
+import getStore from "~scripts/getters/getStore";
 
 export default async function (endpoint) {
   if (!getStore().access_token) window.location.replace("/");

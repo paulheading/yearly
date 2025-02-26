@@ -1,6 +1,6 @@
-import checkStoreState from "~scripts/store/checkStoreState";
+import getStoreState from "~scripts/getters/getStoreState";
 
 export default async function (callback) {
-  checkStoreState();
+  getStoreState();
   callback();
 }

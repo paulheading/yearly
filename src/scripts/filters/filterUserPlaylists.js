@@ -1,4 +1,4 @@
-import getStore from "~scripts/store/getStore";
+import getStore from "~scripts/getters/getStore";
 
 export default function ({ items }) {
   let foundPlaylist = false;

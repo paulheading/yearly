@@ -1,5 +1,5 @@
-import getStore from "~scripts/store/getStore";
-import setStore from "~scripts/store/setStore";
+import getStore from "~scripts/getters/getStore";
+import setStore from "~scripts/setters/setStore";
 
 import { getCurrentUser } from "~scripts/getters";
 import { printFirstName } from "~scripts/printers";

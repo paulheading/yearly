@@ -1,5 +1,5 @@
 import { Buffer } from "buffer";
-import setStore from "~scripts/store/setStore";
+import setStore from "~scripts/setters/setStore";
 
 export default async function () {
   let url_params = new URLSearchParams(window.location.search);

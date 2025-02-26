@@ -1,4 +1,4 @@
-import checkStoreState from "~scripts/store/checkStoreState";
+import getStoreState from "~scripts/getters/getStoreState";
 import tracks from "~data/tracks";
 import loadInProgress from "~scripts/loaders/loadInProgress";
 import getTracks from "~scripts/getters/getTracks";
@@ -44,9 +44,9 @@ loadPage()
             });
           }
         })
-        .then(checkStoreState);
+        .then(getStoreState);
     } else {
       printLocalTracks(tracks.length);
-      filterResults(tracks).then(checkStoreState);
+      filterResults(tracks).then(getStoreState);
     }
   });

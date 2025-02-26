@@ -6,8 +6,8 @@ import {
   getYearAdded,
 } from "~scripts/getters";
 import { setTracksAdded } from "~scripts/setters";
-import setStore from "~scripts/store/setStore";
-import getStore from "~scripts/store/getStore";
+import setStore from "~scripts/setters/setStore";
+import getStore from "~scripts/getters/getStore";
 
 export default async function () {
   displaySection("tracks_added", "block");

@@ -1,6 +1,6 @@
-import checkStoreState from "~scripts/store/checkStoreState";
+import getStoreState from "~scripts/getters/getStoreState";
 import loadComplete from "~scripts/loaders/loadComplete";
-import setStore from "~scripts/store/setStore";
+import setStore from "~scripts/setters/setStore";
 import user from "~data/user";
 
 import { printFirstName, printSourcePlaylists } from "~scripts/printers";
@@ -47,7 +47,7 @@ if (is.dataLive) {
   setAccessToken()
     .then(setUser)
     .then(getPlaylists)
-    .then(checkStoreState)
+    .then(getStoreState)
     .then(createInteractiveDOM)
     .then(displayPage);
 } else {
@@ -55,7 +55,7 @@ if (is.dataLive) {
     store.user = user;
     return store;
   })
-    .then(checkStoreState)
+    .then(getStoreState)
     .then(createInteractiveDOM)
     .then(displayPage);
 }

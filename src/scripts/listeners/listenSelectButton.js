@@ -1,7 +1,7 @@
 import $ from "~scripts/selectors";
 import { resetCustomConfig } from "~scripts/setters";
 import { is } from "~scripts/helpers";
-import setStore from "~scripts/store/setStore";
+import setStore from "~scripts/setters/setStore";
 
 function removeSelectedState($card) {
   let { isSelected, targets, selectors } = $.card.selectors($card);

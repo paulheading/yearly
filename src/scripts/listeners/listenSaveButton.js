@@ -6,7 +6,7 @@ import displaySection from "~scripts/helpers/displaySection";
 import postPlaylistData from "~scripts/posters/postPlaylistData";
 import postTrackData from "~scripts/posters/postTrackData";
 import getSavedPlaylistDetails from "~scripts/getters/getSavedPlaylistDetails";
-import checkStoreState from "~scripts/store/checkStoreState";
+import getStoreState from "~scripts/getters/getStoreState";
 import putPlaylistCover from "~scripts/putters/putPlaylistCover";
 
 let hideSections = ["save_playlist", "tracks_added"];
@@ -36,7 +36,7 @@ function saveButtonClick() {
         displaySection("share_playlist", "block");
       });
     })
-    .then(checkStoreState);
+    .then(getStoreState);
 }
 
 export default function () {

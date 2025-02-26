@@ -1,6 +1,6 @@
 import imageToBase64 from "image-to-base64/browser";
 import putData from "~scripts/putters/putData";
-import getStore from "~scripts/store/getStore";
+import getStore from "~scripts/getters/getStore";
 import { is } from "~scripts/helpers";
 
 export default async function (playlist) {

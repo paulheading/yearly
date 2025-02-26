@@ -1,5 +1,5 @@
 import $ from "~scripts/selectors";
-import setStore from "~scripts/store/setStore";
+import setStore from "~scripts/setters/setStore";
 
 export default function () {
   let $form = $.selectForm.choose_source;

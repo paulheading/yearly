@@ -1,5 +1,5 @@
 import { printTracksAdded } from "~scripts/printers";
-import setStore from "~scripts/store/setStore";
+import setStore from "~scripts/setters/setStore";
 import reset from "~data/store";
 
 export default function () {

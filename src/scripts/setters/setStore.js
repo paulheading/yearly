@@ -1,5 +1,5 @@
-import getStore from "~scripts/store/getStore";
-import createStore from "~scripts/store/createStore";
+import getStore from "~scripts/getters/getStore";
+import createStore from "~scripts/creators/createStore";
 
 export default async function (callback) {
   let store = getStore();

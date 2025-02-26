@@ -3,7 +3,7 @@ import setCardSetting from "~scripts/setters/setCardSetting";
 import getConfigByGroup from "~scripts/getters/getConfigByGroup";
 import setAction from "~scripts/setters/setAction";
 import { $cy } from "~scripts/selectors";
-import setStore from "~scripts/store/setStore";
+import setStore from "~scripts/setters/setStore";
 
 function handleGroupActions({ other, action, params }) {
   if (action == "oldest") setAction.oldest({ ...params, other });

@@ -1,5 +1,5 @@
 import getData from "~scripts/getters/getData";
-import getStore from "~scripts/store/getStore";
+import getStore from "~scripts/getters/getStore";
 import filterUserPlaylists from "~scripts/filters/filterUserPlaylists";
 
 export default async function () {

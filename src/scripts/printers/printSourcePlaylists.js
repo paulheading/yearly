@@ -1,5 +1,5 @@
 import $ from "~scripts/selectors";
-import getStore from "~scripts/store/getStore";
+import getStore from "~scripts/getters/getStore";
 
 function printSourceOption(source) {
   let $form = $.selectForm.choose_source;

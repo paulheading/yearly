@@ -1,6 +1,6 @@
 import { printTracksAdded } from "~scripts/printers";
 import { year } from "~scripts/filters";
-import setStore from "~scripts/store/setStore";
+import setStore from "~scripts/setters/setStore";
 
 export default function ({ items, callback, year_added }) {
   items.forEach(function (item) {
