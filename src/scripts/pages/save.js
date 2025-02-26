@@ -5,7 +5,7 @@ import getTracks from "~scripts/getters/getTracks";
 import filterResults from "~scripts/filters/filterResults";
 
 import { is, displaySection } from "~scripts/helpers";
-import { listenBackButton, listenSaveButton } from "~scripts/listeners";
+import { listenBackButton, listenRefreshButton, listenSaveButton } from "~scripts/listeners";
 import { printYearAdded, printLocalTracks } from "~scripts/printers";
 
 import getPlaylistRecommends from "~scripts/getters/getPlaylistRecommends";
@@ -23,6 +23,7 @@ loadPage()
     printYearAdded();
     listenSaveButton();
     listenBackButton();
+    listenRefreshButton();
   })
   .then(function () {
     if (is.dataLive) {

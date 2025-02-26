@@ -171,7 +171,7 @@ $.playlist = function () {
 $.playlist_track = function ($track) {
   let $number = $track.querySelector(".number");
   let $name = $track.querySelector(".wrap-track-name").children[0];
-  let $artist_name = $track.querySelector(".artist-name");
+  let $artist_name = $track.querySelector(".wrap-artist-name").children[0];
 
   return {
     $number,
