@@ -4,35 +4,39 @@ import { is } from "~scripts/helpers";
 import setStore from "~scripts/setters/setStore";
 
 function removeSelectedState($card) {
-  let { isSelected, targets, selectors } = $.card.selectors($card);
-  let { $config_pic, $select_button } = selectors;
+  let { state, targets, $config_pic, $select_button } = $.card.selectors($card);
 
-  if (!isSelected) return;
+  if (!state.selected) return;
 
   targets.forEach((item) => item.classList.remove($.state.selected));
   $config_pic.src = $config_pic.src.replace("config--active", "config");
   $select_button.innerText = "Select";
 
   setStore(function (store) {
-    store.playlist.style = id;
+    store.playlist.style = state.id;
     return store;
   });
 }
 
 function addSelectedState($card) {
-  let { id, isSelected, targets, selectors } = $.card.selectors($card);
-  let { $config_pic, $select_button } = selectors;
+  let { state, targets, $config_pic, $select_button } = $.card.selectors($card);
 
-  if (isSelected) return;
+  if (state.selected) return;
 
   targets.forEach((item) => item.classList.add($.state.selected));
   $config_pic.src = $config_pic.src.replace("config", "config--active");
   $select_button.innerText = "Selected";
 
   setStore(function (store) {
-    store.playlist.style = id;
+    store.playlist.style = state.id;
     return store;
   });
+}
+
+function toggleSelectedCard({ state, $card }) {
+  $.query.cardAll().forEach(($card) => removeSelectedState($card));
+
+  !state.selected ? addSelectedState($card) : removeSelectedState($card);
 }
 
 function selectButtonClick(event) {
@@ -40,11 +44,9 @@ function selectButtonClick(event) {
 
   let $card = currentTarget.parentElement;
 
-  let { isSelected } = $.card.selectors($card);
+  let { state } = $.card.selectors($card);
 
-  $.query.cardAll().forEach(($card) => removeSelectedState($card));
-
-  !isSelected ? addSelectedState($card) : removeSelectedState($card);
+  toggleSelectedCard({ state, $card });
 
   setStore(function (store) {
     store.playlist.style = $card.getAttribute("data-id");
@@ -59,3 +61,5 @@ export default function () {
     button.addEventListener("click", selectButtonClick)
   );
 }
+
+export { toggleSelectedCard };

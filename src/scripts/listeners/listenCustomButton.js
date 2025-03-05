@@ -11,30 +11,44 @@ function switchDisplay({ currentTarget, text, hide, show }) {
   show.querySelector("input, button").focus();
 }
 
-function customButtonClick(event) {
-  let { currentTarget } = event;
-
+function switchToCustom(currentTarget) {
   let { playlist, custom } = $.section;
 
-  let playlistActive = playlist.style.display != "none";
-
-  let toCustom = {
+  let contents = {
     text: "Set menu please",
     hide: playlist,
     show: custom,
   };
 
-  let toPlaylist = {
+  switchDisplay({ currentTarget, ...contents });
+}
+
+function switchToPlaylist(currentTarget) {
+  let { playlist, custom } = $.section;
+
+  let contents = {
     text: "Custom job please",
     hide: custom,
     show: playlist,
   };
 
-  let contents = playlistActive ? toCustom : toPlaylist;
-
   switchDisplay({ currentTarget, ...contents });
+}
+
+function customButtonClick(event) {
+  let { currentTarget } = event;
+
+  let { playlist } = $.section;
+
+  let playlistActive = playlist.style.display != "none";
+
+  playlistActive
+    ? switchToCustom(currentTarget)
+    : switchToPlaylist(currentTarget);
 }
 
 export default function () {
   $.button.custom.addEventListener("click", customButtonClick);
 }
+
+export { switchToCustom, switchToPlaylist };

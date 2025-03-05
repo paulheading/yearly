@@ -1,6 +1,7 @@
 import getStoreState from "~scripts/getters/getStoreState";
 import loadComplete from "~scripts/loaders/loadComplete";
 import setStore from "~scripts/setters/setStore";
+import $ from "~scripts/selectors";
 import user from "~data/user";
 
 import { printFirstName, printSourcePlaylists } from "~scripts/printers";
@@ -27,6 +28,9 @@ import {
   setUser,
 } from "~scripts/setters";
 
+import { toggleSelectedCard } from "~scripts/listeners/listenSelectButton";
+import { switchToCustom } from "~scripts/listeners/listenCustomButton";
+
 function createInteractiveDOM() {
   printFirstName();
   printSourcePlaylists();
@@ -44,9 +48,11 @@ async function getPlaylistData() {
   return setAccessToken().then(setUser).then(getPlaylists);
 }
 
-function displayPage() {
+function displayPage(callback) {
   getStoreState();
   createInteractiveDOM();
+
+  if (callback) callback();
 
   loadComplete(function () {
     displaySection("choose_card", "block");
@@ -58,7 +64,20 @@ if (is.dataLive) {
     getPlaylistData().then(displayPage);
   } else {
     console.warn("using existing token");
-    displayPage();
+
+    function callback() {
+      let { style } = getStore().playlist;
+
+      let $card = $.card[style];
+
+      let { state } = $.card.selectors($card);
+
+      toggleSelectedCard({ state, $card });
+
+      if (style == "custom") switchToCustom($.button.custom);
+    }
+
+    displayPage(callback);
   }
 } else {
   setStore(function (store) {

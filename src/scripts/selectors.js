@@ -70,15 +70,15 @@ $.card.selectors = function ($card) {
     selectors.$select_button,
   ];
 
-  let id = $card.getAttribute("data-id");
-
-  let isSelected = $card.classList.contains($.state.selected);
+  let state = {
+    id: $card.getAttribute("data-id"),
+    selected: $card.classList.contains($.state.selected),
+  };
 
   return {
-    id,
-    isSelected,
+    state,
     targets,
-    selectors,
+    ...selectors,
   };
 };
 

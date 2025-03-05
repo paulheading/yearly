@@ -6,8 +6,7 @@ import {
 } from "~scripts/listeners/listenSelectForm";
 
 export default function () {
-  let { selectors } = $.card.selectors($.card.custom);
-  let { $settings } = selectors;
+  let { $settings } = $.card.selectors($.card.custom);
   let { $items } = $settings;
 
   $items.$toggles.forEach(function ($toggle) {

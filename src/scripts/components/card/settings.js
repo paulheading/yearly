@@ -4,8 +4,7 @@ import { printRangeInputValue } from "~scripts/printers";
 
 function updateDOMSettings(setting, $input) {
   let $card = $input.closest(".card-container");
-  let { selectors } = $.card.selectors($card);
-  let { $settings } = selectors;
+  let { $settings } = $.card.selectors($card);
 
   $settings.$items.$all.forEach(function ($setting) {
     let { $title, $input, $output, $mins } = $.setting.selectors($setting);
@@ -116,8 +115,7 @@ function addButtonEventListeners(selectors) {
 }
 
 $.query.cardAll().forEach(function ($card) {
-  let { selectors } = $.card.selectors($card);
-  let { $settings, $dot_buttons } = selectors;
+  let { $settings, $dot_buttons } = $.card.selectors($card);
 
   $settings.$items.$all.forEach(addSettingsEventListeners);
 
