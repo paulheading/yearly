@@ -1,196 +1,165 @@
 import $ from "~scripts/selectors";
 import { keyPress, preventDefault } from "~scripts/helpers";
 
-// https://www.freecodecamp.org/news/how-to-build-an-accessible-custom-dropdown-select-element/
-
-let dropdownIsOpen = [];
-
 export let currentOptionIndex = [];
 
-$.query.selectFormAll().forEach(function () {
-  dropdownIsOpen.push(false);
-  currentOptionIndex.push(0);
-});
+function handleDocumentInteraction(target) {
+  $.setting.selects.forEach(function ($form) {
+    let { $button, data, $list } = $.selectForm.selectors($form);
 
-function focusCurrentOption(parent) {
-  let { $form, index } = parent;
-  let { $items } = $.selectForm.selectors($form);
+    let isInsideButton = $button.contains(target);
 
-  let currentOption = $items[currentOptionIndex[index]];
+    let isInsideList = $list.contains(target);
 
-  currentOption.classList.add("current");
-  currentOption.focus();
-  currentOption.scrollIntoView({ block: "nearest" });
+    let stateIsOpen = data.state == "open";
 
-  $items.forEach(function (item) {
-    if (item == currentOption) return;
-    item.classList.remove("current");
+    if (isInsideButton) return toggleFormState(target);
+
+    if (!isInsideList && stateIsOpen) return toggleFormState($list);
   });
 }
 
-function moveFocusUp(parent) {
-  let { $form, index } = parent;
+function getCurrentItem($items, callback) {
+  $items.forEach(function ($item, index) {
+    let isCurrent = $item.classList.contains("current");
+
+    if (!isCurrent) return;
+
+    if (callback) callback($item, index);
+  });
+}
+
+function changeCurrentFocus({ $items, increment }) {
+  let isForward = increment > 0;
+  let lastItem = $items.length - 1;
+  let focus = 0;
+
+  function callback($item, index) {
+    focus = index + increment;
+
+    if (isForward && index == lastItem) focus = 0;
+
+    if (!isForward && index == 0) focus = lastItem;
+
+    $item.classList.remove("current");
+  }
+
+  getCurrentItem($items, callback);
+
+  let $currentFocus = $items[focus];
+
+  $currentFocus.classList.add("current");
+  $currentFocus.focus();
+  $currentFocus.scrollIntoView({ block: "nearest" });
+}
+
+function moveFocusUp(target) {
+  let $form = target.closest("form");
   let { $items } = $.selectForm.selectors($form);
 
-  currentOptionIndex[index] > 0
-    ? currentOptionIndex[index]--
-    : (currentOptionIndex[index] = $items.length - 1);
-
-  focusCurrentOption(parent);
+  changeCurrentFocus({ $items, increment: -1 });
 }
 
-function moveFocusDown(parent) {
-  let { $form, index } = parent;
+function moveFocusDown(target) {
+  let $form = target.closest("form");
   let { $items } = $.selectForm.selectors($form);
 
-  currentOptionIndex[index] < $items.length - 1
-    ? currentOptionIndex[index]++
-    : (currentOptionIndex[index] = 0);
-
-  focusCurrentOption(parent);
+  changeCurrentFocus({ $items, increment: 1 });
 }
 
-function toggleDropdown(parent) {
-  let { $form, index } = parent;
-  let { $button, $list } = $.selectForm.selectors($form);
-
-  $list.classList.toggle("active");
-  dropdownIsOpen[index] = !dropdownIsOpen[index];
-  $button.setAttribute("aria-expanded", dropdownIsOpen[index].toString());
+function toggleActiveItem({ $item, active }) {
+  active ? $item.classList.add("active") : $item.classList.remove("active");
+  $item.setAttribute("aria-selected", active.toString());
 }
 
-function handleKeyPress(event, parent) {
-  let { key } = event;
-  let activeDropdownIsOpen = dropdownIsOpen[parent.index];
+export function selectCurrentOption(target) {
+  let $form = target.closest("form");
 
-  if (!activeDropdownIsOpen) {
+  let { tagName } = target;
+
+  let { $items, $button } = $.selectForm.selectors($form);
+
+  let isButton = tagName == "BUTTON";
+
+  if (isButton) target = $items[0];
+
+  let value = target.getAttribute("data_id");
+
+  $button.setAttribute("data_id", value);
+
+  $button.innerText = target.innerText;
+
+  $items.forEach(function ($item) {
+    toggleActiveItem({ $item, active: $item == target });
+  });
+
+  toggleFormState(target);
+}
+
+function handleItemClicks($item) {
+  $item.addEventListener("click", ({ target }) => selectCurrentOption(target));
+}
+
+function toggleFormState(target) {
+  let $form = target.closest("form");
+
+  let { data, $button } = $.selectForm.selectors($form);
+
+  let stateIsClosed = data.state == "closed";
+
+  $form.setAttribute("data_state", stateIsClosed ? "open" : "closed");
+
+  $button.setAttribute("aria-expanded", stateIsClosed.toString());
+}
+
+function handleKeyPress(event) {
+  let { key, target } = event;
+  let $form = target.closest("form");
+  let { data } = $.selectForm.selectors($form);
+
+  let formIsClosed = data.state == "closed";
+
+  if (formIsClosed) {
     if (!keyPress.isOpenGroup(key)) return;
   }
 
-  if (activeDropdownIsOpen) {
-    if (keyPress.isClose(key) || keyPress.isTab(key)) {
-      toggleDropdown(parent);
-      return;
-    }
+  if (!formIsClosed) {
+    if (keyPress.isClose(key) || keyPress.isTab(key))
+      return toggleFormState(target);
   }
 
   event.preventDefault();
 
-  if (!activeDropdownIsOpen) {
-    if (keyPress.isOpenGroup(key)) return toggleDropdown(parent);
+  if (formIsClosed) {
+    if (keyPress.isOpenGroup(key)) return toggleFormState(target);
   }
 
-  if (activeDropdownIsOpen) {
-    if (keyPress.isOpen(key)) return selectCurrentOption(parent);
-    if (keyPress.isDown(key)) return moveFocusDown(parent);
-    if (keyPress.isUp(key)) return moveFocusUp(parent);
+  if (!formIsClosed) {
+    if (keyPress.isOpen(key)) {
+      let $form = target.closest("form");
+      let { $items } = $.selectForm.selectors($form);
+
+      getCurrentItem($items, ($item) => selectCurrentOption($item));
+    }
+    if (keyPress.isDown(key)) return moveFocusDown(target);
+    if (keyPress.isUp(key)) return moveFocusUp(target);
   }
 }
 
-function toggleActiveState(item, active) {
-  active ? item.classList.add("active") : item.classList.remove("active");
-  item.setAttribute("aria-selected", active.toString());
-  return item;
-}
-
-function selectOptionByElement(element, parent) {
-  let { $form, callback } = parent;
-
-  let { $button, $items, data } = $.selectForm.selectors($form);
-
-  let { snake, group, card } = data;
-
-  let value = element.getAttribute("data-id");
-
-  $button.setAttribute("data-id", value);
-
-  $button.innerText = element.innerText;
-
-  $items.forEach((item) => toggleActiveState(item, item == element));
-
-  toggleDropdown(parent);
-
-  announceOption(element.innerText, parent);
-
-  if (callback) callback({ card, value, snake, group });
-}
-
-function announceOption(text, parent) {
-  let { $form } = parent;
-
-  let { $announce } = $.selectForm.selectors($form);
-
-  $announce.innerText = text;
-
-  $announce.setAttribute("aria-live", "assertive");
-
-  setTimeout(function () {
-    $announce.innerText = "";
-    $announce.setAttribute("aria-live", "off");
-  }, 1000);
-}
-
-export function selectCurrentOption(parent) {
-  let { $form, index } = parent;
-
-  let { $items } = $.selectForm.selectors($form);
-
-  let currentOption = $items[currentOptionIndex[index]];
-
-  selectOptionByElement(currentOption, parent);
-}
-
-function handleDocumentInteraction(event) {
-  let { target } = event;
-
-  $.query.selectFormAll().forEach(function ($form, index) {
-    let parent = { $form, index };
-
-    let { $button, $list } = $.selectForm.selectors($form);
-
-    let clickIsInsideButton = $button.contains(target);
-
-    let clickIsInsideDropdown = $list.contains(target);
-
-    if (clickIsInsideButton) return toggleDropdown(parent);
-
-    if (!clickIsInsideDropdown && dropdownIsOpen[index])
-      return toggleDropdown(parent);
-  });
-}
-
-function handleItemClicks(item, index, parent) {
-  item.addEventListener("click", function () {
-    currentOptionIndex[parent.index] = index;
-    selectCurrentOption(parent);
-  });
-}
-
-function clearCurrentItem($form) {
-  let { $items } = $.selectForm.selectors($form);
-
-  $items.forEach((item) => item.classList.remove("current"));
-}
-
-function setupFormListeners({ $form, index, callback }) {
-  let parent = { $form, index, callback };
-
+function setupFormListeners($form) {
   $form.addEventListener("submit", preventDefault);
 
-  let { $button, $list, $items } = $.selectForm.selectors($form);
+  let { $button, $items } = $.selectForm.selectors($form);
 
-  $button.addEventListener("keydown", (event) => handleKeyPress(event, parent));
+  $button.addEventListener("keydown", handleKeyPress);
 
-  $list.addEventListener("mouseover", () => clearCurrentItem($form));
-
-  $items.forEach((item, index) => handleItemClicks(item, index, parent));
+  $items.forEach(handleItemClicks);
 }
 
-export default function (callback) {
-  $.query.selectFormAll().forEach(function ($form, index) {
-    let params = { $form, index, callback };
-    return setupFormListeners(params);
-  });
+export default function () {
+  $.setting.selects.forEach(setupFormListeners);
 
-  document.addEventListener("click", handleDocumentInteraction);
+  document.addEventListener("click", function ({ target }) {
+    handleDocumentInteraction(target);
+  });
 }

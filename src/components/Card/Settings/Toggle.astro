@@ -2,11 +2,12 @@
 import { Toggle } from "paully";
 import { Check } from "paully/svgs";
 
-let { setting, containerProps, color } = Astro.props;
+let { setting, containerProps, color, data } = Astro.props;
 
 let toggleProps = {
   checked: setting.value,
   color,
+  data,
 };
 ---
 

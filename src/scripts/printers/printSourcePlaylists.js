@@ -10,7 +10,7 @@ function printSourceOption(source) {
 
   option.classList.add("select-form-item");
 
-  option.setAttribute("data-id", source.id);
+  option.setAttribute("data_id", source.id);
 
   option.innerText = source.name;
 

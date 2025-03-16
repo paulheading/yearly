@@ -7,7 +7,7 @@ it("select button exists & works", function () {
 
   // select button exists & works
 
-  cy.get("[data-id=cindy] " + button.select)
+  cy.get("[data_id=cindy] " + button.select)
     .should("be.visible")
     .click();
 

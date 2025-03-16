@@ -1,11 +1,12 @@
 ---
 import RangeInput from "~components/Range";
 
-let { setting, containerProps } = Astro.props;
+let { setting, containerProps, data } = Astro.props;
 
 let rangeProps = {
   className: setting.evenOrOdd,
   setting,
+  data,
 };
 
 let minProps = {

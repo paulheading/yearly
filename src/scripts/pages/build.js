@@ -18,28 +18,24 @@ import {
   listenInfoButton,
   listenBuildButton,
   listenSelectButton,
+  listenDotButtons,
 } from "~scripts/listeners";
 
-import {
-  setToggleInput,
-  setRangeInput,
-  setSelectForm,
-  setAccessToken,
-  setUser,
-} from "~scripts/setters";
-
+import { setAccessToken, setUser } from "~scripts/setters";
 import { toggleSelectedCard } from "~scripts/listeners/listenSelectButton";
 import { switchToCustom } from "~scripts/listeners/listenCustomButton";
 
 function createInteractiveDOM() {
   printFirstName();
   printSourcePlaylists();
-  listenToggleInput(setToggleInput);
-  listenRangeInput(setRangeInput);
-  listenSelectForm(setSelectForm);
+
+  listenToggleInput();
+  listenRangeInput();
+  listenSelectForm();
   listenInfoButton();
   listenSelectButton();
   listenCustomButton();
+  listenDotButtons();
   listenBuildButton();
 }
 
@@ -60,13 +56,14 @@ function displayPage(callback) {
 }
 
 if (is.dataLive) {
-  if (!getStore().access_token) {
-    getPlaylistData().then(displayPage);
-  } else {
+  if (!getStore().access_token) getPlaylistData().then(displayPage);
+  else {
     console.warn("using existing token");
 
     function callback() {
       let { style } = getStore().playlist;
+
+      if (!style) return;
 
       let $card = $.card[style];
 
@@ -74,7 +71,9 @@ if (is.dataLive) {
 
       toggleSelectedCard({ state, $card });
 
-      if (style == "custom") switchToCustom($.button.custom);
+      if (style != "custom") return;
+
+      switchToCustom($.button.custom);
     }
 
     displayPage(callback);

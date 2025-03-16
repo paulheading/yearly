@@ -1,15 +1,14 @@
 ---
 import SelectFormLabel from "~components/SelectForm/Label";
+import { mapObjectToProps } from "paully/helpers";
 
-let { snake, type, label, className, group, card } = Astro.props;
+let { label, className, data } = Astro.props;
 
 let props = {
   "class:list": ["select-form", label ? "with-label" : "no-label", className],
-  "data-group": group ? group.name : "none",
-  "data-snake": snake,
-  "data-type": type,
-  "data-card": card,
 };
+
+props = mapObjectToProps({ data, props });
 ---
 
 <form {...props}>
@@ -33,5 +32,9 @@ let props = {
     grid-template-columns: auto $max-width-select;
     justify-content: center;
     display: grid;
+  }
+
+  .select-form[data_state="open"] .select-form-list {
+    display: block;
   }
 </style>

@@ -4,6 +4,7 @@ let $cy = {
     build: ".build-button",
     login: ".login-button",
     select: ".select-button",
+    dot: ".dot-button",
   },
   selectForm: {
     choose_source: "choose_source",
@@ -18,7 +19,7 @@ let $ = {
     buttonAll: (value = "") => $.query.selectorAll(`button${value}`),
     card: (value = "") => $.query.selector(`.card-container${value}`),
     cardAll: (value = "") => $.query.selectorAll(`.card-container${value}`),
-    cardId: (value = "") => $.query.card(`[data-id=${value}]`),
+    cardId: (value = "") => $.query.card(`[data_id=${value}]`),
     state: (value = "") => $.query.selector(`[data-state=${value}]`),
     print: (value = "") => $.query.selector(`[data-print=${value}]`),
     section: (value = "") => $.query.selector(`[data-section=${value}]`),
@@ -27,13 +28,12 @@ let $ = {
     selectForm: (value = "") => $.query.selector(`.select-form${value}`),
     selectFormAll: (value = "") => $.query.selectorAll(`.select-form${value}`),
     selectFormSnake: function (value = "") {
-      return $.query.selectForm(`[data-snake=${value}]`);
+      return $.query.selectForm(`[data_snake=${value}]`);
     },
     settingAll: function (value = "") {
-      return $.query.selectorAll(`.editable.setting${value}`);
+      return $.query.selectorAll(`[data_setting='true']${value}`);
     },
-    settingType: (value = "") => $.query.settingAll(`[data-type=${value}]`),
-    settingName: (value = "") => $.query.settingAll(`[data-snake=${value}]`),
+    settingType: (value = "") => $.query.settingAll(`[data_type=${value}]`),
   },
 };
 
@@ -71,7 +71,7 @@ $.card.selectors = function ($card) {
   ];
 
   let state = {
-    id: $card.getAttribute("data-id"),
+    id: $card.getAttribute("data_id"),
     selected: $card.classList.contains($.state.selected),
   };
 
@@ -95,20 +95,11 @@ $.setting = {
   selects: $.query.settingType("select"),
 };
 
-$.setting.selectors = function ($setting) {
-  let $span = $setting.querySelector("span");
-  let $title = $setting.querySelector(".title");
-  let $input = $setting.querySelector("input");
-  let $output = $setting.querySelector(".output");
-  let $mins = $setting.querySelector(".mins");
-
-  return { $span, $title, $input, $output, $mins };
-};
-
 $.button = {
   backs: $.query.buttonAll($cy.button.back),
   build: $.query.button($cy.button.build),
   custom: $.query.button(".custom-button"),
+  dots: $.query.buttonAll($cy.button.dot),
   infos: $.query.buttonAll(".info-button"),
   login: $.query.button($cy.button.login),
   refresh: $.query.button(".refresh-artwork"),
@@ -147,10 +138,11 @@ $.selectForm.selectors = function ($form) {
   let $announce = $form.querySelector(".select-form-announce");
 
   let data = {
-    id: $button.getAttribute("data-id"),
-    snake: $form.getAttribute("data-snake"),
-    group: $form.getAttribute("data-group"),
-    card: $form.getAttribute("data-card"),
+    id: $button.getAttribute("data_id"),
+    snake: $form.getAttribute("data_snake"),
+    state: $form.getAttribute("data_state"),
+    group: $form.getAttribute("data_group"),
+    card: $form.getAttribute("data_card"),
   };
 
   return { $list, $items, $button, $announce, data };

@@ -5,7 +5,6 @@ import setAccessToken from "~scripts/setters/setAccessToken";
 import setAction from "~scripts/setters/setAction";
 import setRangeInput from "~scripts/setters/setRangeInput";
 import setSelectForm from "~scripts/setters/setSelectForm";
-import setToggleInput from "~scripts/setters/setToggleInput";
 import setTracksAdded from "~scripts/setters/setTracksAdded";
 import setTitleToLabel from "~scripts/setters/setTitleToSnakeCase";
 import setUser from "~scripts/setters/setUser";
@@ -18,7 +17,6 @@ export {
   setAction,
   setRangeInput,
   setSelectForm,
-  setToggleInput,
   setTracksAdded,
   setTitleToLabel,
   setUser,

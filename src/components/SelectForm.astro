@@ -4,10 +4,20 @@ import SelectFormButton from "~components/SelectForm/Button";
 import SelectFormAnnouncement from "~components/SelectForm/Announcement";
 import SelectFormList from "~components/SelectForm/List";
 
-let { title, snake, type, label, value, options, className, group, card } =
-  Astro.props;
+let {
+  title,
+  snake,
+  type,
+  label,
+  value,
+  options,
+  className,
+  group,
+  card,
+  data,
+} = Astro.props;
 
-let formProps = { snake, type, label, className, group, card };
+let formProps = { snake, type, label, className, group, card, data };
 
 let buttonProps = {
   title,

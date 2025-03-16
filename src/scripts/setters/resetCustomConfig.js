@@ -9,19 +9,15 @@ export default function () {
   let { $settings } = $.card.selectors($.card.custom);
   let { $items } = $settings;
 
-  $items.$toggles.forEach(function ($toggle) {
-    let { $input } = $.setting.selectors($toggle);
+  $items.$toggles.forEach(($input) => ($input.checked = false));
 
-    $input.checked = false;
-  });
-
-  $items.$ranges.forEach(function ($range) {
-    let { $input, $output, $mins } = $.setting.selectors($range);
-
+  $items.$ranges.forEach(function ($input) {
     $input.value = 0;
 
-    printRangeInputValue({ $input, $output, $mins });
+    printRangeInputValue($input);
   });
+
+  // @TODO: sort this out
 
   $items.$selects.forEach(function ($select) {
     let $form = $select.querySelector("form");

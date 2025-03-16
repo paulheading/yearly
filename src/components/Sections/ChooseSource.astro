@@ -4,13 +4,21 @@ import SelectForm from "~components/SelectForm";
 let title = "Liked songs";
 let value = 0;
 
+let data = {
+  state: "closed",
+  snake: "choose_source",
+  type: "select",
+  setting: true,
+  group: null,
+  card: null,
+};
+
 let props = {
   options: [{ title, data: value }],
-  snake: "choose_source",
   label: "Source",
-  type: "select",
   title,
   value,
+  data,
 };
 ---
 

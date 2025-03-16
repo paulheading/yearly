@@ -6,7 +6,7 @@ export default function resetSelectFormDOM(snake) {
 
   let { $button, $items } = $.selectForm.selectors($list);
 
-  $button.setAttribute("data-id", 0);
+  $button.setAttribute("data_id", 0);
 
   $button.innerText = settings[snake];
 

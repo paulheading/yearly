@@ -1,17 +1,44 @@
 import $ from "~scripts/selectors";
+import setCardSetting from "~scripts/setters/setCardSetting";
+import { getInputAttributes } from "./listenRangeInput";
 
-export default function (callback) {
-  $.setting.toggles.forEach(function ($toggle) {
-    let { $input } = $.setting.selectors($toggle);
+function resetToggleInput($input, data) {
+  let { card, setting } = data;
+  let value = false;
 
-    $input.addEventListener("change", function (event) {
-      let card = $toggle.closest(".card-container")?.getAttribute("data-id");
+  $input.checked = value;
 
-      let name = $toggle.getAttribute("data-snake");
+  setCardSetting({
+    card,
+    setting,
+    value,
+  });
+}
 
-      let value = event.currentTarget.checked;
+export default function () {
+  $.setting.toggles.forEach(function ($input) {
+    $input.addEventListener("change", function () {
+      let input = getInputAttributes($input);
 
-      if (callback) callback({ card, value, name });
+      let { card, setting, value, group_name, group_action } = input;
+
+      setCardSetting({ card, setting, value });
+
+      if (!group_name) return;
+
+      $.setting.toggles.forEach(function ($other) {
+        if ($other == $input) return;
+
+        let other = getInputAttributes($other);
+
+        if (!other.group_name) return;
+
+        if (other.group_name != input.group_name) return;
+
+        if (!other.value) return;
+
+        if (group_action == "cancel") resetToggleInput($other, other);
+      });
     });
   });
 }

@@ -49,7 +49,7 @@ function selectButtonClick(event) {
   toggleSelectedCard({ state, $card });
 
   setStore(function (store) {
-    store.playlist.style = $card.getAttribute("data-id");
+    store.playlist.style = $card.getAttribute("data_id");
     return store;
   });
 

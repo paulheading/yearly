@@ -7,12 +7,10 @@ import SettingsSelect from "~components/Card/Settings/Select";
 import createSettingsGroups from "~scripts/creators/createSettingsGroups";
 import setGroupSettingProps from "~scripts/setters/setGroupSettingProps";
 
-let { settings } = Astro.props;
+let { settings, id } = Astro.props;
 
 let groups = createSettingsGroups(settings);
 ---
-
-<script src="~scripts/components/card/settings.js"></script>
 
 {
   groups.map(function (group, index) {
@@ -35,9 +33,13 @@ let groups = createSettingsGroups(settings);
 {
   groups.length > 1 && (
     <div class="wrap-pagination">
-      {groups.map((_, index) => (
-        <InvisibleButton className="dot-button" disabled={index == 0} />
-      ))}
+      {groups.map(function (_, index) {
+        let props = {
+          data: { card: id },
+          disabled: index == 0,
+        };
+        return <InvisibleButton className="dot-button" {...props} />;
+      })}
     </div>
   )
 }

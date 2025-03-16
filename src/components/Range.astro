@@ -1,14 +1,16 @@
 ---
-let { className, setting } = Astro.props;
+import { mapObjectToProps } from "paully/helpers";
+
+let { className, setting, data } = Astro.props;
 
 let rangeProps = {
   "class:list": ["range-input", className],
-  value: setting.value,
   min: setting.range.min,
   max: setting.range.max,
-  "data-type": setting.type,
-  "data-snake": setting.snake,
+  value: setting.value,
 };
+
+rangeProps = mapObjectToProps({ data, props: rangeProps });
 ---
 
 <div class="container">

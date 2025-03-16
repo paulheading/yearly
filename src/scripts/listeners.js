@@ -1,6 +1,7 @@
 import listenBackButton from "~scripts/listeners/listenBackButton";
 import listenBuildButton from "~scripts/listeners/listenBuildButton";
 import listenCustomButton from "~scripts/listeners/listenCustomButton";
+import listenDotButtons from"~scripts/listeners/listenDotButtons";
 import listenInfoButton from "~scripts/listeners/listenInfoButton";
 import listenRangeInput from "~scripts/listeners/listenRangeInput";
 import listenRefreshButton from "~scripts/listeners/listenRefreshButton";
@@ -13,6 +14,7 @@ export {
   listenBackButton,
   listenBuildButton,
   listenCustomButton,
+  listenDotButtons,
   listenInfoButton,
   listenRangeInput,
   listenRefreshButton,

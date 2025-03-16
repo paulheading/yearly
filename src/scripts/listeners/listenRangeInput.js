@@ -1,26 +1,81 @@
 import $ from "~scripts/selectors";
+import settings from "~data/settings";
+import setCardSetting from "~scripts/setters/setCardSetting";
+
 import { printRangeInputValue } from "~scripts/printers";
 
-function handleRangeInput(params, callback) {
-  printRangeInputValue(params);
+export function getInputAttributes($input) {
+  let card = $input.getAttribute("data_card");
+  let snake = $input.getAttribute("data_snake");
+  let group_name = $input.getAttribute("data_group_name");
+  let group_action = $input.getAttribute("data_group_action");
+  let range_pos = $input.getAttribute("data_range_pos");
 
-  let { $input, $output } = params;
+  let setting = settings[snake];
+  let value;
 
-  let card = $output.closest(".card-container")?.getAttribute("data-id");
+  if ($input.type == "checkbox") value = $input.checked;
+  if ($input.type == "range") value = $input.value;
 
-  let value = Number($output.innerText);
-
-  if (isNaN(value)) value = 0;
-
-  let name = $input.getAttribute("data-snake");
-
-  if (callback) callback({ card, value, name });
+  return { card, snake, group_name, group_action, range_pos, setting, value };
 }
 
-export default function (callback) {
-  $.setting.ranges.forEach(function ($range) {
-    let params = $.setting.selectors($range);
+function resetRangeInput($element, data) {
+  let { card, setting } = data;
+  let value = 0;
 
-    $range.oninput = () => handleRangeInput(params, callback);
+  $element.value = value;
+
+  printRangeInputValue($element);
+
+  setCardSetting({
+    card,
+    setting,
+    value,
+  });
+}
+
+function handleRangeInput($input) {
+  let input = getInputAttributes($input);
+
+  let { card, setting, value, group_name, group_action, range_pos } = input;
+
+  printRangeInputValue($input);
+
+  setCardSetting({ card, setting, value });
+
+  if (!group_name) return;
+
+  $.setting.ranges.forEach(function ($other) {
+    if ($other == $input) return;
+
+    let other = getInputAttributes($other);
+
+    if (!other.group_name) return;
+
+    if (other.group_name != input.group_name) return;
+
+    if (!other.value) return;
+
+    if (group_action == "ceiling") {
+      let $input_value = Number($input.value);
+      let $other_value = Number($other.value);
+
+      if ($input_value == 0 || $other_value == 0) return;
+
+      if (range_pos == "min" && $input_value > $other_value) {
+        resetRangeInput($other, other);
+      }
+
+      if (range_pos == "max" && $input_value < $other_value) {
+        resetRangeInput($other, other);
+      }
+    }
+  });
+}
+
+export default function () {
+  $.setting.ranges.forEach(function ($input) {
+    $input.oninput = () => handleRangeInput($input);
   });
 }

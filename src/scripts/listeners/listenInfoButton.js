@@ -14,9 +14,9 @@ function infoButtonClick(event) {
 
   let $card = currentTarget.closest(".card-container");
 
-  let cover = $card.querySelector("[data-type=cover]");
+  let cover = $card.querySelector("[data_type=cover]");
 
-  let config = $card.querySelector("[data-type=config]");
+  let config = $card.querySelector("[data_type=config]");
 
   let coverIsActive = cover.style.display != "none";
 
