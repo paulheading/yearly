@@ -6,6 +6,7 @@ import SharePlaylistSection from "~sections/SharePlaylist";
 import EmptyPlaylistSection from "~sections/EmptyPlaylist";
 import RecommendTracks from "~sections/RecommendTracks";
 import TracksAdded from "~sections/TracksAdded";
+import ConfirmSettings from "~sections/ConfirmSettings";
 
 import { seo } from "paully/data";
 
@@ -25,6 +26,7 @@ let layoutProps = {
       <TracksAdded />
     </NotLoaded>
     <Loaded>
+      <ConfirmSettings />
       <SavePlaylistSection />
       <SharePlaylistSection />
       <EmptyPlaylistSection />

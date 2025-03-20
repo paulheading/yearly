@@ -5,12 +5,22 @@ import getTracks from "~scripts/getters/getTracks";
 import filterResults from "~scripts/filters/filterResults";
 
 import { is, displaySection } from "~scripts/helpers";
-import { listenBackButton, listenRefreshButton, listenSaveButton } from "~scripts/listeners";
+import {
+  listenBackButton,
+  listenRefreshButton,
+  listenSaveButton,
+} from "~scripts/listeners";
 import { printYearAdded, printLocalTracks } from "~scripts/printers";
 
 import getPlaylistRecommends from "~scripts/getters/getPlaylistRecommends";
 import printPlaylist from "~scripts/printers/printPlaylist";
 import loadComplete from "~scripts/loaders/loadComplete";
+import getPlaylistActiveConfig from "~scripts/getters/getPlaylistActiveConfig";
+import exclude from "~scripts/filters/exclude";
+import getAstroClass from "~scripts/getters/getAstroClass";
+import getAccessToken from "~scripts/getters/getAccessToken";
+
+if (is.dataLive && !getAccessToken()) window.location.assign("/build");
 
 async function loadPage() {
   loadInProgress(function () {
@@ -34,15 +44,34 @@ loadPage()
             return loadComplete(function () {
               displaySection("empty_playlist", "block");
             });
-          } else {
-            if (items.length < 10) getPlaylistRecommends(items);
-
-            printPlaylist(items);
-
-            loadComplete(function () {
-              displaySection("save_playlist", "block");
-            });
           }
+
+          if (items.length < 10) getPlaylistRecommends(items);
+
+          printPlaylist(items);
+
+          loadComplete(function () {
+            displaySection("save_playlist", "block");
+            displaySection("confirm_settings", "block");
+          });
+
+          let $box = document.querySelector(".box");
+
+          getPlaylistActiveConfig().forEach(function (item) {
+            let $item = document.createElement("div");
+
+            let classList = ["setting", getAstroClass($box)];
+
+            classList.forEach((className) => $item.classList.add(className));
+
+            $item.innerText = item.title;
+
+            if (exclude.allBooleans(item.value)) {
+              $item.innerText = $item.innerText + ": " + item.value;
+            }
+
+            $box.append($item);
+          });
         })
         .then(getStoreState);
     } else {

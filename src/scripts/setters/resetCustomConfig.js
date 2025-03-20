@@ -1,35 +1,47 @@
 import $ from "~scripts/selectors";
+import settings from "~data/settings";
 import { printRangeInputValue } from "~scripts/printers";
 import {
-  currentOptionIndex,
-  selectCurrentOption,
+  setFormButton,
+  toggleActiveItem,
+  focusOnItem,
 } from "~scripts/listeners/listenSelectForm";
 
 export default function () {
   let { $settings } = $.card.selectors($.card.custom);
   let { $items } = $settings;
 
-  $items.$toggles.forEach(($input) => ($input.checked = false));
+  $items.toggle.forEach(function ($toggle) {
+    let $input = $toggle.querySelector("input");
 
-  $items.$ranges.forEach(function ($input) {
+    $input.checked = false;
+  });
+
+  $items.range.forEach(function ($range) {
+    let $input = $range.querySelector("input");
+
     $input.value = 0;
 
     printRangeInputValue($input);
   });
 
-  // @TODO: sort this out
-
-  $items.$selects.forEach(function ($select) {
+  $items.select.forEach(function ($select) {
     let $form = $select.querySelector("form");
 
-    $.query.selectFormAll().forEach(($item, index) => {
-      if ($item == $form) {
-        let parent = { $form, index };
+    let { $button, $items, data } = $.selectForm.selectors($form);
 
-        currentOptionIndex[parent.index] = 0;
+    let innerText = settings[data.snake];
 
-        selectCurrentOption(parent);
-      }
+    let value = 0;
+
+    setFormButton({ $button, innerText, value });
+
+    $items.forEach(function ($item, index) {
+      let active = index == 0;
+
+      toggleActiveItem({ $item, active });
+
+      if (active) focusOnItem($item);
     });
   });
 }

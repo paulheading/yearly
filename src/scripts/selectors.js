@@ -53,10 +53,10 @@ $.card.selectors = function ($card) {
     $settings: {
       $lists: $card.querySelectorAll("ul.settings"),
       $items: {
-        $all: $card.querySelectorAll("li.setting"),
-        $toggles: $card.querySelectorAll("li.setting.toggle"),
-        $ranges: $card.querySelectorAll("li.setting.range"),
-        $selects: $card.querySelectorAll("li.setting.select"),
+        all: $card.querySelectorAll("li.setting"),
+        toggle: $card.querySelectorAll("li.setting.toggle"),
+        range: $card.querySelectorAll("li.setting.range"),
+        select: $card.querySelectorAll("li.setting.select"),
       },
     },
   };
@@ -109,6 +109,7 @@ $.button = {
 
 $.section = {
   choose_card: $.query.section("choose-card"),
+  confirm_settings: $.query.section("confirm-settings"),
   custom: $.query.section("custom"),
   empty_playlist: $.query.section("empty-playlist"),
   playlist: $.query.section("playlist"),

@@ -28,6 +28,7 @@ function settingProps({ setting, index }) {
   let containerProps = {
     "class:list": [
       "setting",
+      setting.type,
       index % 2 ? "even" : "odd",
       setting.editable && "editable",
     ],

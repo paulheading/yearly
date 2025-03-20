@@ -24,6 +24,8 @@ import {
 import { setAccessToken, setUser } from "~scripts/setters";
 import { toggleSelectedCard } from "~scripts/listeners/listenSelectButton";
 import { switchToCustom } from "~scripts/listeners/listenCustomButton";
+import setCustomConfig from "~scripts/setters/setCustomConfig";
+import getAccessToken from "~scripts/getters/getAccessToken";
 
 function createInteractiveDOM() {
   printFirstName();
@@ -56,7 +58,7 @@ function displayPage(callback) {
 }
 
 if (is.dataLive) {
-  if (!getStore().access_token) getPlaylistData().then(displayPage);
+  if (!getAccessToken()) getPlaylistData().then(displayPage);
   else {
     console.warn("using existing token");
 
@@ -74,6 +76,8 @@ if (is.dataLive) {
       if (style != "custom") return;
 
       switchToCustom($.button.custom);
+
+      setCustomConfig();
     }
 
     displayPage(callback);

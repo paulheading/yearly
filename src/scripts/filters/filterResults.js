@@ -1,18 +1,16 @@
 import settings from "~data/settings";
-import getPlaylistConfig from "~scripts/getters/getPlaylistConfig";
+import filterTracksByReleaseDate from "~scripts/filters/filterTracksByReleaseDate";
 
 import { length, include, exclude } from "~scripts/filters";
 import { byLowestPopularity, byHighestPopularity } from "~scripts/sorters";
 import { getDate } from "~scripts/getters";
-import filterTracksByReleaseDate from "./filterTracksByReleaseDate";
+import getPlaylistActiveConfig from "~scripts/getters/getPlaylistActiveConfig";
 
 export default async function (items) {
   if (!items.length) return items;
 
-  getPlaylistConfig().forEach(function ({ title, value }) {
+  getPlaylistActiveConfig().forEach(function ({ title, value }) {
     console.log(title, "value: ", value);
-
-    if (!value) return;
 
     // if (title == settings.in_recommends) {
     // }

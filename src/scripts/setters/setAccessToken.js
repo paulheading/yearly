@@ -28,6 +28,8 @@ export default async function () {
 
   let data = await response.json();
 
+  if (data.error && data.error == "invalid_grant") window.location.assign("/");
+
   setStore(function (store) {
     store.access_token = data.access_token;
     return store;

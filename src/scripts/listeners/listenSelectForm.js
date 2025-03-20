@@ -1,7 +1,7 @@
 import $ from "~scripts/selectors";
 import { keyPress, preventDefault } from "~scripts/helpers";
-
-export let currentOptionIndex = [];
+import setCardSetting from "~scripts/setters/setCardSetting";
+import settings from "~data/settings";
 
 function handleDocumentInteraction(target) {
   $.setting.selects.forEach(function ($form) {
@@ -29,6 +29,11 @@ function getCurrentItem($items, callback) {
   });
 }
 
+function focusOnItem($item) {
+  $item.focus();
+  $item.scrollIntoView({ block: "nearest" });
+}
+
 function changeCurrentFocus({ $items, increment }) {
   let isForward = increment > 0;
   let lastItem = $items.length - 1;
@@ -46,11 +51,11 @@ function changeCurrentFocus({ $items, increment }) {
 
   getCurrentItem($items, callback);
 
-  let $currentFocus = $items[focus];
+  let $nextFocus = $items[focus];
 
-  $currentFocus.classList.add("current");
-  $currentFocus.focus();
-  $currentFocus.scrollIntoView({ block: "nearest" });
+  $nextFocus.classList.add("current");
+
+  focusOnItem($nextFocus);
 }
 
 function moveFocusUp(target) {
@@ -72,22 +77,33 @@ function toggleActiveItem({ $item, active }) {
   $item.setAttribute("aria-selected", active.toString());
 }
 
-export function selectCurrentOption(target) {
+function setFormButton({ $button, innerText, value }) {
+  $button.setAttribute("data_id", value);
+  $button.innerText = innerText;
+}
+
+function selectCurrentOption(target) {
   let $form = target.closest("form");
 
   let { tagName } = target;
 
-  let { $items, $button } = $.selectForm.selectors($form);
+  let { $items, $button, data } = $.selectForm.selectors($form);
 
   let isButton = tagName == "BUTTON";
 
   if (isButton) target = $items[0];
 
+  let { innerText } = target;
+
   let value = target.getAttribute("data_id");
 
-  $button.setAttribute("data_id", value);
+  setFormButton({ $button, innerText, value });
 
-  $button.innerText = target.innerText;
+  let { card, snake } = data;
+
+  let setting = settings[snake];
+
+  setCardSetting({ card, setting, value });
 
   $items.forEach(function ($item) {
     toggleActiveItem({ $item, active: $item == target });
@@ -155,6 +171,8 @@ function setupFormListeners($form) {
 
   $items.forEach(handleItemClicks);
 }
+
+export { setFormButton, toggleActiveItem, focusOnItem };
 
 export default function () {
   $.setting.selects.forEach(setupFormListeners);
