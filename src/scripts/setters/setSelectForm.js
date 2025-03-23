@@ -2,7 +2,7 @@ import settings from "~data/settings";
 import setCardSetting from "~scripts/setters/setCardSetting";
 import getConfigByGroup from "~scripts/getters/getConfigByGroup";
 import setAction from "~scripts/setters/setAction";
-import { $cy } from "~scripts/selectors";
+import $cy from "~scripts/selectors/$cy";
 import setStore from "~scripts/setters/setStore";
 
 function handleGroupActions({ other, action, params }) {

@@ -2,10 +2,7 @@ import $ from "~scripts/selectors";
 import { printRangeInputValue } from "~scripts/printers";
 import { getPlaylistConfig } from "~scripts/getters";
 import settings from "~data/settings";
-import {
-  setFormButton,
-  toggleActiveItem,
-} from "~scripts/listeners/listenSelectForm";
+import setItemsByValue from "~scripts/setters/setItemsByValue";
 
 function matchConfigTitle({ $item, title }) {
   let $title = $item.querySelector(".title");
@@ -40,24 +37,13 @@ function setSelect($item, config) {
 
   let $form = $item.querySelector("form");
 
-  let { data, $button, $items } = $.selectForm.selectors($form);
+  let { data } = $.selectForm.selectors($form);
 
   let setting = settings[data.snake];
 
   if (setting != title) return;
 
-  $items.forEach(function ($item) {
-    let value = $item.getAttribute("data_id");
-    let active = value == config.value;
-
-    toggleActiveItem({ $item, active });
-
-    if (!active) return;
-
-    let { innerText } = $item;
-
-    setFormButton({ $button, innerText, value });
-  });
+  setItemsByValue({ $form, value: config.value });
 }
 
 export default function () {

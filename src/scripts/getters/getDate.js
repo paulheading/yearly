@@ -6,7 +6,6 @@ let year = now().toFormat("yyyy");
 
 let yearFromString = function (value) {
   if (typeof value != "string") return "";
-
   return value.slice(0, 4);
 };
 
@@ -17,11 +16,17 @@ let date = {
 
 let time = now().setLocale("en-US").toLocaleString(TIME_SIMPLE);
 
+let iso = {
+  now: now().toISO(),
+  expiry: now().plus({ hours: 1 }).toISO(),
+};
+
 export default function (value) {
   return {
     year,
     yearFromString: yearFromString(value),
-    time,
     date,
+    time,
+    iso,
   };
 }

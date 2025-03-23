@@ -1,4 +1,5 @@
 import { Buffer } from "buffer";
+import getDate from "~scripts/getters/getDate";
 import setStore from "~scripts/setters/setStore";
 
 export default async function () {
@@ -31,7 +32,13 @@ export default async function () {
   if (data.error && data.error == "invalid_grant") window.location.assign("/");
 
   setStore(function (store) {
-    store.access_token = data.access_token;
+    let { iso } = getDate();
+
+    store.access.token = data.access_token;
+    store.access.expiry = iso.expiry;
+
+    console.log("set expiry: ", store.access.expiry);
+
     return store;
   });
 }

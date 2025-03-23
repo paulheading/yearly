@@ -7,7 +7,10 @@ import playlist from "~data/store/playlist";
 import user from "~data/store/user";
 
 let store = {
-  access_token: "",
+  access: {
+    token: null,
+    expiry: "",
+  },
   cards: [cindy, badjo, custom],
   color,
   get_tracks,

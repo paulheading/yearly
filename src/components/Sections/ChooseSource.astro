@@ -1,12 +1,15 @@
 ---
 import SelectForm from "~components/SelectForm";
+import $cy from "~scripts/selectors/$cy";
 
 let title = "Liked songs";
 let value = 0;
 
+let { choose_source } = $cy.selectForm;
+
 let data = {
+  snake: choose_source,
   state: "closed",
-  snake: "choose_source",
   type: "select",
   setting: true,
   group: null,

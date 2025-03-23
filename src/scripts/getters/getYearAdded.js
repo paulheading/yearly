@@ -9,9 +9,13 @@ export default function () {
 
   let { year_added } = settings;
 
-  let config = getPlaylistConfig().filter(({ title }) => title == year_added);
+  let config = getPlaylistConfig().filter(
+    ({ title }) => title == year_added
+  )[0];
 
-  let { value } = config[0];
+  let { value } = config;
 
-  return value ? value : year;
+  if (!value && is.sourceLikedSongs()) return year;
+
+  return value;
 }

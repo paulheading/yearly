@@ -1,4 +1,4 @@
-import { $cy } from "../../src/scripts/selectors";
+import $cy from "../../src/scripts/selectors/$cy";
 
 let { button } = $cy;
 

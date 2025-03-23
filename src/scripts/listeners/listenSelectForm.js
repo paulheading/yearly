@@ -1,7 +1,10 @@
 import $ from "~scripts/selectors";
-import { keyPress, preventDefault } from "~scripts/helpers";
+import $cy from "~scripts/selectors/$cy";
 import setCardSetting from "~scripts/setters/setCardSetting";
 import settings from "~data/settings";
+import setSource from "~scripts/setters/setSource";
+
+import { keyPress, preventDefault } from "~scripts/helpers";
 
 function handleDocumentInteraction(target) {
   $.setting.selects.forEach(function ($form) {
@@ -103,13 +106,16 @@ function selectCurrentOption(target) {
 
   let setting = settings[snake];
 
-  setCardSetting({ card, setting, value });
-
   $items.forEach(function ($item) {
     toggleActiveItem({ $item, active: $item == target });
   });
 
   toggleFormState(target);
+
+  if (!setting) {
+    let { choose_source } = $cy.selectForm;
+    if (snake == choose_source) setSource(value);
+  } else setCardSetting({ card, setting, value });
 }
 
 function handleItemClicks($item) {

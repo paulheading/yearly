@@ -6,7 +6,7 @@ import user from "~data/user";
 
 import { printFirstName, printSourcePlaylists } from "~scripts/printers";
 import { displaySection, is } from "~scripts/helpers";
-import { getPlaylists } from "~scripts/getters";
+import { getDate, getPlaylists } from "~scripts/getters";
 
 import getStore from "~scripts/getters/getStore";
 
@@ -26,6 +26,7 @@ import { toggleSelectedCard } from "~scripts/listeners/listenSelectButton";
 import { switchToCustom } from "~scripts/listeners/listenCustomButton";
 import setCustomConfig from "~scripts/setters/setCustomConfig";
 import getAccessToken from "~scripts/getters/getAccessToken";
+import setItemsByValue from "~scripts/setters/setItemsByValue";
 
 function createInteractiveDOM() {
   printFirstName();
@@ -63,9 +64,15 @@ if (is.dataLive) {
     console.warn("using existing token");
 
     function callback() {
-      let { style } = getStore().playlist;
+      let { style, source } = getStore().playlist;
 
       if (!style) return;
+
+      if (source != 0) {
+        let $form = $.selectForm.choose_source;
+
+        setItemsByValue({ $form, value: source });
+      }
 
       let $card = $.card[style];
 

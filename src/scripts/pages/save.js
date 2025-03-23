@@ -19,12 +19,14 @@ import getPlaylistActiveConfig from "~scripts/getters/getPlaylistActiveConfig";
 import exclude from "~scripts/filters/exclude";
 import getAstroClass from "~scripts/getters/getAstroClass";
 import getAccessToken from "~scripts/getters/getAccessToken";
+import getStore from "~scripts/getters/getStore";
 
 if (is.dataLive && !getAccessToken()) window.location.assign("/build");
 
 async function loadPage() {
   loadInProgress(function () {
     displaySection("tracks_added", "block");
+    console.log(getStore());
   });
 }
 

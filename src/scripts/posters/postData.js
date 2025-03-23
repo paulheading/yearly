@@ -1,14 +1,14 @@
 import getStore from "~scripts/getters/getStore";
 
 export default async function ({ endpoint, body }) {
-  let { access_token } = getStore();
+  let { access } = getStore();
 
-  if (!access_token) window.location.assign("/");
+  if (!access.token) window.location.assign("/");
 
   let options = {
     method: "post",
     headers: {
-      Authorization: "Bearer " + access_token,
+      Authorization: "Bearer " + access.token,
     },
     body: JSON.stringify({ ...body }),
   };
