@@ -109,6 +109,7 @@ $.section = {
 $.print = {
   first_name: $.query.print("first_name"),
   share_link: $.query.print("share-link"),
+  since: $.query.print("since"),
   tracks_added: $.query.print("tracks-added"),
   year_added: $.query.print("year-added"),
 };

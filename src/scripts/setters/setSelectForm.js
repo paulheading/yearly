@@ -43,7 +43,7 @@ export default function ({ card, value, snake }) {
     let { choose_source } = $cy.selectForm;
 
     setStore(function (store) {
-      if (snake == choose_source) store.playlist.source = value;
+      if (snake == choose_source) store.playlist.source.id = value;
       return store;
     });
   }

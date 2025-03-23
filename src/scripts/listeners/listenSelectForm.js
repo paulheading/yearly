@@ -114,7 +114,7 @@ function selectCurrentOption(target) {
 
   if (!setting) {
     let { choose_source } = $cy.selectForm;
-    if (snake == choose_source) setSource(value);
+    if (snake == choose_source) setSource({ title: innerText, id: value });
   } else setCardSetting({ card, setting, value });
 }
 

@@ -1,3 +1,3 @@
 import getStore from "~scripts/getters/getStore";
 
-export default () => getStore().playlist.source;
+export default () => getStore().playlist.source.id;

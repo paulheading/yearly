@@ -1,5 +1,10 @@
+export let source = {
+  title: "Liked songs",
+  id: "0"
+};
+
 export default {
-  source: "0",
+  source,
   name: "",
   description: "",
   image: "",

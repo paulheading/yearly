@@ -1,8 +1,8 @@
 import setStore from "~scripts/setters/setStore";
 
-export default function (value) {
+export default function ({ title, id }) {
   setStore(function (store) {
-    store.playlist.source = value;
+    store.playlist.source = { title, id };
     return store;
   });
 }

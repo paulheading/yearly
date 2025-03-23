@@ -14,8 +14,6 @@ export default async function () {
 
   let year_added = getYearAdded();
 
-  console.log("year added: ", year_added);
-
   if (!is.sourceLikedSongs()) {
     let { items } = await getPlaylistItems(getSource());
 

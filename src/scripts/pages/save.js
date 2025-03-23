@@ -59,17 +59,33 @@ loadPage()
 
           let $box = document.querySelector(".box");
 
-          getPlaylistActiveConfig().forEach(function (item) {
+          let astroClass = getAstroClass($box);
+
+          function createConfigTag(title) {
             let $item = document.createElement("div");
 
-            let classList = ["setting", getAstroClass($box)];
+            let classList = ["setting", astroClass];
 
             classList.forEach((className) => $item.classList.add(className));
 
-            $item.innerText = item.title;
+            $item.innerText = title;
 
-            if (exclude.allBooleans(item.value)) {
-              $item.innerText = $item.innerText + ": " + item.value;
+            return $item;
+          }
+
+          let { source } = getStore().playlist;
+
+          let title = "Source: " + source.title;
+
+          let $source = createConfigTag(title);
+
+          $box.append($source);
+
+          getPlaylistActiveConfig().forEach(function ({ title, value }) {
+            let $item = createConfigTag(title);
+
+            if (exclude.allBooleans(value)) {
+              $item.innerText = $item.innerText + ": " + value;
             }
 
             $box.append($item);

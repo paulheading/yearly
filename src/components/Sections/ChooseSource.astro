@@ -2,8 +2,7 @@
 import SelectForm from "~components/SelectForm";
 import $cy from "~scripts/selectors/$cy";
 
-let title = "Liked songs";
-let value = 0;
+import { source } from "~data/store/playlist"
 
 let { choose_source } = $cy.selectForm;
 
@@ -17,10 +16,10 @@ let data = {
 };
 
 let props = {
-  options: [{ title, data: value }],
+  options: [{ title: source.title, data: source.id }],
   label: "Source",
-  title,
-  value,
+  title: source.title,
+  value: source.id,
   data,
 };
 ---
