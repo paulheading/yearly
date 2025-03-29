@@ -15,7 +15,7 @@ let bannerProps = {
     print: "banner",
   },
   style: {
-    backgroundColor: "green",
+    backgroundColor: "blue",
   },
 };
 
@@ -33,7 +33,7 @@ let containerProps = {
   <Head {...Astro.props} />
   <body data-state="visible">
     <Section {...bannerSectionProps}>
-      <Banner {...bannerProps} className="banner" />
+      <Banner {...bannerProps} />
     </Section>
     <Container {...containerProps}>
       <header></header>
@@ -49,9 +49,5 @@ let containerProps = {
   header,
   footer {
     height: toRem(100);
-  }
-
-  .banner {
-    background-color: red;
   }
 </style>
