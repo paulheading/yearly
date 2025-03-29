@@ -8,9 +8,9 @@
 
 ### Scenarios
 
-- Create a playlist from songs added in 2023
-- Create a playlist from songs stored in a custom playlist
-- Create a playlist from songs added AND released in 2023
+- Create a playlist from songs added in 2023 🟢
+- Create a playlist from songs stored in a custom playlist 🟢
+- Create a playlist from songs added AND released in 2023 🟢
 
 ### Coming soon
 

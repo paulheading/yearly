@@ -24,7 +24,7 @@ export default function (tracks) {
     return store;
   });
 
-  printPlaylistImage();
+  // printPlaylistImage();
 
   let template = $.playlist().$track;
 

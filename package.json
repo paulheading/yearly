@@ -17,15 +17,15 @@
     "astro": "^5.3.1",
     "buffer": "^6.0.3",
     "focus-visible": "^5.2.0",
-    "gsap": "npm:@gsap/shockingly@^3.12.5",
+    "gsap": "file:../../../Downloads/gsap-premium/npm-install-this/gsap-bonus.tgz",
     "gulp-rename": "^2.0.0",
     "image-to-base64": "^2.2.0",
     "luxon": "^3.5.0",
-    "paully": "^9.5.1"
+    "paully": "^9.5.2"
   },
   "devDependencies": {
     "cypress": "^14.0.2",
-    "gulp": "^5.0.0",
+    "gulp": "^4.0.2",
     "sass-embedded": "^1.82.0"
   }
 }

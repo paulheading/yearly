@@ -1,7 +1,25 @@
 ---
 import "~styles/global.scss";
 import { Head, Container, Banner } from "paully";
-import dataIsLive from "~scripts/helpers/is/dataLive";
+import Section from "~components/Section";
+
+let bannerSectionProps = {
+  name: "banner",
+  style: {
+    display: "none",
+  },
+};
+
+let bannerProps = {
+  data: {
+    print: "banner",
+  },
+};
+
+let containerProps = {
+  bottom: "0rem",
+  top: "0rem",
+};
 ---
 
 <script>
@@ -11,14 +29,10 @@ import dataIsLive from "~scripts/helpers/is/dataLive";
 <html lang="en">
   <Head {...Astro.props} />
   <body data-state="visible">
-    {
-      !dataIsLive && (
-        <Banner className="offline-banner">
-          <em>OFFLINE MODE</em>
-        </Banner>
-      )
-    }
-    <Container top="0rem" bottom="0rem">
+    <Section {...bannerSectionProps}>
+      <Banner {...bannerProps} className="banner" />
+    </Section>
+    <Container {...containerProps}>
       <header></header>
       <slot />
       <footer></footer>
@@ -34,7 +48,7 @@ import dataIsLive from "~scripts/helpers/is/dataLive";
     height: toRem(100);
   }
 
-  .offline-banner {
+  .banner {
     background-color: blue;
   }
 </style>

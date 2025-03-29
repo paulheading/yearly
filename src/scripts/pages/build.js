@@ -22,6 +22,7 @@ import {
 } from "~scripts/listeners";
 
 import { setAccessToken, setUser } from "~scripts/setters";
+import getStore from "~scripts/getters/getStore";
 
 function createInteractiveDOM() {
   printFirstName();
@@ -38,30 +39,32 @@ function createInteractiveDOM() {
 }
 
 async function getPlaylistData() {
-  console.warn("creating new token");
   return setAccessToken().then(setUser).then(getPlaylists);
 }
 
-function displayPage(callback) {
-  getStoreState();
-  createInteractiveDOM();
+async function displayPage() {
+  if (getStore().params) window.location.assign("/save");
 
-  if (callback) callback();
+  createInteractiveDOM();
 
   loadComplete(function () {
     displaySection("choose_card", "block");
   });
 }
 
-if (is.dataLive) {
-  if (!getAccessToken()) getPlaylistData().then(displayPage);
-  else {
-    console.warn("using existing token");
-    displayPage(setDOMToStoreValues);
+getStoreState().then(function () {
+  if (is.dataLive) {
+    if (!getAccessToken()) {
+      console.warn("creating new token");
+      getPlaylistData().then(displayPage);
+    } else {
+      console.warn("using existing token");
+      displayPage().then(setDOMToStoreValues);
+    }
+  } else {
+    setStore(function (store) {
+      store.user = user;
+      return store;
+    }).then(displayPage);
   }
-} else {
-  setStore(function (store) {
-    store.user = user;
-    return store;
-  }).then(displayPage);
-}
+});

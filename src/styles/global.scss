@@ -78,3 +78,17 @@ button:not(:disabled) {
 button.refresh-artwork {
   @include invisible-button;
 }
+
+.banner-container button {
+  @include invisible-button;
+
+  & {
+    text-decoration: underline;
+  }
+
+  @include focus {
+    outline: solid 4px white;
+    background: white;
+    color: black;
+  }
+}

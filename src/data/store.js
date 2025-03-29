@@ -14,6 +14,7 @@ let store = {
   cards: [cindy, badjo, custom],
   color,
   get_tracks,
+  params: false,
   playlist,
   user,
 };

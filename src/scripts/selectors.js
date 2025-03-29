@@ -8,7 +8,7 @@ let $ = {
     cardAll: (value = "") => $.query.selectorAll(`.card-container${value}`),
     cardId: (value = "") => $.query.card(`[data_id=${value}]`),
     state: (value = "") => $.query.selector(`[data-state=${value}]`),
-    print: (value = "") => $.query.selector(`[data-print=${value}]`),
+    print: (value = "") => $.query.selector(`[data_print=${value}]`),
     section: (value = "") => $.query.selector(`[data-section=${value}]`),
     selector: (value = "") => document.querySelector(value),
     selectorAll: (value = "") => document.querySelectorAll(value),
@@ -95,6 +95,7 @@ $.button = {
 };
 
 $.section = {
+  banner: $.query.section("banner"),
   choose_card: $.query.section("choose-card"),
   confirm_settings: $.query.section("confirm-settings"),
   custom: $.query.section("custom"),
@@ -107,6 +108,7 @@ $.section = {
 };
 
 $.print = {
+  banner: $.query.print("banner"),
   first_name: $.query.print("first_name"),
   share_link: $.query.print("share-link"),
   since: $.query.print("since"),
