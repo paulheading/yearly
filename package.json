@@ -17,7 +17,7 @@
     "astro": "^5.3.1",
     "buffer": "^6.0.3",
     "focus-visible": "^5.2.0",
-    "gsap": "file:../../../Downloads/gsap-premium/npm-install-this/gsap-bonus.tgz",
+    "gsap": "file:src/libraries/gsap-bonus.tgz",
     "gulp-rename": "^2.0.0",
     "image-to-base64": "^2.2.0",
     "luxon": "^3.5.0",
