@@ -3,8 +3,8 @@ import $cy from "~scripts/selectors/$cy";
 import setCardSetting from "~scripts/setters/setCardSetting";
 import settings from "~data/settings";
 import setSource from "~scripts/setters/setSource";
-
-import { keyPress, preventDefault } from "~scripts/helpers";
+import keyPress from "~scripts/helpers/keyPress";
+import preventDefault from "~scripts/helpers/preventDefault";
 
 function handleDocumentInteraction(target) {
   $.setting.selects.forEach(function ($form) {

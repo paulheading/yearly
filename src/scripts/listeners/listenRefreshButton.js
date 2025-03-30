@@ -1,8 +1,6 @@
 import $ from "~scripts/selectors";
-import { printPlaylistImage } from "~scripts/printers";
+import printPlaylistImage from "~scripts/printers/printPlaylistImage";
 
-export default function() {
+export default function () {
   $.button.refresh.addEventListener("click", printPlaylistImage);
 }
-
-

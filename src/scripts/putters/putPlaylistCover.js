@@ -1,7 +1,7 @@
 import imageToBase64 from "image-to-base64/browser";
 import putData from "~scripts/putters/putData";
 import getStore from "~scripts/getters/getStore";
-import { is } from "~scripts/helpers";
+import usingLocalSite from "~scripts/using/usingLocalSite";
 
 export default async function (playlist) {
   let { id } = playlist;
@@ -10,7 +10,7 @@ export default async function (playlist) {
 
   let endpoint = "playlists/" + id + "/images";
 
-  if (is.siteLocal) image = "../../../public" + image;
+  if (usingLocalSite) image = "../../../public" + image;
 
   let body = await imageToBase64(image);
 

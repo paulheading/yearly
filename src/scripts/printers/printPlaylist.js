@@ -1,36 +1,34 @@
 import $ from "~scripts/selectors";
-
-import { printPlaylistTrack, printPlaylistImage } from "~scripts/printers";
-
+import asyncWrap from "~scripts/helpers/asyncWrap";
 import setStore from "~scripts/setters/setStore";
+import printPlaylistTrack from "~scripts/printers/printPlaylistTrack";
+import printPlaylistImage from "~scripts/printers/printPlaylistImage";
 import createPlaylist from "~scripts/creators/createPlaylist";
 
-// import include from "~scripts/filters/include";
-// import exclude from "~scripts/filters/exclude";
+function playlistData(store, tracks) {
+  let { name, description } = createPlaylist;
+
+  store.playlist.name = name;
+  store.playlist.description = description;
+  store.playlist.tracks = tracks;
+
+  $.playlist().$name.innerText = name;
+  $.playlist().$owner.innerText = store.user.id;
+  $.playlist().$owner.href = store.user.external_urls.spotify;
+
+  return store;
+}
 
 export default function (tracks) {
-  setStore(function (store) {
-    store.playlist.name = createPlaylist.name;
-    store.playlist.description = createPlaylist.description;
-    store.playlist.tracks = tracks;
+  asyncWrap(() => setStore((store) => playlistData(store, tracks)))
+    .then(printPlaylistImage)
+    .then(function () {
+      let template = $.playlist().$track;
 
-    // store.playlist.tracks = tracks.filter(exclude.playlistExcess);
-    // store.playlist.excess = tracks.filter(include.playlistExcess);
+      $.playlist().$tracks.forEach(($track) => $track.remove());
 
-    $.playlist().$name.innerText = createPlaylist.name;
-    $.playlist().$owner.innerText = store.user.id;
-    $.playlist().$owner.href = store.user.external_urls.spotify;
-
-    return store;
-  });
-
-  // printPlaylistImage();
-
-  let template = $.playlist().$track;
-
-  $.playlist().$tracks.forEach(($track) => $track.remove());
-
-  tracks.forEach(function (track, index) {
-    return printPlaylistTrack(track, index, template);
-  });
+      tracks.forEach(function (track, index) {
+        return printPlaylistTrack(track, index, template);
+      });
+    });
 }

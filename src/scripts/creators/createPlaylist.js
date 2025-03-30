@@ -1,4 +1,4 @@
-import { getDate } from "~scripts/getters";
+import getDate from "~scripts/getters/getDate";
 
 let { date, time } = getDate();
 

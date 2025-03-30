@@ -1,5 +1,5 @@
 import $ from "~scripts/selectors";
-import { hideShowElements } from "~scripts/helpers";
+import hideShowElements from "~scripts/helpers/hideShowElements";
 
 function switchDisplay({ currentTarget, text, hide, show }) {
   let $switch = currentTarget.querySelector("u");

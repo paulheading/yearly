@@ -3,7 +3,8 @@ import filterTracksByReleaseDate from "~scripts/filters/filterTracksByReleaseDat
 
 import { length, include, exclude } from "~scripts/filters";
 import { byLowestPopularity, byHighestPopularity } from "~scripts/sorters";
-import { getDate } from "~scripts/getters";
+
+import getDate from "~scripts/getters/getDate";
 import getPlaylistActiveConfig from "~scripts/getters/getPlaylistActiveConfig";
 
 export default async function (items) {

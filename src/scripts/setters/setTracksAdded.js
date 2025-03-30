@@ -1,4 +1,4 @@
-import { printTracksAdded } from "~scripts/printers";
+import printTracksAdded from "~scripts/printers/printTracksAdded";
 import { year } from "~scripts/filters";
 import setStore from "~scripts/setters/setStore";
 

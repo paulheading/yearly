@@ -1,6 +1,6 @@
 import $ from "~scripts/selectors";
 import setCardSetting from "~scripts/setters/setCardSetting";
-import { getInputAttributes } from "./listenRangeInput";
+import { getInputAttributes } from "~scripts/listeners/listenRangeInput";
 
 function resetToggleInput($input, data) {
   let { card, setting } = data;

@@ -1,10 +1,9 @@
 import $ from "~scripts/selectors";
 import settings from "~data/settings";
 import setCardSetting from "~scripts/setters/setCardSetting";
+import printRangeInputValue from "~scripts/printers/printRangeInputValue";
 
-import { printRangeInputValue } from "~scripts/printers";
-
-export function getInputAttributes($input) {
+function getInputAttributes($input) {
   let card = $input.getAttribute("data_card");
   let snake = $input.getAttribute("data_snake");
   let group_name = $input.getAttribute("data_group_name");
@@ -79,3 +78,5 @@ export default function () {
     $input.oninput = () => handleRangeInput($input);
   });
 }
+
+export { getInputAttributes };

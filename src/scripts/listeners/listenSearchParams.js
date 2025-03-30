@@ -3,9 +3,12 @@ import setSearchParams from "~scripts/setters/setSearchParams";
 export default function () {
   let urlSearchParams = new URLSearchParams(window.location.search);
   let { size } = urlSearchParams;
-  let params = {};
 
-  params.empty = size == 0;
+  let params = {
+    empty: size == 0,
+    invalid: [],
+    valid: [],
+  };
 
   if (params.empty) return params;
 

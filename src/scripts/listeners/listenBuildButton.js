@@ -1,10 +1,9 @@
 import $ from "~scripts/selectors";
-import { is } from "~scripts/helpers";
-
-import { resetCustomConfig } from "~scripts/setters";
+import resetCustomConfig from "~scripts/setters/resetCustomConfig";
+import usingCustomStyle from "~scripts/using/usingCustomStyle";
 
 function buildButtonClick() {
-  if (!is.playlistStyleCustom()) resetCustomConfig();
+  if (!usingCustomStyle()) resetCustomConfig();
   window.location.assign("/save");
 }
 

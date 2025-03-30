@@ -6,65 +6,43 @@ import getStoreState from "~scripts/getters/getStoreState";
 import loadComplete from "~scripts/loaders/loadComplete";
 import setDOMToStoreValues from "~scripts/setters/setDOMToStoreValues";
 import setStore from "~scripts/setters/setStore";
-
-import { printFirstName, printSourcePlaylists } from "~scripts/printers";
-import { displaySection, is } from "~scripts/helpers";
-
-import {
-  listenSelectForm,
-  listenRangeInput,
-  listenToggleInput,
-  listenCustomButton,
-  listenInfoButton,
-  listenBuildButton,
-  listenSelectButton,
-  listenDotButtons,
-} from "~scripts/listeners";
-
-import { setAccessToken, setUser } from "~scripts/setters";
+import displaySection from "~scripts/display/displaySection";
+import asyncWrap from "~scripts/helpers/asyncWrap";
+import setAccessToken from "~scripts/setters/setAccessToken";
+import setUser from "~scripts/setters/setUser";
 import getStore from "~scripts/getters/getStore";
+import createBuildDOM from "~scripts/creators/createBuildDOM";
+import usingLiveData from "~scripts/using/usingLiveData";
 
-function createInteractiveDOM() {
-  printFirstName();
-  printSourcePlaylists();
-
-  listenToggleInput();
-  listenRangeInput();
-  listenSelectForm();
-  listenInfoButton();
-  listenSelectButton();
-  listenCustomButton();
-  listenDotButtons();
-  listenBuildButton();
-}
-
-async function getPlaylistData() {
-  return setAccessToken().then(setUser).then(getPlaylists);
-}
-
-async function displayPage() {
+function getParams() {
   if (getStore().params) window.location.assign("/save");
+}
 
-  createInteractiveDOM();
-
+function loadChooseCard() {
   loadComplete(function () {
     displaySection("choose_card", "block");
   });
 }
 
-getStoreState().then(function () {
-  if (is.dataLive) {
+function displayPage() {
+  asyncWrap(getParams).then(createBuildDOM).then(loadChooseCard);
+}
+
+asyncWrap(getStoreState).then(function () {
+  if (usingLiveData) {
     if (!getAccessToken()) {
       console.warn("creating new token");
-      getPlaylistData().then(displayPage);
+      setAccessToken().then(setUser).then(getPlaylists).then(displayPage);
     } else {
       console.warn("using existing token");
-      displayPage().then(setDOMToStoreValues);
+      asyncWrap(displayPage).then(setDOMToStoreValues);
     }
   } else {
-    setStore(function (store) {
-      store.user = user;
-      return store;
-    }).then(displayPage);
+    asyncWrap(() =>
+      setStore(function (store) {
+        store.user = user;
+        return store;
+      })
+    ).then(displayPage);
   }
 });

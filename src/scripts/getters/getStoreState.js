@@ -1,6 +1,6 @@
 import getStore from "~scripts/getters/getStore";
 
-export default async function () {
+export default function () {
   let store = getStore();
 
   if (!store) window.location.assign("/");

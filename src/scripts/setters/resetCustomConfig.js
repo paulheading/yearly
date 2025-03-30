@@ -1,6 +1,6 @@
 import $ from "~scripts/selectors";
 import settings from "~data/settings";
-import { printRangeInputValue } from "~scripts/printers";
+import printRangeInputValue from "~scripts/printers/printRangeInputValue";
 import {
   setFormButton,
   toggleActiveItem,

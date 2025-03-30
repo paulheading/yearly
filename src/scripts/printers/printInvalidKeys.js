@@ -1,7 +1,6 @@
-import $ from "~scripts/selectors";
-
 export default function (invalids) {
   let multiple = invalids.length > 1;
+
   let result = "Param";
 
   if (multiple) result += "s";
@@ -20,5 +19,5 @@ export default function (invalids) {
 
   result += " invalid!";
 
-  $.print.banner.innerHTML = result;
+  return result;
 }

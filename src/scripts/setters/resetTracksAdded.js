@@ -1,4 +1,4 @@
-import { printTracksAdded } from "~scripts/printers";
+import printTracksAdded from "~scripts/printers/printTracksAdded";
 import setStore from "~scripts/setters/setStore";
 import reset from "~data/store";
 

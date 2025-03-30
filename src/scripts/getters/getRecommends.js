@@ -1,4 +1,4 @@
-import { getData } from "~scripts/getters";
+import getData from "~scripts/getters/getData";
 
 export default async function (tracks) {
   // let recommends = await getData(`recommendations?seed_tracks=${tracks}`);

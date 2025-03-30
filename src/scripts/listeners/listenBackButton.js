@@ -1,8 +1,7 @@
 import $ from "~scripts/selectors";
 import loadInProgress from "~scripts/loaders/loadInProgress";
-
-import { displaySection } from "~scripts/helpers";
-import { resetTracksAdded } from "~scripts/setters";
+import resetTracksAdded from "~scripts/setters/resetTracksAdded";
+import displaySection from "~scripts/display/displaySection";
 
 let sections = [
   "save_playlist",

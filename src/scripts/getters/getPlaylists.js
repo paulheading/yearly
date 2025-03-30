@@ -1,7 +1,7 @@
 import { byName } from "~scripts/sorters";
 import { include } from "~scripts/filters";
-import { getData } from "~scripts/getters";
 
+import getData from "~scripts/getters/getData";
 import setStore from "~scripts/setters/setStore";
 
 async function getPlaylists(offset, limit) {

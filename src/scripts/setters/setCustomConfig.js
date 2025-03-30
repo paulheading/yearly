@@ -1,6 +1,6 @@
 import $ from "~scripts/selectors";
-import { printRangeInputValue } from "~scripts/printers";
-import { getPlaylistConfig } from "~scripts/getters";
+import printRangeInputValue from "~scripts/printers/printRangeInputValue";
+import getPlaylistConfig from "~scripts/getters/getPlaylistConfig";
 import settings from "~data/settings";
 import setItemsByValue from "~scripts/setters/setItemsByValue";
 

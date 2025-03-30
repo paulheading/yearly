@@ -2,7 +2,7 @@ import $ from "~scripts/selectors";
 import loadInProgress from "~scripts/loaders/loadInProgress";
 import loadComplete from "~scripts/loaders/loadComplete";
 
-import displaySection from "~scripts/helpers/displaySection";
+import displaySection from "~scripts/display/displaySection";
 import postPlaylistData from "~scripts/posters/postPlaylistData";
 import postTrackData from "~scripts/posters/postTrackData";
 import getSavedPlaylistDetails from "~scripts/getters/getSavedPlaylistDetails";

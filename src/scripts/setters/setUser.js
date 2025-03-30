@@ -1,8 +1,7 @@
 import getStore from "~scripts/getters/getStore";
 import setStore from "~scripts/setters/setStore";
-
-import { getCurrentUser } from "~scripts/getters";
-import { printFirstName } from "~scripts/printers";
+import getCurrentUser from "~scripts/getters/getCurrentUser";
+import printFirstName from "~scripts/printers/printFirstName";
 
 export default async function () {
   let user = await getCurrentUser();

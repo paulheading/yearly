@@ -1,20 +1,19 @@
-import { displaySection, is } from "~scripts/helpers";
-import {
-  getPlaylistItems,
-  getUsersSavedTracks,
-  getSource,
-  getYearAdded,
-} from "~scripts/getters";
-import { setTracksAdded } from "~scripts/setters";
-import setStore from "~scripts/setters/setStore";
+import getPlaylistItems from "~scripts/getters/getPlaylistItems";
+import getUsersSavedTracks from "~scripts/getters/getUsersSavedTracks";
+import getSource from "~scripts/getters/getSource";
+import getYearAdded from "~scripts/getters/getYearAdded";
 import getStore from "~scripts/getters/getStore";
+import setTracksAdded from "~scripts/setters/setTracksAdded";
+import setStore from "~scripts/setters/setStore";
+import usingLikedSongs from "~scripts/using/usingLikedSongs";
+import displaySection from "~scripts/display/displaySection";
 
 export default async function () {
   displaySection("tracks_added", "block");
 
   let year_added = getYearAdded();
 
-  if (!is.sourceLikedSongs()) {
+  if (!usingLikedSongs()) {
     let { items } = await getPlaylistItems(getSource());
 
     console.log("items: ", items);
