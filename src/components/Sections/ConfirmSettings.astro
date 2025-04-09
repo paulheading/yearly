@@ -17,25 +17,11 @@ let sectionProps = {
 <style lang="scss">
   @use "~mixins" as *;
 
-  $gray: #4d4d4d;
-  $margin: 0.3125rem;
-  $radius: $margin * 2;
-
   .box {
-    border: 2px dashed $gray;
-    border-radius: $radius;
-    display: inline-block;
-    padding: $margin;
-    font-size: 1rem;
-    color: $gray;
+    @include box;
   }
 
   .setting {
-    background-color: white;
-    border: 2px solid $gray;
-    border-radius: $margin;
-    display: inline-block;
-    padding: $radius;
-    margin: $margin;
+    @include setting;
   }
 </style>

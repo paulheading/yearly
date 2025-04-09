@@ -9,6 +9,7 @@ import listenRangeInput from "~scripts/listeners/listenRangeInput";
 import listenSelectButton from "~scripts/listeners/listenSelectButton";
 import listenSelectForm from "~scripts/listeners/listenSelectForm";
 import listenToggleInput from "~scripts/listeners/listenToggleInput";
+import listenChooseSourceButton from "~scripts/listeners/listenChooseSourceButton";
 
 export default function () {
   printFirstName();
@@ -22,4 +23,5 @@ export default function () {
   listenCustomButton();
   listenDotButtons();
   listenBuildButton();
+  listenChooseSourceButton();
 }

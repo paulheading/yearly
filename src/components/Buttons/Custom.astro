@@ -2,14 +2,14 @@
 import { InvisibleButton } from "paully";
 ---
 
-<InvisibleButton className="custom-button">
+<InvisibleButton className="custom_button">
   <u><slot /></u>
 </InvisibleButton>
 
 <style lang="scss">
   @use "~mixins" as *;
 
-  .custom-button {
+  .custom_button {
     padding: 0.25rem;
 
     @include focus {

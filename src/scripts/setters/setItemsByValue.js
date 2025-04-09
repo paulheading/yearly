@@ -1,4 +1,4 @@
-import $ from "~scripts/selectors";
+import $, { attr } from "~scripts/selectors";
 import {
   setFormButton,
   toggleActiveItem,
@@ -8,7 +8,7 @@ export default function ({ $form, value }) {
   let { $items, $button } = $.selectForm.selectors($form);
 
   $items.forEach(function ($item) {
-    let data_id = $item.getAttribute("data_id");
+    let data_id = $item.getAttribute(attr.data.id);
     let active = data_id == value;
 
     toggleActiveItem({ $item, active });

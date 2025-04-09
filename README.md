@@ -15,6 +15,7 @@
 
 ### Coming soon
 
+- Build from multiple playlists
 - Filter by artist gender. Blocker: need to cross reference results with the [Music Brainz](https://musicbrainz.org/) library 🟡
 - Rank how many times I've included an artist in previous playlists. Blocker: build previous playlist selection 🟡
 - Filter by genres

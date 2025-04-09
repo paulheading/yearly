@@ -1,11 +1,11 @@
-import $ from "~scripts/selectors";
+import $, { attr } from "~scripts/selectors";
 import settings from "~data/settings";
 import setCardSetting from "~scripts/setters/setCardSetting";
 import printRangeInputValue from "~scripts/printers/printRangeInputValue";
 
 function getInputAttributes($input) {
-  let card = $input.getAttribute("data_card");
-  let snake = $input.getAttribute("data_snake");
+  let card = $input.getAttribute(attr.data.card);
+  let snake = $input.getAttribute(attr.data.snake);
   let group_name = $input.getAttribute("data_group_name");
   let group_action = $input.getAttribute("data_group_action");
   let range_pos = $input.getAttribute("data_range_pos");

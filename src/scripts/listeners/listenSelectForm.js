@@ -1,4 +1,4 @@
-import $ from "~scripts/selectors";
+import $, { attr } from "~scripts/selectors";
 import $cy from "~scripts/selectors/$cy";
 import setCardSetting from "~scripts/setters/setCardSetting";
 import settings from "~data/settings";
@@ -81,7 +81,7 @@ function toggleActiveItem({ $item, active }) {
 }
 
 function setFormButton({ $button, innerText, value }) {
-  $button.setAttribute("data_id", value);
+  $button.setAttribute(attr.data.id, value);
   $button.innerText = innerText;
 }
 
@@ -98,7 +98,7 @@ function selectCurrentOption(target) {
 
   let { innerText } = target;
 
-  let value = target.getAttribute("data_id");
+  let value = target.getAttribute(attr.data.id);
 
   setFormButton({ $button, innerText, value });
 

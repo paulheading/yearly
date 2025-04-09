@@ -1,9 +1,12 @@
 ---
+import { InvisibleButton } from "paully";
 import SelectForm from "~components/SelectForm";
+import Section from "~components/Section";
 import $cy from "~scripts/selectors/$cy";
 
-import { source } from "~data/store/playlist"
+import { source } from "~data/store/playlist";
 
+let { select_form_row } = $cy.section;
 let { choose_source } = $cy.selectForm;
 
 let data = {
@@ -15,21 +18,69 @@ let data = {
   card: null,
 };
 
-let props = {
+let formProps = {
   options: [{ title: source.title, data: source.id }],
-  label: "Source",
+  label: null,
   title: source.title,
   value: source.id,
   data,
 };
+
+let sectionProps = {
+  name: select_form_row,
+  style: {
+    marginBottom: "1rem",
+    marginTop: "1rem",
+    display: "none",
+  },
+};
 ---
 
-<SelectForm {...props} className="o" />
+<div class="wrap_select_form_rows">
+  <Section {...sectionProps}>
+    <div class={select_form_row}>
+      <SelectForm {...formProps} />
+      <InvisibleButton className="remove-row">remove</InvisibleButton>
+    </div>
+  </Section>
+</div>
+
+<InvisibleButton className="source_button">Add a custom source</InvisibleButton>
 
 <style lang="scss">
   @use "~mixins" as *;
 
-  .o {
-    margin-top: 2rem;
+  .select_form_row {
+    align-items: center;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 25rem;
+    display: grid;
+    gap: 1rem;
+
+    @include small-up {
+      grid-template-columns: auto 6.25rem;
+    }
+  }
+
+  .remove-row {
+    @include box;
+    padding: 0.75rem;
+
+    @include focus {
+      background-color: white;
+      outline: none;
+    }
+  }
+
+  .source_button {
+    @include box;
+    margin-top: 1rem;
+    padding: 0.75rem;
+
+    @include focus {
+      background-color: white;
+      outline: none;
+    }
   }
 </style>

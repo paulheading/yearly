@@ -1,6 +1,6 @@
-import $cy from "../../src/scripts/selectors/$cy";
+import classNames from "../../src/scripts/selectors/classNames";
 
-let { button } = $cy;
+let { button } = classNames;
 
 it("select button exists & works", function () {
   cy.visit("/callback");

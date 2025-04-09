@@ -1,4 +1,4 @@
-import $ from "~scripts/selectors";
+import $, { attr } from "~scripts/selectors";
 import { gsap } from "gsap";
 
 function infoButtonClick(event) {
@@ -12,11 +12,11 @@ function infoButtonClick(event) {
 
   let tl = gsap.timeline({ defaults });
 
-  let $card = currentTarget.closest(".card-container");
+  let $card = currentTarget.closest(attr.card);
 
-  let cover = $card.querySelector("[data_type=cover]");
+  let cover = $card.querySelector("[" + attr.data.type + "=cover]");
 
-  let config = $card.querySelector("[data_type=config]");
+  let config = $card.querySelector("[" + attr.data.type + "=config]");
 
   let coverIsActive = cover.style.display != "none";
 

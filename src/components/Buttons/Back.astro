@@ -2,14 +2,14 @@
 import { InvisibleButton } from "paully";
 ---
 
-<InvisibleButton className="back-button">
+<InvisibleButton className="back_button">
   <u><slot /></u>
 </InvisibleButton>
 
 <style lang="scss">
   @use "~mixins" as *;
 
-  .back-button {
+  .back_button {
     padding: 0.25rem;
 
     @include focus {

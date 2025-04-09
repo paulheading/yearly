@@ -1,10 +1,6 @@
 export default {
-  button: {
-    back: ".back-button",
-    build: ".build-button",
-    login: ".login-button",
-    select: ".select-button",
-    dot: ".dot-button",
+  section: {
+    select_form_row: "select_form_row",
   },
   selectForm: {
     choose_source: "choose_source",

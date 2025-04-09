@@ -1,8 +1,10 @@
-import $ from "~scripts/selectors";
+import $, { attr } from "~scripts/selectors";
 import getStore from "~scripts/getters/getStore";
 
 function printSourceOption(source) {
   let $form = $.selectForm.choose_source;
+
+  if (!$form) return console.warn("form missing");
 
   let { $list } = $.selectForm.selectors($form);
 
@@ -10,7 +12,7 @@ function printSourceOption(source) {
 
   option.classList.add("select-form-item");
 
-  option.setAttribute("data_id", source.id);
+  option.setAttribute(attr.data.id, source.id);
 
   option.innerText = source.name;
 

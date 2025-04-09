@@ -21,7 +21,7 @@ let personals = [filterStoreCardsById("cindy"), filterStoreCardsById("badjo")];
 
 <Section {...sectionProps}>
   <PersonalGreeting />
-  <Wrap>
+  <Wrap style={{ marginTop: "2rem" }}>
     <ChooseSource />
   </Wrap>
   <!-- Select Playlist Style -->
@@ -38,7 +38,7 @@ let personals = [filterStoreCardsById("cindy"), filterStoreCardsById("badjo")];
       <CustomButton>Custom job please</CustomButton>
     </Wrap>
     <Wrap style={{ marginTop: "2rem" }}>
-      <SolidButton className="build-button">Let's Build!</SolidButton>
+      <SolidButton className="build_button">Let's Build!</SolidButton>
     </Wrap>
   </Wrap>
 </Section>
@@ -46,12 +46,12 @@ let personals = [filterStoreCardsById("cindy"), filterStoreCardsById("badjo")];
 <style lang="scss">
   @use "~mixins" as *;
 
-  .build-button {
+  .build_button {
     max-width: 240px;
     width: 100%;
   }
 
-  .build-button:not(.selected-state) {
+  .build_button:not(.selected-state) {
     pointer-events: none;
     visibility: hidden;
   }

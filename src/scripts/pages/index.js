@@ -23,8 +23,18 @@ invalidParams.allScenarios(function ({ invalid }) {
 });
 
 mixedParams.loggedOut(function () {
-  console.log("mixed");
-  let content = printLoginPrompt();
+  let saved = printLoginPrompt();
+  let paragraph = document.createElement("p");
+  let warning = document.createElement("small");
+  let underline = document.createElement("u");
+  let content = document.createElement("div");
+
+  underline.innerText = "Some params were invalid";
+
+  warning.append(underline);
+  paragraph.append(warning);
+  saved.append(paragraph);
+  content.append(saved);
   displayBanner.append(content);
 });
 

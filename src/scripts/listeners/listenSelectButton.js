@@ -1,4 +1,4 @@
-import $ from "~scripts/selectors";
+import $, { attr } from "~scripts/selectors";
 import resetCustomConfig from "~scripts/setters/resetCustomConfig";
 import setStore from "~scripts/setters/setStore";
 import usingCustomStyle from "~scripts/using/usingCustomStyle";
@@ -49,7 +49,7 @@ function selectButtonClick(event) {
   toggleSelectedCard({ state, $card });
 
   setStore(function (store) {
-    store.playlist.style = $card.getAttribute("data_id");
+    store.playlist.style = $card.getAttribute(attr.data.id);
     return store;
   });
 

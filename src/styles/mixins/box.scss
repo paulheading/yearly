@@ -1,0 +1,19 @@
+@use "../vars" as *;
+
+@mixin box {
+  border: 2px dashed $color-box;
+  border-radius: $radius-box;
+  display: inline-block;
+  padding: $margin-box;
+  font-size: 1rem;
+  color: $color-box;
+}
+
+@mixin setting {
+  background-color: white;
+  border: 2px solid $color-box;
+  border-radius: $margin-box;
+  display: inline-block;
+  padding: $radius-box;
+  margin: $margin-box;
+}

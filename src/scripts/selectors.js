@@ -1,26 +1,60 @@
 import $cy from "~scripts/selectors/$cy";
+import classNames from "~scripts/selectors/classNames";
+
+let attr = {
+  button: `button`,
+  card: `.card-container`,
+  selectForm: `.select-form`,
+  data: {
+    id: "data_id",
+    group: "data_group",
+    card: "data_card",
+    snake: "data_snake",
+    section: "data-section",
+    state: "data-state",
+    print: "data_print",
+    setting: "data_setting",
+    type: "data_type",
+  },
+};
+
+let label = {
+  button: (value) => attr.button + value,
+  card: (value) => attr.card + value,
+  selectForm: (value) => attr.selectForm + value,
+  data: {
+    section: (value) => `[${attr.data.section}=${value}]`,
+    setting: (value) => `[${attr.data.setting}='true']${value}`,
+    snake: (value) => `[${attr.data.snake}=${value}]`,
+    id: (value) => `[${attr.data.id}=${value}]`,
+    state: (value) => `[${attr.data.state}=${value}]`,
+    print: (value) => `[${attr.data.print}=${value}]`,
+    type: (value) => `[${attr.data.type}=${value}]`,
+  },
+};
 
 let $ = {
   query: {
-    button: (value = "") => $.query.selector(`button${value}`),
-    buttonAll: (value = "") => $.query.selectorAll(`button${value}`),
-    card: (value = "") => $.query.selector(`.card-container${value}`),
-    cardAll: (value = "") => $.query.selectorAll(`.card-container${value}`),
-    cardId: (value = "") => $.query.card(`[data_id=${value}]`),
-    state: (value = "") => $.query.selector(`[data-state=${value}]`),
-    print: (value = "") => $.query.selector(`[data_print=${value}]`),
-    section: (value = "") => $.query.selector(`[data-section=${value}]`),
+    button: (value = "") => $.query.selector(label.button(value)),
+    buttonAll: (value = "") => $.query.selectorAll(label.button(value)),
+    card: (value = "") => $.query.selector(label.card(value)),
+    cardAll: (value = "") => $.query.selectorAll(label.card(value)),
+    cardId: (value = "") => $.query.card(label.data.id(value)),
+    state: (value = "") => $.query.selector(label.data.state(value)),
+    print: (value = "") => $.query.selector(label.data.print(value)),
+    section: (value = "") => $.query.selector(label.data.section(value)),
+    sectionAll: (value = "") => $.query.selectorAll(label.data.section(value)),
     selector: (value = "") => document.querySelector(value),
     selectorAll: (value = "") => document.querySelectorAll(value),
-    selectForm: (value = "") => $.query.selector(`.select-form${value}`),
-    selectFormAll: (value = "") => $.query.selectorAll(`.select-form${value}`),
+    selectForm: (value = "") => $.query.selector(label.selectForm(value)),
+    selectFormAll: (value = "") => $.query.selectorAll(label.selectForm(value)),
     selectFormSnake: function (value = "") {
-      return $.query.selectForm(`[data_snake=${value}]`);
+      return $.query.selectForm(label.data.snake(value));
     },
     settingAll: function (value = "") {
-      return $.query.selectorAll(`[data_setting='true']${value}`);
+      return $.query.selectorAll(label.data.setting(value));
     },
-    settingType: (value = "") => $.query.settingAll(`[data_type=${value}]`),
+    settingType: (value = "") => $.query.settingAll(label.data.type(value)),
   },
 };
 
@@ -33,10 +67,10 @@ $.card = {
 $.card.selectors = function ($card) {
   let selectors = {
     $config_pic: $card.querySelector("img.profile.config"),
-    $dot_buttons: $card.querySelectorAll("button.dot-button"),
-    $info_buttons: $card.querySelectorAll("button.info-button"),
+    $dot_buttons: $card.querySelectorAll("button.dot_button"),
+    $info_buttons: $card.querySelectorAll("button.info_button"),
     $profile_pics: $card.querySelectorAll("img.profile"),
-    $select_button: $card.querySelector("button.select-button"),
+    $select_button: $card.querySelector("button.select_button"),
     $settings: {
       $lists: $card.querySelectorAll("ul.settings"),
       $items: {
@@ -58,7 +92,7 @@ $.card.selectors = function ($card) {
   ];
 
   let state = {
-    id: $card.getAttribute("data_id"),
+    id: $card.getAttribute(attr.data.id),
     selected: $card.classList.contains($.state.selected),
   };
 
@@ -82,17 +116,20 @@ $.setting = {
   selects: $.query.settingType("select"),
 };
 
-$.button = {
-  backs: $.query.buttonAll($cy.button.back),
-  build: $.query.button($cy.button.build),
-  custom: $.query.button(".custom-button"),
-  dots: $.query.buttonAll($cy.button.dot),
-  infos: $.query.buttonAll(".info-button"),
-  login: $.query.button($cy.button.login),
-  refresh: $.query.button(".refresh-artwork"),
-  save: $.query.button(".save-button"),
-  selects: $.query.buttonAll($cy.button.select),
-};
+function createQueriesFor(objName, classNames) {
+  let result = {};
+
+  Object.entries(classNames).forEach(function ([key, value]) {
+    result[key] = $.query[objName](value);
+    result[key + "s"] = $.query[objName + "All"](value);
+  });
+
+  return result;
+}
+
+$.button = createQueriesFor("button", classNames.button);
+
+console.log("selectors: ", $);
 
 $.section = {
   banner: $.query.section("banner"),
@@ -103,6 +140,7 @@ $.section = {
   playlist: $.query.section("playlist"),
   recommend_tracks: $.query.section("recommend-tracks"),
   save_playlist: $.query.section("save-playlist"),
+  select_form_row: $.query.section($cy.section.select_form_row),
   share_playlist: $.query.section("share-playlist"),
   tracks_added: $.query.section("tracks-added"),
 };
@@ -129,11 +167,11 @@ $.selectForm.selectors = function ($form) {
   let $announce = $form.querySelector(".select-form-announce");
 
   let data = {
-    id: $button.getAttribute("data_id"),
-    snake: $form.getAttribute("data_snake"),
-    state: $form.getAttribute("data_state"),
-    group: $form.getAttribute("data_group"),
-    card: $form.getAttribute("data_card"),
+    id: $button.getAttribute(attr.data.id),
+    snake: $form.getAttribute(attr.data.snake),
+    state: $form.getAttribute(attr.data.state),
+    group: $form.getAttribute(attr.data.group),
+    card: $form.getAttribute(attr.data.card),
   };
 
   return { $list, $items, $button, $announce, data };
@@ -164,3 +202,4 @@ $.playlist_track = function ($track) {
 };
 
 export default $;
+export { attr };

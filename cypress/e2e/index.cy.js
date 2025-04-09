@@ -1,6 +1,6 @@
-import $cy from "../../src/scripts/selectors/$cy";
+import classNames from "../../src/scripts/selectors/classNames";
 
-let { button } = $cy;
+let { button } = classNames;
 
 it("titles are correct", function () {
   cy.visit("/");
