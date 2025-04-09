@@ -3,9 +3,11 @@ import { SolidButton, SpotifyWindow, Wrap } from "paully";
 import Section from "~components/Section";
 import BackButton from "~components/Buttons/Back";
 import playlist from "~data/playlist";
+import { section } from "~scripts/selectors/data";
+import { button } from "~scripts/selectors/classNames";
 
 let sectionProps = {
-  name: "save-playlist",
+  name: section.save_playlist,
   style: {
     display: "none",
   },
@@ -13,7 +15,7 @@ let sectionProps = {
 
 let saveProps = {
   backgroundColor: "green",
-  className: "save_button",
+  className: button.save,
   padding: 16,
 };
 ---

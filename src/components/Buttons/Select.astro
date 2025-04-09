@@ -1,8 +1,9 @@
 ---
 import { SolidButton } from "paully";
+import { button } from "~scripts/selectors/classNames";
 ---
 
-<SolidButton className="select_button">Select</SolidButton>
+<SolidButton className={button.select}>Select</SolidButton>
 
 <style lang="scss">
   @use "~mixins" as *;

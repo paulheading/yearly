@@ -8,14 +8,13 @@ import postTrackData from "~scripts/posters/postTrackData";
 import getSavedPlaylistDetails from "~scripts/getters/getSavedPlaylistDetails";
 import getStoreState from "~scripts/getters/getStoreState";
 import putPlaylistCover from "~scripts/putters/putPlaylistCover";
+import { section } from "~scripts/selectors/data";
 
-let hideSections = ["save_playlist", "tracks_added"];
+let sections = [section.save_playlist, section.tracks_added];
 
 function saveButtonClick() {
   loadInProgress(function () {
-    hideSections.forEach(function (item) {
-      displaySection(item, "none");
-    });
+    sections.forEach((item) => displaySection(item, "none"));
   });
 
   postPlaylistData()
@@ -33,7 +32,7 @@ function saveButtonClick() {
     })
     .then(function () {
       loadComplete(function () {
-        displaySection("share_playlist", "block");
+        displaySection(section.share_playlist, "block");
       });
     })
     .then(getStoreState);

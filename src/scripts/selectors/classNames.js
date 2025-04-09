@@ -1,18 +1,15 @@
-let classNames = { button: {} };
+let button = {
+  back: "back_button",
+  build: "build_button",
+  login: "login_button",
+  select: "select_button",
+  dot: "dot_button",
+  custom: "custom_button",
+  info: "info_button",
+  save: "save_button",
+  source: "source_button",
+  refresh: "refresh_button",
+};
 
-let buttons = [
-  "back",
-  "build",
-  "login",
-  "select",
-  "dot",
-  "custom",
-  "info",
-  "save",
-  "source",
-  "refresh",
-];
-
-buttons.forEach((name) => (classNames.button[name] = "." + name + "_button"));
-
-export default classNames;
+export { button };
+export default { button };

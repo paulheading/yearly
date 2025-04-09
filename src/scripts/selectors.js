@@ -1,5 +1,7 @@
+import createQueriesFor from "~scripts/creators/createQueriesFor";
 import $cy from "~scripts/selectors/$cy";
-import classNames from "~scripts/selectors/classNames";
+import { button } from "~scripts/selectors/classNames";
+import { section } from "~scripts/selectors/data";
 
 let attr = {
   button: `button`,
@@ -35,7 +37,7 @@ let label = {
 
 let $ = {
   query: {
-    button: (value = "") => $.query.selector(label.button(value)),
+    button: (value = "") => $.query.selector(label.button("." + value)),
     buttonAll: (value = "") => $.query.selectorAll(label.button(value)),
     card: (value = "") => $.query.selector(label.card(value)),
     cardAll: (value = "") => $.query.selectorAll(label.card(value)),
@@ -116,41 +118,16 @@ $.setting = {
   selects: $.query.settingType("select"),
 };
 
-function createQueriesFor(objName, classNames) {
-  let result = {};
+createQueriesFor($, "button", button);
 
-  Object.entries(classNames).forEach(function ([key, value]) {
-    result[key] = $.query[objName](value);
-    result[key + "s"] = $.query[objName + "All"](value);
-  });
-
-  return result;
-}
-
-$.button = createQueriesFor("button", classNames.button);
-
-console.log("selectors: ", $);
-
-$.section = {
-  banner: $.query.section("banner"),
-  choose_card: $.query.section("choose-card"),
-  confirm_settings: $.query.section("confirm-settings"),
-  custom: $.query.section("custom"),
-  empty_playlist: $.query.section("empty-playlist"),
-  playlist: $.query.section("playlist"),
-  recommend_tracks: $.query.section("recommend-tracks"),
-  save_playlist: $.query.section("save-playlist"),
-  select_form_row: $.query.section($cy.section.select_form_row),
-  share_playlist: $.query.section("share-playlist"),
-  tracks_added: $.query.section("tracks-added"),
-};
+createQueriesFor($, "section", section);
 
 $.print = {
-  banner: $.query.print("banner"),
+  banner: $.query.print(section.banner),
   first_name: $.query.print("first_name"),
   share_link: $.query.print("share-link"),
   since: $.query.print("since"),
-  tracks_added: $.query.print("tracks-added"),
+  tracks_added: $.query.print(section.tracks_added),
   year_added: $.query.print("year-added"),
 };
 

@@ -1,9 +1,9 @@
 import displaySection from "~scripts/display/displaySection";
 import $ from "~scripts/selectors";
-import $cy from "~scripts/selectors/$cy";
+import { section } from "~scripts/selectors/data";
 
 function chooseSourceClick() {
-  let label = $cy.section.select_form_row;
+  let label = section.select_form_row;
 
   let isHidden = $.section[label].style.display == "none";
 

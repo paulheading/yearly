@@ -1,11 +1,12 @@
 ---
 import { InvisibleButton } from "paully";
+import { button } from "~scripts/selectors/classNames";
 
 let { className } = Astro.props;
 ---
 
 <div class={className}>
-  <InvisibleButton className="info_button">
+  <InvisibleButton className={button.info}>
     <slot />
   </InvisibleButton>
 </div>

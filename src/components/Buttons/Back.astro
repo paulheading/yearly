@@ -1,8 +1,9 @@
 ---
 import { InvisibleButton } from "paully";
+import { button } from "~scripts/selectors/classNames";
 ---
 
-<InvisibleButton className="back_button">
+<InvisibleButton className={button.back}>
   <u><slot /></u>
 </InvisibleButton>
 

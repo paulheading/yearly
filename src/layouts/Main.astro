@@ -2,9 +2,10 @@
 import "~styles/global.scss";
 import { Head, Container, Banner } from "paully";
 import Section from "~components/Section";
+import { section } from "~scripts/selectors/data";
 
 let bannerSectionProps = {
-  name: "banner",
+  name: section.banner,
   style: {
     display: "none",
   },
@@ -12,7 +13,7 @@ let bannerSectionProps = {
 
 let bannerProps = {
   data: {
-    print: "banner",
+    print: section.banner,
   },
   style: {
     backgroundColor: "blue",

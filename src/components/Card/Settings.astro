@@ -6,6 +6,7 @@ import SettingsSelect from "~components/Card/Settings/Select";
 
 import createSettingsGroups from "~scripts/creators/createSettingsGroups";
 import setGroupSettingProps from "~scripts/setters/setGroupSettingProps";
+import { button } from "~scripts/selectors/classNames";
 
 let { settings, id } = Astro.props;
 
@@ -38,7 +39,7 @@ let groups = createSettingsGroups(settings);
           data: { card: id },
           disabled: index == 0,
         };
-        return <InvisibleButton className="dot_button" {...props} />;
+        return <InvisibleButton className={button.dot} {...props} />;
       })}
     </div>
   )

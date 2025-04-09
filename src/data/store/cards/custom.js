@@ -2,7 +2,9 @@ import settings from "~data/settings";
 import include from "~scripts/filters/include";
 import setTitleToSnakeCase from "~scripts/setters/setTitleToSnakeCase";
 
-let id = "custom";
+import { section } from "~scripts/selectors/data";
+
+let id = section.custom;
 
 let custom = {
   id,

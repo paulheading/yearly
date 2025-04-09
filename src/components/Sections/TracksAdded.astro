@@ -1,7 +1,8 @@
 ---
 import Section from "~components/Section";
+import { section } from "~scripts/selectors/data";
 
-let name = "tracks-added";
+let name = section.tracks_added;
 
 let sectionProps = {
   name,
@@ -21,7 +22,7 @@ let sectionProps = {
 </Section>
 
 <style lang="scss">
-  .tracks-added {
+  .tracks_added {
     margin-top: 3rem;
   }
 </style>

@@ -4,9 +4,10 @@ import SelectForm from "~components/SelectForm";
 import Section from "~components/Section";
 import $cy from "~scripts/selectors/$cy";
 
+import { section } from "~scripts/selectors/data";
+import { button } from "~scripts/selectors/classNames";
 import { source } from "~data/store/playlist";
 
-let { select_form_row } = $cy.section;
 let { choose_source } = $cy.selectForm;
 
 let data = {
@@ -27,7 +28,7 @@ let formProps = {
 };
 
 let sectionProps = {
-  name: select_form_row,
+  name: section.select_form_row,
   style: {
     marginBottom: "1rem",
     marginTop: "1rem",
@@ -38,14 +39,14 @@ let sectionProps = {
 
 <div class="wrap_select_form_rows">
   <Section {...sectionProps}>
-    <div class={select_form_row}>
+    <div class={section.select_form_row}>
       <SelectForm {...formProps} />
       <InvisibleButton className="remove-row">remove</InvisibleButton>
     </div>
   </Section>
 </div>
 
-<InvisibleButton className="source_button">Add a custom source</InvisibleButton>
+<InvisibleButton className={button.source}>Add a custom source</InvisibleButton>
 
 <style lang="scss">
   @use "~mixins" as *;

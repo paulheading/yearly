@@ -6,10 +6,11 @@ import printPlaylist from "~scripts/printers/printPlaylist";
 import printLocalTracks from "~scripts/printers/printLocalTracks";
 import usingLiveData from "~scripts/using/usingLiveData";
 import displaySection from "~scripts/display/displaySection";
+import { section } from "~scripts/selectors/data";
 
 function loadEmptyPlaylist() {
   loadComplete(function () {
-    displaySection("empty_playlist", "block");
+    displaySection(section.empty_playlist, "block");
   });
 }
 

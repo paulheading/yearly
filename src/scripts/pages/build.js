@@ -13,6 +13,8 @@ import setUser from "~scripts/setters/setUser";
 import getStore from "~scripts/getters/getStore";
 import createBuildDOM from "~scripts/creators/createBuildDOM";
 import usingLiveData from "~scripts/using/usingLiveData";
+import $ from "~scripts/selectors";
+import { section } from "~scripts/selectors/data";
 
 function getParams() {
   if (getStore().params) window.location.assign("/save");
@@ -20,7 +22,7 @@ function getParams() {
 
 function loadChooseCard() {
   loadComplete(function () {
-    displaySection("choose_card", "block");
+    displaySection(section.choose_card, "block");
   });
 }
 
@@ -31,6 +33,8 @@ function displayPage() {
 asyncWrap(getStoreState).then(function () {
   if (usingLiveData) {
     console.log("sources: ", getStore().playlist.sources);
+
+    console.log("selectors: ", $);
 
     if (!getAccessToken()) {
       console.warn("creating new token");

@@ -8,9 +8,11 @@ import ChooseSource from "~components/Sections/ChooseSource";
 import PersonalGreeting from "~components/Sections/PersonalGreeting";
 
 import filterStoreCardsById from "~scripts/filters/filterStoreCardsById";
+import { section } from "~scripts/selectors/data";
+import { button } from "~scripts/selectors/classNames";
 
 let sectionProps = {
-  name: "choose-card",
+  name: section.choose_card,
   style: {
     display: "none",
   },
@@ -27,18 +29,18 @@ let personals = [filterStoreCardsById("cindy"), filterStoreCardsById("badjo")];
   <!-- Select Playlist Style -->
   <Wrap style={{ marginTop: "2rem" }}>
     <Wrap>
-      <Section name="playlist">
+      <Section name={section.playlist}>
         {personals.map((person) => <Card {...person} />)}
       </Section>
-      <Section name="custom" style={{ display: "none" }}>
-        <Card {...filterStoreCardsById("custom")} />
+      <Section name={section.custom} style={{ display: "none" }}>
+        <Card {...filterStoreCardsById(section.custom)} />
       </Section>
     </Wrap>
     <Wrap style={{ marginTop: "2rem" }}>
       <CustomButton>Custom job please</CustomButton>
     </Wrap>
     <Wrap style={{ marginTop: "2rem" }}>
-      <SolidButton className="build_button">Let's Build!</SolidButton>
+      <SolidButton className={button.build}>Let's Build!</SolidButton>
     </Wrap>
   </Wrap>
 </Section>

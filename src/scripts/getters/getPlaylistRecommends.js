@@ -1,6 +1,7 @@
 // import getRecommends from "~scripts/getters/getRecommends";
 import displaySection from "~scripts/display/displaySection";
 import loadComplete from "~scripts/loaders/loadComplete";
+import { section } from "~scripts/selectors/data";
 
 export default function (tracks) {
   // let recommends = tracks.forEach(({ track }) => track.id + ",");
@@ -14,6 +15,6 @@ export default function (tracks) {
   // );
 
   loadComplete(function () {
-    displaySection("recommend_tracks", "block");
+    displaySection(section.recommend_tracks, "block");
   });
 }
