@@ -1,4 +1,5 @@
-import $, { attr } from "~scripts/selectors";
+import $ from "~scripts/selectors";
+import attr from "~scripts/selectors/attributes";
 
 function disableActiveButton(params) {
   let { $button } = params;

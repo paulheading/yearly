@@ -2,13 +2,12 @@
 import { InvisibleButton } from "paully";
 import SelectForm from "~components/SelectForm";
 import Section from "~components/Section";
-import $cy from "~scripts/selectors/$cy";
 
-import { section } from "~scripts/selectors/data";
+import { section, selectForm } from "~scripts/selectors/data";
 import { button } from "~scripts/selectors/classNames";
 import { source } from "~data/store/playlist";
 
-let { choose_source } = $cy.selectForm;
+let { choose_source } = selectForm;
 
 let data = {
   snake: choose_source,

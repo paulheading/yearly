@@ -1,4 +1,5 @@
-import $, { attr } from "~scripts/selectors";
+import $ from "~scripts/selectors";
+import attr from "~scripts/selectors/attributes";
 import getStore from "~scripts/getters/getStore";
 
 function printSourceOption(source) {

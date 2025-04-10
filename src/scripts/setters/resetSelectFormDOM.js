@@ -1,4 +1,5 @@
-import $, { attr } from "~scripts/selectors";
+import $ from "~scripts/selectors";
+import attr from "~scripts/selectors/attributes";
 import settings from "~data/settings";
 
 export default function resetSelectFormDOM(snake) {

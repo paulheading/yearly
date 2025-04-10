@@ -2,8 +2,8 @@ import settings from "~data/settings";
 import setCardSetting from "~scripts/setters/setCardSetting";
 import getConfigByGroup from "~scripts/getters/getConfigByGroup";
 import setAction from "~scripts/setters/setAction";
-import $cy from "~scripts/selectors/$cy";
 import setStore from "~scripts/setters/setStore";
+import { selectForm } from "~scripts/selectors/data";
 
 function handleGroupActions({ other, action, params }) {
   if (action == "oldest") setAction.oldest({ ...params, other });
@@ -40,10 +40,8 @@ export default function ({ card, value, snake }) {
 
   if (card) handleSetCardSetting(params);
   else {
-    let { choose_source } = $cy.selectForm;
-
     setStore(function (store) {
-      if (snake == choose_source) store.playlist.source.id = value;
+      if (snake == selectForm.choose_source) store.playlist.source.id = value;
       return store;
     });
   }

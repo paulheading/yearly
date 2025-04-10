@@ -1,24 +1,7 @@
 import createQueriesFor from "~scripts/creators/createQueriesFor";
-import $cy from "~scripts/selectors/$cy";
 import { button } from "~scripts/selectors/classNames";
-import { section } from "~scripts/selectors/data";
-
-let attr = {
-  button: `button`,
-  card: `.card-container`,
-  selectForm: `.select-form`,
-  data: {
-    id: "data_id",
-    group: "data_group",
-    card: "data_card",
-    snake: "data_snake",
-    section: "data-section",
-    state: "data-state",
-    print: "data_print",
-    setting: "data_setting",
-    type: "data_type",
-  },
-};
+import { section, selectForm } from "~scripts/selectors/data";
+import attr from "~scripts/selectors/attributes";
 
 let label = {
   button: (value) => attr.button + value,
@@ -38,7 +21,7 @@ let label = {
 let $ = {
   query: {
     button: (value = "") => $.query.selector(label.button("." + value)),
-    buttonAll: (value = "") => $.query.selectorAll(label.button(value)),
+    buttonAll: (value = "") => $.query.selectorAll(label.button("." + value)),
     card: (value = "") => $.query.selector(label.card(value)),
     cardAll: (value = "") => $.query.selectorAll(label.card(value)),
     cardId: (value = "") => $.query.card(label.data.id(value)),
@@ -106,7 +89,7 @@ $.card.selectors = function ($card) {
 };
 
 $.loaded = $.query.state("loaded");
-$.not_loaded = $.query.state("not-loaded");
+$.not_loaded = $.query.state("not_loaded");
 
 $.state = {
   selected: "selected-state",
@@ -119,8 +102,13 @@ $.setting = {
 };
 
 createQueriesFor($, "button", button);
-
 createQueriesFor($, "section", section);
+
+$.selectForm = {
+  choose_source: $.query.selectFormSnake(selectForm.choose_source),
+  year_added: $.query.selectFormSnake(selectForm.year_added),
+  year_released: $.query.selectFormSnake(selectForm.year_released),
+};
 
 $.print = {
   banner: $.query.print(section.banner),
@@ -129,12 +117,6 @@ $.print = {
   since: $.query.print("since"),
   tracks_added: $.query.print(section.tracks_added),
   year_added: $.query.print("year-added"),
-};
-
-$.selectForm = {
-  choose_source: $.query.selectFormSnake($cy.selectForm.choose_source),
-  year_added: $.query.selectFormSnake($cy.selectForm.year_added),
-  year_released: $.query.selectFormSnake($cy.selectForm.year_released),
 };
 
 $.selectForm.selectors = function ($form) {
@@ -179,4 +161,3 @@ $.playlist_track = function ($track) {
 };
 
 export default $;
-export { attr };

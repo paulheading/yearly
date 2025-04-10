@@ -1,4 +1,5 @@
-import $, { attr } from "~scripts/selectors";
+import $ from "~scripts/selectors";
+import attr from "~scripts/selectors/attributes";
 import resetCustomConfig from "~scripts/setters/resetCustomConfig";
 import setStore from "~scripts/setters/setStore";
 import usingCustomStyle from "~scripts/using/usingCustomStyle";

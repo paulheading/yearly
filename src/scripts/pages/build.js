@@ -33,7 +33,6 @@ function displayPage() {
 asyncWrap(getStoreState).then(function () {
   if (usingLiveData) {
     console.log("sources: ", getStore().playlist.sources);
-
     console.log("selectors: ", $);
 
     if (!getAccessToken()) {
