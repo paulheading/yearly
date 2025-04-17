@@ -3,7 +3,7 @@ import Layout from "~layouts/Main";
 import { SolidButton, Wrap } from "paully";
 
 import { seo } from "paully/data";
-import { button } from "~scripts/selectors/classNames";
+import cnames from "~scripts/selectors/cnames";
 
 const layoutProps = {
   title: "Home | Yearly | Songs you discovered this year",
@@ -19,7 +19,7 @@ const layoutProps = {
     <div>
       <h1>Yearly</h1>
       <h4>Songs you discovered this year</h4>
-      <SolidButton className={button.login}>Log in</SolidButton>
+      <SolidButton className={cnames.button.login}>Log in</SolidButton>
     </div>
   </Wrap>
 </Layout>

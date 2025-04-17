@@ -1,21 +1,19 @@
-import classNames from "../../src/scripts/selectors/classNames";
-
-let { button } = classNames;
+import cnames from "../../src/scripts/selectors/cnames";
 
 it("select button exists & works", function () {
   cy.visit("/callback");
 
   // select button exists & works
 
-  cy.get("[data_id=cindy] " + button.select)
+  cy.get("[data_id=cindy] " + cnames.button.select)
     .should("be.visible")
     .click();
 
   // build button exists & works
 
-  cy.get(button.build).should("be.visible").click();
+  cy.get(cnames.button.build).should("be.visible").click();
 
   // back button exists
 
-  cy.get(button.back).should("be.visible");
+  cy.get(cnames.button.back).should("be.visible");
 });

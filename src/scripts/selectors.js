@@ -1,7 +1,7 @@
 import createQueriesFor from "~scripts/creators/createQueriesFor";
-import { button } from "~scripts/selectors/classNames";
-import { section, selectForm } from "~scripts/selectors/data";
-import attr from "~scripts/selectors/attributes";
+import cnames from "~scripts/selectors/cnames";
+import data from "~scripts/selectors/data";
+import attrs from "~scripts/selectors/attrs";
 import label from "~scripts/selectors/labels";
 
 let $ = {
@@ -68,7 +68,7 @@ $.card.selectors = function ($card) {
   ];
 
   let state = {
-    id: $card.getAttribute(attr.data.id),
+    id: $card.getAttribute(attrs.data.id),
     selected: $card.classList.contains($.state.selected),
   };
 
@@ -92,21 +92,23 @@ $.setting = {
   selects: $.query.settingType("select"),
 };
 
-createQueriesFor($, "button", button);
-createQueriesFor($, "section", section);
+createQueriesFor($, "button", cnames.button);
+createQueriesFor($, "section", data.section);
 
 $.selectForm = {
-  choose_sources: () => $.query.selectFormAllSnake(selectForm.choose_source),
-  year_added: $.query.selectFormSnake(selectForm.year_added),
-  year_released: $.query.selectFormSnake(selectForm.year_released),
+  choose_sources: function () {
+    return $.query.selectFormAllSnake(data.selectForm.choose_source);
+  },
+  year_added: $.query.selectFormSnake(data.selectForm.year_added),
+  year_released: $.query.selectFormSnake(data.selectForm.year_released),
 };
 
 $.print = {
-  banner: $.query.print(section.banner),
+  banner: $.query.print(data.section.banner),
   first_name: $.query.print("first_name"),
   share_link: $.query.print("share-link"),
   since: $.query.print("since"),
-  tracks_added: $.query.print(section.tracks_added),
+  tracks_added: $.query.print(data.section.tracks_added),
   year_added: $.query.print("year-added"),
 };
 
@@ -119,11 +121,11 @@ $.selectForm.selectors = function ($form) {
   };
 
   selectors.data = {
-    id: selectors.$button.getAttribute(attr.data.id),
-    snake: $form.getAttribute(attr.data.snake),
-    state: $form.getAttribute(attr.data.state),
-    group: $form.getAttribute(attr.data.group),
-    card: $form.getAttribute(attr.data.card),
+    id: selectors.$button.getAttribute(attrs.data.id),
+    snake: $form.getAttribute(attrs.data.snake),
+    state: $form.getAttribute(attrs.data.state),
+    group: $form.getAttribute(attrs.data.group),
+    card: $form.getAttribute(attrs.data.card),
   };
 
   selectors.state = {

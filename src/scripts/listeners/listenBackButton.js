@@ -2,14 +2,14 @@ import $ from "~scripts/selectors";
 import loadInProgress from "~scripts/loaders/loadInProgress";
 import resetTracksAdded from "~scripts/setters/resetTracksAdded";
 import displaySection from "~scripts/display/displaySection";
-import { section } from "~scripts/selectors/data";
+import data from "~scripts/selectors/data";
 
 let sections = [
-  section.save_playlist,
-  section.share_playlist,
-  section.empty_playlist,
-  section.tracks_added,
-  section.recommend_tracks,
+  data.section.save_playlist,
+  data.section.share_playlist,
+  data.section.empty_playlist,
+  data.section.tracks_added,
+  data.section.recommend_tracks,
 ];
 
 function backButtonClick() {

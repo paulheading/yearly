@@ -1,5 +1,5 @@
 import $ from "~scripts/selectors";
-import attr from "~scripts/selectors/attributes";
+import attrs from "~scripts/selectors/attrs";
 import settings from "~data/settings";
 
 export default function resetSelectFormDOM(snake) {
@@ -7,7 +7,7 @@ export default function resetSelectFormDOM(snake) {
 
   let { $button, $items } = $.selectForm.selectors($list);
 
-  $button.setAttribute(attr.data.id, 0);
+  $button.setAttribute(attrs.data.id, 0);
 
   $button.innerText = settings[snake];
 

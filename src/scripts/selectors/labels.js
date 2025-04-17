@@ -1,16 +1,20 @@
-import attr from "~scripts/selectors/attributes";
+import attrs from "~scripts/selectors/attrs";
+import cnames from "~scripts/selectors/cnames";
+import classify from "~scripts/helpers/classify";
+
+let createQuery = (name, value = "") => `[${attrs.data[name]}=${value}]`;
 
 export default {
-  button: (value = "") => attr.button + value,
-  card: (value = "") => attr.card + value,
-  selectForm: (value = "") => attr.selectForm + value,
+  button: (value = "") => attrs.button + value,
+  card: (value = "") => classify(cnames.card.container) + value,
+  selectForm: (value = "") => classify(cnames.selectForm.form) + value,
   data: {
-    section: (value = "") => `[${attr.data.section}=${value}]`,
-    setting: (value = "") => `[${attr.data.setting}='true']${value}`,
-    snake: (value = "") => `[${attr.data.snake}=${value}]`,
-    id: (value = "") => `[${attr.data.id}=${value}]`,
-    state: (value = "") => `[${attr.data.state}=${value}]`,
-    print: (value = "") => `[${attr.data.print}=${value}]`,
-    type: (value = "") => `[${attr.data.type}=${value}]`,
+    section: (value) => createQuery("section", value),
+    setting: (value = "") => `[${attrs.data.setting}='true']${value}`,
+    snake: (value) => createQuery("snake", value),
+    id: (value) => createQuery("id", value),
+    state: (value) => createQuery("state", value),
+    print: (value) => createQuery("print", value),
+    type: (value) => createQuery("type", value),
   },
 };

@@ -1,4 +1,6 @@
-let section = {
+let data = {};
+
+data.section = {
   banner: "banner",
   choose_card: "choose_card",
   confirm_settings: "confirm_settings",
@@ -12,11 +14,10 @@ let section = {
   select_form_row: "select_form_row",
 };
 
-let selectForm = {
+data.selectForm = {
   choose_source: "choose_source",
   year_added: "year_added",
   year_released: "year_released",
 };
 
-export { section, selectForm };
-export default { section, selectForm };
+export default data;

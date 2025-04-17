@@ -1,4 +1,5 @@
 import $ from "~scripts/selectors";
+import attrs from "~scripts/selectors/attrs";
 
 export default function () {
   let sources = [];
@@ -8,7 +9,7 @@ export default function () {
 
     let title = $button.innerText;
 
-    let id = $button.getAttribute("data_id");
+    let id = $button.getAttribute(attrs.data.id);
 
     let source = { title, id };
 

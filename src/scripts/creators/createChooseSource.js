@@ -1,5 +1,5 @@
 import $ from "~scripts/selectors";
-import { section } from "~scripts/selectors/data";
+import data from "~scripts/selectors/data";
 import listenChooseSourceForm from "~scripts/listeners/listenChooseSourceForm";
 
 export default function (event) {
@@ -7,7 +7,7 @@ export default function (event) {
 
   currentTarget.classList.add("active");
 
-  let targets = $.query.selectorAll("." + section.select_form_row);
+  let targets = $.query.selectorAll("." + data.section.select_form_row);
 
   let isSingleRow = targets.length == 1 && targets[0].style.display == "none";
 

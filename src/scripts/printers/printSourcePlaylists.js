@@ -1,5 +1,5 @@
 import $ from "~scripts/selectors";
-import attr from "~scripts/selectors/attributes";
+import attrs from "~scripts/selectors/attrs";
 import getStore from "~scripts/getters/getStore";
 
 function printSourceOption(source) {
@@ -13,7 +13,7 @@ function printSourceOption(source) {
 
   option.classList.add("select-form-item");
 
-  option.setAttribute(attr.data.id, source.id);
+  option.setAttribute(attrs.data.id, source.id);
 
   option.innerText = source.name;
 

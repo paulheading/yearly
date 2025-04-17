@@ -2,38 +2,38 @@
 import { InvisibleButton } from "paully";
 import SelectForm from "~components/SelectForm";
 
-import { section, selectForm } from "~scripts/selectors/data";
-import { button } from "~scripts/selectors/classNames";
+import data from "~scripts/selectors/data";
+import cnames from "~scripts/selectors/cnames";
 import { source } from "~data/store/playlist";
 
-let { choose_source } = selectForm;
-
-let data = {
-  snake: choose_source,
-  state: "closed",
-  type: "select",
-  setting: true,
-  group: null,
-  card: null,
-};
+let { choose_source } = data.selectForm;
 
 let formProps = {
   options: [{ title: source.title, data: source.id }],
   label: null,
   title: source.title,
   value: source.id,
-  data,
+  data: {
+    snake: choose_source,
+    state: "closed",
+    type: "select",
+    setting: true,
+    group: null,
+    card: null,
+  },
 };
 ---
 
 <div class="wrap_select_form_rows">
-  <div class={section.select_form_row} style={{ display: "none" }}>
+  <div class={data.section.select_form_row} style={{ display: "none" }}>
     <SelectForm {...formProps} />
     <InvisibleButton className="remove_row_button">remove</InvisibleButton>
   </div>
 </div>
 
-<InvisibleButton className={button.source}>Add a custom source</InvisibleButton>
+<InvisibleButton className={cnames.button.source}>
+  Add a custom source
+</InvisibleButton>
 
 <style lang="scss">
   @use "~mixins" as *;

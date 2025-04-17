@@ -1,13 +1,14 @@
 ---
 import CardContent from "~components/Card/Content";
 import SelectButton from "~components/Buttons/Select";
+import cnames from "~scripts/selectors/cnames";
 
 let { content, id } = Astro.props;
 
 let multiple = content.length > 1;
 
 let props = {
-  class: "card-container",
+  class: cnames.card.container,
   data_id: id,
 };
 ---
@@ -29,7 +30,7 @@ let props = {
 <style lang="scss">
   @use "~mixins" as *;
 
-  .card-container {
+  .card_container {
     margin: $margin-top-card $margin-card $margin-card;
     border-radius: $border-radius-card;
     padding: $padding-card * 1.5;
@@ -38,7 +39,7 @@ let props = {
     display: inline-block;
   }
 
-  .card-container.selected-state {
+  .card_container.selected-state {
     background-color: green;
     border-color: green;
     color: white;

@@ -1,6 +1,4 @@
-import classNames from "../../src/scripts/selectors/classNames";
-
-let { button } = classNames;
+import cnames from "../../src/scripts/selectors/cnames";
 
 it("titles are correct", function () {
   cy.visit("/");
@@ -16,9 +14,9 @@ it("titles are correct", function () {
 
   cy.get("h1").should("have.text", "Yearly");
 
-  cy.contains(button.login, "Log in");
+  cy.contains(cnames.button.login, "Log in");
 
-  cy.get(button.login).should("be.visible").click();
+  cy.get(cnames.button.login).should("be.visible").click();
 
   cy.url().should("include", "/callback");
 });

@@ -1,11 +1,16 @@
 ---
 import SelectFormLabel from "~components/SelectForm/Label";
 import { mapObjectToProps } from "paully/helpers";
+import cnames from "~scripts/selectors/cnames";
 
 let { label, className, data } = Astro.props;
 
 let props = {
-  "class:list": ["select-form", label ? "with-label" : "no-label", className],
+  "class:list": [
+    cnames.selectForm.form,
+    label ? "with-label" : "no-label",
+    className,
+  ],
 };
 
 props = mapObjectToProps({ data, props });
@@ -23,18 +28,18 @@ props = mapObjectToProps({ data, props });
 
   $max-width-select: toRem(200);
 
-  .select-form {
+  .select_form {
     position: relative;
     text-align: left;
   }
 
-  .select-form.with-label {
+  .select_form.with-label {
     grid-template-columns: auto $max-width-select;
     justify-content: center;
     display: grid;
   }
 
-  .select-form[data_state="open"] .select-form-list {
+  .select_form[data_state="open"] .select-form-list {
     display: block;
   }
 </style>

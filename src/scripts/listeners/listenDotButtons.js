@@ -1,5 +1,5 @@
 import $ from "~scripts/selectors";
-import attr from "~scripts/selectors/attributes";
+import attrs from "~scripts/selectors/attrs";
 
 function disableActiveButton(params) {
   let { $button } = params;
@@ -14,7 +14,7 @@ function disableActiveButton(params) {
 function displayActiveList(params) {
   let { $button, index } = params;
 
-  let label = $button.getAttribute(attr.data.card);
+  let label = $button.getAttribute(attrs.data.card);
 
   let $lists = $.card[label].querySelectorAll("ul.settings");
 

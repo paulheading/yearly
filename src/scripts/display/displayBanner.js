@@ -1,6 +1,6 @@
 import $ from "~scripts/selectors";
 import displaySection from "~scripts/display/displaySection";
-import { section } from "~scripts/selectors/data";
+import data from "~scripts/selectors/data";
 
 let element = $.print.banner;
 
@@ -11,7 +11,7 @@ function amendHeader() {
 
 function display() {
   this.amendHeader();
-  displaySection(section.banner, "block");
+  displaySection(data.section.banner, "block");
 }
 
 function append(content) {

@@ -7,10 +7,10 @@ import setTracksAdded from "~scripts/setters/setTracksAdded";
 import setStore from "~scripts/setters/setStore";
 import usingLikedSongs from "~scripts/using/usingLikedSongs";
 import displaySection from "~scripts/display/displaySection";
-import { section } from "~scripts/selectors/data";
+import data from "~scripts/selectors/data";
 
 export default async function () {
-  displaySection(section.tracks_added, "block");
+  displaySection(data.section.tracks_added, "block");
 
   let year_added = getYearAdded();
 

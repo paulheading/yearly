@@ -1,12 +1,12 @@
 import $ from "~scripts/selectors";
-import attr from "~scripts/selectors/attributes";
+import attrs from "~scripts/selectors/attrs";
 import setCardSetting from "~scripts/setters/setCardSetting";
 import settings from "~data/settings";
 import setSource from "~scripts/setters/setSource";
 import keyPress from "~scripts/helpers/keyPress";
 import preventDefault from "~scripts/helpers/preventDefault";
 
-import { selectForm } from "~scripts/selectors/data";
+import _data from "~scripts/selectors/data";
 
 function handleDocumentInteraction(target) {
   $.query.settingType("select").forEach(function ($form) {
@@ -66,7 +66,7 @@ function toggleActiveItem({ $item, active }) {
 }
 
 function setFormButton({ $button, innerText, value }) {
-  $button.setAttribute(attr.data.id, value);
+  $button.setAttribute(attrs.data.id, value);
   $button.innerText = innerText;
 }
 
@@ -83,7 +83,7 @@ function selectCurrentOption(target) {
 
   let { innerText } = target;
 
-  let value = target.getAttribute(attr.data.id);
+  let value = target.getAttribute(attrs.data.id);
 
   setFormButton({ $button, innerText, value });
 
@@ -98,7 +98,7 @@ function selectCurrentOption(target) {
   toggleFormState(target);
 
   if (!setting) {
-    if (snake == selectForm.choose_source) {
+    if (snake == _data.selectForm.choose_source) {
       setSource({ title: innerText, id: value });
     }
   } else {

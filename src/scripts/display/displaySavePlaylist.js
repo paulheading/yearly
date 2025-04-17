@@ -5,13 +5,13 @@ import displaySection from "~scripts/display/displaySection";
 import getStore from "~scripts/getters/getStore";
 import setStore from "~scripts/setters/setStore";
 import createSaveDOM from "~scripts/creators/createSaveDOM";
-import { section } from "~scripts/selectors/data";
+import data from "~scripts/selectors/data";
 
 export default function () {
   asyncWrap(createSaveDOM).then(function () {
     loadComplete(function () {
-      displaySection(section.save_playlist, "block");
-      displaySection(section.confirm_settings, "block");
+      displaySection(data.section.save_playlist, "block");
+      displaySection(data.section.confirm_settings, "block");
 
       let { params } = getStore();
 

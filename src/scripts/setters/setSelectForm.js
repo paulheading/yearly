@@ -3,7 +3,7 @@ import setCardSetting from "~scripts/setters/setCardSetting";
 import getConfigByGroup from "~scripts/getters/getConfigByGroup";
 import setAction from "~scripts/setters/setAction";
 import setStore from "~scripts/setters/setStore";
-import { selectForm } from "~scripts/selectors/data";
+import data from "~scripts/selectors/data";
 
 function handleGroupActions({ other, action, params }) {
   if (action == "oldest") setAction.oldest({ ...params, other });
@@ -41,8 +41,10 @@ export default function ({ card, value, snake }) {
   if (card) handleSetCardSetting(params);
   else {
     setStore(function (store) {
-      if (snake == selectForm.choose_source) store.playlist.source.id = value;
-      return store;
+      if (snake == data.selectForm.choose_source) {
+        store.playlist.source.id = value;
+        return store;
+      }
     });
   }
 }

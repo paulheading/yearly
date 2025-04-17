@@ -1,4 +1,6 @@
-let button = {
+let cnames = {};
+
+cnames.button = {
   back: "back_button",
   build: "build_button",
   login: "login_button",
@@ -12,5 +14,12 @@ let button = {
   remove_row: "remove_row_button",
 };
 
-export { button };
-export default { button };
+cnames.selectForm = {
+  form: "select_form",
+};
+
+cnames.card = {
+  container: "card_container",
+};
+
+export default cnames;

@@ -8,11 +8,11 @@ import ChooseSource from "~components/Sections/ChooseSource";
 import PersonalGreeting from "~components/Sections/PersonalGreeting";
 
 import filterStoreCardsById from "~scripts/filters/filterStoreCardsById";
-import { section } from "~scripts/selectors/data";
-import { button } from "~scripts/selectors/classNames";
+import data from "~scripts/selectors/data";
+import cnames from "~scripts/selectors/cnames";
 
 let sectionProps = {
-  name: section.choose_card,
+  name: data.section.choose_card,
   style: {
     display: "none",
   },
@@ -29,18 +29,18 @@ let personals = [filterStoreCardsById("cindy"), filterStoreCardsById("badjo")];
   <!-- Select Playlist Style -->
   <Wrap style={{ marginTop: "2rem" }}>
     <Wrap>
-      <Section name={section.playlist}>
+      <Section name={data.section.playlist}>
         {personals.map((person) => <Card {...person} />)}
       </Section>
-      <Section name={section.custom} style={{ display: "none" }}>
-        <Card {...filterStoreCardsById(section.custom)} />
+      <Section name={data.section.custom} style={{ display: "none" }}>
+        <Card {...filterStoreCardsById(data.section.custom)} />
       </Section>
     </Wrap>
     <Wrap style={{ marginTop: "2rem" }}>
       <CustomButton>Custom job please</CustomButton>
     </Wrap>
     <Wrap style={{ marginTop: "2rem" }}>
-      <SolidButton className={button.build}>Let's Build!</SolidButton>
+      <SolidButton className={cnames.button.build}>Let's Build!</SolidButton>
     </Wrap>
   </Wrap>
 </Section>
