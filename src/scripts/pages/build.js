@@ -32,9 +32,6 @@ function displayPage() {
 
 asyncWrap(getStoreState).then(function () {
   if (usingLiveData) {
-    console.log("sources: ", getStore().playlist.sources);
-    console.log("selectors: ", $);
-
     if (!getAccessToken()) {
       console.warn("creating new token");
       setAccessToken().then(setUser).then(getPlaylists).then(displayPage);

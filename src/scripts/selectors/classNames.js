@@ -9,6 +9,7 @@ let button = {
   save: "save_button",
   source: "source_button",
   refresh: "refresh_button",
+  remove_row: "remove_row_button",
 };
 
 export { button };

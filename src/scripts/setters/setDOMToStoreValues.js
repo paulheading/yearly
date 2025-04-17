@@ -12,7 +12,7 @@ export default function () {
   if (!style) return;
 
   if (source.id != 0) {
-    let $form = $.selectForm.choose_source;
+    let $form = $.selectForm.choose_sources()[0];
     let value = source.id;
 
     setItemsByValue({ $form, value });

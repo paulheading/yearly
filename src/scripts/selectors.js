@@ -2,21 +2,7 @@ import createQueriesFor from "~scripts/creators/createQueriesFor";
 import { button } from "~scripts/selectors/classNames";
 import { section, selectForm } from "~scripts/selectors/data";
 import attr from "~scripts/selectors/attributes";
-
-let label = {
-  button: (value) => attr.button + value,
-  card: (value) => attr.card + value,
-  selectForm: (value) => attr.selectForm + value,
-  data: {
-    section: (value) => `[${attr.data.section}=${value}]`,
-    setting: (value) => `[${attr.data.setting}='true']${value}`,
-    snake: (value) => `[${attr.data.snake}=${value}]`,
-    id: (value) => `[${attr.data.id}=${value}]`,
-    state: (value) => `[${attr.data.state}=${value}]`,
-    print: (value) => `[${attr.data.print}=${value}]`,
-    type: (value) => `[${attr.data.type}=${value}]`,
-  },
-};
+import label from "~scripts/selectors/labels";
 
 let $ = {
   query: {
@@ -30,11 +16,16 @@ let $ = {
     section: (value = "") => $.query.selector(label.data.section(value)),
     sectionAll: (value = "") => $.query.selectorAll(label.data.section(value)),
     selector: (value = "") => document.querySelector(value),
+    className: (value = "") => $.query.selector("." + value),
+    classNameAll: (value = "") => $.query.selectorAll("." + value),
     selectorAll: (value = "") => document.querySelectorAll(value),
     selectForm: (value = "") => $.query.selector(label.selectForm(value)),
     selectFormAll: (value = "") => $.query.selectorAll(label.selectForm(value)),
     selectFormSnake: function (value = "") {
       return $.query.selectForm(label.data.snake(value));
+    },
+    selectFormAllSnake: function (value = "") {
+      return $.query.selectFormAll(label.data.snake(value));
     },
     settingAll: function (value = "") {
       return $.query.selectorAll(label.data.setting(value));
@@ -105,7 +96,7 @@ createQueriesFor($, "button", button);
 createQueriesFor($, "section", section);
 
 $.selectForm = {
-  choose_source: $.query.selectFormSnake(selectForm.choose_source),
+  choose_sources: () => $.query.selectFormAllSnake(selectForm.choose_source),
   year_added: $.query.selectFormSnake(selectForm.year_added),
   year_released: $.query.selectFormSnake(selectForm.year_released),
 };
@@ -120,20 +111,31 @@ $.print = {
 };
 
 $.selectForm.selectors = function ($form) {
-  let $list = $form.querySelector(".select-form-list");
-  let $items = $form.querySelectorAll(".select-form-item");
-  let $button = $form.querySelector(".select-form-button");
-  let $announce = $form.querySelector(".select-form-announce");
+  let selectors = {
+    $button: $form.querySelector(".select-form-button"),
+    $list: $form.querySelector(".select-form-list"),
+    $items: $form.querySelectorAll(".select-form-item"),
+    $announce: $form.querySelector(".select-form-announce"),
+  };
 
-  let data = {
-    id: $button.getAttribute(attr.data.id),
+  selectors.data = {
+    id: selectors.$button.getAttribute(attr.data.id),
     snake: $form.getAttribute(attr.data.snake),
     state: $form.getAttribute(attr.data.state),
     group: $form.getAttribute(attr.data.group),
     card: $form.getAttribute(attr.data.card),
   };
 
-  return { $list, $items, $button, $announce, data };
+  selectors.state = {
+    isClosed: () => selectors.data.state == "closed",
+  };
+
+  selectors.click = {
+    insideButton: (target) => selectors.$button.contains(target),
+    insideList: (target) => selectors.$list.contains(target),
+  };
+
+  return selectors;
 };
 
 $.playlist = function () {

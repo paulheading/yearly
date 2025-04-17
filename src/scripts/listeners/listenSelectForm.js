@@ -9,18 +9,15 @@ import preventDefault from "~scripts/helpers/preventDefault";
 import { selectForm } from "~scripts/selectors/data";
 
 function handleDocumentInteraction(target) {
-  $.setting.selects.forEach(function ($form) {
-    let { $button, data, $list } = $.selectForm.selectors($form);
+  $.query.settingType("select").forEach(function ($form) {
+    let { $list, click, state } = $.selectForm.selectors($form);
 
-    let isInsideButton = $button.contains(target);
+    if (click.insideButton(target)) {
+      return toggleFormState(target);
+    }
 
-    let isInsideList = $list.contains(target);
-
-    let stateIsOpen = data.state == "open";
-
-    if (isInsideButton) return toggleFormState(target);
-
-    if (!isInsideList && stateIsOpen) return toggleFormState($list);
+    if (!click.insideList(target) && !state.isClosed())
+      return toggleFormState($list);
   });
 }
 
@@ -61,20 +58,6 @@ function changeCurrentFocus({ $items, increment }) {
   $nextFocus.classList.add("current");
 
   focusOnItem($nextFocus);
-}
-
-function moveFocusUp(target) {
-  let $form = target.closest("form");
-  let { $items } = $.selectForm.selectors($form);
-
-  changeCurrentFocus({ $items, increment: -1 });
-}
-
-function moveFocusDown(target) {
-  let $form = target.closest("form");
-  let { $items } = $.selectForm.selectors($form);
-
-  changeCurrentFocus({ $items, increment: 1 });
 }
 
 function toggleActiveItem({ $item, active }) {
@@ -130,46 +113,44 @@ function handleItemClicks($item) {
 function toggleFormState(target) {
   let $form = target.closest("form");
 
-  let { data, $button } = $.selectForm.selectors($form);
+  let { $button, state } = $.selectForm.selectors($form);
 
-  let stateIsClosed = data.state == "closed";
+  $form.setAttribute("data_state", state.isClosed() ? "open" : "closed");
 
-  $form.setAttribute("data_state", stateIsClosed ? "open" : "closed");
-
-  $button.setAttribute("aria-expanded", stateIsClosed.toString());
+  $button.setAttribute("aria-expanded", state.isClosed().toString());
 }
 
 function handleKeyPress(event) {
   let { key, target } = event;
   let $form = target.closest("form");
-  let { data } = $.selectForm.selectors($form);
+  let { state, $items } = $.selectForm.selectors($form);
 
-  let formIsClosed = data.state == "closed";
-
-  if (formIsClosed) {
+  if (state.isClosed()) {
     if (!keyPress.isOpenGroup(key)) return;
   }
 
-  if (!formIsClosed) {
+  if (!state.isClosed()) {
     if (keyPress.isClose(key) || keyPress.isTab(key))
       return toggleFormState(target);
   }
 
   event.preventDefault();
 
-  if (formIsClosed) {
+  if (state.isClosed()) {
     if (keyPress.isOpenGroup(key)) return toggleFormState(target);
   }
 
-  if (!formIsClosed) {
+  if (!state.isClosed()) {
     if (keyPress.isOpen(key)) {
-      let $form = target.closest("form");
-      let { $items } = $.selectForm.selectors($form);
-
       getCurrentItem($items, ($item) => selectCurrentOption($item));
     }
-    if (keyPress.isDown(key)) return moveFocusDown(target);
-    if (keyPress.isUp(key)) return moveFocusUp(target);
+    if (keyPress.isDown(key)) {
+      return changeCurrentFocus({ $items, increment: 1 });
+    }
+
+    if (keyPress.isUp(key)) {
+      return changeCurrentFocus({ $items, increment: -1 });
+    }
   }
 }
 
@@ -183,12 +164,14 @@ function setupFormListeners($form) {
   $items.forEach(handleItemClicks);
 }
 
-export { setFormButton, toggleActiveItem, focusOnItem };
+export {
+  setFormButton,
+  toggleActiveItem,
+  focusOnItem,
+  setupFormListeners,
+  handleDocumentInteraction,
+};
 
 export default function () {
   $.setting.selects.forEach(setupFormListeners);
-
-  document.addEventListener("click", function ({ target }) {
-    handleDocumentInteraction(target);
-  });
 }

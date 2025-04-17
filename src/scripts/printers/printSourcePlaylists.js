@@ -3,7 +3,7 @@ import attr from "~scripts/selectors/attributes";
 import getStore from "~scripts/getters/getStore";
 
 function printSourceOption(source) {
-  let $form = $.selectForm.choose_source;
+  let $form = $.selectForm.choose_sources()[0];
 
   if (!$form) return console.warn("form missing");
 
