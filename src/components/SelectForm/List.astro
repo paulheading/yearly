@@ -1,10 +1,11 @@
 ---
 import SelectFormItem from "~components/SelectForm/Item";
+import cnames from "~scripts/selectors/cnames";
 
 let { options } = Astro.props;
 
 let props = {
-  class: "select-form-list",
+  class: cnames.selectForm.list,
   role: "listbox",
 };
 ---

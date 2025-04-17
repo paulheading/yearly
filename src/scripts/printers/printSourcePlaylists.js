@@ -1,6 +1,7 @@
 import $ from "~scripts/selectors";
 import attrs from "~scripts/selectors/attrs";
 import getStore from "~scripts/getters/getStore";
+import cnames from "~scripts/selectors/cnames";
 
 function printSourceOption(source) {
   let $form = $.selectForm.choose_sources()[0];
@@ -11,7 +12,7 @@ function printSourceOption(source) {
 
   let option = document.createElement("li");
 
-  option.classList.add("select-form-item");
+  option.classList.add(cnames.selectForm.item);
 
   option.setAttribute(attrs.data.id, source.id);
 

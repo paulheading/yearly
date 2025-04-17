@@ -3,6 +3,7 @@ import cnames from "~scripts/selectors/cnames";
 import data from "~scripts/selectors/data";
 import attrs from "~scripts/selectors/attrs";
 import label from "~scripts/selectors/labels";
+import classify from "~scripts/helpers/classify";
 
 let $ = {
   query: {
@@ -114,10 +115,10 @@ $.print = {
 
 $.selectForm.selectors = function ($form) {
   let selectors = {
-    $button: $form.querySelector(".select-form-button"),
-    $list: $form.querySelector(".select-form-list"),
-    $items: $form.querySelectorAll(".select-form-item"),
-    $announce: $form.querySelector(".select-form-announce"),
+    $button: $form.querySelector(classify(cnames.selectForm.button)),
+    $list: $form.querySelector(classify(cnames.selectForm.list)),
+    $items: $form.querySelectorAll(classify(cnames.selectForm.item)),
+    $announce: $form.querySelector(classify(cnames.selectForm.announce)),
   };
 
   selectors.data = {

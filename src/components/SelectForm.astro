@@ -3,6 +3,7 @@ import SelectFormForm from "~components/SelectForm/Form";
 import SelectFormButton from "~components/SelectForm/Button";
 import SelectFormAnnouncement from "~components/SelectForm/Announcement";
 import SelectFormList from "~components/SelectForm/List";
+import cnames from "~scripts/selectors/cnames";
 
 let {
   title,
@@ -25,7 +26,7 @@ let buttonProps = {
 };
 
 let listProps = {
-  class: "select-form-list",
+  class: cnames.selectForm.list,
   role: "listbox",
   options,
 };

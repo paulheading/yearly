@@ -1,8 +1,10 @@
 ---
+import cnames from "~scripts/selectors/cnames";
+
 let { data, index } = Astro.props;
 
 let props = {
-  "class:list": ["select-form-item", index == 0 ? "active" : ""],
+  "class:list": [cnames.selectForm.item, index == 0 ? "active" : ""],
   data_id: data,
   role: "option",
 };
