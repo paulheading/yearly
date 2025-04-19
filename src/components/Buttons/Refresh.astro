@@ -1,0 +1,60 @@
+---
+import { InvisibleButton } from "paully";
+import { Refresh } from "paully/svgs";
+import { Image } from "astro:assets";
+
+import playlist from "~data/playlist";
+import cnames from "~scripts/selectors/cnames";
+
+let size = 80;
+let year = 2036;
+
+let imageProps = {
+  alt: `Artwork for my ${year} playlist.`,
+  src: playlist.content.thumbnail,
+  format: "webp",
+  height: size,
+  width: size,
+};
+---
+
+<InvisibleButton className={cnames.button.refresh}>
+  <Refresh className="icon" />
+  <Image {...imageProps} className="image" />
+</InvisibleButton>
+
+<style lang="scss">
+  @use "~mixins" as *;
+
+  .refresh_button {
+    background-color: black;
+    place-items: center;
+    display: grid;
+
+    @include focus {
+      outline: none;
+
+      .icon {
+        opacity: 1;
+      }
+      .image {
+        opacity: 0.2;
+      }
+    }
+  }
+
+  .refresh_button:active .icon {
+    transform: rotate(45deg) scale(0.9);
+  }
+
+  .icon,
+  .image {
+    grid-area: 1 / 1;
+  }
+
+  .icon {
+    transition: transform 200ms;
+    opacity: 0;
+    z-index: 2;
+  }
+</style>

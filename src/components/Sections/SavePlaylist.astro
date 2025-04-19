@@ -1,6 +1,7 @@
 ---
 import { SolidButton, SpotifyWindow, Wrap } from "paully";
 import Section from "~components/Section";
+import RefreshButton from "~components/Buttons/Refresh";
 import BackButton from "~components/Buttons/Back";
 import playlist from "~data/playlist";
 import data from "~scripts/selectors/data";
@@ -22,7 +23,9 @@ let saveProps = {
 
 <Section {...sectionProps}>
   <div class="wrap-playlist">
-    <SpotifyWindow {...playlist} />
+    <SpotifyWindow {...playlist}>
+      <RefreshButton />
+    </SpotifyWindow>
   </div>
   <Wrap style={{ marginTop: "3rem" }}>
     <SolidButton {...saveProps}>Save Playlist</SolidButton>
