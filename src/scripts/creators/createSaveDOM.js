@@ -9,7 +9,7 @@ export default function () {
   printYearAdded();
   listenSaveButton();
   listenBackButton();
-  listenRefreshButton();
+  // listenRefreshButton();
   printPlaylistConfig();
   printPlaylistSections();
 }
