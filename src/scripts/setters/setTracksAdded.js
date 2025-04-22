@@ -1,40 +1,18 @@
 import printTracksAdded from "~scripts/printers/printTracksAdded";
+import setTrackResult from "~scripts/setters/setTrackResult";
 import { year } from "~scripts/filters";
-import setStore from "~scripts/setters/setStore";
 
-function setTrackResults(item) {
-  setStore(function (store) {
-    store.get_tracks.results = [...store.get_tracks.results, item];
+export default function ({ items, year_added, callback }) {
+  items.forEach(function (item) {
+    if (!year.noOlderThan(item.added_at, year_added)) {
+      if (callback) callback(item);
+      return;
+    }
 
-    return store;
+    printTracksAdded();
+
+    if (!year.noNewerThan(item.added_at, year_added)) return;
+
+    setTrackResult(item);
   });
-}
-
-function handleYearAdded({ item, year_added, callback }) {
-  let { added_at } = item;
-
-  if (!year.noOlderThan(added_at, year_added)) {
-    if (callback) callback(item);
-    return;
-  }
-
-  printTracksAdded();
-
-  if (!year.noNewerThan(added_at, year_added)) return;
-
-  setTrackResults(item);
-}
-
-function handleItem({ item }) {
-  printTracksAdded();
-
-  setTrackResults(item);
-}
-
-export default function ({ items, callback, year_added }) {
-  items.forEach((item) =>
-    year_added
-      ? handleYearAdded({ item, year_added, callback })
-      : handleItem({ item })
-  );
 }

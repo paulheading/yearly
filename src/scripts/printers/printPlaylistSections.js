@@ -1,10 +1,10 @@
-import tracks from "~data/tracks";
+// import tracks from "~data/tracks";
 import filterResults from "~scripts/filters/filterResults";
 import getTracks from "~scripts/getters/getTracks";
 import getPlaylistRecommends from "~scripts/getters/getPlaylistRecommends";
 import printPlaylist from "~scripts/printers/printPlaylist";
-import printLocalTracks from "~scripts/printers/printLocalTracks";
-import usingLiveData from "~scripts/using/usingLiveData";
+// import printLocalTracks from "~scripts/printers/printLocalTracks";
+// import usingLiveData from "~scripts/using/usingLiveData";
 import displaySection from "~scripts/display/displaySection";
 import data from "~scripts/selectors/data";
 import loadComplete from "~scripts/loaders/loadComplete";
@@ -24,11 +24,11 @@ function handlePlaylistItems(items) {
 }
 
 export default function () {
-  if (!usingLiveData) {
-    printLocalTracks(tracks.length);
-    filterResults(tracks);
-    return;
-  }
+  // if (!usingLiveData) {
+  //   printLocalTracks(tracks.length);
+  //   filterResults(tracks);
+  //   return;
+  // }
 
   getTracks().then(filterResults).then(handlePlaylistItems);
 }

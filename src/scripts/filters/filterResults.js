@@ -6,49 +6,52 @@ import { byLowestPopularity, byHighestPopularity } from "~scripts/sorters";
 
 import getDate from "~scripts/getters/getDate";
 import getPlaylistActiveConfig from "~scripts/getters/getPlaylistActiveConfig";
+import getStore from "~scripts/getters/getStore";
 
-export default async function (items) {
-  if (!items.length) return items;
+export default async function () {
+  let { results } = getStore().get_tracks;
+
+  if (!results.length) {
+    console.warn("store has no results");
+    return results;
+  }
 
   getPlaylistActiveConfig().forEach(function ({ title, value }) {
     console.log(title, "value: ", value);
 
-    // if (title == settings.in_recommends) {
-    // }
-
     if (title == settings.least_popular_music) {
-      items = items.sort(byLowestPopularity);
+      results = results.sort(byLowestPopularity);
     }
 
     if (title == settings.most_popular_music) {
-      items = items.sort(byHighestPopularity);
+      results = results.sort(byHighestPopularity);
     }
 
     if (title == settings.explicit_music_only) {
-      items = items.filter(include.trackExplicit);
+      results = results.filter(include.trackExplicit);
     }
 
     if (title == settings.no_explicit_music) {
-      items = items.filter(exclude.trackExplicit);
+      results = results.filter(exclude.trackExplicit);
     }
 
     if (title == settings.min_length) {
-      items = items.filter((item) => length.trackMinimum(item, value));
+      results = results.filter((item) => length.trackMinimum(item, value));
     }
 
     if (title == settings.max_length) {
-      items = items.filter((item) => length.trackMaximum(item, value));
+      results = results.filter((item) => length.trackMaximum(item, value));
     }
 
     if (title == settings.released_this_year) {
       let { year } = getDate();
-      items = filterTracksByReleaseDate({ items, value: year });
+      results = filterTracksByReleaseDate({ results, value: year });
     }
 
     if (title == settings.year_released) {
-      items = filterTracksByReleaseDate({ items, value });
+      results = filterTracksByReleaseDate({ results, value });
     }
   });
 
-  return items;
+  return results;
 }

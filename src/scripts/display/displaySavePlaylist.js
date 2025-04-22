@@ -7,7 +7,7 @@ import setStore from "~scripts/setters/setStore";
 import createSaveDOM from "~scripts/creators/createSaveDOM";
 import data from "~scripts/selectors/data";
 
-export default function () {
+export default async function () {
   asyncWrap(createSaveDOM).then(function () {
     loadComplete(function () {
       displaySection(data.section.save_playlist, "block");
