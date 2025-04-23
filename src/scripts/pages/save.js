@@ -1,16 +1,16 @@
-import getStoreState from "~scripts/getters/getStoreState";
-
-import displaySection from "~scripts/display/displaySection";
-import displaySavePlaylist from "~scripts/display/displaySavePlaylist";
-import loadInProgress from "~scripts/loaders/loadInProgress";
-
 import asyncWrap from "~scripts/helpers/asyncWrap";
-import data from "~scripts/selectors/data";
+import getStoreState from "~scripts/getters/getStoreState";
+import loadTracksAdded from "~scripts/loaders/loadTracksAdded";
+import getTracks from "~scripts/getters/getTracks";
+import filterTracks from "~scripts/filters/filterTracks";
+import setPlaylistData from "~scripts/setters/setPlaylistData";
+import createSaveDOM from "~scripts/creators/createSaveDOM";
+import displaySavePlaylist from "~scripts/display/displaySavePlaylist";
 
 asyncWrap(getStoreState)
-  .then(function () {
-    loadInProgress(function () {
-      displaySection(data.section.tracks_added, "block");
-    });
-  })
+  .then(loadTracksAdded)
+  .then(getTracks)
+  .then(filterTracks)
+  .then(setPlaylistData)
+  .then(createSaveDOM)
   .then(displaySavePlaylist);

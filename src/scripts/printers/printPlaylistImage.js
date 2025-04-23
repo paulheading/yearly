@@ -3,9 +3,9 @@ import createRandomNumber from "~scripts/creators/createRandomNumber";
 import setStore from "~scripts/setters/setStore";
 
 export default function () {
-  let source = $.playlist().$image.src;
+  let { src } = $.playlist().$image;
 
-  let prev = source.split("playlist");
+  let prev = src.split("playlist");
 
   let next = createRandomNumber(1, 18);
 

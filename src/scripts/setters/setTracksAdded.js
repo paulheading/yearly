@@ -1,6 +1,8 @@
 import printTracksAdded from "~scripts/printers/printTracksAdded";
-import setTrackResult from "~scripts/setters/setTrackResult";
+// import setTrackResult from "~scripts/setters/setTrackResult";
 import { year } from "~scripts/filters";
+
+let results = [];
 
 export default function ({ items, year_added, callback }) {
   items.forEach(function (item) {
@@ -13,6 +15,10 @@ export default function ({ items, year_added, callback }) {
 
     if (!year.noNewerThan(item.added_at, year_added)) return;
 
-    setTrackResult(item);
+    results.push(item);
+
+    // setTrackResult(item);
   });
+
+  return results;
 }

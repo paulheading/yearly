@@ -3,9 +3,9 @@ import setUniqueTrack from "~scripts/setters/setUniqueTrack";
 
 export default function (item) {
   setStore(function (store) {
-    let { results } = store.get_tracks;
+    let { tracks } = store;
 
-    store.get_tracks.results = setUniqueTrack(results, item);
+    store.tracks = setUniqueTrack(tracks, item);
 
     return store;
   });

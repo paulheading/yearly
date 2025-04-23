@@ -1,28 +1,24 @@
-import asyncWrap from "~scripts/helpers/asyncWrap";
 import loadComplete from "~scripts/loaders/loadComplete";
 import displayBanner from "~scripts/display/displayBanner";
 import displaySection from "~scripts/display/displaySection";
 import getStore from "~scripts/getters/getStore";
 import setStore from "~scripts/setters/setStore";
-import createSaveDOM from "~scripts/creators/createSaveDOM";
 import data from "~scripts/selectors/data";
 
-export default async function () {
-  asyncWrap(createSaveDOM).then(function () {
-    loadComplete(function () {
-      displaySection(data.section.save_playlist, "block");
-      displaySection(data.section.confirm_settings, "block");
+export default function () {
+  loadComplete(function () {
+    displaySection(data.section.save_playlist, "block");
+    displaySection(data.section.confirm_settings, "block");
 
-      let { params } = getStore();
+    let { params } = getStore();
 
-      if (!params) return;
+    if (!params) return;
 
-      displayBanner.innerHTML("Created using params!");
+    displayBanner.innerHTML("Created using params!");
 
-      setStore(function (store) {
-        store.params = false;
-        return store;
-      });
+    setStore(function (store) {
+      store.params = false;
+      return store;
     });
   });
 }
