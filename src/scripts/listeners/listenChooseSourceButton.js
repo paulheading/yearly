@@ -1,6 +1,9 @@
 import $ from "~scripts/selectors";
-import createChooseSource from "~scripts/creators/createChooseSource";
+import setChooseSourceRows from "~scripts/setters/setChooseSourceRows";
 
 export default function () {
-  $.button.source.addEventListener("click", createChooseSource);
+  $.button.source.addEventListener("click", function (event) {
+    let { currentTarget } = event;
+    setChooseSourceRows(currentTarget);
+  });
 }

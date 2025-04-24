@@ -14,4 +14,12 @@ attrs.data = {
   type: "data_type",
 };
 
+attrs.aria = {
+  controls: "aria-controls",
+  expanded: "aria-expanded",
+  haspopup: "aria-haspopup",
+  live: "aria-live",
+  selected: "aria-selected",
+};
+
 export default attrs;

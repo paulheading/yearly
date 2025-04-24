@@ -7,17 +7,21 @@ import keyPress from "~scripts/helpers/keyPress";
 import preventDefault from "~scripts/helpers/preventDefault";
 
 import _data from "~scripts/selectors/data";
+import cnames from "~scripts/selectors/cnames";
+import classify from "~scripts/helpers/classify";
+
+let formState = {};
 
 function handleDocumentInteraction(target) {
   $.query.settingType("select").forEach(function ($form) {
     let { $list, click, state } = $.selectForm.selectors($form);
 
     if (click.insideButton(target)) {
-      return toggleFormState(target);
+      return formState.toggle(target);
     }
 
     if (!click.insideList(target) && !state.isClosed())
-      return toggleFormState($list);
+      return formState.toggle($list);
   });
 }
 
@@ -62,7 +66,7 @@ function changeCurrentFocus({ $items, increment }) {
 
 function toggleActiveItem({ $item, active }) {
   active ? $item.classList.add("active") : $item.classList.remove("active");
-  $item.setAttribute("aria-selected", active.toString());
+  $item.setAttribute(attrs.aria.selected, active.toString());
 }
 
 function setFormButton({ $button, innerText, value }) {
@@ -71,7 +75,7 @@ function setFormButton({ $button, innerText, value }) {
 }
 
 function selectCurrentOption(target) {
-  let $form = target.closest("form");
+  let $form = target.closest(classify(cnames.selectForm.form));
 
   let { tagName } = target;
 
@@ -95,7 +99,7 @@ function selectCurrentOption(target) {
     toggleActiveItem({ $item, active: $item == target });
   });
 
-  toggleFormState(target);
+  formState.close($form);
 
   if (!setting) {
     if (snake == _data.selectForm.choose_source) {
@@ -110,19 +114,33 @@ function handleItemClicks($item) {
   $item.addEventListener("click", ({ target }) => selectCurrentOption(target));
 }
 
-function toggleFormState(target) {
-  let $form = target.closest("form");
+formState.close = function ($form) {
+  let { $button } = $.selectForm.selectors($form);
 
-  let { $button, state } = $.selectForm.selectors($form);
+  $form.setAttribute(attrs.data.state, "closed");
 
-  $form.setAttribute("data_state", state.isClosed() ? "open" : "closed");
+  $button.setAttribute(attrs.aria.expanded, "false");
+};
 
-  $button.setAttribute("aria-expanded", state.isClosed().toString());
-}
+formState.open = function ($form) {
+  let { $button } = $.selectForm.selectors($form);
+
+  $form.setAttribute(attrs.data.state, "open");
+
+  $button.setAttribute(attrs.aria.expanded, "true");
+};
+
+formState.toggle = function (target) {
+  let $form = target.closest(classify(cnames.selectForm.form));
+
+  let { state } = $.selectForm.selectors($form);
+
+  state.isClosed() ? formState.open($form) : formState.close($form);
+};
 
 function handleKeyPress(event) {
   let { key, target } = event;
-  let $form = target.closest("form");
+  let $form = target.closest(classify(cnames.selectForm.form));
   let { state, $items } = $.selectForm.selectors($form);
 
   if (state.isClosed()) {
@@ -131,13 +149,13 @@ function handleKeyPress(event) {
 
   if (!state.isClosed()) {
     if (keyPress.isClose(key) || keyPress.isTab(key))
-      return toggleFormState(target);
+      return formState.toggle(target);
   }
 
   event.preventDefault();
 
   if (state.isClosed()) {
-    if (keyPress.isOpenGroup(key)) return toggleFormState(target);
+    if (keyPress.isOpenGroup(key)) return formState.toggle(target);
   }
 
   if (!state.isClosed()) {
@@ -167,6 +185,7 @@ function setupFormListeners($form) {
 export {
   setFormButton,
   toggleActiveItem,
+  selectCurrentOption,
   focusOnItem,
   setupFormListeners,
   handleDocumentInteraction,

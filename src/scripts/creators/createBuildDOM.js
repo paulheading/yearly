@@ -7,13 +7,14 @@ import listenDotButtons from "~scripts/listeners/listenDotButtons";
 import listenInfoButton from "~scripts/listeners/listenInfoButton";
 import listenRangeInput from "~scripts/listeners/listenRangeInput";
 import listenSelectButton from "~scripts/listeners/listenSelectButton";
-import listenSelectForm, {
-  handleDocumentInteraction,
-} from "~scripts/listeners/listenSelectForm";
 import listenToggleInput from "~scripts/listeners/listenToggleInput";
 import listenChooseSourceButton from "~scripts/listeners/listenChooseSourceButton";
 import listenRemoveRowButton from "~scripts/listeners/listenRemoveRowButton";
 import listenDocument from "~scripts/listeners/listenDocument";
+
+import listenSelectForm, {
+  handleDocumentInteraction,
+} from "~scripts/listeners/listenSelectForm";
 
 export default function () {
   printFirstName();

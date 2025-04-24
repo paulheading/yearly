@@ -1,14 +1,19 @@
 import getStore from "~scripts/getters/getStore";
+import listenResponseStatus from "~scripts/listeners/listenResponseStatus";
 
 export default async function (endpoint) {
-  // if (!getStore().access.token) window.location.assign("/");
+  if (!getStore().access.token) window.location.assign("/");
 
-  let response = await fetch("https://api.spotify.com/v1/" + endpoint, {
+  let url = "https://api.spotify.com/v1/" + endpoint;
+
+  let options = {
     method: "get",
     headers: {
       Authorization: "Bearer " + getStore().access.token,
     },
-  });
+  };
+
+  let response = await fetch(url, options).then(listenResponseStatus);
 
   let data = await response.json();
 
