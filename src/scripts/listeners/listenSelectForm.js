@@ -8,7 +8,6 @@ import preventDefault from "~scripts/helpers/preventDefault";
 
 import _data from "~scripts/selectors/data";
 import cnames from "~scripts/selectors/cnames";
-import classify from "~scripts/helpers/classify";
 
 let formState = {};
 
@@ -75,7 +74,7 @@ function setFormButton({ $button, innerText, value }) {
 }
 
 function selectCurrentOption(target) {
-  let $form = target.closest(classify(cnames.selectForm.form));
+  let $form = target.closest("." + cnames.selectForm.form);
 
   let { tagName } = target;
 
@@ -131,7 +130,7 @@ formState.open = function ($form) {
 };
 
 formState.toggle = function (target) {
-  let $form = target.closest(classify(cnames.selectForm.form));
+  let $form = target.closest("." + cnames.selectForm.form);
 
   let { state } = $.selectForm.selectors($form);
 
@@ -140,7 +139,7 @@ formState.toggle = function (target) {
 
 function handleKeyPress(event) {
   let { key, target } = event;
-  let $form = target.closest(classify(cnames.selectForm.form));
+  let $form = target.closest("." + cnames.selectForm.form);
   let { state, $items } = $.selectForm.selectors($form);
 
   if (state.isClosed()) {

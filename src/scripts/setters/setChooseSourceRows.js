@@ -2,7 +2,6 @@ import $ from "~scripts/selectors";
 import data from "~scripts/selectors/data";
 import listenChooseSourceForm from "~scripts/listeners/listenChooseSourceForm";
 import cnames from "~scripts/selectors/cnames";
-import classify from "~scripts/helpers/classify";
 import attrs from "~scripts/selectors/attrs";
 import { selectCurrentOption } from "~scripts/listeners/listenSelectForm";
 
@@ -28,7 +27,7 @@ export default function ($button, source) {
   if (isSingleRow) {
     targets[0].style.display = "grid";
 
-    let $form = targets[0].querySelector(classify(cnames.selectForm.form));
+    let $form = targets[0].querySelector("." + cnames.selectForm.form);
 
     if (source) setChooseSourceFormDefaults($form, source);
 

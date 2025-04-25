@@ -1,9 +1,10 @@
 ---
+import attrs from "~scripts/selectors/attrs";
 import cnames from "~scripts/selectors/cnames";
 
 let announcementProps = {
   class: cnames.selectForm.announce,
-  "aria-live": "assertive",
+  [attrs.aria.live]: "assertive",
   role: "alert",
 };
 ---

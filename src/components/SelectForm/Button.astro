@@ -1,13 +1,16 @@
 ---
+import attrs from "~scripts/selectors/attrs";
 import cnames from "~scripts/selectors/cnames";
+
+let { aria } = attrs;
 
 let { title, value } = Astro.props;
 
 let buttonProps = {
   class: cnames.selectForm.button,
-  "aria-controls": "listbox",
-  "aria-haspopup": "listbox",
-  "aria-expanded": false,
+  [aria.controls]: "listbox",
+  [aria.haspopup]: "listbox",
+  [aria.expanded]: false,
   data_id: value,
   role: "combobox",
   tabIndex: "0",

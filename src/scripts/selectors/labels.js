@@ -1,13 +1,12 @@
 import attrs from "~scripts/selectors/attrs";
 import cnames from "~scripts/selectors/cnames";
-import classify from "~scripts/helpers/classify";
 
 let createQuery = (name, value = "") => `[${attrs.data[name]}=${value}]`;
 
 export default {
   button: (value = "") => attrs.button + value,
-  card: (value = "") => classify(cnames.card.container) + value,
-  selectForm: (value = "") => classify(cnames.selectForm.form) + value,
+  card: (value = "") => "." + cnames.card.container + value,
+  selectForm: (value = "") => "." + cnames.selectForm.form + value,
   data: {
     section: (value) => createQuery("section", value),
     setting: (value = "") => `[${attrs.data.setting}='true']${value}`,
