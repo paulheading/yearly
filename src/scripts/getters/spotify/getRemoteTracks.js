@@ -1,5 +1,5 @@
 import getStore from "~scripts/getters/getStore";
-import getLikedTracks from "~scripts/getters/getLikedTracks";
+import getLikedTracks from "~scripts/getters/spotify/getLikedTracks";
 import getPlaylistTracks from "./getPlaylistTracks";
 import setUniqueTrack from "~scripts/setters/setUniqueTrack";
 

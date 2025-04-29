@@ -5,7 +5,7 @@ import loadComplete from "~scripts/loaders/loadComplete";
 import displaySection from "~scripts/display/displaySection";
 import postPlaylistData from "~scripts/posters/postPlaylistData";
 import postTrackData from "~scripts/posters/postTrackData";
-import getSavedPlaylistDetails from "~scripts/getters/getSavedPlaylistDetails";
+import getSavedPlaylistDetails from "~scripts/getters/spotify/getSavedPlaylistDetails";
 import getStoreState from "~scripts/getters/getStoreState";
 import putPlaylistCover from "~scripts/putters/putPlaylistCover";
 import data from "~scripts/selectors/data";

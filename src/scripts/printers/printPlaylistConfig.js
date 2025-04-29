@@ -1,11 +1,11 @@
-import getAstroClass from "~scripts/getters/getAstroClass";
+import getClass from "~scripts/getters/astro/getClass";
 import getPlaylistActiveConfig from "~scripts/getters/getPlaylistActiveConfig";
 import getStore from "~scripts/getters/getStore";
 import exclude from "~scripts/filters/exclude";
 
 let $box = document.querySelector(".box");
 
-let astroClass = getAstroClass($box);
+let astroClass = getClass($box);
 
 function createConfigTag(title) {
   let $item = document.createElement("div");

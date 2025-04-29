@@ -1,4 +1,4 @@
-import getPlaylistItems from "~scripts/getters/getPlaylistItems";
+import getPlaylistItems from "~scripts/getters/spotify/getPlaylistItems";
 import setTracksAdded from "~scripts/setters/setTracksAdded";
 import getYearAdded from "~scripts/getters/getYearAdded";
 

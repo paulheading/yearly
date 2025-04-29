@@ -1,4 +1,4 @@
-import getAuth from "~scripts/getters/getAuth";
+import getAuth from "~scripts/getters/spotify/getAuth";
 import getStore from "~scripts/getters/getStore";
 import createStore from "~scripts/creators/createStore";
 import asyncWrap from "~scripts/helpers/asyncWrap";

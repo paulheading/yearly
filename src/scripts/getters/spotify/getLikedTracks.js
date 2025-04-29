@@ -1,4 +1,4 @@
-import getUsersSavedTracks from "~scripts/getters/getUsersSavedTracks";
+import getUsersSavedTracks from "~scripts/getters/spotify/getUsersSavedTracks";
 import setTracksAdded from "~scripts/setters/setTracksAdded";
 import getYearAdded from "~scripts/getters/getYearAdded";
 import setUniqueTrack from "~scripts/setters/setUniqueTrack";

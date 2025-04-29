@@ -1,4 +1,4 @@
-import getData from "~scripts/getters/getData";
+import getData from "~scripts/getters/spotify/getData";
 import getStore from "~scripts/getters/getStore";
 import filterUserPlaylists from "~scripts/filters/filterUserPlaylists";
 

@@ -1,7 +1,7 @@
 import user from "~data/user";
 
 import getAccessToken from "~scripts/getters/getAccessToken";
-import getPlaylists from "~scripts/getters/getPlaylists";
+import getPlaylists from "~scripts/getters/spotify/getPlaylists";
 import getStoreState from "~scripts/getters/getStoreState";
 import loadComplete from "~scripts/loaders/loadComplete";
 import setDOMToStoreValues from "~scripts/setters/setDOMToStoreValues";
@@ -33,7 +33,10 @@ asyncWrap(getStoreState).then(function () {
   if (usingLiveData) {
     if (!getAccessToken()) {
       console.warn("creating new token");
-      setAccessToken().then(setUser).then(getPlaylists).then(displayPage);
+      setAccessToken()
+        .then(setUser)
+        .then(getPlaylists)
+        .then(displayPage);
     } else {
       console.warn("using existing token");
       asyncWrap(displayPage).then(setDOMToStoreValues);

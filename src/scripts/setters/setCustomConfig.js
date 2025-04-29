@@ -47,8 +47,6 @@ function setSelect($item, config) {
 }
 
 export default function () {
-  console.log(getPlaylistConfig());
-
   let { $settings } = $.card.selectors($.card.custom);
 
   let { $items } = $settings;

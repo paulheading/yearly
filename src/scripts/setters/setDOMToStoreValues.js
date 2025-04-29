@@ -31,5 +31,7 @@ export default function () {
 
   setActiveSources(playlist.sources);
 
+  if (!playlist.style) return;
+
   setActiveCard(playlist.style);
 }
