@@ -1,8 +1,12 @@
 import settings from "~data/settings";
+import include from "~scripts/filters/include";
+import data from "~scripts/selectors/data";
+import attrs from "~scripts/selectors/attrs";
+import setSettingData from "~scripts/setters/setSettingData";
 
-let id = "badjo";
+let id = data.card.badjo;
 
-export default {
+let card = {
   id,
   content: [
     {
@@ -19,17 +23,25 @@ export default {
           title: settings.released_this_year,
           editable: false,
           value: true,
-          type: "toggle",
-          card: id,
+          data: {
+            [attrs.data.type]: "toggle",
+          },
         },
         {
           title: settings.out_recommends,
           editable: false,
           value: true,
-          type: "toggle",
-          card: id,
+          data: {
+            [attrs.data.type]: "toggle",
+          },
         },
       ],
     },
   ],
 };
+
+card.content
+  .filter(include.typeConfig)[0]
+  .settings.map((setting) => setSettingData(setting, id));
+
+export default card;

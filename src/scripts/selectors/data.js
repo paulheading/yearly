@@ -1,4 +1,9 @@
 export default {
+  card: {
+    badjo: "badjo",
+    cindy: "cindy",
+    custom: "custom",
+  },
   section: {
     banner: "banner",
     choose_card: "choose_card",

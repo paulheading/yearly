@@ -1,3 +1,5 @@
+import attrs from "~scripts/selectors/attrs";
+
 let discovered_this_year = "Discovered this year";
 
 let least_popular_music = "Least popular music";
@@ -17,26 +19,31 @@ let min_length = "Min length";
 let year_added = "Year added";
 let year_released = "Year released";
 
+let prioritize_female_artists = "Prioritize female artists";
+let prioritize_male_artists = "Prioritize male artists";
+
 let groups = {
   popularity: {
-    name: "popularity",
-    action: "cancel",
+    [attrs.data["group-name"]]: "popularity",
+    [attrs.data["group-action"]]: "cancel",
   },
   explicit: {
-    name: "explicit",
-    action: "cancel",
+    [attrs.data["group-name"]]: "explicit",
+    [attrs.data["group-action"]]: "cancel",
   },
   duration: {
-    name: "duration",
-    action: "ceiling",
+    [attrs.data["group-name"]]: "duration",
+    [attrs.data["group-action"]]: "ceiling",
   },
   age: (value = null) => ({
-    name: "age",
-    action: value
-  })
+    [attrs.data["group-name"]]: "age",
+    [attrs.data["group-action"]]: value,
+  }),
+  gender: {
+    [attrs.data["group-name"]]: "gender",
+    [attrs.data["group-action"]]: "cancel",
+  },
 };
-
-
 
 export default {
   discovered_this_year,
@@ -52,4 +59,6 @@ export default {
   groups,
   year_added,
   year_released,
+  prioritize_female_artists,
+  prioritize_male_artists,
 };

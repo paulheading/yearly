@@ -1,0 +1,41 @@
+  @use "~mixins" as *;
+
+  .setting {
+    padding: $padding-card-setting;
+    font-weight: normal;
+    gap: $margin-card;
+    list-style: none;
+    text-align: left;
+    margin-top: 0;
+    display: grid;
+  }
+
+  .setting.odd {
+    background-color: aliceblue;
+  }
+
+  .setting:first-of-type {
+    border-top-right-radius: $border-radius-card;
+    border-top-left-radius: $border-radius-card;
+  }
+
+  .setting:last-of-type {
+    border-bottom-right-radius: $border-radius-card;
+    border-bottom-left-radius: $border-radius-card;
+  }
+
+  .setting:not(:first-of-type) {
+    border-top: 2px dashed;
+  }
+
+  .setting.odd .slider {
+    &::-webkit-slider-thumb {
+      background-color: aliceblue;
+    }
+
+    @include focus {
+      &::-webkit-slider-thumb {
+        background-color: grey;
+      }
+    }
+  }

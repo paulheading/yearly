@@ -2,6 +2,7 @@
 import CardContent from "~components/Card/Content";
 import SelectButton from "~components/Buttons/Select";
 import cnames from "~scripts/selectors/cnames";
+import attrs from "~scripts/selectors/attrs";
 
 let { content, id } = Astro.props;
 
@@ -9,7 +10,7 @@ let multiple = content.length > 1;
 
 let props = {
   class: cnames.card.container,
-  "data-id": id,
+  [attrs.data.id]: id,
 };
 ---
 

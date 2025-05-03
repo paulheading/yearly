@@ -6,7 +6,7 @@ import setAction from "~scripts/setters/setAction";
 import setRangeInput from "~scripts/setters/setRangeInput";
 import setSelectForm from "~scripts/setters/setSelectForm";
 import setTracksAdded from "~scripts/setters/setTracksAdded";
-import setTitleToLabel from "~scripts/setters/setTitleToSnakeCase";
+import setTitleToLabel from "~scripts/setters/setSettingTitleToSnakeCase";
 import setUser from "~scripts/setters/setUser";
 
 export {

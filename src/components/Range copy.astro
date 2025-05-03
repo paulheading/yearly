@@ -1,17 +1,20 @@
 ---
-let { setting } = Astro.props;
-let { data, value, min, max } = setting;
+import { mapObjectToProps } from "paully/helpers";
 
-let props = {
-  ...data,
-  value,
-  min,
-  max,
+let { className, setting, data } = Astro.props;
+
+let rangeProps = {
+  "class:list": ["range-input", className],
+  min: setting.range.min,
+  max: setting.range.max,
+  value: setting.value,
 };
+
+rangeProps = mapObjectToProps({ data, props: rangeProps });
 ---
 
 <div class="container">
-  <input type="range" {...props} />
+  <input type="range" {...rangeProps} />
 </div>
 
 <style lang="scss">
@@ -38,7 +41,7 @@ let props = {
     padding-top: toRem(8);
   }
 
-  input[type="range"] {
+  .range-input {
     background-color: black;
     height: toRem(2);
     cursor: pointer;
@@ -54,11 +57,11 @@ let props = {
     }
   }
 
-  input[type="range"]::-moz-range-thumb {
+  .range-input::-moz-range-thumb {
     @include thumb;
   }
 
-  input[type="range"]::-webkit-slider-thumb {
+  .range-input::-webkit-slider-thumb {
     @include thumb;
   }
 </style>

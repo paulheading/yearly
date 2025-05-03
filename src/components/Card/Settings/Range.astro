@@ -1,99 +1,32 @@
 ---
 import RangeInput from "~components/Range";
+import createSettingClasses from "~scripts/creators/createSettingClasses";
 
-let { setting, containerProps, data } = Astro.props;
-
-let rangeProps = {
-  className: setting.evenOrOdd,
-  setting,
-  data,
-};
-
-let minProps = {
-  class: "mins",
-  style: {
-    display: "none",
-  },
-};
-
-let outputProps = {
-  className: "output",
-};
+let { setting, index } = Astro.props;
 ---
 
-<li {...containerProps}>
+<li class={createSettingClasses(setting, index)}>
   <div class="wrap-title">
     <span class="title">{setting.title}</span>
-    <span>
-      <span {...outputProps}>none</span>
-      <span {...minProps}>mins</span>
-    </span>
+    <span class="output">none</span>
+    <span class="mins">mins</span>
   </div>
 
-  <RangeInput {...rangeProps} />
+  <RangeInput setting={setting} />
 </li>
 
 <style lang="scss">
   @use "~mixins" as *;
 
-  @mixin grid-defaults {
+  .wrap-title {
+    justify-content: space-between;
+    grid-auto-flow: column;
+    align-items: center;
     gap: $margin-card;
     display: grid;
   }
 
-  .setting {
-    @include grid-defaults;
-
-    & {
-      padding: $padding-card-setting;
-      font-weight: normal;
-      list-style: none;
-      text-align: left;
-      margin-top: 0;
-    }
-  }
-
-  .setting.odd {
-    background-color: aliceblue;
-
-    .slider {
-      &::-webkit-slider-thumb {
-        background-color: aliceblue;
-      }
-
-      @include focus {
-        &::-webkit-slider-thumb {
-          background-color: grey;
-        }
-      }
-    }
-  }
-
-  .setting:first-of-type {
-    border-top-right-radius: $border-radius-card;
-    border-top-left-radius: $border-radius-card;
-  }
-
-  .setting:last-of-type {
-    border-bottom-right-radius: $border-radius-card;
-    border-bottom-left-radius: $border-radius-card;
-  }
-
-  .setting:not(:first-of-type) {
-    border-top: 2px dashed;
-  }
-
-  .wrap-title {
-    @include grid-defaults;
-
-    & {
-      justify-content: space-between;
-      grid-auto-flow: column;
-      align-items: center;
-    }
-  }
-
-  .check.selected-state {
-    fill: black;
+  .mins {
+    display: none;
   }
 </style>

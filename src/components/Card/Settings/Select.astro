@@ -1,48 +1,10 @@
 ---
 import SelectForm from "~components/SelectForm";
+import createSettingClasses from "~scripts/creators/createSettingClasses";
 
-let { setting, data, containerProps } = Astro.props;
-
-let props = {
-  ...setting,
-  data,
-};
+let { setting, index } = Astro.props;
 ---
 
-<li {...containerProps}>
-  <SelectForm {...props} />
+<li class={createSettingClasses(setting, index)}>
+  <SelectForm {...setting} />
 </li>
-
-<style lang="scss">
-  @use "~mixins" as *;
-
-  .setting {
-    padding: $padding-card-setting;
-    font-weight: normal;
-    list-style: none;
-    text-align: left;
-    margin-top: 0;
-  }
-
-  .setting.odd {
-    background-color: aliceblue;
-  }
-
-  .setting:first-of-type {
-    border-top-right-radius: $border-radius-card;
-    border-top-left-radius: $border-radius-card;
-  }
-
-  .setting:last-of-type {
-    border-bottom-right-radius: $border-radius-card;
-    border-bottom-left-radius: $border-radius-card;
-  }
-
-  .setting:not(:first-of-type) {
-    border-top: 2px dashed;
-  }
-
-  .check.selected-state {
-    fill: black;
-  }
-</style>

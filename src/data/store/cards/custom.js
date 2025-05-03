@@ -1,12 +1,13 @@
 import settings from "~data/settings";
 import include from "~scripts/filters/include";
-import setTitleToSnakeCase from "~scripts/setters/setTitleToSnakeCase";
-
 import data from "~scripts/selectors/data";
+import attrs from "~scripts/selectors/attrs";
+import setSettingData from "~scripts/setters/setSettingData";
+import setSettingColor from "~scripts/setters/setSettingColor";
 
-let id = data.section.custom;
+let id = data.card.custom;
 
-let custom = {
+let card = {
   id,
   content: [
     {
@@ -16,68 +17,68 @@ let custom = {
       settings: [
         {
           title: settings.least_popular_music,
-          group: { ...settings.groups.popularity },
           editable: true,
           value: false,
-          type: "toggle",
-          card: id,
+          data: {
+            ...settings.groups.popularity,
+            [attrs.data.type]: "toggle",
+          },
         },
         {
           title: settings.most_popular_music,
-          group: { ...settings.groups.popularity },
           editable: true,
           value: false,
-          type: "toggle",
-          card: id,
+          data: {
+            ...settings.groups.popularity,
+            [attrs.data.type]: "toggle",
+          },
         },
         {
           title: settings.explicit_music_only,
-          group: { ...settings.groups.explicit },
           editable: true,
           value: false,
-          type: "toggle",
-          card: id,
+          data: {
+            ...settings.groups.explicit,
+            [attrs.data.type]: "toggle",
+          },
         },
         {
           title: settings.no_explicit_music,
-          group: { ...settings.groups.explicit },
           editable: true,
           value: false,
-          type: "toggle",
-          card: id,
+          data: {
+            ...settings.groups.explicit,
+            [attrs.data.type]: "toggle",
+          },
         },
         {
           title: settings.min_length,
-          group: { ...settings.groups.duration },
           editable: true,
           value: 0,
-          range: {
-            pos: "min",
-            min: 0,
-            max: 10,
+          max: 10,
+          min: 0,
+          data: {
+            ...settings.groups.duration,
+            [attrs.data.type]: "range",
+            [attrs.data["range-pos"]]: "min",
           },
-          type: "range",
-          card: id,
         },
         {
           title: settings.max_length,
-          group: { ...settings.groups.duration },
           editable: true,
           value: 0,
-          range: {
-            pos: "max",
-            min: 0,
-            max: 30,
+          max: 30,
+          min: 0,
+          data: {
+            ...settings.groups.duration,
+            [attrs.data.type]: "range",
+            [attrs.data["range-pos"]]: "min",
           },
-          type: "range",
-          card: id,
         },
         {
           title: settings.year_added,
-          group: { ...settings.groups.age("newest") },
           editable: true,
           value: 0,
-          type: "select",
           options: [
             { title: "Added in 2025", data: 2025 },
             { title: "Added in 2024", data: 2024 },
@@ -85,14 +86,15 @@ let custom = {
             { title: "Added in 2022", data: 2022 },
             { title: "Added in 2021", data: 2021 },
           ],
-          card: id,
+          data: {
+            ...settings.groups.age("newest"),
+            [attrs.data.type]: "select",
+          },
         },
         {
           title: settings.year_released,
-          group: { ...settings.groups.age("oldest") },
           editable: true,
           value: 0,
-          type: "select",
           options: [
             { title: "Released in 2025", data: 2025 },
             { title: "Released in 2024", data: 2024 },
@@ -100,13 +102,37 @@ let custom = {
             { title: "Released in 2022", data: 2022 },
             { title: "Released in 2021", data: 2021 },
           ],
-          card: id,
+          data: {
+            ...settings.groups.age("oldest"),
+            [attrs.data.type]: "select",
+          },
+        },
+        {
+          title: settings.prioritize_female_artists,
+          editable: true,
+          value: false,
+          data: {
+            ...settings.groups.gender,
+            [attrs.data.type]: "toggle",
+          },
+        },
+        {
+          title: settings.prioritize_male_artists,
+          editable: true,
+          value: false,
+          data: {
+            ...settings.groups.gender,
+            [attrs.data.type]: "toggle",
+          },
         },
       ],
     },
   ],
 };
 
-custom.content.filter(include.typeConfig)[0].settings.map(setTitleToSnakeCase);
+card.content
+  .filter(include.typeConfig)[0]
+  .settings.map((setting) => setSettingData(setting, id))
+  .map(setSettingColor);
 
-export default custom;
+export default card;

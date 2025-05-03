@@ -5,7 +5,6 @@ import printInvalidKeys from "~scripts/printers/printInvalidKeys";
 import printLoginPrompt from "~scripts/printers/printLoginPrompt";
 import usingLiveData from "~scripts/using/usingLiveData";
 import getSearchParams from "~scripts/getters/getSearchParams";
-import getArtist from "~scripts/getters/musicbrainz/getArtist";
 
 if (!usingLiveData) displayBanner.innerHTML("<em>OFFLINE MODE</em>");
 
@@ -40,11 +39,3 @@ mixedParams.loggedOut(function () {
 });
 
 $.button.login.addEventListener("click", createLogin);
-
-getArtist("lorde").then(function (artist) {
-  if (artist.type != "Person") return;
-
-  if (artist.gender == "female") console.log("female: increase priority");
-
-  console.log("artist: ", artist);
-});

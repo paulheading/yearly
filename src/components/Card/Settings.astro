@@ -5,7 +5,6 @@ import SettingsRange from "~components/Card/Settings/Range";
 import SettingsSelect from "~components/Card/Settings/Select";
 
 import createSettingsGroups from "~scripts/creators/createSettingsGroups";
-import setGroupSettingProps from "~scripts/setters/setGroupSettingProps";
 import cnames from "~scripts/selectors/cnames";
 
 let { settings, id } = Astro.props;
@@ -20,11 +19,16 @@ let groups = createSettingsGroups(settings);
     return (
       <ul class="settings" style={{ display }}>
         {group.map(function (setting, index) {
-          let { is, props } = setGroupSettingProps({ setting, index });
+          let { "data-type": type } = setting.data;
 
-          if (is.toggle) return <SettingsToggle {...props} />;
-          if (is.range) return <SettingsRange {...props} />;
-          if (is.select) return <SettingsSelect {...props} />;
+          let props = {
+            setting,
+            index,
+          };
+
+          if (type == "toggle") return <SettingsToggle {...props} />;
+          if (type == "range") return <SettingsRange {...props} />;
+          if (type == "select") return <SettingsSelect {...props} />;
         })}
       </ul>
     );

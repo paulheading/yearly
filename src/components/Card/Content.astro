@@ -3,6 +3,7 @@ import { Info as InfoSvg } from "paully/svgs";
 import InfoButton from "~components/Buttons/Info";
 import CardCopy from "~components/Card/Copy";
 import CardSettings from "~components/Card/Settings";
+import attrs from "~scripts/selectors/attrs";
 
 let { type, image, title, copy, settings, multiple, id } = Astro.props;
 
@@ -11,11 +12,15 @@ let typeIsConfig = type == "config";
 let display = multiple && typeIsConfig ? "none" : "initial";
 
 let props = {
-  "data-type": type,
+  [attrs.data.type]: type,
   style: {
     display,
   },
 };
+
+// if (!title) {
+//   console.log(Astro.props);
+// }
 ---
 
 <div {...props}>
