@@ -63,9 +63,24 @@ function changeCurrentFocus({ $items, increment }) {
   focusOnItem($nextFocus);
 }
 
+function announceActiveItem(target) {
+  let $form = target.closest("." + cnames.selectForm.form);
+  let { $announce } = $.selectForm.selectors($form);
+
+  $announce.innerText = target.innerText;
+  $announce.setAttribute(attrs.aria.live, "assertive");
+
+  setTimeout(function () {
+    $announce.innerText = "";
+    $announce.setAttribute(attrs.aria.live, "off");
+  }, 1000);
+}
+
 function toggleActiveItem({ $item, active }) {
   active ? $item.classList.add("active") : $item.classList.remove("active");
   $item.setAttribute(attrs.aria.selected, active.toString());
+
+  if (active) announceActiveItem($item);
 }
 
 function setFormButton({ $button, innerText, value }) {

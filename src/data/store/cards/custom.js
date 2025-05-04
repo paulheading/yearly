@@ -3,7 +3,6 @@ import include from "~scripts/filters/include";
 import data from "~scripts/selectors/data";
 import attrs from "~scripts/selectors/attrs";
 import setSettingData from "~scripts/setters/setSettingData";
-import setSettingColor from "~scripts/setters/setSettingColor";
 
 let id = data.card.custom;
 
@@ -132,7 +131,6 @@ let card = {
 
 card.content
   .filter(include.typeConfig)[0]
-  .settings.map((setting) => setSettingData(setting, id))
-  .map(setSettingColor);
+  .settings.map((setting) => setSettingData(setting, id));
 
 export default card;

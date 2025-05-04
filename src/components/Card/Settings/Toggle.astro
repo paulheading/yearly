@@ -4,8 +4,6 @@ import { Check } from "paully/svgs";
 import createSettingClasses from "~scripts/creators/createSettingClasses";
 
 let { setting, index } = Astro.props;
-
-console.log("setting: ", setting.data["data-card"]);
 ---
 
 <li class={createSettingClasses(setting, index)}>

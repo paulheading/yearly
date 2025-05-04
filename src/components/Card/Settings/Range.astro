@@ -1,32 +1,26 @@
 ---
-import RangeInput from "~components/Range";
+import { Range } from "paully";
 import createSettingClasses from "~scripts/creators/createSettingClasses";
 
 let { setting, index } = Astro.props;
 ---
 
 <li class={createSettingClasses(setting, index)}>
-  <div class="wrap-title">
+  <div class="info">
     <span class="title">{setting.title}</span>
     <span class="output">none</span>
-    <span class="mins">mins</span>
   </div>
-
-  <RangeInput setting={setting} />
+  <Range setting={setting} />
 </li>
 
 <style lang="scss">
   @use "~mixins" as *;
 
-  .wrap-title {
+  .info {
     justify-content: space-between;
     grid-auto-flow: column;
     align-items: center;
     gap: $margin-card;
     display: grid;
-  }
-
-  .mins {
-    display: none;
   }
 </style>

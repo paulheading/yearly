@@ -1,23 +1,15 @@
 ---
-import SelectFormLabel from "~components/SelectForm/Label";
-import { mapObjectToProps } from "paully/helpers";
 import cnames from "~scripts/selectors/cnames";
 
-let { label, className, data } = Astro.props;
+let data = Astro.props;
 
 let props = {
-  "class:list": [
-    cnames.selectForm.form,
-    label ? "with-label" : "no-label",
-    className,
-  ],
+  class: cnames.selectForm.form,
+  ...data,
 };
-
-props = mapObjectToProps({ data, props });
 ---
 
 <form {...props}>
-  {label && <SelectFormLabel>{label}</SelectFormLabel>}
   <div>
     <slot />
   </div>

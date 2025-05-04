@@ -4,14 +4,12 @@ import settings from "~data/settings";
 import setCardSetting from "~scripts/setters/setCardSetting";
 import printRangeInputValue from "~scripts/printers/printRangeInputValue";
 
-let { data } = attrs;
-
 function getInputAttributes($input) {
-  let card = $input.getAttribute(data.card);
-  let snake = $input.getAttribute(data.snake);
-  let group_name = $input.getAttribute(data["group-name"]);
-  let group_action = $input.getAttribute(data["group-action"]);
-  let range_pos = $input.getAttribute(data["range-pos"]);
+  let card = $input.getAttribute(attrs.data.card);
+  let snake = $input.getAttribute(attrs.data.snake);
+  let group_name = $input.getAttribute(attrs.data["group-name"]);
+  let group_action = $input.getAttribute(attrs.data["group-action"]);
+  let range_pos = $input.getAttribute(attrs.data["range-pos"]);
 
   let setting = settings[snake];
   let value;

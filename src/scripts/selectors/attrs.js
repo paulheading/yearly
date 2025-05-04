@@ -2,6 +2,7 @@ export default {
   button: "button",
   data: {
     card: "data-card",
+    color: "data-color",
     group: "data-group",
     "group-action": "data-group-action",
     "group-name": "data-group-name",
