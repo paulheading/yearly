@@ -1,12 +1,13 @@
+import { handleSelectForm } from "paully/handlers";
 import cnames from "~scripts/selectors/cnames";
-import label from "~scripts/selectors/labels";
-import { setupFormListeners } from "~scripts/listeners/listenSelectForm";
 import { doRemoveRow } from "~scripts/listeners/listenRemoveRowButton";
+
+let { setupFormListeners } = handleSelectForm;
 
 export default function ($row) {
   let $remove = $row.querySelector("." + cnames.button.remove_row);
 
-  let $form = $row.querySelector(label.selectForm());
+  let $form = $row.querySelector("." + cnames.selectForm.form);
 
   setupFormListeners($form);
 

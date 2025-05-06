@@ -5,11 +5,10 @@ import setUniqueTrack from "~scripts/setters/setUniqueTrack";
 
 import { loop } from "~scripts/getters/getTracks";
 
-let year_added = getYearAdded();
-
-let results = [];
-
 export default async function () {
+  let year_added = getYearAdded();
+  let results = [];
+
   while (loop.continue) {
     let { items } = await getUsersSavedTracks(loop.offset);
 

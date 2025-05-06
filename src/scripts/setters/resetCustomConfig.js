@@ -1,11 +1,9 @@
+import { handleSelectForm } from "paully/handlers";
 import $ from "~scripts/selectors";
 import settings from "~data/settings";
 import printRangeInputValue from "~scripts/printers/printRangeInputValue";
-import {
-  setFormButton,
-  toggleActiveItem,
-  focusOnItem,
-} from "~scripts/listeners/listenSelectForm";
+
+let { setFormButton, toggleActiveItem, focusOnItem } = handleSelectForm;
 
 export default function () {
   let { $settings } = $.card.selectors($.card.custom);

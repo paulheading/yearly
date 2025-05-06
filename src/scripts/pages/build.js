@@ -33,10 +33,7 @@ asyncWrap(getStoreState).then(function () {
   if (usingLiveData) {
     if (!getAccessToken()) {
       console.warn("creating new token");
-      setAccessToken()
-        .then(setUser)
-        .then(getPlaylists)
-        .then(displayPage);
+      setAccessToken().then(setUser).then(getPlaylists).then(displayPage);
     } else {
       console.warn("using existing token");
       asyncWrap(displayPage).then(setDOMToStoreValues);

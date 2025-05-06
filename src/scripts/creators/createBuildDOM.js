@@ -1,3 +1,5 @@
+import { handleSelectForm } from "paully/handlers";
+
 import printSourcePlaylists from "~scripts/printers/printSourcePlaylists";
 import printFirstName from "~scripts/printers/printFirstName";
 
@@ -11,10 +13,9 @@ import listenToggleInput from "~scripts/listeners/listenToggleInput";
 import listenChooseSourceButton from "~scripts/listeners/listenChooseSourceButton";
 import listenRemoveRowButton from "~scripts/listeners/listenRemoveRowButton";
 import listenDocument from "~scripts/listeners/listenDocument";
+import listenSelectForm from "~scripts/listeners/listenSelectForm";
 
-import listenSelectForm, {
-  handleDocumentInteraction,
-} from "~scripts/listeners/listenSelectForm";
+let { handleDocumentInteraction } = handleSelectForm;
 
 export default function () {
   printFirstName();

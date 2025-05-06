@@ -1,9 +1,8 @@
+import { handleSelectForm } from "paully/handlers";
 import $ from "~scripts/selectors";
 import attrs from "~scripts/selectors/attrs";
-import {
-  setFormButton,
-  toggleActiveItem,
-} from "~scripts/listeners/listenSelectForm";
+
+let { setFormButton, toggleActiveItem } = handleSelectForm;
 
 export default function ({ $form, value }) {
   let { $items, $button } = $.selectForm.selectors($form);

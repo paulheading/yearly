@@ -1,9 +1,11 @@
+import { handleSelectForm } from "paully/handlers";
 import $ from "~scripts/selectors";
 import data from "~scripts/selectors/data";
 import listenChooseSourceForm from "~scripts/listeners/listenChooseSourceForm";
 import cnames from "~scripts/selectors/cnames";
 import attrs from "~scripts/selectors/attrs";
-import { selectCurrentOption } from "~scripts/listeners/listenSelectForm";
+
+let { selectCurrentOption } = handleSelectForm;
 
 function setChooseSourceFormDefaults($form, source) {
   let { $items } = $.selectForm.selectors($form);

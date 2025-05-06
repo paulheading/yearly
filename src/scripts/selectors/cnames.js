@@ -1,4 +1,7 @@
+import { cnames } from "paully/selectors";
+
 export default {
+  ...cnames,
   button: {
     back: "back_button",
     build: "build_button",
@@ -11,13 +14,6 @@ export default {
     source: "source_button",
     refresh: "refresh_button",
     remove_row: "remove_row_button",
-  },
-  selectForm: {
-    form: "select_form",
-    button: "select-form-button",
-    list: "select-form-list",
-    item: "select-form-item",
-    announce: "select-form-announce",
   },
   card: {
     container: "card_container",

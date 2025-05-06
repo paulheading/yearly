@@ -2,37 +2,7 @@ import createQueriesFor from "~scripts/creators/createQueriesFor";
 import cnames from "~scripts/selectors/cnames";
 import data from "~scripts/selectors/data";
 import attrs from "~scripts/selectors/attrs";
-import label from "~scripts/selectors/labels";
-
-let $ = {
-  query: {
-    button: (value = "") => $.query.selector(label.button("." + value)),
-    buttonAll: (value = "") => $.query.selectorAll(label.button("." + value)),
-    card: (value = "") => $.query.selector(label.card(value)),
-    cardAll: (value = "") => $.query.selectorAll(label.card(value)),
-    cardId: (value = "") => $.query.card(label.data.id(value)),
-    state: (value = "") => $.query.selector(label.data.state(value)),
-    print: (value = "") => $.query.selector(label.data.print(value)),
-    section: (value = "") => $.query.selector(label.data.section(value)),
-    sectionAll: (value = "") => $.query.selectorAll(label.data.section(value)),
-    selector: (value = "") => document.querySelector(value),
-    className: (value = "") => $.query.selector("." + value),
-    classNameAll: (value = "") => $.query.selectorAll("." + value),
-    selectorAll: (value = "") => document.querySelectorAll(value),
-    selectForm: (value = "") => $.query.selector(label.selectForm(value)),
-    selectFormAll: (value = "") => $.query.selectorAll(label.selectForm(value)),
-    selectFormSnake: function (value = "") {
-      return $.query.selectForm(label.data.snake(value));
-    },
-    selectFormAllSnake: function (value = "") {
-      return $.query.selectFormAll(label.data.snake(value));
-    },
-    settingAll: function (value = "") {
-      return $.query.selectorAll(label.data.setting(value));
-    },
-    settingType: (value = "") => $.query.settingAll(label.data.type(value)),
-  },
-};
+import $ from "~scripts/selectors/queries";
 
 $.card = {
   badjo: $.query.cardId("badjo"),
@@ -95,13 +65,15 @@ $.setting = {
 createQueriesFor($, "button", cnames.button);
 createQueriesFor($, "section", data.section);
 
-$.selectForm = {
-  choose_sources: function () {
-    return $.query.selectFormAllSnake(data.selectForm.choose_source);
-  },
-  year_added: $.query.selectFormSnake(data.selectForm.year_added),
-  year_released: $.query.selectFormSnake(data.selectForm.year_released),
+$.selectForm.choose_sources = function () {
+  return $.query.selectFormSnakeAll(data.selectForm.choose_source);
 };
+
+$.selectForm.year_added = $.query.selectFormSnake(data.selectForm.year_added);
+
+$.selectForm.year_released = $.query.selectFormSnake(
+  data.selectForm.year_released
+);
 
 $.print = {
   banner: $.query.print(data.section.banner),
@@ -110,34 +82,6 @@ $.print = {
   since: $.query.print("since"),
   tracks_added: $.query.print(data.section.tracks_added),
   year_added: $.query.print("year-added"),
-};
-
-$.selectForm.selectors = function ($form) {
-  let selectors = {
-    $button: $form.querySelector("." + cnames.selectForm.button),
-    $list: $form.querySelector("." + cnames.selectForm.list),
-    $items: $form.querySelectorAll("." + cnames.selectForm.item),
-    $announce: $form.querySelector("." + cnames.selectForm.announce),
-  };
-
-  selectors.data = {
-    id: selectors.$button.getAttribute(attrs.data.id),
-    snake: $form.getAttribute(attrs.data.snake),
-    state: $form.getAttribute(attrs.data.state),
-    group: $form.getAttribute(attrs.data.group),
-    card: $form.getAttribute(attrs.data.card),
-  };
-
-  selectors.state = {
-    isClosed: () => selectors.data.state == "closed",
-  };
-
-  selectors.click = {
-    insideButton: (target) => selectors.$button.contains(target),
-    insideList: (target) => selectors.$list.contains(target),
-  };
-
-  return selectors;
 };
 
 $.playlist = function () {
