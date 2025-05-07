@@ -4,7 +4,6 @@ export let source = {
 };
 
 export default {
-  source,
   sources: [source],
   name: "",
   description: "",

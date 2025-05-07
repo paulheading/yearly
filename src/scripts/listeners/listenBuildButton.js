@@ -3,18 +3,42 @@ import resetCustomConfig from "~scripts/setters/resetCustomConfig";
 import setStore from "~scripts/setters/setStore";
 import usingCustomStyle from "~scripts/using/usingCustomStyle";
 import getPlaylistSources from "~scripts/getters/getPlaylistSources";
+import settings from "~data/settings";
+import attrs from "~scripts/selectors/attrs";
+import setCardSetting from "~scripts/setters/setCardSetting";
+import asyncWrap from "~scripts/helpers/asyncWrap";
+
+function setStoreFormValues() {
+  $.setting.selects.forEach(function ($form) {
+    let { $button, data } = $.selectForm.selectors($form);
+
+    let { card, snake } = data;
+
+    let setting = settings[snake];
+
+    let value = $button.getAttribute(attrs.data.id);
+
+    if (snake == "choose_source") return;
+
+    setCardSetting({ card, setting, value });
+  });
+}
 
 function buildButtonClick() {
   if (!usingCustomStyle()) resetCustomConfig();
 
-  let sources = getPlaylistSources();
+  asyncWrap(setStoreFormValues)
+    .then(function () {
+      let sources = getPlaylistSources();
 
-  setStore(function (store) {
-    store.playlist.sources = sources;
-    return store;
-  });
-
-  window.location.assign("/save");
+      setStore(function (store) {
+        store.playlist.sources = sources;
+        return store;
+      });
+    })
+    .then(function () {
+      window.location.assign("/save");
+    });
 }
 
 export default function () {

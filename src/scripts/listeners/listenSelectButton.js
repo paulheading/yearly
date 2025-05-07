@@ -1,5 +1,6 @@
 import $ from "~scripts/selectors";
 import attrs from "~scripts/selectors/attrs";
+import cnames from "~scripts/selectors/cnames";
 import resetCustomConfig from "~scripts/setters/resetCustomConfig";
 import setStore from "~scripts/setters/setStore";
 import usingCustomStyle from "~scripts/using/usingCustomStyle";
@@ -9,7 +10,9 @@ function removeSelectedState($card) {
 
   if (!state.selected) return;
 
-  targets.forEach((item) => item.classList.remove($.state.selected));
+  [...targets, $.button.build].forEach(function (item) {
+    item.classList.remove(cnames["selected-state"]);
+  });
   $config_pic.src = $config_pic.src.replace("config--active", "config");
   $select_button.innerText = "Select";
 
@@ -24,7 +27,9 @@ function addSelectedState($card) {
 
   if (state.selected) return;
 
-  targets.forEach((item) => item.classList.add($.state.selected));
+  [...targets, $.button.build].forEach(function (item) {
+    item.classList.add(cnames["selected-state"]);
+  });
   $config_pic.src = $config_pic.src.replace("config", "config--active");
   $select_button.innerText = "Selected";
 

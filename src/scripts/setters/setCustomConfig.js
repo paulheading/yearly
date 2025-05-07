@@ -47,19 +47,23 @@ function setSelect($item, config) {
 }
 
 export default function () {
-  let { $settings } = $.card.selectors($.card.custom);
+  let { settings } = $.card.selectors($.card.custom);
 
-  let { $items } = $settings;
+  let { items } = settings;
 
   getPlaylistConfig().forEach(function (config) {
     if (!config.value) return;
 
-    let { type } = config;
+    let { data } = config;
 
-    $items[type].forEach(function ($item) {
-      if (type == "toggle") setToggle($item, config);
-      if (type == "range") setRange($item, config);
-      if (type == "select") setSelect($item, config);
+    let type = data["data-type"];
+
+    items["$" + type].forEach(function ($item) {
+      let params = [$item, config];
+
+      if (type == "toggle") setToggle(...params);
+      if (type == "range") setRange(...params);
+      if (type == "select") setSelect(...params);
     });
   });
 }

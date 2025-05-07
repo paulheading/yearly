@@ -5,6 +5,7 @@ import attrs from "~scripts/selectors/attrs";
 import setSettingData from "~scripts/setters/setSettingData";
 
 let id = data.card.cindy;
+let image = "/" + id + ".jpg";
 
 let card = {
   id,
@@ -12,7 +13,7 @@ let card = {
     {
       type: "cover",
       title: "Cindy",
-      image: "/cindy.jpg",
+      image,
       copy: [
         `We’re all friends here. Let’s find your recent favs and share the love.`,
       ],

@@ -5,6 +5,7 @@ import attrs from "~scripts/selectors/attrs";
 import setSettingData from "~scripts/setters/setSettingData";
 
 let id = data.card.badjo;
+let image = "/" + id + ".jpg";
 
 let card = {
   id,
@@ -12,7 +13,7 @@ let card = {
     {
       type: "cover",
       title: "BadJo",
-      image: "/badjo.jpg",
+      image,
       copy: [`Don’t waste my time. Fresh discoveries only. Get out.`],
     },
     {

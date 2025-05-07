@@ -14,7 +14,7 @@ let props = {
     [attrs.data.snake]: data.selectForm.choose_source,
     [attrs.data.state]: "closed",
     [attrs.data.type]: "select",
-    [attrs.data.setting]: true,
+    [attrs.data.setting]: false,
   },
 };
 ---
@@ -61,7 +61,6 @@ let props = {
 
   .source_button {
     @include box;
-    // margin-top: 1rem;
     padding: 0.75rem;
 
     @include focus {

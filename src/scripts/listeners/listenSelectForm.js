@@ -4,5 +4,7 @@ import $ from "~scripts/selectors";
 let { setupFormListeners } = handleSelectForm;
 
 export default function () {
-  $.setting.selects.forEach(setupFormListeners);
+  let $forms = [...$.selectForm.choose_sources(), ...$.setting.selects];
+
+  $forms.forEach(setupFormListeners);
 }

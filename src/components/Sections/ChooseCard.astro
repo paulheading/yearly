@@ -18,7 +18,10 @@ let sectionProps = {
   },
 };
 
-let personals = [filterStoreCardsById("cindy"), filterStoreCardsById("badjo")];
+let personals = [
+  filterStoreCardsById(data.card.cindy),
+  filterStoreCardsById(data.card.badjo),
+];
 ---
 
 <Section {...sectionProps}>

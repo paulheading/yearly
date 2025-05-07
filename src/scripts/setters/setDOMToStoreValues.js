@@ -21,6 +21,10 @@ function setActiveCard(style) {
 }
 
 function setActiveSources(sources) {
+  if (sources.length == 1) {
+    if (sources[0].id == 0) return;
+  }
+
   sources.forEach(function (source) {
     setChooseSourceRows($.button.source, source);
   });
