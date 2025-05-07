@@ -21,7 +21,7 @@
     "gulp-rename": "^2.0.0",
     "image-to-base64": "^2.2.0",
     "luxon": "^3.5.0",
-    "paully": "^9.5.2"
+    "paully": "^9.5.10"
   },
   "devDependencies": {
     "cypress": "^14.0.2",
