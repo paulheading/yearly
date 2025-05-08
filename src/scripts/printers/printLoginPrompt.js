@@ -1,4 +1,4 @@
-import createLogin from "~scripts/creators/createLogin";
+import createLogin from "#creators/createLogin";
 
 export default function () {
   let div = document.createElement("div");

@@ -1,4 +1,4 @@
-import setSearchParams from "~scripts/setters/setSearchParams";
+import setSearchParams from "#setters/setSearchParams";
 
 export default function () {
   let urlSearchParams = new URLSearchParams(window.location.search);

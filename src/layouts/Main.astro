@@ -1,8 +1,8 @@
 ---
-import "~styles/global.scss";
+import "#styles/global.scss";
 import { Head, Container, Banner } from "paully";
-import Section from "~components/Section";
-import data from "~scripts/selectors/data";
+import Section from "#components/Section";
+import data from "#selectors/data";
 
 let bannerSectionProps = {
   name: data.section.banner,
@@ -45,7 +45,7 @@ let containerProps = {
 </html>
 
 <style lang="scss">
-  @use "~mixins" as *;
+  @use "#mixins" as *;
 
   header,
   footer {

@@ -1,15 +1,15 @@
 ---
 import { SolidButton, Wrap } from "paully";
 
-import Card from "~components/Card";
-import Section from "~components/Section";
-import CustomButton from "~components/Buttons/Custom";
-import ChooseSource from "~components/Sections/ChooseSource";
-import PersonalGreeting from "~components/Sections/PersonalGreeting";
+import Card from "#components/Card";
+import Section from "#components/Section";
+import CustomButton from "#components/Buttons/Custom";
+import ChooseSource from "#components/Sections/ChooseSource";
+import PersonalGreeting from "#components/Sections/PersonalGreeting";
 
-import filterStoreCardsById from "~scripts/filters/filterStoreCardsById";
-import data from "~scripts/selectors/data";
-import cnames from "~scripts/selectors/cnames";
+import filterStoreCardsById from "#filters/filterStoreCardsById";
+import data from "#selectors/data";
+import cnames from "#selectors/cnames";
 
 let sectionProps = {
   name: data.section.choose_card,
@@ -49,7 +49,7 @@ let personals = [
 </Section>
 
 <style lang="scss">
-  @use "~mixins" as *;
+  @use "#mixins" as *;
 
   .build_button {
     max-width: 240px;

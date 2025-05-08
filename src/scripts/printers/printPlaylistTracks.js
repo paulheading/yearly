@@ -1,5 +1,5 @@
-import $ from "~scripts/selectors";
-import getStore from "~scripts/getters/getStore";
+import $ from "#selectors";
+import getStore from "#getters/getStore";
 
 export default function () {
   let { tracks } = getStore().playlist;

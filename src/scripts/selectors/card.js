@@ -1,7 +1,7 @@
-import query from "~scripts/selectors/queries";
-import cnames from "~scripts/selectors/cnames";
-import data from "~scripts/selectors/data";
-import attrs from "~scripts/selectors/attrs";
+import query from "#selectors/queries";
+import cnames from "#selectors/cnames";
+import data from "#selectors/data";
+import attrs from "#selectors/attrs";
 
 let card = {
   badjo: query.cardId(data.card.badjo),

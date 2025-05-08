@@ -1,3 +1,3 @@
-import getData from "~scripts/getters/spotify/getData";
+import getData from "#getters/spotify/getData";
 
 export default async (id) => await getData(`playlists/${id}/tracks`);

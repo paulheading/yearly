@@ -1,5 +1,5 @@
-import getStore from "~scripts/getters/getStore";
-import listenResponseStatus from "~scripts/listeners/listenResponseStatus";
+import getStore from "#getters/getStore";
+import listenResponseStatus from "#listeners/listenResponseStatus";
 
 export default async function (endpoint) {
   if (!getStore().access.token) window.location.assign("/");

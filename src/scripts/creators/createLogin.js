@@ -1,9 +1,9 @@
-import getAuth from "~scripts/getters/spotify/getAuth";
-import getStore from "~scripts/getters/getStore";
-import createStore from "~scripts/creators/createStore";
-import asyncWrap from "~scripts/helpers/asyncWrap";
-import setParams from "~scripts/setters/setParams";
-import usingLiveData from "~scripts/using/usingLiveData";
+import getAuth from "#getters/spotify/getAuth";
+import getStore from "#getters/getStore";
+import createStore from "#creators/createStore";
+import asyncWrap from "#helpers/asyncWrap";
+import setParams from "#setters/setParams";
+import usingLiveData from "#using/usingLiveData";
 
 export default function () {
   asyncWrap(function () {

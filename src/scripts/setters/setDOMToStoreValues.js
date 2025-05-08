@@ -1,10 +1,10 @@
-import $ from "~scripts/selectors";
-import getStore from "~scripts/getters/getStore";
-import setCustomConfig from "~scripts/setters/setCustomConfig";
+import $ from "#selectors";
+import getStore from "#getters/getStore";
+import setCustomConfig from "#setters/setCustomConfig";
 import setChooseSourceRows from "./setChooseSourceRows";
 
-import { toggleSelectedCard } from "~scripts/listeners/listenSelectButton";
-import { switchToCustom } from "~scripts/listeners/listenCustomButton";
+import { toggleSelectedCard } from "#listeners/listenSelectButton";
+import { switchToCustom } from "#listeners/listenCustomButton";
 
 function setActiveCard(style) {
   let $card = $.card[style];

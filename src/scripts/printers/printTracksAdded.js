@@ -1,4 +1,4 @@
-import $ from "~scripts/selectors";
+import $ from "#selectors";
 
 export default function (value) {
   $.print.tracks_added.innerText =

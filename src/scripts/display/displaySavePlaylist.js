@@ -1,9 +1,9 @@
-import loadComplete from "~scripts/loaders/loadComplete";
-import displayBanner from "~scripts/display/displayBanner";
-import displaySection from "~scripts/display/displaySection";
-import getStore from "~scripts/getters/getStore";
-import setStore from "~scripts/setters/setStore";
-import data from "~scripts/selectors/data";
+import loadComplete from "#loaders/loadComplete";
+import displayBanner from "#display/displayBanner";
+import displaySection from "#display/displaySection";
+import getStore from "#getters/getStore";
+import setStore from "#setters/setStore";
+import data from "#selectors/data";
 
 export default function () {
   loadComplete(function () {

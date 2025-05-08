@@ -1,5 +1,5 @@
-import { include } from "~scripts/filters";
-import filterCardsByPlaylistId from "~scripts/filters/filterCardsByPlaylistId";
+import { include } from "#filters";
+import filterCardsByPlaylistId from "#filters/filterCardsByPlaylistId";
 
 export default function (value) {
   let playlist = filterCardsByPlaylistId(value);

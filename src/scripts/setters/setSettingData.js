@@ -1,7 +1,7 @@
-import snakify from "~scripts/helpers/snakify";
-import attrs from "~scripts/selectors/attrs";
-import setColorsIndex from "~scripts/setters/setColorsIndex";
-import colors from "~data/colors";
+import snakify from "#helpers/snakify";
+import attrs from "#selectors/attrs";
+import setColorsIndex from "#setters/setColorsIndex";
+import colors from "#data/colors";
 
 export default function (setting, id) {
   setting.data[attrs.data.card] = id;

@@ -1,5 +1,5 @@
-import $ from "~scripts/selectors";
-import hideShowElements from "~scripts/helpers/hideShowElements";
+import $ from "#selectors";
+import hideShowElements from "#helpers/hideShowElements";
 
 export default function (callback) {
   callback();

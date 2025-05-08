@@ -1,14 +1,14 @@
-import $ from "~scripts/selectors";
-import loadInProgress from "~scripts/loaders/loadInProgress";
-import loadComplete from "~scripts/loaders/loadComplete";
+import $ from "#selectors";
+import loadInProgress from "#loaders/loadInProgress";
+import loadComplete from "#loaders/loadComplete";
 
-import displaySection from "~scripts/display/displaySection";
-import postPlaylistData from "~scripts/posters/postPlaylistData";
-import postTrackData from "~scripts/posters/postTrackData";
-import getSavedPlaylistDetails from "~scripts/getters/spotify/getSavedPlaylistDetails";
-import getStoreState from "~scripts/getters/getStoreState";
-import putPlaylistCover from "~scripts/putters/putPlaylistCover";
-import data from "~scripts/selectors/data";
+import displaySection from "#display/displaySection";
+import postPlaylistData from "#posters/postPlaylistData";
+import postTrackData from "#posters/postTrackData";
+import getSavedPlaylistDetails from "#getters/spotify/getSavedPlaylistDetails";
+import getStoreState from "#getters/getStoreState";
+import putPlaylistCover from "#putters/putPlaylistCover";
+import data from "#selectors/data";
 
 let sections = [data.section.save_playlist, data.section.tracks_added];
 

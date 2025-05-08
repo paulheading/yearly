@@ -1,5 +1,5 @@
-import setStore from "~scripts/setters/setStore";
-import createPlaylist from "~scripts/creators/createPlaylist";
+import setStore from "#setters/setStore";
+import createPlaylist from "#creators/createPlaylist";
 
 export default function (tracks) {
   setStore(function (store) {

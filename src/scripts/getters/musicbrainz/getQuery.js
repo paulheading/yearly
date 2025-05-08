@@ -1,4 +1,4 @@
-import getData from "~scripts/getters/musicbrainz/getData";
+import getData from "#getters/musicbrainz/getData";
 
 export default async function (value) {
   let query = "?query=artist:" + value;

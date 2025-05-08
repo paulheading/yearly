@@ -1,12 +1,12 @@
-import $ from "~scripts/selectors";
-import resetCustomConfig from "~scripts/setters/resetCustomConfig";
-import setStore from "~scripts/setters/setStore";
-import usingCustomStyle from "~scripts/using/usingCustomStyle";
-import getPlaylistSources from "~scripts/getters/getPlaylistSources";
-import settings from "~data/settings";
-import attrs from "~scripts/selectors/attrs";
-import setCardSetting from "~scripts/setters/setCardSetting";
-import asyncWrap from "~scripts/helpers/asyncWrap";
+import $ from "#selectors";
+import resetCustomConfig from "#setters/resetCustomConfig";
+import setStore from "#setters/setStore";
+import usingCustomStyle from "#using/usingCustomStyle";
+import getPlaylistSources from "#getters/getPlaylistSources";
+import settings from "#data/settings";
+import attrs from "#selectors/attrs";
+import setCardSetting from "#setters/setCardSetting";
+import asyncWrap from "#helpers/asyncWrap";
 
 function setStoreFormValues() {
   $.setting.selects.forEach(function ($form) {

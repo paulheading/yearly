@@ -1,5 +1,5 @@
-import $ from "~scripts/selectors";
-import attrs from "~scripts/selectors/attrs";
+import $ from "#selectors";
+import attrs from "#selectors/attrs";
 
 export default function () {
   let sources = [];

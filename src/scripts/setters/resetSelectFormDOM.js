@@ -1,6 +1,6 @@
-import $ from "~scripts/selectors";
-import attrs from "~scripts/selectors/attrs";
-import settings from "~data/settings";
+import $ from "#selectors";
+import attrs from "#selectors/attrs";
+import settings from "#data/settings";
 
 export default function resetSelectFormDOM(snake) {
   let $list = $.selectForm[snake];

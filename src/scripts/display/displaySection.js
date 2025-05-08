@@ -1,4 +1,4 @@
-import $ from "~scripts/selectors";
+import $ from "#selectors";
 
 export default function (element, value) {
   let section = $.section[element];

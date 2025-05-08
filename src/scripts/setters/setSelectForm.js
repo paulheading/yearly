@@ -1,9 +1,9 @@
-import settings from "~data/settings";
-import setCardSetting from "~scripts/setters/setCardSetting";
-import getConfigByGroup from "~scripts/getters/getConfigByGroup";
-import setAction from "~scripts/setters/setAction";
-import setStore from "~scripts/setters/setStore";
-import data from "~scripts/selectors/data";
+import settings from "#data/settings";
+import setCardSetting from "#setters/setCardSetting";
+import getConfigByGroup from "#getters/getConfigByGroup";
+import setAction from "#setters/setAction";
+import setStore from "#setters/setStore";
+import data from "#selectors/data";
 
 function handleGroupActions({ other, action, params }) {
   if (action == "oldest") setAction.oldest({ ...params, other });

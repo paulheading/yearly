@@ -1,9 +1,9 @@
-import getUsersSavedTracks from "~scripts/getters/spotify/getUsersSavedTracks";
-import setTracksAdded from "~scripts/setters/setTracksAdded";
-import getYearAdded from "~scripts/getters/getYearAdded";
-import setUniqueTrack from "~scripts/setters/setUniqueTrack";
+import getUsersSavedTracks from "#getters/spotify/getUsersSavedTracks";
+import setTracksAdded from "#setters/setTracksAdded";
+import getYearAdded from "#getters/getYearAdded";
+import setUniqueTrack from "#setters/setUniqueTrack";
 
-import { loop } from "~scripts/getters/getTracks";
+import { loop } from "#getters/getTracks";
 
 export default async function () {
   let year_added = getYearAdded();

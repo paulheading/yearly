@@ -1,5 +1,5 @@
-import getStore from "~scripts/getters/getStore";
-import createStore from "~scripts/creators/createStore";
+import getStore from "#getters/getStore";
+import createStore from "#creators/createStore";
 
 export default function (callback) {
   let store = getStore();

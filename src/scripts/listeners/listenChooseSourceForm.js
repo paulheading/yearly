@@ -1,6 +1,6 @@
 import { handleSelectForm } from "paully/handlers";
-import cnames from "~scripts/selectors/cnames";
-import { doRemoveRow } from "~scripts/listeners/listenRemoveRowButton";
+import cnames from "#selectors/cnames";
+import { doRemoveRow } from "#listeners/listenRemoveRowButton";
 
 let { setupFormListeners } = handleSelectForm;
 

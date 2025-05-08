@@ -1,4 +1,4 @@
-import getStore from "~scripts/getters/getStore";
+import getStore from "#getters/getStore";
 
 export default async function ({ endpoint, body }) {
   let { access } = getStore();

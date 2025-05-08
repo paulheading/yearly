@@ -1,4 +1,4 @@
-import attrs from "~scripts/selectors/attrs";
+import attrs from "#selectors/attrs";
 
 export default function (setting, index) {
   let classNames = ["setting", setting.data[attrs.data.type]];

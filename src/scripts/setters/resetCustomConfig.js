@@ -1,21 +1,21 @@
 import { handleSelectForm } from "paully/handlers";
-import $ from "~scripts/selectors";
-import settings from "~data/settings";
-import printRangeInputValue from "~scripts/printers/printRangeInputValue";
+import $ from "#selectors";
+import defaultSettings from "#data/settings";
+import printRangeInputValue from "#printers/printRangeInputValue";
 
 let { setFormButton, toggleActiveItem, focusOnItem } = handleSelectForm;
 
 export default function () {
-  let { $settings } = $.card.selectors($.card.custom);
-  let { $items } = $settings;
+  let { settings } = $.card.selectors($.card.custom);
+  let { items } = settings;
 
-  $items.toggle.forEach(function ($toggle) {
+  items.$toggle.forEach(function ($toggle) {
     let $input = $toggle.querySelector("input");
 
     $input.checked = false;
   });
 
-  $items.range.forEach(function ($range) {
+  items.$range.forEach(function ($range) {
     let $input = $range.querySelector("input");
 
     $input.value = 0;
@@ -23,12 +23,12 @@ export default function () {
     printRangeInputValue($input);
   });
 
-  $items.select.forEach(function ($select) {
+  items.$select.forEach(function ($select) {
     let $form = $select.querySelector("form");
 
     let { $button, $items, data } = $.selectForm.selectors($form);
 
-    let innerText = settings[data.snake];
+    let innerText = defaultSettings[data.snake];
 
     let value = 0;
 

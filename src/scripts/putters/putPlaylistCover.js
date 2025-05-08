@@ -1,7 +1,7 @@
 import imageToBase64 from "image-to-base64/browser";
-import putData from "~scripts/putters/putData";
-import getStore from "~scripts/getters/getStore";
-import usingLocalSite from "~scripts/using/usingLocalSite";
+import putData from "#putters/putData";
+import getStore from "#getters/getStore";
+import usingLocalSite from "#using/usingLocalSite";
 
 export default async function (playlist) {
   let { id } = playlist;

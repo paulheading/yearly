@@ -1,6 +1,6 @@
-import getArtist from "~scripts/getters/musicbrainz/getArtist";
-import getQuery from "~scripts/getters/musicbrainz/getQuery";
-import createMusicBrainzDelay from "~scripts/creators/createMusicBrainzDelay";
+import getArtist from "#getters/musicbrainz/getArtist";
+import getQuery from "#getters/musicbrainz/getQuery";
+import createMusicBrainzDelay from "#creators/createMusicBrainzDelay";
 
 export default function (items) {
   items.forEach(function (item, index) {

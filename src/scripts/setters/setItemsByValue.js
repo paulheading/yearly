@@ -1,6 +1,6 @@
 import { handleSelectForm } from "paully/handlers";
-import $ from "~scripts/selectors";
-import attrs from "~scripts/selectors/attrs";
+import $ from "#selectors";
+import attrs from "#selectors/attrs";
 
 let { setFormButton, toggleActiveItem } = handleSelectForm;
 

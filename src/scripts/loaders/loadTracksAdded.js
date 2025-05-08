@@ -1,7 +1,7 @@
-import loadInProgress from "~scripts/loaders/loadInProgress";
-import displaySection from "~scripts/display/displaySection";
-import printYearAdded from "~scripts/printers/printYearAdded";
-import data from "~scripts/selectors/data";
+import loadInProgress from "#loaders/loadInProgress";
+import displaySection from "#display/displaySection";
+import printYearAdded from "#printers/printYearAdded";
+import data from "#selectors/data";
 
 export default function () {
   loadInProgress(function () {

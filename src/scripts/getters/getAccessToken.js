@@ -1,5 +1,5 @@
-import getStore from "~scripts/getters/getStore";
-import getDate from "~scripts/getters/getDate";
+import getStore from "#getters/getStore";
+import getDate from "#getters/getDate";
 
 export default function () {
   if (!getStore()) return false;

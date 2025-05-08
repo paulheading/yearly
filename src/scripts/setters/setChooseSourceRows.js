@@ -1,9 +1,9 @@
 import { handleSelectForm } from "paully/handlers";
-import $ from "~scripts/selectors";
-import data from "~scripts/selectors/data";
-import listenChooseSourceForm from "~scripts/listeners/listenChooseSourceForm";
-import cnames from "~scripts/selectors/cnames";
-import attrs from "~scripts/selectors/attrs";
+import $ from "#selectors";
+import data from "#selectors/data";
+import listenChooseSourceForm from "#listeners/listenChooseSourceForm";
+import cnames from "#selectors/cnames";
+import attrs from "#selectors/attrs";
 
 let { selectCurrentOption } = handleSelectForm;
 

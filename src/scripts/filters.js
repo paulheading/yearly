@@ -1,8 +1,8 @@
-import getStore from "~scripts/getters/getStore";
-import pureInclude from "~scripts/filters/include";
-import pureExclude from "~scripts/filters/exclude";
-import pureLength from "~scripts/filters/length";
-import pureYear from "~scripts/filters/year";
+import getStore from "#getters/getStore";
+import pureInclude from "#filters/include";
+import pureExclude from "#filters/exclude";
+import pureLength from "#filters/length";
+import pureYear from "#filters/year";
 
 let include = pureInclude;
 

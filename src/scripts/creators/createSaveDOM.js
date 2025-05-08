@@ -1,8 +1,8 @@
-import listenSaveButton from "~scripts/listeners/listenSaveButton";
-import listenBackButton from "~scripts/listeners/listenBackButton";
-import listenRefreshButton from "~scripts/listeners/listenRefreshButton";
-import printPlaylistConfig from "~scripts/printers/printPlaylistConfig";
-import printPlaylistSections from "~scripts/printers/printPlaylistSections";
+import listenSaveButton from "#listeners/listenSaveButton";
+import listenBackButton from "#listeners/listenBackButton";
+import listenRefreshButton from "#listeners/listenRefreshButton";
+import printPlaylistConfig from "#printers/printPlaylistConfig";
+import printPlaylistSections from "#printers/printPlaylistSections";
 
 export default function () {
   listenSaveButton();

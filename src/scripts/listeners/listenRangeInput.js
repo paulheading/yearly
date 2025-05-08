@@ -1,8 +1,8 @@
-import $ from "~scripts/selectors";
-import attrs from "~scripts/selectors/attrs";
-import settings from "~data/settings";
-import setCardSetting from "~scripts/setters/setCardSetting";
-import printRangeInputValue from "~scripts/printers/printRangeInputValue";
+import $ from "#selectors";
+import attrs from "#selectors/attrs";
+import settings from "#data/settings";
+import setCardSetting from "#setters/setCardSetting";
+import printRangeInputValue from "#printers/printRangeInputValue";
 
 function getInputAttributes($input) {
   let card = $input.getAttribute(attrs.data.card);

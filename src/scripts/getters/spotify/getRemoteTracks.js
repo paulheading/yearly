@@ -1,7 +1,7 @@
-import getStore from "~scripts/getters/getStore";
-import getLikedTracks from "~scripts/getters/spotify/getLikedTracks";
+import getStore from "#getters/getStore";
+import getLikedTracks from "#getters/spotify/getLikedTracks";
 import getPlaylistTracks from "./getPlaylistTracks";
-import setUniqueTrack from "~scripts/setters/setUniqueTrack";
+import setUniqueTrack from "#setters/setUniqueTrack";
 
 let results = [];
 

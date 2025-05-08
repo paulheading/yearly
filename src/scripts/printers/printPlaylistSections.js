@@ -1,6 +1,6 @@
-import getStore from "~scripts/getters/getStore";
-import loadEmptyPlaylist from "~scripts/loaders/loadEmptyPlaylist";
-import printPlaylist from "~scripts/printers/printPlaylist";
+import getStore from "#getters/getStore";
+import loadEmptyPlaylist from "#loaders/loadEmptyPlaylist";
+import printPlaylist from "#printers/printPlaylist";
 
 export default function () {
   let { tracks } = getStore().playlist;

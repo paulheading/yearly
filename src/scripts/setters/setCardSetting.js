@@ -1,4 +1,4 @@
-import setStore from "~scripts/setters/setStore";
+import setStore from "#setters/setStore";
 
 export default function ({ card, setting, value }) {
   setStore(function (store) {

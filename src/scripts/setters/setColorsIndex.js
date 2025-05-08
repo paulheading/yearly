@@ -1,4 +1,4 @@
-import colors from "~data/colors";
+import colors from "#data/colors";
 
 export default function () {
   let isLastColor = colors.index + 1 == colors.array.length;

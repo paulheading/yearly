@@ -1,16 +1,16 @@
-import printSourcePlaylists from "~scripts/printers/printSourcePlaylists";
-import printFirstName from "~scripts/printers/printFirstName";
+import printSourcePlaylists from "#printers/printSourcePlaylists";
+import printFirstName from "#printers/printFirstName";
 
-import listenBuildButton from "~scripts/listeners/listenBuildButton";
-import listenCustomButton from "~scripts/listeners/listenCustomButton";
-import listenDotButtons from "~scripts/listeners/listenDotButtons";
-import listenInfoButton from "~scripts/listeners/listenInfoButton";
-import listenRangeInput from "~scripts/listeners/listenRangeInput";
-import listenSelectButton from "~scripts/listeners/listenSelectButton";
-import listenToggleInput from "~scripts/listeners/listenToggleInput";
-import listenChooseSourceButton from "~scripts/listeners/listenChooseSourceButton";
-import listenRemoveRowButton from "~scripts/listeners/listenRemoveRowButton";
-import listenSelectForm from "~scripts/listeners/listenSelectForm";
+import listenBuildButton from "#listeners/listenBuildButton";
+import listenCustomButton from "#listeners/listenCustomButton";
+import listenDotButtons from "#listeners/listenDotButtons";
+import listenInfoButton from "#listeners/listenInfoButton";
+import listenRangeInput from "#listeners/listenRangeInput";
+import listenSelectButton from "#listeners/listenSelectButton";
+import listenToggleInput from "#listeners/listenToggleInput";
+import listenChooseSourceButton from "#listeners/listenChooseSourceButton";
+import listenRemoveRowButton from "#listeners/listenRemoveRowButton";
+import listenSelectForm from "#listeners/listenSelectForm";
 
 export default function () {
   printFirstName();

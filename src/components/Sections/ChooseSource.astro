@@ -1,9 +1,9 @@
 ---
 import { InvisibleButton, SelectForm } from "paully";
-import data from "~scripts/selectors/data";
-import cnames from "~scripts/selectors/cnames";
-import { source } from "~data/store/playlist";
-import attrs from "~scripts/selectors/attrs";
+import data from "#selectors/data";
+import cnames from "#selectors/cnames";
+import { source } from "#data/store/playlist";
+import attrs from "#selectors/attrs";
 
 let props = {
   options: [{ title: source.title, data: source.id }],
@@ -31,7 +31,7 @@ let props = {
 </InvisibleButton>
 
 <style lang="scss">
-  @use "~mixins" as *;
+  @use "#mixins" as *;
 
   .select_form_row {
     align-items: center;

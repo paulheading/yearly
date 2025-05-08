@@ -1,5 +1,5 @@
-import setStore from "~scripts/setters/setStore";
-import setUniqueTrack from "~scripts/setters/setUniqueTrack";
+import setStore from "#setters/setStore";
+import setUniqueTrack from "#setters/setUniqueTrack";
 
 export default function (item) {
   setStore(function (store) {

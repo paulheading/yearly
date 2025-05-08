@@ -1,7 +1,7 @@
 ---
 import { Loaded, Loader, NotLoaded, Wrap } from "paully";
-import Layout from "~layouts/Main";
-import ChooseCardSection from "~sections/ChooseCard";
+import Layout from "#layouts/Main";
+import ChooseCardSection from "#sections/ChooseCard";
 
 import { seo } from "paully/data";
 
@@ -12,7 +12,7 @@ let layoutProps = {
 };
 ---
 
-<script src="~scripts/pages/build.js"></script>
+<script src="#pages/build"></script>
 
 <Layout {...layoutProps}>
   <Wrap style={{ textAlign: "center" }}>

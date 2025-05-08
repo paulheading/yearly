@@ -1,12 +1,12 @@
 ---
 import { Loaded, Loader, NotLoaded, Wrap } from "paully";
-import Layout from "~layouts/Main";
-import SavePlaylistSection from "~sections/SavePlaylist";
-import SharePlaylistSection from "~sections/SharePlaylist";
-import EmptyPlaylistSection from "~sections/EmptyPlaylist";
-import RecommendTracks from "~sections/RecommendTracks";
-import TracksAdded from "~sections/TracksAdded";
-import ConfirmSettings from "~sections/ConfirmSettings";
+import Layout from "#layouts/Main";
+import SavePlaylistSection from "#sections/SavePlaylist";
+import SharePlaylistSection from "#sections/SharePlaylist";
+import EmptyPlaylistSection from "#sections/EmptyPlaylist";
+import RecommendTracks from "#sections/RecommendTracks";
+import TracksAdded from "#sections/TracksAdded";
+import ConfirmSettings from "#sections/ConfirmSettings";
 
 import { seo } from "paully/data";
 
@@ -17,7 +17,7 @@ let layoutProps = {
 };
 ---
 
-<script src="~scripts/pages/save.js"></script>
+<script src="#pages/save"></script>
 
 <Layout {...layoutProps}>
   <Wrap style={{ textAlign: "center" }}>

@@ -1,6 +1,6 @@
 import $ from "paully/selectors";
-import cnames from "~scripts/selectors/cnames";
-import attrs from "~scripts/selectors/attrs";
+import cnames from "#selectors/cnames";
+import attrs from "#selectors/attrs";
 
 let dataQuery = (name, value) => `[${attrs.data[name]}=${value}]`;
 

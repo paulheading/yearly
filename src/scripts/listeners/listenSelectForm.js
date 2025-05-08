@@ -1,5 +1,5 @@
 import { handleSelectForm } from "paully/handlers";
-import $ from "~scripts/selectors";
+import $ from "#selectors";
 
 let { setupFormListeners } = handleSelectForm;
 

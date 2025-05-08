@@ -1,8 +1,8 @@
-import settings from "~data/settings";
-import include from "~scripts/filters/include";
-import data from "~scripts/selectors/data";
-import attrs from "~scripts/selectors/attrs";
-import setSettingData from "~scripts/setters/setSettingData";
+import settings from "#data/settings";
+import include from "#filters/include";
+import data from "#selectors/data";
+import attrs from "#selectors/attrs";
+import setSettingData from "#setters/setSettingData";
 
 let id = data.card.cindy;
 let image = "/" + id + ".jpg";

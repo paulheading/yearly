@@ -1,6 +1,6 @@
 ---
 import { InvisibleButton } from "paully";
-import cnames from "~scripts/selectors/cnames";
+import cnames from "#selectors/cnames";
 ---
 
 <InvisibleButton className={cnames.button.back}>
@@ -8,7 +8,7 @@ import cnames from "~scripts/selectors/cnames";
 </InvisibleButton>
 
 <style lang="scss">
-  @use "~mixins" as *;
+  @use "#mixins" as *;
 
   .back_button {
     padding: 0.25rem;

@@ -1,19 +1,19 @@
-import user from "~data/user";
+import user from "#data/user";
 
-import getAccessToken from "~scripts/getters/getAccessToken";
-import getPlaylists from "~scripts/getters/spotify/getPlaylists";
-import getStoreState from "~scripts/getters/getStoreState";
-import loadComplete from "~scripts/loaders/loadComplete";
-import setDOMToStoreValues from "~scripts/setters/setDOMToStoreValues";
-import setStore from "~scripts/setters/setStore";
-import displaySection from "~scripts/display/displaySection";
-import asyncWrap from "~scripts/helpers/asyncWrap";
-import setAccessToken from "~scripts/setters/setAccessToken";
-import setUser from "~scripts/setters/setUser";
-import getStore from "~scripts/getters/getStore";
-import createBuildDOM from "~scripts/creators/createBuildDOM";
-import usingLiveData from "~scripts/using/usingLiveData";
-import data from "~scripts/selectors/data";
+import getAccessToken from "#getters/getAccessToken";
+import getPlaylists from "#getters/spotify/getPlaylists";
+import getStoreState from "#getters/getStoreState";
+import loadComplete from "#loaders/loadComplete";
+import setDOMToStoreValues from "#setters/setDOMToStoreValues";
+import setStore from "#setters/setStore";
+import displaySection from "#display/displaySection";
+import asyncWrap from "#helpers/asyncWrap";
+import setAccessToken from "#setters/setAccessToken";
+import setUser from "#setters/setUser";
+import getStore from "#getters/getStore";
+import createBuildDOM from "#creators/createBuildDOM";
+import usingLiveData from "#using/usingLiveData";
+import data from "#selectors/data";
 
 function getParams() {
   if (getStore().params) window.location.assign("/save");

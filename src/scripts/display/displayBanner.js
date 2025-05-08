@@ -1,6 +1,6 @@
-import $ from "~scripts/selectors";
-import displaySection from "~scripts/display/displaySection";
-import data from "~scripts/selectors/data";
+import $ from "#selectors";
+import displaySection from "#display/displaySection";
+import data from "#selectors/data";
 
 let element = $.print.banner;
 

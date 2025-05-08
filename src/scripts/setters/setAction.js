@@ -1,4 +1,4 @@
-import resetSelectFormSetting from "~scripts/setters/resetSelectFormSetting";
+import resetSelectFormSetting from "#setters/resetSelectFormSetting";
 
 function oldest(params) {
   let { value, other, card } = params;

@@ -1,5 +1,5 @@
-import params from "~scripts/listeners/listenSearchParams";
-import setStore from "~scripts/setters/setStore";
+import params from "#listeners/listenSearchParams";
+import setStore from "#setters/setStore";
 
 export default function () {
   if (params().valid.length) {

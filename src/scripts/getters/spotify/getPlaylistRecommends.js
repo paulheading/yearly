@@ -1,7 +1,7 @@
-// import getRecommends from "~scripts/getters/getRecommends";
-import displaySection from "~scripts/display/displaySection";
-import loadComplete from "~scripts/loaders/loadComplete";
-import data from "~scripts/selectors/data";
+// import getRecommends from "#getters/getRecommends";
+import displaySection from "#display/displaySection";
+import loadComplete from "#loaders/loadComplete";
+import data from "#selectors/data";
 
 export default function (tracks) {
   // let recommends = tracks.forEach(({ track }) => track.id + ",");

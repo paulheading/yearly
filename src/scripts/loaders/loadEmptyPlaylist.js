@@ -1,6 +1,6 @@
-import loadComplete from "~scripts/loaders/loadComplete";
-import displaySection from "~scripts/display/displaySection";
-import data from "~scripts/selectors/data";
+import loadComplete from "#loaders/loadComplete";
+import displaySection from "#display/displaySection";
+import data from "#selectors/data";
 
 export default function () {
   loadComplete(function () {

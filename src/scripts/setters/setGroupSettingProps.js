@@ -1,4 +1,4 @@
-import store from "~data/store";
+import store from "#data/store";
 
 function loopColors(value) {
   let { color } = store;

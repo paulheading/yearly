@@ -1,6 +1,6 @@
-import getPlaylistItems from "~scripts/getters/spotify/getPlaylistItems";
-import setTracksAdded from "~scripts/setters/setTracksAdded";
-import getYearAdded from "~scripts/getters/getYearAdded";
+import getPlaylistItems from "#getters/spotify/getPlaylistItems";
+import setTracksAdded from "#setters/setTracksAdded";
+import getYearAdded from "#getters/getYearAdded";
 
 export default async function (id) {
   let year_added = getYearAdded();

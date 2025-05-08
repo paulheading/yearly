@@ -1,5 +1,5 @@
-import listenSearchParams from "~scripts/listeners/listenSearchParams";
-import getAccessToken from "~scripts/getters/getAccessToken";
+import listenSearchParams from "#listeners/listenSearchParams";
+import getAccessToken from "#getters/getAccessToken";
 
 let state = { ...listenSearchParams(), loggedIn: getAccessToken() };
 

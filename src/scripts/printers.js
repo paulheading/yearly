@@ -1,10 +1,10 @@
-import printFirstName from "~scripts/printers/printFirstName";
-import printPlaylist from "~scripts/printers/printPlaylist";
-import printPlaylistImage from "~scripts/printers/printPlaylistImage";
-import printRangeInputValue from "~scripts/printers/printRangeInputValue";
-import printSourcePlaylists from "~scripts/printers/printSourcePlaylists";
-import printTracksAdded from "~scripts/printers/printTracksAdded";
-import printYearAdded from "~scripts/printers/printYearAdded";
+import printFirstName from "#printers/printFirstName";
+import printPlaylist from "#printers/printPlaylist";
+import printPlaylistImage from "#printers/printPlaylistImage";
+import printRangeInputValue from "#printers/printRangeInputValue";
+import printSourcePlaylists from "#printers/printSourcePlaylists";
+import printTracksAdded from "#printers/printTracksAdded";
+import printYearAdded from "#printers/printYearAdded";
 
 export {
   printFirstName,

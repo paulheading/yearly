@@ -1,6 +1,6 @@
-import createStore from "~scripts/creators/createStore";
-import getStore from "~scripts/getters/getStore";
-import setStore from "~scripts/setters/setStore";
+import createStore from "#creators/createStore";
+import getStore from "#getters/getStore";
+import setStore from "#setters/setStore";
 
 export default function (entries) {
   let valid = [];

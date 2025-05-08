@@ -1,10 +1,10 @@
-import $ from "~scripts/selectors";
-import displayBanner from "~scripts/display/displayBanner";
-import createLogin from "~scripts/creators/createLogin";
-import printInvalidKeys from "~scripts/printers/printInvalidKeys";
-import printLoginPrompt from "~scripts/printers/printLoginPrompt";
-import usingLiveData from "~scripts/using/usingLiveData";
-import getSearchParams from "~scripts/getters/getSearchParams";
+import $ from "#selectors";
+import displayBanner from "#display/displayBanner";
+import createLogin from "#creators/createLogin";
+import printInvalidKeys from "#printers/printInvalidKeys";
+import printLoginPrompt from "#printers/printLoginPrompt";
+import usingLiveData from "#using/usingLiveData";
+import getSearchParams from "#getters/getSearchParams";
 
 if (!usingLiveData) displayBanner.innerHTML("<em>OFFLINE MODE</em>");
 

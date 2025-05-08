@@ -1,6 +1,6 @@
-import printTracksAdded from "~scripts/printers/printTracksAdded";
-// import setTrackResult from "~scripts/setters/setTrackResult";
-import { year } from "~scripts/filters";
+import printTracksAdded from "#printers/printTracksAdded";
+// import setTrackResult from "#setters/setTrackResult";
+import { year } from "#filters";
 
 let results = [];
 

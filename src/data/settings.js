@@ -1,4 +1,4 @@
-import attrs from "~scripts/selectors/attrs";
+import attrs from "#selectors/attrs";
 
 let discovered_this_year = "Discovered this year";
 
@@ -19,8 +19,8 @@ let min_length = "Min length";
 let year_added = "Year added";
 let year_released = "Year released";
 
-let prioritize_female_artists = "Prioritize female artists";
-let prioritize_male_artists = "Prioritize male artists";
+let prioritize_women = "Prioritize women";
+let prioritize_men = "Prioritize men";
 
 let groups = {
   popularity: {
@@ -59,6 +59,6 @@ export default {
   groups,
   year_added,
   year_released,
-  prioritize_female_artists,
-  prioritize_male_artists,
+  prioritize_women,
+  prioritize_men,
 };

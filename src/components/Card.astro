@@ -1,8 +1,8 @@
 ---
-import CardContent from "~components/Card/Content";
-import SelectButton from "~components/Buttons/Select";
-import cnames from "~scripts/selectors/cnames";
-import attrs from "~scripts/selectors/attrs";
+import CardContent from "#components/Card/Content";
+import SelectButton from "#components/Buttons/Select";
+import cnames from "#selectors/cnames";
+import attrs from "#selectors/attrs";
 
 let { content, id } = Astro.props;
 
@@ -29,7 +29,7 @@ let props = {
 </div>
 
 <style lang="scss">
-  @use "~mixins" as *;
+  @use "#mixins" as *;
 
   .card_container {
     margin: $margin-top-card $margin-card $margin-card;

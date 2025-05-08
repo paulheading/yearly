@@ -1,12 +1,12 @@
 ---
 import { SolidButton } from "paully";
-import cnames from "~scripts/selectors/cnames";
+import cnames from "#selectors/cnames";
 ---
 
 <SolidButton className={cnames.button.select}>Select</SolidButton>
 
 <style lang="scss">
-  @use "~mixins" as *;
+  @use "#mixins" as *;
 
   .select_button {
     margin-top: $margin-bottom-card-header;

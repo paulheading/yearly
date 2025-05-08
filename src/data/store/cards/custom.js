@@ -1,8 +1,8 @@
-import settings from "~data/settings";
-import include from "~scripts/filters/include";
-import data from "~scripts/selectors/data";
-import attrs from "~scripts/selectors/attrs";
-import setSettingData from "~scripts/setters/setSettingData";
+import settings from "#data/settings";
+import include from "#filters/include";
+import data from "#selectors/data";
+import attrs from "#selectors/attrs";
+import setSettingData from "#setters/setSettingData";
 
 let id = data.card.custom;
 
@@ -107,7 +107,7 @@ let card = {
           },
         },
         {
-          title: settings.prioritize_female_artists,
+          title: settings.prioritize_women,
           editable: true,
           value: false,
           data: {
@@ -116,7 +116,7 @@ let card = {
           },
         },
         {
-          title: settings.prioritize_male_artists,
+          title: settings.prioritize_men,
           editable: true,
           value: false,
           data: {

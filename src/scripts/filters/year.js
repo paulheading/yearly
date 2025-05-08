@@ -1,4 +1,4 @@
-import getDate from "~scripts/getters/getDate";
+import getDate from "#getters/getDate";
 
 let errorCustomYear = "custom year not set";
 

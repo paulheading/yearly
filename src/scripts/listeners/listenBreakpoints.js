@@ -1,5 +1,5 @@
-import createBreakpoint from "~scripts/creators/createBreakpoint";
-import setHTMLClass from "~scripts/setters/setHTMLClass";
+import createBreakpoint from "#creators/createBreakpoint";
+import setHTMLClass from "#setters/setHTMLClass";
 
 let { widthQuery } = createBreakpoint;
 

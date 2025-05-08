@@ -1,5 +1,5 @@
-import $ from "~scripts/selectors";
-import getSiblings from "~scripts/getters/getSiblings";
+import $ from "#selectors";
+import getSiblings from "#getters/getSiblings";
 
 function doRemoveRow(event) {
   let { target } = event;

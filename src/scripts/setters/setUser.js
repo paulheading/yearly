@@ -1,7 +1,7 @@
-import getStore from "~scripts/getters/getStore";
-import setStore from "~scripts/setters/setStore";
-import getCurrentUser from "~scripts/getters/spotify/getCurrentUser";
-import printFirstName from "~scripts/printers/printFirstName";
+import getStore from "#getters/getStore";
+import setStore from "#setters/setStore";
+import getCurrentUser from "#getters/spotify/getCurrentUser";
+import printFirstName from "#printers/printFirstName";
 
 export default async function () {
   let user = await getCurrentUser();

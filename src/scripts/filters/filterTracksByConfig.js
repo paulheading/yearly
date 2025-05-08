@@ -1,11 +1,11 @@
-import settings from "~data/settings";
-import filterTracksByReleaseDate from "~scripts/filters/filterTracksByReleaseDate";
+import settings from "#data/settings";
+import filterTracksByReleaseDate from "#filters/filterTracksByReleaseDate";
 
-import { length, include, exclude } from "~scripts/filters";
-import { byLowestPopularity, byHighestPopularity } from "~scripts/sorters";
+import { length, include, exclude } from "#filters";
+import { byLowestPopularity, byHighestPopularity } from "#sorters";
 
-import getDate from "~scripts/getters/getDate";
-import getPlaylistActiveConfig from "~scripts/getters/getPlaylistActiveConfig";
+import getDate from "#getters/getDate";
+import getPlaylistActiveConfig from "#getters/getPlaylistActiveConfig";
 
 export default function (tracks) {
   getPlaylistActiveConfig().forEach(function ({ title, value }) {

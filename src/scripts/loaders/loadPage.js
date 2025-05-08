@@ -1,4 +1,4 @@
-import getStoreState from "~scripts/getters/getStoreState";
+import getStoreState from "#getters/getStoreState";
 
 export default async function (callback) {
   getStoreState();

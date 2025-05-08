@@ -1,21 +1,7 @@
 ---
 let { Content, className } = Astro.props;
-
-let props = {
-  "class:list": ["markdown", className],
-};
 ---
 
-<div {...props}>
+<div class:list={["markdown", className]}>
   <Content />
 </div>
-
-<style lang="scss" is:global>
-  .markdown {
-    /* background-color: gainsboro; */
-  }
-
-  .markdown h3 {
-    /* color: blue; */
-  }
-</style>

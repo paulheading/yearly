@@ -1,5 +1,5 @@
-import $ from "~scripts/selectors";
-import setChooseSourceRows from "~scripts/setters/setChooseSourceRows";
+import $ from "#selectors";
+import setChooseSourceRows from "#setters/setChooseSourceRows";
 
 export default function () {
   $.button.source.addEventListener("click", function (event) {

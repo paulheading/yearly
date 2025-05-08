@@ -3,10 +3,18 @@ import rename from "gulp-rename";
 
 let readme = {
   dest: "src/markdown",
-  name: "README.md",
+  name: "readme.md",
   rename: "readme.md",
-  src: "README.md",
+  src: "readme.md",
   task: "copy:readme",
+};
+
+let userguide = {
+  dest: "src/markdown",
+  name: "userguide.md",
+  rename: "userguide.md",
+  src: "userguide.md",
+  task: "copy:userguide",
 };
 
 function copyfiles(done, file) {
@@ -17,11 +25,13 @@ function copyfiles(done, file) {
   done();
 }
 
-gulp.task(readme.task, function (done) {
+gulp.task("copy:markdown", function (done) {
   copyfiles(done, readme);
+  copyfiles(done, userguide);
 });
 
 gulp.task("watch", function (done) {
   gulp.watch(readme.src, gulp.series([readme.task]));
+  gulp.watch(userguide.src, gulp.series([userguide.task]));
   done();
 });

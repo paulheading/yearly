@@ -1,7 +1,7 @@
-import $ from "~scripts/selectors";
-import attrs from "~scripts/selectors/attrs";
+import $ from "#selectors";
+import attrs from "#selectors/attrs";
 import { gsap } from "gsap";
-import cnames from "~scripts/selectors/cnames";
+import cnames from "#selectors/cnames";
 
 function infoButtonClick(event) {
   let { currentTarget } = event;

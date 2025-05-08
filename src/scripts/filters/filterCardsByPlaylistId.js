@@ -1,4 +1,4 @@
-import getStore from "~scripts/getters/getStore";
+import getStore from "#getters/getStore";
 
 export default function (value) {
   let { cards, playlist } = getStore();

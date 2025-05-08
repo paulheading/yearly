@@ -1,5 +1,5 @@
-import liked from "~data/tracks/liked";
-import setTracksAdded from "~scripts/setters/setTracksAdded";
+import liked from "#data/tracks/liked";
+import setTracksAdded from "#setters/setTracksAdded";
 
 export default function () {
   let params = {

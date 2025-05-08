@@ -1,5 +1,5 @@
-import printTracksAdded from "~scripts/printers/printTracksAdded";
-import { loop } from "~scripts/getters/getTracks";
+import printTracksAdded from "#printers/printTracksAdded";
+import { loop } from "#getters/getTracks";
 
 export default function () {
   printTracksAdded(0);

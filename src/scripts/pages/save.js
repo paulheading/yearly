@@ -1,11 +1,11 @@
-import asyncWrap from "~scripts/helpers/asyncWrap";
-import getStoreState from "~scripts/getters/getStoreState";
-import loadTracksAdded from "~scripts/loaders/loadTracksAdded";
-import getTracks from "~scripts/getters/getTracks";
-import filterTracks from "~scripts/filters/filterTracks";
-import setPlaylistData from "~scripts/setters/setPlaylistData";
-import createSaveDOM from "~scripts/creators/createSaveDOM";
-import displaySavePlaylist from "~scripts/display/displaySavePlaylist";
+import asyncWrap from "#helpers/asyncWrap";
+import getStoreState from "#getters/getStoreState";
+import loadTracksAdded from "#loaders/loadTracksAdded";
+import getTracks from "#getters/getTracks";
+import filterTracks from "#filters/filterTracks";
+import setPlaylistData from "#setters/setPlaylistData";
+import createSaveDOM from "#creators/createSaveDOM";
+import displaySavePlaylist from "#display/displaySavePlaylist";
 
 asyncWrap(getStoreState)
   .then(loadTracksAdded)

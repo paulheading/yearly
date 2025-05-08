@@ -1,5 +1,5 @@
-import getStore from "~scripts/getters/getStore";
-import postData from "~scripts/posters/postData";
+import getStore from "#getters/getStore";
+import postData from "#posters/postData";
 
 export default function (playlist) {
   let endpoint = "playlists/" + playlist.id + "/tracks";

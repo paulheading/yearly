@@ -1,6 +1,6 @@
-import $ from "~scripts/selectors";
-import createRandomNumber from "~scripts/creators/createRandomNumber";
-import setStore from "~scripts/setters/setStore";
+import $ from "#selectors";
+import createRandomNumber from "#creators/createRandomNumber";
+import setStore from "#setters/setStore";
 
 export default function () {
   let { src } = $.playlist().$image;

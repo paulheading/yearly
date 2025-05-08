@@ -1,3 +1,3 @@
-import createDelay from "~scripts/creators/createDelay";
+import createDelay from "#creators/createDelay";
 
 export default (index) => createDelay(index, 3500);

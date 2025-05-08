@@ -1,7 +1,7 @@
 ---
 import Layout from "#layouts/Main";
 import { Wrap } from "paully";
-import { Content } from "#markdown/readme.md";
+import { Content } from "#markdown/userguide.md";
 import Markdown from "#components/Markdown.astro";
 import { seo } from "paully/data";
 
@@ -13,18 +13,11 @@ const layoutProps = {
 
 let props = {
   Content,
-  className: "custom",
 };
 ---
 
 <Layout {...layoutProps}>
   <Wrap>
-    <Markdown {...props} className="custom" />
+    <Markdown {...props} />
   </Wrap>
 </Layout>
-
-<style lang="scss">
-  /*  .custom {
-    background-color: red;
-  } */
-</style>

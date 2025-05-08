@@ -3,8 +3,8 @@ import { InvisibleButton } from "paully";
 import { Refresh } from "paully/svgs";
 import { Image } from "astro:assets";
 
-import playlist from "~data/playlist";
-import cnames from "~scripts/selectors/cnames";
+import playlist from "#data/playlist";
+import cnames from "#selectors/cnames";
 
 let size = 80;
 let year = 2036;
@@ -24,7 +24,7 @@ let imageProps = {
 </InvisibleButton>
 
 <style lang="scss">
-  @use "~mixins" as *;
+  @use "#mixins" as *;
 
   .refresh_button {
     background-color: black;

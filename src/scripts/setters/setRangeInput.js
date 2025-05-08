@@ -1,5 +1,5 @@
-import settings from "~data/settings";
-import setCardSetting from "~scripts/setters/setCardSetting";
+import settings from "#data/settings";
+import setCardSetting from "#setters/setCardSetting";
 
 export default function ({ card, value, name }) {
   let setting = settings[name];

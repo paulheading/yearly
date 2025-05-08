@@ -1,6 +1,6 @@
 import { Buffer } from "buffer";
-import getDate from "~scripts/getters/getDate";
-import setStore from "~scripts/setters/setStore";
+import getDate from "#getters/getDate";
+import setStore from "#setters/setStore";
 
 export default async function () {
   let url_params = new URLSearchParams(window.location.search);

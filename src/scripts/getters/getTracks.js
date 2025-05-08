@@ -1,8 +1,8 @@
-import data from "~scripts/selectors/data";
-import displaySection from "~scripts/display/displaySection";
-import usingLiveData from "~scripts/using/usingLiveData";
-import getLocalTracks from "~scripts/getters/getLocalTracks";
-import getRemoteTracks from "~scripts/getters/spotify/getRemoteTracks";
+import data from "#selectors/data";
+import displaySection from "#display/displaySection";
+import usingLiveData from "#using/usingLiveData";
+import getLocalTracks from "#getters/getLocalTracks";
+import getRemoteTracks from "#getters/spotify/getRemoteTracks";
 
 export let loop = {
   continue: true,

@@ -1,6 +1,6 @@
 ---
-import Section from "~components/Section";
-import data from "~scripts/selectors/data";
+import Section from "#components/Section";
+import data from "#selectors/data";
 
 let sectionProps = {
   name: data.section.confirm_settings,
@@ -16,7 +16,7 @@ let sectionProps = {
 </Section>
 
 <style lang="scss">
-  @use "~mixins" as *;
+  @use "#mixins" as *;
 
   .box {
     @include box;

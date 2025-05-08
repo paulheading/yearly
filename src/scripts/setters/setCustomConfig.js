@@ -1,8 +1,8 @@
-import $ from "~scripts/selectors";
-import printRangeInputValue from "~scripts/printers/printRangeInputValue";
-import getPlaylistConfig from "~scripts/getters/getPlaylistConfig";
-import settings from "~data/settings";
-import setItemsByValue from "~scripts/setters/setItemsByValue";
+import $ from "#selectors";
+import printRangeInputValue from "#printers/printRangeInputValue";
+import getPlaylistConfig from "#getters/getPlaylistConfig";
+import settings from "#data/settings";
+import setItemsByValue from "#setters/setItemsByValue";
 
 function matchConfigTitle({ $item, title }) {
   let $title = $item.querySelector(".title");

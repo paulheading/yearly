@@ -1,11 +1,11 @@
 import $ from "paully/selectors";
 
-import createQueriesFor from "~scripts/creators/createQueriesFor";
-import cnames from "~scripts/selectors/cnames";
-import data from "~scripts/selectors/data";
-import query from "~scripts/selectors/queries";
-import card from "~scripts/selectors/card";
-import print from "~scripts/selectors/print";
+import createQueriesFor from "#creators/createQueriesFor";
+import cnames from "#selectors/cnames";
+import data from "#selectors/data";
+import query from "#selectors/queries";
+import card from "#selectors/card";
+import print from "#selectors/print";
 
 $.query = { ...$.query, ...query };
 $.card = card;

@@ -1,7 +1,8 @@
-import getDate from "~scripts/getters/getDate";
-import getPlaylistConfig from "~scripts/getters/getPlaylistConfig";
-import settings from "~data/settings";
-import usingCustomStyle from "~scripts/using/usingCustomStyle";
+import getDate from "#getters/getDate";
+import getPlaylistConfig from "#getters/getPlaylistConfig";
+import settings from "#data/settings";
+import usingCustomStyle from "#using/usingCustomStyle";
+import exclude from "#filters/exclude";
 
 export default function () {
   let { year } = getDate();
@@ -14,7 +15,7 @@ export default function () {
 
   let { value } = config;
 
-  if (!value) return year;
+  if (!exclude.falsyBooleans(value)) return year;
 
   return value;
 }

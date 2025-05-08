@@ -1,11 +1,11 @@
 ---
 import { SolidButton, SpotifyWindow, Wrap } from "paully";
-import Section from "~components/Section";
-import RefreshButton from "~components/Buttons/Refresh";
-import BackButton from "~components/Buttons/Back";
-import playlist from "~data/playlist";
-import data from "~scripts/selectors/data";
-import cnames from "~scripts/selectors/cnames";
+import Section from "#components/Section";
+import RefreshButton from "#components/Buttons/Refresh";
+import BackButton from "#components/Buttons/Back";
+import playlist from "#data/playlist";
+import data from "#selectors/data";
+import cnames from "#selectors/cnames";
 
 let sectionProps = {
   name: data.section.save_playlist,
@@ -36,7 +36,7 @@ let saveProps = {
 </Section>
 
 <style lang="scss">
-  @use "~mixins" as *;
+  @use "#mixins" as *;
 
   .wrap-playlist {
     justify-content: center;

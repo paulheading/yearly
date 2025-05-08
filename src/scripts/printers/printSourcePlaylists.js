@@ -1,7 +1,7 @@
-import $ from "~scripts/selectors";
-import attrs from "~scripts/selectors/attrs";
-import getStore from "~scripts/getters/getStore";
-import cnames from "~scripts/selectors/cnames";
+import $ from "#selectors";
+import attrs from "#selectors/attrs";
+import getStore from "#getters/getStore";
+import cnames from "#selectors/cnames";
 
 function printSourceOption(source) {
   let $form = $.selectForm.choose_sources()[0];

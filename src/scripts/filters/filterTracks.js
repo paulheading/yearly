@@ -1,4 +1,4 @@
-import filterTracksByConfig from "~scripts/filters/filterTracksByConfig";
+import filterTracksByConfig from "#filters/filterTracksByConfig";
 
 export default async function (tracks) {
   if (!tracks.length) {

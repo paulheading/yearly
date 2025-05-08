@@ -1,14 +1,14 @@
-import listenBackButton from "~scripts/listeners/listenBackButton";
-import listenBuildButton from "~scripts/listeners/listenBuildButton";
-import listenCustomButton from "~scripts/listeners/listenCustomButton";
-import listenDotButtons from"~scripts/listeners/listenDotButtons";
-import listenInfoButton from "~scripts/listeners/listenInfoButton";
-import listenRangeInput from "~scripts/listeners/listenRangeInput";
-import listenRefreshButton from "~scripts/listeners/listenRefreshButton";
-import listenSaveButton from "~scripts/listeners/listenSaveButton";
-import listenSelectButton from "~scripts/listeners/listenSelectButton";
-import listenSelectForm from "~scripts/listeners/listenSelectForm";
-import listenToggleInput from "~scripts/listeners/listenToggleInput";
+import listenBackButton from "#listeners/listenBackButton";
+import listenBuildButton from "#listeners/listenBuildButton";
+import listenCustomButton from "#listeners/listenCustomButton";
+import listenDotButtons from "#listeners/listenDotButtons";
+import listenInfoButton from "#listeners/listenInfoButton";
+import listenRangeInput from "#listeners/listenRangeInput";
+import listenRefreshButton from "#listeners/listenRefreshButton";
+import listenSaveButton from "#listeners/listenSaveButton";
+import listenSelectButton from "#listeners/listenSelectButton";
+import listenSelectForm from "#listeners/listenSelectForm";
+import listenToggleInput from "#listeners/listenToggleInput";
 
 export {
   listenBackButton,

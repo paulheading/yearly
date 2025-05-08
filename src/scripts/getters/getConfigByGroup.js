@@ -1,4 +1,4 @@
-import getPlaylistConfig from "~scripts/getters/getPlaylistConfig";
+import getPlaylistConfig from "#getters/getPlaylistConfig";
 
 export default function ({ card, snake }) {
   let config = getPlaylistConfig(card);

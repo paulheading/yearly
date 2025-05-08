@@ -1,6 +1,6 @@
-import settings from "~data/settings";
-import resetSelectFormDOM from "~scripts/setters/resetSelectFormDOM";
-import setCardSetting from "~scripts/setters/setCardSetting";
+import settings from "#data/settings";
+import resetSelectFormDOM from "#setters/resetSelectFormDOM";
+import setCardSetting from "#setters/setCardSetting";
 
 export default function ({ card, form }) {
   let { value, snake } = form;

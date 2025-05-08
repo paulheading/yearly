@@ -1,9 +1,9 @@
-import $ from "~scripts/selectors";
-import attrs from "~scripts/selectors/attrs";
-import cnames from "~scripts/selectors/cnames";
-import resetCustomConfig from "~scripts/setters/resetCustomConfig";
-import setStore from "~scripts/setters/setStore";
-import usingCustomStyle from "~scripts/using/usingCustomStyle";
+import $ from "#selectors";
+import attrs from "#selectors/attrs";
+import cnames from "#selectors/cnames";
+import resetCustomConfig from "#setters/resetCustomConfig";
+import setStore from "#setters/setStore";
+import usingCustomStyle from "#using/usingCustomStyle";
 
 function removeSelectedState($card) {
   let { state, targets, $config_pic, $select_button } = $.card.selectors($card);

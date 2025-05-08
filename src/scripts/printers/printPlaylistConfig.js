@@ -1,7 +1,7 @@
-import getClass from "~scripts/getters/astro/getClass";
-import getPlaylistActiveConfig from "~scripts/getters/getPlaylistActiveConfig";
-import getStore from "~scripts/getters/getStore";
-import exclude from "~scripts/filters/exclude";
+import getClass from "#getters/astro/getClass";
+import getPlaylistActiveConfig from "#getters/getPlaylistActiveConfig";
+import getStore from "#getters/getStore";
+import exclude from "#filters/exclude";
 
 let $box = document.querySelector(".box");
 

@@ -1,5 +1,5 @@
-import query from "~scripts/selectors/queries";
-import data from "~scripts/selectors/data";
+import query from "#selectors/queries";
+import data from "#selectors/data";
 
 let print = {
   banner: query.print(data.section.banner),

@@ -1,11 +1,11 @@
 ---
 import { InvisibleButton } from "paully";
-import SettingsToggle from "~components/Card/Settings/Toggle";
-import SettingsRange from "~components/Card/Settings/Range";
-import SettingsSelect from "~components/Card/Settings/Select";
+import SettingsToggle from "#components/Card/Settings/Toggle";
+import SettingsRange from "#components/Card/Settings/Range";
+import SettingsSelect from "#components/Card/Settings/Select";
 
-import createSettingsGroups from "~scripts/creators/createSettingsGroups";
-import cnames from "~scripts/selectors/cnames";
+import createSettingsGroups from "#creators/createSettingsGroups";
+import cnames from "#selectors/cnames";
 
 let { settings, id } = Astro.props;
 
@@ -50,7 +50,7 @@ let groups = createSettingsGroups(settings);
 }
 
 <style lang="scss">
-  @use "~mixins" as *;
+  @use "#mixins" as *;
 
   .settings {
     max-width: $max-width-card-copy--config;
