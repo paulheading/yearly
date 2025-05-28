@@ -16,6 +16,8 @@ function createConfigTag(title) {
 
   $item.innerText = title;
 
+  $item.setAttribute("data-cy", "setting");
+
   return $item;
 }
 

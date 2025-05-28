@@ -12,15 +12,19 @@ let year = 2036;
 let imageProps = {
   alt: `Artwork for my ${year} playlist.`,
   src: playlist.content.thumbnail,
+  "data-cy": "refresh_image",
   format: "webp",
   height: size,
   width: size,
 };
 ---
 
-<InvisibleButton className={cnames.button.refresh}>
-  <Refresh className="icon" />
-  <Image {...imageProps} className="image" />
+<InvisibleButton
+  data={{ cy: cnames.button.refresh }}
+  className={cnames.button.refresh}
+>
+  <Refresh className="refresh_icon" />
+  <Image {...imageProps} className="refresh_image" />
 </InvisibleButton>
 
 <style lang="scss">
@@ -37,22 +41,22 @@ let imageProps = {
       .icon {
         opacity: 1;
       }
-      .image {
+      .refresh_image {
         opacity: 0.2;
       }
     }
   }
 
-  .refresh_button:active .icon {
+  .refresh_button:active .refresh_icon {
     transform: rotate(45deg) scale(0.9);
   }
 
-  .icon,
-  .image {
+  .refresh_icon,
+  .refresh_image {
     grid-area: 1 / 1;
   }
 
-  .icon {
+  .refresh_icon {
     transition: transform 200ms;
     opacity: 0;
     z-index: 2;

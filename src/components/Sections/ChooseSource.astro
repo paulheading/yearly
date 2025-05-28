@@ -5,7 +5,7 @@ import cnames from "#selectors/cnames";
 import { source } from "#data/store/playlist";
 import attrs from "#selectors/attrs";
 
-let props = {
+let formProps = {
   options: [{ title: source.title, data: source.id }],
   class: "select_form",
   title: source.title,
@@ -15,18 +15,35 @@ let props = {
     [attrs.data.state]: "closed",
     [attrs.data.type]: "select",
     [attrs.data.setting]: false,
+    "data-cy": data.selectForm.choose_source,
   },
+};
+
+let style = {
+  display: "none",
+};
+
+let divProps = {
+  class: data.section.select_form_row,
+  "data-cy": data.section.select_form_row,
+  style,
 };
 ---
 
 <div class="wrap_select_form_rows">
-  <div class={data.section.select_form_row} style={{ display: "none" }}>
-    <SelectForm {...props} />
-    <InvisibleButton className="remove_row_button">remove</InvisibleButton>
+  <div {...divProps}>
+    <SelectForm {...formProps} />
+    <InvisibleButton
+      data={{ cy: cnames.button.remove_row }}
+      className={cnames.button.remove_row}>remove</InvisibleButton
+    >
   </div>
 </div>
 
-<InvisibleButton className={cnames.button.source}>
+<InvisibleButton
+  data={{ cy: cnames.button.source }}
+  className={cnames.button.source}
+>
   Add a custom source
 </InvisibleButton>
 

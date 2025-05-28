@@ -22,7 +22,7 @@ let layoutProps = {
 <Layout {...layoutProps}>
   <Wrap style={{ textAlign: "center" }}>
     <NotLoaded>
-      <Loader style={{ margin: "auto" }} />
+      <Loader data={{ cy: "loader" }} style={{ margin: "auto" }} />
       <TracksAdded />
     </NotLoaded>
     <Loaded>

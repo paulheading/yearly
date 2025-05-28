@@ -1,8 +1,12 @@
-import { defineConfig } from 'cypress'
+import { defineConfig } from "cypress";
 
 export default defineConfig({
   e2e: {
-    supportFile: false,
-    baseUrl: 'http://localhost:4321',
-  }
-})
+    supportFile: "cypress/support/index.js",
+    baseUrl: "http://localhost:4321",
+  },
+  env: {
+    spotifyUsername: "paulheading@me.com",
+    spotifyPassword: "cMxst22dziFi=$",
+  },
+});

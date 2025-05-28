@@ -1,11 +1,19 @@
 ---
-let { name, className, style } = Astro.props;
+import { mapObjectToProps } from "paully/helpers";
+
+let { name, className, style, data } = Astro.props;
 
 let props = {
-  "data-section": name,
   class: className,
   style,
 };
+
+data = {
+  ...data,
+  section: name,
+};
+
+props = mapObjectToProps({ data, props });
 ---
 
 <div {...props}>

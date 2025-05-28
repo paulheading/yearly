@@ -11,11 +11,12 @@ let typeIsConfig = type == "config";
 
 let display = multiple && typeIsConfig ? "none" : "initial";
 
+let style = { display };
+
 let props = {
   [attrs.data.type]: type,
-  style: {
-    display,
-  },
+  "data-cy": type,
+  style,
 };
 ---
 

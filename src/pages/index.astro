@@ -17,9 +17,11 @@ const layoutProps = {
 <Layout {...layoutProps}>
   <Wrap style={{ textAlign: "center" }}>
     <div>
-      <h1>Yearly</h1>
+      <h1 data-cy="title">Yearly</h1>
       <h4>Songs you discovered this year</h4>
-      <SolidButton className={cnames.button.login}>Log in</SolidButton>
+      <SolidButton data={{ cy: "login" }} className={cnames.button.login}>
+        Log in
+      </SolidButton>
     </div>
   </Wrap>
 </Layout>

@@ -7,10 +7,17 @@ import playlist from "#data/playlist";
 import data from "#selectors/data";
 import cnames from "#selectors/cnames";
 
+let name = data.section.save_playlist;
+
+let style = {
+  display: "none",
+};
+
 let sectionProps = {
-  name: data.section.save_playlist,
-  style: {
-    display: "none",
+  name,
+  style,
+  data: {
+    cy: name,
   },
 };
 

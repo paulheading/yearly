@@ -1,0 +1,17 @@
+@use "#mixins" as *;
+
+.select_form_row {
+  align-items: center;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 25rem;
+  gap: 1rem;
+
+  +.select_form_row {
+    margin-top: 1rem;
+  }
+
+  @include small-up {
+    grid-template-columns: auto 6.25rem;
+  }
+}

@@ -1,22 +1,13 @@
-import cnames from "../../src/scripts/selectors/cnames";
+import displayIndexTitles from "#e2e/displayIndexTitles";
 
-it("titles are correct", function () {
+beforeEach(function () {
   cy.visit("/");
+});
 
-  // meta title exists & appears correctly
+after(function () {
+  cy.login();
+});
 
-  cy.get("title").should(
-    "have.text",
-    "Home | Yearly | Songs you discovered this year"
-  );
-
-  // page title exists & appears correctly
-
-  cy.get("h1").should("have.text", "Yearly");
-
-  cy.contains(cnames.button.login, "Log in");
-
-  cy.get(cnames.button.login).should("be.visible").click();
-
-  cy.url().should("include", "/callback");
+describe("index page tasks", function () {
+  it("displays correct titles", displayIndexTitles);
 });

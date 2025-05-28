@@ -22,4 +22,7 @@ export default {
     year_added: "year_added",
     year_released: "year_released",
   },
+  cy: function (value) {
+    return "[data-cy=" + value + "]";
+  },
 };

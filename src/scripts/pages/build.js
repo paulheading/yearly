@@ -14,6 +14,7 @@ import getStore from "#getters/getStore";
 import createBuildDOM from "#creators/createBuildDOM";
 import usingLiveData from "#using/usingLiveData";
 import data from "#selectors/data";
+import displayBanner from "#display/displayBanner";
 
 function getParams() {
   if (getStore().params) window.location.assign("/save");
@@ -39,11 +40,12 @@ asyncWrap(getStoreState).then(function () {
       asyncWrap(displayPage).then(setDOMToStoreValues);
     }
   } else {
-    asyncWrap(() =>
+    asyncWrap(function () {
+      displayBanner.innerHTML("<em>OFFLINE MODE</em>");
       setStore(function (store) {
         store.user = user;
         return store;
-      })
-    ).then(displayPage);
+      });
+    }).then(displayPage);
   }
 });

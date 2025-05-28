@@ -1,9 +1,15 @@
 ---
 import { SolidButton } from "paully";
 import cnames from "#selectors/cnames";
+
+let props = {
+  data: {
+    cy: "select",
+  },
+};
 ---
 
-<SolidButton className={cnames.button.select}>Select</SolidButton>
+<SolidButton {...props} className={cnames.button.select}>Select</SolidButton>
 
 <style lang="scss">
   @use "#mixins" as *;
