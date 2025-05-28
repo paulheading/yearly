@@ -14,6 +14,8 @@ function printSourceOption(source) {
 
   option.classList.add(cnames.selectForm.item);
 
+  option.setAttribute(attrs.data.cy, cnames.selectForm.item);
+
   option.setAttribute(attrs.data.id, source.id);
 
   option.innerText = source.name;

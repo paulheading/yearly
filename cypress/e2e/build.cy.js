@@ -23,7 +23,9 @@ function addFormValue({ selects, index, remove }) {
   cy.get("@list").should("be.visible");
 
   cy.get("@this_row")
-    .find(`.select-form-item[data-id=${selects[index]["data-id"]}]`)
+    .find(
+      data.cy("select-form-item") + `[data-id=${selects[index]["data-id"]}]`
+    )
     .click();
 
   cy.get("@button")
@@ -65,7 +67,7 @@ describe("build page tests", function () {
     cy.get("@form_rows").should("be.visible").and("have.length", 2);
   });
 
-  // it("should contain 3 cards: 2 visible. 1 hidden", contains3Cards);
+  it("should contain 3 cards: 2 visible. 1 hidden", contains3Cards);
 
-  // it("inspect and select cindy card", selectCindyCard);
+  it("inspect and select cindy card", selectCindyCard);
 });
