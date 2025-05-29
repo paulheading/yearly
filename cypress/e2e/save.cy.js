@@ -10,17 +10,13 @@ beforeEach(function () {
 });
 
 describe("save page tests", function () {
-  it("should animate loader and display tracks added", function () {
+  it("animates the loader and displays tracks added", function () {
     animateLoader();
     displayTracksAdded();
     cy.load("/save");
   });
 
-  it("should display active filters", function () {
-    displayCindySettings();
-  });
+  it("displays active filters", displayCindySettings);
 
-  it("should refresh artwork on click", function () {
-    refreshArtwork();
-  });
+  it("refreshes artwork on click", refreshArtwork);
 });
