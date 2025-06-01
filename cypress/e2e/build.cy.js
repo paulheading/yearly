@@ -2,8 +2,13 @@ import contain3Cards from "#e2e/contain3Cards";
 import selectSingleSource from "#e2e/selectSingleSource";
 import selectMultipleSources from "#e2e/selectMultipleSources";
 import selectCindyCard from "#e2e/selectCindyCard";
+import selectCustomCard from "#e2e/selectCustomCard";
+import excludesExplicitMusic from "#e2e/excludesExplicitMusic";
+import setMinMaxLengths from "#e2e/setMinMaxLengths";
 
 import data from "#selectors/data";
+
+// import settings from "#data/settings";
 
 beforeEach(function () {
   cy.fixture("selects.json").as("selects");
@@ -16,22 +21,36 @@ beforeEach(function () {
 });
 
 describe("build page tests", function () {
-  // it("should redirect if no store exists", function () {
+  // it("redirects if no store exists", function () {
   //   cy.visit("/build");
   //   cy.location("pathname").should("eq", "/");
   // });
 
-  it("contains 3 cards: 2 visible. 1 hidden", contain3Cards);
+  // it("contains 3 cards: 2 visible. 1 hidden", contain3Cards);
 
-  it("selects a source playlist", selectSingleSource);
+  // it("selects a source playlist", selectSingleSource);
 
-  it("selects multiple source playlists", selectMultipleSources);
+  // it("selects multiple source playlists", selectMultipleSources);
 
-  it("selects and inspect cindy card", selectCindyCard);
+  // it("selects and inspect cindy card", function () {
+  //   function callback() {
+  //     cy.log("callback runs");
+  //   }
 
-  it("sets a minimum and maxium track length", function () {});
+  //   selectCindyCard(callback);
+  // });
 
-  it("excludes bad language", function () {});
+  // it("selects custom card", function () {
+  //   function callback() {
+  //     cy.log("callback runs");
+  //   }
 
-  it("creates a playlist using a query string", function () {});
+  //   selectCustomCard(callback);
+  // });
+
+  it("sets a minimum and maxium track length", setMinMaxLengths);
+
+  it("excludes explicit music", excludesExplicitMusic);
+
+  // it("creates a playlist using a query string", function () {});
 });

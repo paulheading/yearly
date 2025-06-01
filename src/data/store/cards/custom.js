@@ -71,7 +71,7 @@ let card = {
           data: {
             ...settings.groups.duration,
             [attrs.data.type]: "range",
-            [attrs.data["range-pos"]]: "min",
+            [attrs.data["range-pos"]]: "max",
           },
         },
         {

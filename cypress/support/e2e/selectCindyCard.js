@@ -1,27 +1,14 @@
+import inspectCard from "#e2e/inspectCard";
 import data from "#scripts/selectors/data";
 
-export default function () {
-  cy.card("cindy").as("card");
+export default function (callback) {
+  let name = "cindy";
 
-  cy.get(data.cy("build")).as("build");
+  inspectCard("cindy");
 
-  cy.get("@card").find(data.cy("cover")).as("cover");
+  if (callback) callback();
 
-  cy.get("@card").find(data.cy("config")).as("config");
+  cy.card(name).find(data.cy("select")).click();
 
-  cy.get("@cover").find(data.cy("info")).click();
-
-  cy.get("@cover").should("not.be.visible");
-
-  cy.get("@config").should("be.visible");
-
-  cy.get("@config").find(data.cy("info")).click();
-
-  cy.get("@config").should("not.be.visible");
-
-  cy.get("@cover").should("be.visible");
-
-  cy.get("@card").find(data.cy("select")).click();
-
-  cy.get("@build").click();
+  cy.get(data.cy("build")).click();
 }

@@ -76,7 +76,9 @@ function handleRangeInput($input) {
 
 export default function () {
   $.setting.ranges.forEach(function ($input) {
-    $input.oninput = () => handleRangeInput($input);
+    $input.addEventListener("input", function () {
+      return handleRangeInput($input);
+    });
   });
 }
 
