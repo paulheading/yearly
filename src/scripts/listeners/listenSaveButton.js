@@ -10,7 +10,11 @@ import getStoreState from "#getters/getStoreState";
 import putPlaylistCover from "#putters/putPlaylistCover";
 import data from "#selectors/data";
 
-let sections = [data.section.save_playlist, data.section.tracks_added];
+let sections = [
+  data.section.save_playlist,
+  data.section.tracks_added,
+  data.section.confirm_settings,
+];
 
 function saveButtonClick() {
   loadInProgress(function () {

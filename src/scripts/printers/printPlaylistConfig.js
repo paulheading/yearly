@@ -2,6 +2,7 @@ import getClass from "#getters/astro/getClass";
 import getPlaylistActiveConfig from "#getters/getPlaylistActiveConfig";
 import getStore from "#getters/getStore";
 import exclude from "#filters/exclude";
+import settings from "#data/settings";
 
 let $box = document.querySelector(".box");
 
@@ -33,6 +34,8 @@ export default function () {
   });
 
   getPlaylistActiveConfig().forEach(function ({ title, value }) {
+    if (title == settings.in_recommends) return;
+
     let $item = createConfigTag(title);
 
     if (exclude.allBooleans(value)) {
