@@ -8,7 +8,7 @@ import usingLiveData from "#scripts/using/usingLiveData.js";
 
 export default function () {
   loadComplete(function () {
-    if (!usingLiveData) displayBanner.innerHTML("<em>OFFLINE MODE</em>");
+    if (!usingLiveData()) displayBanner.innerHTML("<em>OFFLINE MODE</em>");
 
     displaySection(data.section.save_playlist, "block");
 

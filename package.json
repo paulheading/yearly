@@ -12,9 +12,9 @@
   },
   "dependencies": {
     "@apollo/client": "^3.11.10",
-    "@astrojs/mdx": "^4.3.0",
-    "@astrojs/sitemap": "^3.4.1",
-    "astro": "^5.10.1",
+    "@astrojs/mdx": "^4.3.3",
+    "@astrojs/sitemap": "^3.4.2",
+    "astro": "^5.12.8",
     "buffer": "^6.0.3",
     "focus-visible": "^5.2.0",
     "gsap": "^3.13.0",
@@ -26,6 +26,7 @@
   "devDependencies": {
     "cypress": "^14.4.0",
     "gulp": "^4.0.2",
+    "miragejs": "^0.1.48",
     "sass-embedded": "^1.82.0"
   },
   "imports": {

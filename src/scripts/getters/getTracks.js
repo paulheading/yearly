@@ -13,5 +13,5 @@ export let loop = {
 export default async function () {
   displaySection(data.section.tracks_added, "block");
 
-  return !usingLiveData ? getLocalTracks() : getRemoteTracks();
+  return !usingLiveData() ? getLocalTracks() : getRemoteTracks();
 }

@@ -6,11 +6,9 @@ import printLoginPrompt from "#printers/printLoginPrompt";
 import usingLiveData from "#using/usingLiveData";
 import getSearchParams from "#getters/getSearchParams";
 
-if (!usingLiveData) displayBanner.innerHTML("<em>OFFLINE MODE</em>");
-
 let { validParams, invalidParams, mixedParams } = getSearchParams;
 
-if (usingLiveData) {
+if (usingLiveData()) {
   validParams.loggedIn(() => window.location.assign("/build"));
 
   validParams.loggedOut(function () {

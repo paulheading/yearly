@@ -11,6 +11,6 @@ export default function () {
   })
     .then(setParams)
     .then(function () {
-      usingLiveData ? getAuth() : window.location.assign("/build");
+      usingLiveData() ? getAuth() : window.location.assign("/build");
     });
 }
